@@ -3,9 +3,9 @@
 # ----------------------- #
 
 url: http://lupoyi.github.io
-title: My Octopress Blog
-subtitle: A blogging framework for hackers.
-author: Your Name
+title: Bob 學習筆記
+subtitle: Loser of the year
+author: Bob (PoYi)
 simple_search: https://www.google.com/search
 description:
 
@@ -95,7 +95,7 @@ disqus_short_name:
 disqus_show_comment_count: false
 
 # Google Analytics
-google_analytics_tracking_id:
+google_analytics_tracking_id: UA-43769917-1
 
 # Facebook Like
 facebook_like: false
