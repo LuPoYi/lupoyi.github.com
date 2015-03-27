@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: asp.net | Bob 學習筆記]]></title>
+  <link href="http://lupoyi.github.io/blog/categories/asp-dot-net/atom.xml" rel="self"/>
+  <link href="http://lupoyi.github.io/"/>
+  <updated>2015-03-27T23:22:55+08:00</updated>
+  <id>http://lupoyi.github.io/</id>
+  <author>
+    <name><![CDATA[Bob (PoYi)]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[[ASP.NET] Linq 動態條件搜尋]]></title>
+    <link href="http://lupoyi.github.io/blog/2013/09/29/aspnet-linq-dynamic-conditions/"/>
+    <updated>2013-09-29T08:10:00+08:00</updated>
+    <id>http://lupoyi.github.io/blog/2013/09/29/aspnet-linq-dynamic-conditions</id>
+    <content type="html"><![CDATA[<p>一般Linq在多種動態條件的組合時會顯得比較麻煩，要額外加很多if else判斷式來達成
+而「PredicateBuilder」可以解決這些麻煩，原理上是將where的條件獨立出來</p>
+
+<pre><code class="Console">static void linqPB()
+    {
+        var list = new List&lt;string&gt; { "apple", "bob", "coco", "durex", "enter", "fuck"};
+        var searchKeyword = new List&lt;string&gt; { "o", "e" };
+        var predicate = PredicateBuilder.False&lt;string&gt;();
+
+        foreach (var word in searchKeyword)
+        {
+            var temp = word;  // 避免參考到相同變數位址
+            predicate = predicate.Or(p =&gt; p.Contains(temp));
+        }
+        var qry = list.Where(predicate.Compile());
+
+        foreach (var item in qry)
+        {
+            Console.WriteLine(item);
+        }
+        Console.Read();
+    }
+// result: apple bob coco durex enter
+</code></pre>
+
+<p>主要的重點如下，將條件放入xxx
+<code>
+  var predicate = PredicateBuilder.False(); // 這邊的true/false會與下列的or做串接
+  predicate = predicate.Or(p =&gt; p.name.Contains(xxx));
+  predicate = predicate.Or(p =&gt; p.department.Contains (xxx));
+  myDB.employee.Where (predicate);
+</code></p>
+
+<p>Reference:
+要使用PredicateBuilder，需要加入參考: LinqKit.dll
+<a href="http://www.albahari.com/nutshell/predicatebuilder.aspx">http://www.albahari.com/nutshell/predicatebuilder.aspx</a> <br/>
+<a href="http://blog.sanc.idv.tw/2010/10/linq.html">http://blog.sanc.idv.tw/2010/10/linq.html</a>
+<a href="http://leaflet-t-h.blogspot.tw/2011/11/linq-predicatebuilder.html">http://leaflet-t-h.blogspot.tw/2011/11/linq-predicatebuilder.html</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[[C#] 字串補零]]></title>
+    <link href="http://lupoyi.github.io/blog/2013/09/23/aspnet-string-is-padded-with-zeros/"/>
+    <updated>2013-09-23T14:01:00+08:00</updated>
+    <id>http://lupoyi.github.io/blog/2013/09/23/aspnet-string-is-padded-with-zeros</id>
+    <content type="html"><![CDATA[<p>最近常常手動新增假員工AD帳號來測我的程式
+在嘗試跑程式step by step來測試時，想說奇怪怎麼假帳號會有電腦資產
+原來這帳號跟設計部門的元老經理的員工工號重複了&hellip;
+還好有及時發現沒有把程式執行完，不然IT部門就要起飛了&hellip;</p>
+
+<p>所以想說寫個迴圈來測是不是有其他工號也有重複的案例
+而工號欄位都是五位數(BOB00001~BOB99999)
+像我的工號是4104需要補足五位數
+有三種方式：</p>
+
+<pre><code>int myEmpNo = 4104;
+empNo.ToString("00000");  
+empNo.ToString("D5");                        
+empNo.ToString().PadLeft(5,'0'); 
+// 04104
+</code></pre>
+
+<p>查了才知道原來ToString蠻方便的，有些好用的例子</p>
+
+<pre><code>empNo.ToString("BOB00000"); // BOB04104
+empNo.ToString("C");  // NT$4,104.00
+empNo.ToString("C", new System.Globalization.CultureInfo("en-US")); $4,104.00
+
+int myPhoneNo =123456789;
+myPhoneNo.ToString("(##) ###-####"); // (12) 345-6789
+</code></pre>
+
+<p>PadLeft ：字串向右靠齊，將指定字元填滿左邊。
+PadRight：字串向左靠齊，將指定字元填滿右邊。</p>
+
+<p>Reference:
+<a href="http://msdn.microsoft.com/zh-tw/library/0c899ak8(v=vs.95">http://msdn.microsoft.com/zh-tw/library/0c899ak8(v=vs.95).aspx</a>.aspx)
+<a href="http://www.dotblogs.com.tw/ethon.chi/archive/2010/09/27/17917.aspx">http://www.dotblogs.com.tw/ethon.chi/archive/2010/09/27/17917.aspx</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[[ASP.NET] 檔案資料夾存取]]></title>
+    <link href="http://lupoyi.github.io/blog/2013/09/18/aspnet-archive-folder-access/"/>
+    <updated>2013-09-18T14:49:00+08:00</updated>
+    <id>http://lupoyi.github.io/blog/2013/09/18/aspnet-archive-folder-access</id>
+    <content type="html"><![CDATA[<p>刪除</p>
+
+<pre><code>    System.IO.File.Delete(filePath);
+    System.IO.Directory.Delete(folderPath);
+</code></pre>
+
+<p>搬移</p>
+
+<pre><code>    System.IO.File.Move(sourceFilePath, destinationFilePath);
+    System.IO.Directory.Move(sourceFolderPath, destinationFolderPath);
+</code></pre>
+
+<p>複製</p>
+
+<pre><code>    System.IO.File.Copy(sourceFilePath, destinationFilePath, true); 
+    System.IO.Directory.Copy(sourceFolderPath, destinationFolderPath, true);// true表示是否覆寫
+</code></pre>
+
+<p>取得該目標下所有檔案</p>
+
+<pre><code>    string[] files = System.IO.Directory.GetFiles(folderPath);
+</code></pre>
+
+<p>比較需要注意的是做任何動作之前，都要需要先檢查目標是否存在，否則會跳出錯誤。</p>
+
+<p>這樣也一篇…</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[[ASP.NET] 存取AD網域]]></title>
+    <link href="http://lupoyi.github.io/blog/2013/09/12/aspnet-access-to-ad-domain/"/>
+    <updated>2013-09-12T01:27:00+08:00</updated>
+    <id>http://lupoyi.github.io/blog/2013/09/12/aspnet-access-to-ad-domain</id>
+    <content type="html"><![CDATA[<h2>透過AD網域來存取帳號資料</h2>
+
+<h2>查詢資料</h2>
+
+<pre><code>string QueryString = "LDAP://網域";
+DirectoryEntry de = new DirectoryEntry(QueryString,adminAccount,adminPassword);
+DirectorySearcher ds = new DirectorySearcher(de);
+SearchResultCollection Results = null;
+
+// 設定查詢條件：依姓名及工號查詢
+ds.Filter = @"(&amp;(samaccountname=" + employeeName + ")(Description=" + employeeNo + "))";
+// 將查詢結果放入Results
+Results = ds.FindAll();
+
+foreach (SearchResult result in Results)
+{
+    if (result.Properties["description"].Count &gt; 0)
+    {
+        // 透過AD裡的屬性「description」，取得工號
+        string resultNo = result.Properties["description"][0].ToString();
+        Response.Write(resultNo);
+        Response.Write("&lt;br&gt;");
+    }
+}
+ds.Dispose(); // 釋放資源
+de.Dispose();
+</code></pre>
+
+<h2>修改指定帳號的屬性值</h2>
+
+<pre><code>string QueryString = "LDAP://"+ userLDAP;
+DirectoryEntry de = new DirectoryEntry(QueryString, adminAccount,adminPassword);
+
+de.Properties["TelephoneNumber"].Value = 123;     
+
+// 停用此帳號：userAccountControl = 514 
+de.Properties["userAccountControl"].Value = 514;
+
+// 重設密碼
+de.Invoke("SetPassword", newPassword);
+
+de.CommitChanges();
+de.Close();
+</code></pre>
+
+<h2>刪除帳號</h2>
+
+<pre><code>string QueryString = LDAP://" + userLDAP;
+DirectoryEntry user = new DirectoryEntry(QueryString, adminAccount, adminPassword);
+// 找上一層
+DirectoryEntry ou = user.Parent;
+// 再回去刪它
+ou.Children.Remove(user);
+ou.CommitChanges();
+</code></pre>
+
+<p>基本屬性KEY跟VALUE可以在AD裡面找到
+<img src="http://user-image.logdown.io/user/2740/blog/2734/post/138560/iH5dxsHMS6SoXINR2EX2_2013-9-15%20%E4%B8%8B%E5%8D%88%2001-58-35.jpg" alt="2013-9-15 下午 01-58-35.jpg" /></p>
+
+<p>Reference:
+<a href="http://www.dotblogs.com.tw/yc421206/archive/2010/02/07/13510.aspx">http://www.dotblogs.com.tw/yc421206/archive/2010/02/07/13510.aspx</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[[ASP.NET] 日期處理]]></title>
+    <link href="http://lupoyi.github.io/blog/2013/09/05/aspnet-date/"/>
+    <updated>2013-09-05T09:07:00+08:00</updated>
+    <id>http://lupoyi.github.io/blog/2013/09/05/aspnet-date</id>
+    <content type="html"><![CDATA[<h1>日期運算其實還蠻常用到的，但好像變化不多</h1>
+
+<pre><code>// 利用TimeSpan 日期相減
+TimeSpan ts = DateTime1 - DateTime2;
+int differenceInDays = ts.Days;
+
+// 加上指定月數、天數、時間
+DateTime DateTime3 = DateTime1.AddDays(50);
+DateTime DateTime4 = DateTime1.AddMonths(12);
+
+// 顯示特定格式
+TextBox1.Text = DateTime4.ToString("dddd"); // 星期二
+TextBox1.Text = DateTime4.ToString("MMMM"); // 七月
+TextBox1.Text = DateTime4.ToString("MMMM",CultureInfo.CreateSpecificCulture("en-US"))); // July
+TextBox1.Text = DateTime4.ToString("yyyy-MM-dd HH:mm:ss");
+</code></pre>
+
+<p>Reference:
+<a href="http://www.dotblogs.com.tw/hung-chin/archive/2012/10/15/77503.aspx">http://www.dotblogs.com.tw/hung-chin/archive/2012/10/15/77503.aspx</a>
+<a href="http://gogo1119.pixnet.net/blog/post/28140411-%5Bc%23%5D-datetime-tostring%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%99%95%E7%90%86">http://gogo1119.pixnet.net/blog/post/28140411-%5Bc%23%5D-datetime-tostring%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%99%95%E7%90%86</a></p>
+]]></content>
+  </entry>
+  
+</feed>

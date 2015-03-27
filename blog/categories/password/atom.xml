@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Password | Bob 學習筆記]]></title>
+  <link href="http://lupoyi.github.io/blog/categories/password/atom.xml" rel="self"/>
+  <link href="http://lupoyi.github.io/"/>
+  <updated>2015-03-27T23:22:55+08:00</updated>
+  <id>http://lupoyi.github.io/</id>
+  <author>
+    <name><![CDATA[Bob (PoYi)]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[[ASP.NET] Reset Password in Active Directory]]></title>
+    <link href="http://lupoyi.github.io/blog/2014/02/14/aspnet-reset-password-in-active-directory/"/>
+    <updated>2014-02-14T12:47:00+08:00</updated>
+    <id>http://lupoyi.github.io/blog/2014/02/14/aspnet-reset-password-in-active-directory</id>
+    <content type="html"><![CDATA[<p>重設密碼建議還是用LDAP去抓USER，以免抓錯人之類的</p>
+
+<pre><code class="C# Reset Password in Active Directory">DirectoryEntry userDirEntry = new DirectoryEntry("LDAP://" + ldapStr, adminAccount, adminPassword);
+userDirEntry.Invoke("SetPassword", CreateRandomPassword(8));    // 重設新密碼
+userDirEntry.CommitChanges();
+
+
+userDirEntry.Properties["pwdLastSet"].Value = 0; // 下次登入會強制要求改密碼
+userDirEntry.CommitChanges();
+
+userDirEntry.Close();
+</code></pre>
+
+<pre><code class="C# Generate Random Password (Winform)">
+public static string CreateRandomPassword(int passwordLength) 
+{
+      string allowedChars = "abcdefghijkmnprstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789~!@#$%^&amp;*()_+?";
+      char[] chars = new char[passwordLength];
+      for (int i = 0; i &lt; passwordLength; i++)
+      {
+            chars[i] = allowedChars[rd.Next(0, allowedChars.Length)];   
+            // random.next(min,max) =&gt;int
+      }
+      string strPwd = new string(chars);
+
+      while (!((Regex.IsMatch(strPwd, "[0-9]")) &amp;&amp; 
+      (Regex.IsMatch(strPwd, "[a-z]")) &amp;&amp; 
+      (Regex.IsMatch(strPwd, "[A-Z]")) &amp;&amp; 
+      (Regex.IsMatch(strPwd, @"[\W]"))))    
+      // \w  [a-zA-Z0-9_]  , \W ![a-zA-Z0-9_]
+      {
+            strPwd = CreateRandomPassword(8);   
+      }
+
+      return strPwd;
+}
+
+// 靜態避免短時期內產生相同亂數
+static Random rd = new Random(GetRandomSeed());
+static int GetRandomSeed()
+{
+      byte[] bytes = new byte[4];
+      System.Security.Cryptography.RNGCryptoServiceProvider rng = 
+      new System.Security.Cryptography.RNGCryptoServiceProvider();
+      rng.GetBytes(bytes);
+      return BitConverter.ToInt32(bytes, 0);
+}
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>

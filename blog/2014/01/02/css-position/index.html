@@ -1,0 +1,259 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>[CSS] 定位 - Bob 學習筆記</title>
+  <meta name="author" content="Bob (PoYi)">
+
+  
+  <meta name="description" content="以前都是直接用現成的，或是抓別人的css來用
+一堆語法都知道是幹麻的，但自己寫的時候就完全不行
+尤其是layout的配置..明明感覺很簡單的卻要一直亂試喬半天&hellip; 趁著最近面試的機會來記一下CSS&hellip;. 不然平常都很懶得學 Position position, 依top, &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://lupoyi.github.io/blog/2014/01/02/css-position/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Bob 學習筆記" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-43769917-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Bob 學習筆記</a></h1>
+  
+    <h2>Loser of the year</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="lupoyi.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">[CSS] 定位</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-01-02T02:43:00+08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2014</span></span> <span class='time'>2:43 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>以前都是直接用現成的，或是抓別人的css來用
+一堆語法都知道是幹麻的，但自己寫的時候就完全不行
+尤其是layout的配置..明明感覺很簡單的卻要一直亂試喬半天&hellip;</p>
+
+<p>趁著最近面試的機會來記一下CSS&hellip;. <del>不然平常都很懶得學</del></p>
+
+<h2>Position</h2>
+
+<figure class='code'><figcaption><span>position, 依top, left, right, bottom調整位置</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nt">position</span><span class="o">:</span> <span class="nt">absloute</span> <span class="c">/* 絕對位置 */</span>
+</span><span class='line'><span class="nt">position</span><span class="o">:</span> <span class="nt">relative</span> <span class="c">/* 相對位置，以該元件所屬的左上角做基準點，移動位置仍會佔有原先位置的空間 */</span>
+</span><span class='line'><span class="nt">position</span><span class="o">:</span> <span class="nt">fixed</span>    <span class="c">/* 固定位置，定在視窗上 */</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">/* 當相對位置包住絕對位置時，絕對位置所基準就會為相對位置 */</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>z-index</h2>
+
+<p>z-index 元件重疊時，值愈大，顯示愈上面</p>
+
+<h2>overflow</h2>
+
+<figure class='code'><figcaption><span>控制轉軸</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nt">overflow</span><span class="o">:</span> <span class="nt">visible</span> <span class="c">/* 內容完整呈現 */</span>
+</span><span class='line'><span class="nt">overflow</span><span class="o">:</span> <span class="nt">hidden</span>  <span class="c">/* 只顯示放得下的內容 */</span>
+</span><span class='line'><span class="nt">overflow</span><span class="o">:</span> <span class="nt">scroll</span>  <span class="c">/* 強制加右方下方捲軸 */</span>
+</span><span class='line'><span class="nt">overflow</span><span class="o">:</span> <span class="nt">auto</span>    <span class="c">/* 內容放不下時，加右方捲軸 */</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Reference:
+<a href="http://my-web-design.blogspot.tw/2007/10/css-divposition.html">http://my-web-design.blogspot.tw/2007/10/css-divposition.html</a>
+<a href="http://www.1keydata.com/css-tutorial/tw/position.php">http://www.1keydata.com/css-tutorial/tw/position.php</a></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Bob (PoYi)</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2014-01-02T02:43:00+08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2014</span></span> <span class='time'>2:43 am</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/css/'>css</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://lupoyi.github.io/blog/2014/01/02/css-position/" data-via="" data-counturl="http://lupoyi.github.io/blog/2014/01/02/css-position/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/12/23/ruby-exception-handling/" title="Previous Post: [Ruby] 例外處理">&laquo; [Ruby] 例外處理</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2014/01/13/javascript-triggered-interrupt-event-or-action/" title="Next Post: [JavaScript] 中斷事件或動作的觸發">[JavaScript] 中斷事件或動作的觸發 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/05/06/ruby-csv-file/">[Ruby] 匯出批次csv檔</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/03/16/ruby-require-load-include-extend/">[Ruby] Require,load,include,extend</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/03/03/aspnet-auto-return/">[ASP.NET] 自動寄信</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/03/03/c-datatable-operation-memos/">[C#] DataTable 的操作備忘</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/02/15/linux-getting-started-with-hyper-basic-instructions/">[Linux] 超入門的基本指令</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Bob (PoYi) -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

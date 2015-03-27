@@ -1,0 +1,649 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Bob 學習筆記</title>
+  <meta name="author" content="Bob (PoYi)">
+
+  
+  <meta name="description" content="HTML 5 基本樣式 &lt;!DOCTYPE html&gt;
+&lt;html&gt; &lt;head&gt; &lt;meta charset="UTF-8"&gt; &lt;title&gt;HTML 5&lt;/title&gt; &lt;/head&gt; &lt;body&gt &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://lupoyi.github.io/posts/5/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Bob 學習筆記" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-43769917-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Bob 學習筆記</a></h1>
+  
+    <h2>Loser of the year</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="lupoyi.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/08/29/html5/">[HTML5] 入門</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-08-29T13:17:00+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>29</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>1:17 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1>HTML 5 基本樣式</h1>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;HTML 5&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+  &lt;p&gt;Hello World!&lt;p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h1>視訊播放</h1>
+
+<p>瀏覽器會依type特性來決定要顯示哪一個影片檔，也可以依照不同尺寸來設定觀看的的解析度。
+video標籤可用的屬性:Preload(不自動下載視訊)、Loop(重複播放)、autoplay(開啟後自動播放)、width、height&hellip;</p>
+
+<pre><code>    &lt;video controls autoplay&gt;
+      &lt;source src="Simple Plan.720p.webm" type="video/webm" media="screen and (min-width: 500px)"&gt;
+      &lt;source src="Simple Plan.360p.webm" type="video/webm"&gt;
+      &lt;source src="Simple Plan.mp4" type="video/mp4"&gt;
+      &lt;source src="Simple Plan.ogg" type="video/ogg"&gt;
+      Sorry...Your browser is crap...
+    &lt;/video&gt;
+</code></pre>
+
+<p>目前查到的資料：
+IE、Safari 只支援mp4
+Opera 支援webm ogg
+FireFox 支援webm ogg (mp4部分支援)
+Chrome 全都支援</p>
+
+<p><a href="http://www.w3schools.com/html/html5_video.asp">http://www.w3schools.com/html/html5_video.asp</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/08/29/git/">GIT</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-08-29T09:06:00+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>29</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>9:06 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><figure class='code'><figcaption><span>git</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>apt-get install git-core
+</span><span class='line'>
+</span><span class='line'>git config --global user.name <span class="s2">&quot;name&quot;</span>
+</span><span class='line'>git config --global user.email <span class="s2">&quot;email&quot;</span>
+</span><span class='line'>
+</span><span class='line'>git config --list <span class="c">#查看設定</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>Git的基本功(status, add, commit, log, .gitignore)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git status
+</span><span class='line'>
+</span><span class='line'>git add
+</span><span class='line'>git add .
+</span><span class='line'>
+</span><span class='line'>git commit
+</span><span class='line'>git commit -m <span class="s2">&quot;Add test.rb to test git function&quot;</span>
+</span><span class='line'>
+</span><span class='line'>git log <span class="o">(</span>-p<span class="o">)</span>
+</span><span class='line'>git log --stat
+</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><figcaption><span>Git</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>gitk --all <span class="o">(</span><span class="p">&amp;</span><span class="o">)</span> 內建gui
+</span><span class='line'>git branch 這個指令可以列出所有的 branch 並告訴你目前正在哪個 branch：
+</span><span class='line'>git branch <span class="o">(</span>new_branch_name<span class="o">)</span>
+</span><span class='line'>
+</span><span class='line'>git checkout <span class="s2">&quot;Loser&quot;</span> 切換branch
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><a href="http://howar31.blogspot.tw/2013/06/git.html">http://howar31.blogspot.tw/2013/06/git.html</a>
+<a href="http://tech.marsw.tw/blog/2013/08/16/git-notes-github">http://tech.marsw.tw/blog/2013/08/16/git-notes-github</a>
+因此我們稍微做一下流程的整理：
+修改檔案 => 加入 stage (git add) => 提交( git commit )=> 繼續修改其他檔案</p>
+
+<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/95260/DcnMzKdwRnym16KQJwvF_2013-10-31%20%E4%B8%8A%E5%8D%88%2011-36-28.jpg" alt="2013-10-31 上午 11-36-28.jpg" /></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/08/28/aspnet-file-download/">[ASP.NET] 檔案下載寫法</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-08-28T08:57:00+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>8:57 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>Response.WriteFile 檔案下載方式一</h2>
+
+<pre><code>using System.IO;
+
+string filePath = "C:/porn.jpg";
+FileInfo file = new FileInfo(filePath);
+Response.Clear()
+Response.Buffer = false; 
+Response.ContentType = "application/octet-stream"; // 指定檔案類型
+Response.AddHeader("Content-Disposition","attachment;filename="+"porn.jpg"); // 設定檔名
+// System.Web.HttpUtility.UrlEncode(newFileName, System.Text.Encoding.UTF8) 解決中文檔名亂碼
+Response.AppendHeader("Content-Length", file.Length.ToString()); // 表頭加入檔案大小
+Response.WriteFile(file.FullName);
+Response.Flush();
+Response.End();
+</code></pre>
+
+<h2>System.Net.WebClient.DownloadData 檔案下載方式二</h2>
+
+<pre><code>using System.Net;
+
+WebClient wc = new WebClient();
+byte[] byteFile = null;
+string path = "C:/porn.jpg"; // 設定路徑
+byteFile = wc.DownloadData(path);
+string fileName = System.IO.Path.GetFileName(path); // 取得檔案名稱
+Response.AppendHeader("content-disposition", "attachment;filename=" + "porn.jpg"); //設定檔名
+// HttpContext.Current.Server.UrlEncode(fileName) 解決中文檔名亂碼
+Response.ContentType = "application/octet-stream";  // 指定檔案類型   
+Response.BinaryWrite(byteFile); // 內容轉出作檔案下載
+Response.End();
+</code></pre>
+
+<h2>參考資料</h2>
+
+<p><a href="http://www.dotblogs.com.tw/jerrymow/archive/2013/04/22/102084.aspx">http://www.dotblogs.com.tw/jerrymow/archive/2013/04/22/102084.aspx</a>
+<a href="http://blog.miniasp.com/post/2008/03/12/Caution-about-ASPNET-Response-a-Large-File.aspx">http://blog.miniasp.com/post/2008/03/12/Caution-about-ASPNET-Response-a-Large-File.aspx</a>
+<a href="http://www.dotblogs.com.tw/whitewing/archive/2010/03/18/14102.aspx">http://www.dotblogs.com.tw/whitewing/archive/2010/03/18/14102.aspx</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/08/23/linq-introduction/">[ASP.NET] Linq基本用法</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-08-23T02:28:00+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2013</span></span> <span class='time'>2:28 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>公司前輩跟我提過可以用用看Linq比較潮(?)
+寫.NET的時候就不需要寫的這麼..無腦</p>
+
+<pre><code>sqlStr += "Select ...";
+sqlStr += "from ....";
+sqlStr += "join ...";
+sqlStr += "where ...."
+
+string sql = @"SELECT ...
+           FROM table1
+           WHERE field3 = @Param1";
+</code></pre>
+
+<p>基本Linq類似這樣</p>
+
+<pre><code>var Query =
+    from q in myDB.Employee
+    where q.Name == "Bob"
+    select q;
+</code></pre>
+
+<p>Group By</p>
+
+<pre><code>int[] values = {1,2,3,4,5,6};
+var Query =
+    from p in values
+    group p by p % 2 ==0;
+    // values =&gt; 1 3 5 0 2 4
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/08/22/91974/">[ASP.NET] 頁面傳值</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-08-22T02:05:00+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>22</span><span class='date-suffix'>nd</span>, <span class='date-year'>2013</span></span> <span class='time'>2:05 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>Client-Base</h2>
+
+<h3>ViewState：相當於把值存放於hidden field當中</h3>
+
+<p>只存在單一Web form
+預設開啟、未完善加密
+不會佔用系統資源
+<em>較不適合大量或機密資料</em></p>
+
+<h2>Server-Base</h2>
+
+<h3>Session：類似跨網頁的全域變數</h3>
+
+<p>多個頁面傳值
+預設存放記憶體
+可設定Time out</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/07/28/sql-syntax/">[SQL] 常用語法</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-07-28T06:41:00+08:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>6:41 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>不一定是常用…而是記不太起來，每次都要查…</p>
+
+<p>DBCC CHECKIDENT ( <em>tablename</em>, RESEED, new_reseed_value ) 強制重設table的識別值</p>
+
+<pre><code>DBCC CHECKIDENT(tablename,  RESEED, 0)  // 歸零識別值
+</code></pre>
+
+<p>SQL驗證
+Data Source=<strong><em>;Initial catalog=</em></strong>;User ID=<strong><em>;Password=</em></strong></p>
+
+<p>Windows驗證
+Data Source=<strong><em>;Initial Catalog=</em></strong>;integrated security=sspi</p>
+
+<p>union:上下重直合併</p>
+
+<p>萬用字元
+%
+_:代表一個字元
+〔〕:指定字元範圍；[0-9]、[A-D]、[ABCD]
+〔^〕:排除字元範圍:[^ABC]</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/07/22/common-e-mail-errors/">[English] Common E-mail Errors</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-07-22T13:54:00+08:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>22</span><span class='date-suffix'>nd</span>, <span class='date-year'>2013</span></span> <span class='time'>1:54 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>台灣人常出現的Email issue</p>
+
+<p>X : We need to cost down on this project. (&ldquo;cost down&rdquo; is not a word)<br>
+X : Please feel free to contact with me. (&ldquo;with&rdquo; is unnecessary)<br>
+X : If you have any question, please let me know. (&ldquo;questions&rdquo;)</p>
+
+<p>&ndash;</p>
+
+<p>Subject Lines:</p>
+
+<p>Subject Lines aren&rsquo;t sentences, so don&rsquo;t use period(.)</p>
+
+<p>Greeting:</p>
+
+<p>X: Dear Miss Lu, (Ms. is correct, because we don&rsquo;t know she is married or not)<br>
+X: Dear Client,<br>
+X: Dear both,<br>
+X: Dear CEO Bob Lu, (Don&rsquo;t use title)<br>
+X: Dear Boss Huang,<br>
+X: Dears,<br></p>
+
+<p>The Body:</p>
+
+<p>These are usually separated by paragraphs<br>
+Don&rsquo;t overusing exclamation mark(!)</p>
+
+<p>Closings:</p>
+
+<p>X: Best Regards, (&ldquo;regards&rdquo; is correct)<br>
+X: See you~~~<br>
+X: Tks,<br></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/07/22/string-syntax/">[C#] String常用語法</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-07-22T11:37:00+08:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>22</span><span class='date-suffix'>nd</span>, <span class='date-year'>2013</span></span> <span class='time'>11:37 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>StringBuilder: 用append串接；大量動態字串時效率較高
+String: 用+串接；固定字串時，效率較高</p>
+
+<h2>一般情況都用String</h2>
+
+<p><strong>String.IndexOf</strong>
+找字串中第一次出現的index</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>if(employeeName.IndexOf("Admin") == -1)  // 可判斷Name中是否有符合Admin的字串</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>String.LastIndexOf</strong>
+找字串中最後一次出現的index</p>
+
+<p><strong>Substring(int startIndex, int length)</strong> 擷取字串</p>
+
+<pre><code>string str = "台灣駐史瓦濟蘭大使館";
+str.Substring(3, 6);    // output: 史瓦濟蘭大使
+</code></pre>
+
+<p><strong>Split</strong> 分隔字串</p>
+
+<pre><code>string wholeString = "Bob.Lu";
+string[] spiltString = wholeString.Split(new string[] { "." }, StringSplitOptions.RemoveEmptyEntries);
+aryUserInfo[0].ToString(); // output: Bob
+</code></pre>
+
+<p><strong>Regex.IsMatch(string input,   string pattern)</strong> 是否包含xxx</p>
+
+<pre><code>Regex.IsMatch(strPwd, "[0-9]")  // = Regex.IsMatch(strPwd, @"\d")
+
+Regex.IsMatch(strPwd, @"[\W]")
+</code></pre>
+
+<p>pattern表示法 :
+\d : [0-9] 數字
+\D : 數字以外的字元
+\w : [a-zA-Z0-9_]
+\W : \w以外的字元</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/posts/4">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/05/06/ruby-csv-file/">[Ruby] 匯出批次csv檔</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/03/16/ruby-require-load-include-extend/">[Ruby] Require,load,include,extend</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/03/03/aspnet-auto-return/">[ASP.NET] 自動寄信</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/03/03/c-datatable-operation-memos/">[C#] DataTable 的操作備忘</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/02/15/linux-getting-started-with-hyper-basic-instructions/">[Linux] 超入門的基本指令</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Bob (PoYi) -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

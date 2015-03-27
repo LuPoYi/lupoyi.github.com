@@ -1,0 +1,278 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>[ASP.NET] 存取AD網域 - Bob 學習筆記</title>
+  <meta name="author" content="Bob (PoYi)">
+
+  
+  <meta name="description" content="透過AD網域來存取帳號資料 查詢資料 string QueryString = "LDAP://網域";
+DirectoryEntry de = new DirectoryEntry(QueryString,adminAccount,adminPassword); &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://lupoyi.github.io/blog/2013/09/12/aspnet-access-to-ad-domain/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Bob 學習筆記" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-43769917-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Bob 學習筆記</a></h1>
+  
+    <h2>Loser of the year</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="lupoyi.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">[ASP.NET] 存取AD網域</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-09-12T01:27:00+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>1:27 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h2>透過AD網域來存取帳號資料</h2>
+
+<h2>查詢資料</h2>
+
+<pre><code>string QueryString = "LDAP://網域";
+DirectoryEntry de = new DirectoryEntry(QueryString,adminAccount,adminPassword);
+DirectorySearcher ds = new DirectorySearcher(de);
+SearchResultCollection Results = null;
+
+// 設定查詢條件：依姓名及工號查詢
+ds.Filter = @"(&amp;(samaccountname=" + employeeName + ")(Description=" + employeeNo + "))";
+// 將查詢結果放入Results
+Results = ds.FindAll();
+
+foreach (SearchResult result in Results)
+{
+    if (result.Properties["description"].Count &gt; 0)
+    {
+        // 透過AD裡的屬性「description」，取得工號
+        string resultNo = result.Properties["description"][0].ToString();
+        Response.Write(resultNo);
+        Response.Write("&lt;br&gt;");
+    }
+}
+ds.Dispose(); // 釋放資源
+de.Dispose();
+</code></pre>
+
+<h2>修改指定帳號的屬性值</h2>
+
+<pre><code>string QueryString = "LDAP://"+ userLDAP;
+DirectoryEntry de = new DirectoryEntry(QueryString, adminAccount,adminPassword);
+
+de.Properties["TelephoneNumber"].Value = 123;     
+
+// 停用此帳號：userAccountControl = 514 
+de.Properties["userAccountControl"].Value = 514;
+
+// 重設密碼
+de.Invoke("SetPassword", newPassword);
+
+de.CommitChanges();
+de.Close();
+</code></pre>
+
+<h2>刪除帳號</h2>
+
+<pre><code>string QueryString = LDAP://" + userLDAP;
+DirectoryEntry user = new DirectoryEntry(QueryString, adminAccount, adminPassword);
+// 找上一層
+DirectoryEntry ou = user.Parent;
+// 再回去刪它
+ou.Children.Remove(user);
+ou.CommitChanges();
+</code></pre>
+
+<p>基本屬性KEY跟VALUE可以在AD裡面找到
+<img src="http://user-image.logdown.io/user/2740/blog/2734/post/138560/iH5dxsHMS6SoXINR2EX2_2013-9-15%20%E4%B8%8B%E5%8D%88%2001-58-35.jpg" alt="2013-9-15 下午 01-58-35.jpg" /></p>
+
+<p>Reference:
+<a href="http://www.dotblogs.com.tw/yc421206/archive/2010/02/07/13510.aspx">http://www.dotblogs.com.tw/yc421206/archive/2010/02/07/13510.aspx</a></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Bob (PoYi)</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2013-09-12T01:27:00+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>1:27 am</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/active-directory/'>active directory</a>, <a class='category' href='/blog/categories/asp-dot-net/'>asp.net</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://lupoyi.github.io/blog/2013/09/12/aspnet-access-to-ad-domain/" data-via="" data-counturl="http://lupoyi.github.io/blog/2013/09/12/aspnet-access-to-ad-domain/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/09/05/aspnet-date/" title="Previous Post: [ASP.NET] 日期處理">&laquo; [ASP.NET] 日期處理</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/09/12/sql-date/" title="Next Post: [SQL] 常用的日期函數">[SQL] 常用的日期函數 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/05/06/ruby-csv-file/">[Ruby] 匯出批次csv檔</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/03/16/ruby-require-load-include-extend/">[Ruby] Require,load,include,extend</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/03/03/aspnet-auto-return/">[ASP.NET] 自動寄信</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/03/03/c-datatable-operation-memos/">[C#] DataTable 的操作備忘</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/02/15/linux-getting-started-with-hyper-basic-instructions/">[Linux] 超入門的基本指令</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Bob (PoYi) -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Vcenter | Bob 學習筆記]]></title>
+  <link href="http://lupoyi.github.io/blog/categories/vcenter/atom.xml" rel="self"/>
+  <link href="http://lupoyi.github.io/"/>
+  <updated>2015-03-27T23:22:55+08:00</updated>
+  <id>http://lupoyi.github.io/</id>
+  <author>
+    <name><![CDATA[Bob (PoYi)]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[[VMware] VCenter Cluster 練習筆記]]></title>
+    <link href="http://lupoyi.github.io/blog/2013/10/25/vmware-vcenter-cluster-exercises/"/>
+    <updated>2013-10-25T08:11:00+08:00</updated>
+    <id>http://lupoyi.github.io/blog/2013/10/25/vmware-vcenter-cluster-exercises</id>
+    <content type="html"><![CDATA[<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/154247/91YcA52rS8Owm0IT1612_SHL-TEST.COM.jpg" alt="SHL-TEST.COM.jpg" /></p>
+
+<p>vSphere ESXi: 整個虛擬化平台，算是一個作業系統
+vSphere Client: 操作VM用的軟體(遠端連線到ESXi)
+vCenter: 可統一管理，支援ADD 容錯</p>
+
+<p>&ndash;VLAN 45(橘底)
+- 準備兩台電腦，灌上vSphere ESXi，設定名稱、IP、VLAN
+- 分別灌上不同OS，其中一台用來架AD網域，並將每個OS加入網域
+- 找一台安裝vCenter，安裝後直接連入這台就可直接操作其他OS</p>
+
+<p>Cluster</p>
+
+<p>註記：
+HT Hyper-threading 可將核心分成兩個序列在處理 cpu數<em>核心數</em>(2)(HT)=邏輯核心
+硬碟分區格式 GPT VS MBR：MBR上限為2T(超過2T以上的空間無法分配出來)</p>
+
+<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/154247/MiZIdkkTlW47nQrleONw_2013-10-27%20%E4%B8%8B%E5%8D%88%2006-32-23.jpg" alt="2013-10-27 下午 06-32-23.jpg" /></p>
+]]></content>
+  </entry>
+  
+</feed>

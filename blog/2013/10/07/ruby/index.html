@@ -1,0 +1,335 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>[Rails] 基本概念（待補） - Bob 學習筆記</title>
+  <meta name="author" content="Bob (PoYi)">
+
+  
+  <meta name="description" content="config/database.yml1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+development: # 開發用 adapter: sqlite3 database: db/development.sqlite3 pool: 5 timeout: 5000 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://lupoyi.github.io/blog/2013/10/07/ruby/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Bob 學習筆記" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-43769917-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Bob 學習筆記</a></h1>
+  
+    <h2>Loser of the year</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="lupoyi.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">[Rails] 基本概念（待補）</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-10-07T05:30:00+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>5:30 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><figure class='code'><figcaption><span>config/database.yml</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="ss">development</span><span class="p">:</span> <span class="c1"># 開發用</span>
+</span><span class='line'>  <span class="ss">adapter</span><span class="p">:</span> <span class="n">sqlite3</span>
+</span><span class='line'>  <span class="ss">database</span><span class="p">:</span> <span class="n">db</span><span class="o">/</span><span class="n">development</span><span class="o">.</span><span class="n">sqlite3</span>
+</span><span class='line'>  <span class="ss">pool</span><span class="p">:</span> <span class="mi">5</span>
+</span><span class='line'>  <span class="ss">timeout</span><span class="p">:</span> <span class="mi">5000</span>
+</span><span class='line'><span class="nb">test</span><span class="p">:</span> <span class="c1"># 測試用</span>
+</span><span class='line'>  <span class="ss">adapter</span><span class="p">:</span> <span class="n">sqlite3</span>
+</span><span class='line'>  <span class="ss">database</span><span class="p">:</span> <span class="n">db</span><span class="o">/</span><span class="n">development</span><span class="o">.</span><span class="n">sqlite3</span>
+</span><span class='line'>  <span class="ss">pool</span><span class="p">:</span> <span class="mi">5</span>
+</span><span class='line'>  <span class="ss">timeout</span><span class="p">:</span> <span class="mi">5000</span>
+</span><span class='line'><span class="ss">production</span><span class="p">:</span> <span class="c1"># 上線用</span>
+</span><span class='line'>  <span class="ss">adapter</span><span class="p">:</span> <span class="n">sqlite3</span>
+</span><span class='line'>  <span class="ss">database</span><span class="p">:</span> <span class="n">db</span><span class="o">/</span><span class="n">development</span><span class="o">.</span><span class="n">sqlite3</span>
+</span><span class='line'>  <span class="ss">pool</span><span class="p">:</span> <span class="mi">5</span>
+</span><span class='line'>  <span class="ss">timeout</span><span class="p">:</span> <span class="mi">5000</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>config/routes.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">get</span> <span class="s2">&quot;welcome&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;welcome#index&quot;</span>
+</span><span class='line'><span class="c1"># 代表http://localhost:3000/welcome 會對應到 welcome Controller的index Action。 </span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="n">resources</span> <span class="ss">:events</span>
+</span><span class='line'><span class="c1"># 會自動生成四個四個命名路由(named routes)，搭配四個HTTP動詞，對應到七個Actions，如下：</span>
+</span><span class='line'><span class="n">get</span>    <span class="s1">&#39;/events&#39;</span>          <span class="o">=&gt;</span> <span class="s2">&quot;events#index&quot;</span><span class="p">,</span>   <span class="ss">:as</span> <span class="o">=&gt;</span> <span class="s2">&quot;events&quot;</span>
+</span><span class='line'><span class="n">post</span>   <span class="s1">&#39;/events&#39;</span>          <span class="o">=&gt;</span> <span class="s2">&quot;events#create&quot;</span><span class="p">,</span>  <span class="ss">:as</span> <span class="o">=&gt;</span> <span class="s2">&quot;events&quot;</span>
+</span><span class='line'><span class="n">get</span>    <span class="s1">&#39;/events/:id&#39;</span>      <span class="o">=&gt;</span> <span class="s2">&quot;events#show&quot;</span><span class="p">,</span>    <span class="ss">:as</span> <span class="o">=&gt;</span> <span class="s2">&quot;event&quot;</span>
+</span><span class='line'><span class="n">put</span>    <span class="s1">&#39;/events/:id&#39;</span>      <span class="o">=&gt;</span> <span class="s2">&quot;events#update&quot;</span><span class="p">,</span>  <span class="ss">:as</span> <span class="o">=&gt;</span> <span class="s2">&quot;event&quot;</span>
+</span><span class='line'><span class="n">delete</span> <span class="s1">&#39;/events/:id&#39;</span>      <span class="o">=&gt;</span> <span class="s2">&quot;events#destroy&quot;</span><span class="p">,</span> <span class="ss">:as</span> <span class="o">=&gt;</span> <span class="s2">&quot;event&quot;</span>
+</span><span class='line'><span class="n">get</span>    <span class="s1">&#39;/events/new&#39;</span>      <span class="o">=&gt;</span> <span class="s2">&quot;events#new&quot;</span><span class="p">,</span>     <span class="ss">:as</span> <span class="o">=&gt;</span> <span class="s2">&quot;new_event&quot;</span>
+</span><span class='line'><span class="n">get</span>    <span class="s1">&#39;/events/:id/edit&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;events#edit&quot;</span><span class="p">,</span>    <span class="ss">:as</span> <span class="o">=&gt;</span> <span class="s2">&quot;edit_event&quot;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># get 是純讀取資料，對資料不會有任何影響，所以get資料可以回上一頁、refresh都ok；post則反之。</span>
+</span><span class='line'><span class="c1"># HTML只有get、post，而Rails在post加上隱藏參數_method=PUT、_method=DELETE，就多了put、delete能用了。</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>＜％　vs ＜％＝</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># &lt;% 執行但不輸出</span>
+</span><span class='line'><span class="c1"># &lt;%= 輸出值</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="sx">% @people.each </span><span class="k">do</span> <span class="o">|</span><span class="nb">p</span><span class="o">|</span> <span class="sx">%&gt;</span>
+</span><span class='line'><span class="sx"> &lt;%= p.name %&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sx">% end </span><span class="o">%&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">render</span> <span class="err">回傳使用的樣版</span><span class="p">(</span><span class="err">資料不會遺失</span><span class="p">)</span>
+</span><span class='line'><span class="n">redirect_to</span> <span class="err">重新導向</span><span class="n">action</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Reference:
+<a href="http://ihower.tw/rails3/index.html">http://ihower.tw/rails3/index.html</a></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Bob (PoYi)</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2013-10-07T05:30:00+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>5:30 am</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/rails/'>rails</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://lupoyi.github.io/blog/2013/10/07/ruby/" data-via="" data-counturl="http://lupoyi.github.io/blog/2013/10/07/ruby/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/10/04/c-delegate-delegate/" title="Previous Post: [C#]  Delegate 委派">&laquo; [C#]  Delegate 委派</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/10/14/vmware-vcenter-80-port-is-already-in-use/" title="Next Post: [VMware] VCenter 80 Port 已被使用">[VMware] VCenter 80 Port 已被使用 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/05/06/ruby-csv-file/">[Ruby] 匯出批次csv檔</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/03/16/ruby-require-load-include-extend/">[Ruby] Require,load,include,extend</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/03/03/aspnet-auto-return/">[ASP.NET] 自動寄信</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/03/03/c-datatable-operation-memos/">[C#] DataTable 的操作備忘</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/02/15/linux-getting-started-with-hyper-basic-instructions/">[Linux] 超入門的基本指令</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Bob (PoYi) -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

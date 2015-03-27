@@ -9,7 +9,10 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content=" Blog Archives Recent Posts ">
+  <meta name="description" content="讀取或寫入csv在ruby都蠻方便的，只是編碼或格式要稍微注意一下 匯出csv 1
+2
+header = [&#39;name&#39;,&#39;money&#39;,&#39;age&#39;]
+body = [&#39;ruby&#39;,&#39;1000&#39;,&#39;18&#39 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,7 +81,911 @@
       <div class="blog-index">
   
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/05/06/ruby-csv-file/">[Ruby] 匯出批次csv檔</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-05-06T21:14:00+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>9:14 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>讀取或寫入csv在ruby都蠻方便的，只是編碼或格式要稍微注意一下</p>
+
+<h2>匯出csv</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">header</span> <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span><span class="s1">&#39;money&#39;</span><span class="p">,</span><span class="s1">&#39;age&#39;</span><span class="o">]</span>
+</span><span class='line'><span class="n">body</span> <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;ruby&#39;</span><span class="p">,</span><span class="s1">&#39;1000&#39;</span><span class="p">,</span><span class="s1">&#39;18&#39;</span><span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>export_to_csv_string 匯出csv的string格式再利用send_data下載</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">head</span> <span class="o">=</span> <span class="s1">&#39;EF BB BF&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">{</span><span class="o">|</span><span class="n">a</span><span class="o">|</span><span class="n">a</span><span class="o">.</span><span class="n">hex</span><span class="o">.</span><span class="n">chr</span><span class="p">}</span><span class="o">.</span><span class="n">join</span><span class="p">()</span> <span class="c1"># 加入BOM，解決excel中文亂碼</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">csv_string</span> <span class="o">=</span> <span class="no">CSV</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">csv</span> <span class="o">=</span> <span class="n">head</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">csv</span><span class="o">|</span>
+</span><span class='line'>    <span class="n">csv</span> <span class="o">&lt;&lt;</span> <span class="n">header</span>
+</span><span class='line'>    <span class="n">csv</span> <span class="o">&lt;&lt;</span> <span class="n">body</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># &gt; csv_string.encoding 執行這句會發現預設編碼為ACSII</span>
+</span><span class='line'>  <span class="n">csv_string</span><span class="o">.</span><span class="n">force_encoding</span><span class="p">(</span><span class="s1">&#39;big5&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="c1"># BOM也可以這樣加 csv_string = &quot;\xEF\xBB\xBF#{csv_string}&quot;  </span>
+</span><span class='line'>  <span class="c1"># 若不需要調整格式就直接下載</span>
+</span><span class='line'>  <span class="n">send_data</span> <span class="n">csv_string</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>export_to_csv 直接匯出檔案</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'> <span class="nb">require</span> <span class="s1">&#39;csv&#39;</span>
+</span><span class='line'> <span class="no">CSV</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;export.csv&quot;</span><span class="p">,</span><span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">csv</span><span class="o">|</span>
+</span><span class='line'>   <span class="n">csv</span> <span class="o">&lt;&lt;</span> <span class="n">header</span>
+</span><span class='line'>   <span class="n">csv</span> <span class="o">&lt;&lt;</span> <span class="n">body</span>
+</span><span class='line'> <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>半形轉全形</h2>
+
+<p>在某些情況會需要轉出全形字元，照理說不用才對，<del>可能是因為合作對方的系統太爛</del>
+其實也不太確定怎解，我單純用硬幹的方式</p>
+
+<figure class='code'><figcaption><span>convert_to_wide_word 大小寫英文數字轉全形字元</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">convert_to_wide_word</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">text</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/[a-v]/</span><span class="p">){</span><span class="o">|</span><span class="n">a</span><span class="o">|</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">ord</span> <span class="o">+</span> <span class="mi">41608</span><span class="p">)</span><span class="o">.</span><span class="n">chr</span><span class="p">(</span><span class="s1">&#39;big5&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)}</span>
+</span><span class='line'>    <span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/[w-z]/</span><span class="p">){</span><span class="o">|</span><span class="n">a</span><span class="o">|</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">ord</span> <span class="o">+</span> <span class="mi">41673</span><span class="p">)</span><span class="o">.</span><span class="n">chr</span><span class="p">(</span><span class="s1">&#39;big5&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)}</span>
+</span><span class='line'>    <span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/[A-Z]/</span><span class="p">){</span><span class="o">|</span><span class="n">a</span><span class="o">|</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">ord</span> <span class="o">+</span> <span class="mi">41614</span><span class="p">)</span><span class="o">.</span><span class="n">chr</span><span class="p">(</span><span class="s1">&#39;big5&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)}</span>
+</span><span class='line'>    <span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/[0-9]/</span><span class="p">){</span><span class="o">|</span><span class="n">a</span><span class="o">|</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">ord</span> <span class="o">+</span> <span class="mi">41599</span><span class="p">)</span><span class="o">.</span><span class="n">chr</span><span class="p">(</span><span class="s1">&#39;big5&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)}</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">convert_to_wide_word</span><span class="p">(</span><span class="s2">&quot;0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;</span><span class="p">)</span>
+</span><span class='line'> <span class="o">=&gt;</span> <span class="s2">&quot;０１２３４５６７８９ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚＡＢＣＤＥＦＧＨＩＪＫＬ</span>
+</span><span class='line'><span class="s2"> ＭＮＯＰＱＲＳＴＵＶＷＸＹＺ&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>匯出匯入csv也可以試試FasterCSV這個gem
+Reference:
+<a href="http://www.sitepoint.com/guide-ruby-csv-library-part/">http://www.sitepoint.com/guide-ruby-csv-library-part/</a>
+<a href="http://blog.inheart.tw/2013/09/rubyraisl-csv-excel.html">http://blog.inheart.tw/2013/09/rubyraisl-csv-excel.html</a>
+<a href="http://salayhin.wordpress.com/2014/05/10/export-csv-file-from-rails-console/">http://salayhin.wordpress.com/2014/05/10/export-csv-file-from-rails-console/</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/03/16/ruby-require-load-include-extend/">[Ruby] Require,load,include,extend</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-03-16T21:14:00+08:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>9:14 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>require vs load</h2>
+
+<p>首先require與load都是用來載入指定的檔案
+差別在於使用require只會調用一次，且副檔名可省略，load則相反。</p>
+
+<figure class='code'><figcaption><span>random.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="vg">$a</span> <span class="o">=</span> <span class="p">(</span><span class="nb">rand</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">floor</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>use_require.rb 產出的兩個值相同(只載入一次random.rb)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s2">&quot;./random&quot;</span>
+</span><span class='line'><span class="nb">puts</span> <span class="vg">$a</span>
+</span><span class='line'><span class="nb">require</span> <span class="s2">&quot;./random&quot;</span> <span class="c1"># 此行無效果</span>
+</span><span class='line'><span class="nb">puts</span> <span class="vg">$a</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>use_load.rb 產生的兩個值不一定相同</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">load</span> <span class="s2">&quot;./random.rb&quot;</span>
+</span><span class='line'><span class="nb">puts</span> <span class="vg">$a</span>
+</span><span class='line'><span class="nb">load</span> <span class="s2">&quot;./random.rb&quot;</span>
+</span><span class='line'><span class="nb">puts</span> <span class="vg">$a</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<hr />
+
+<h2>include vs extend</h2>
+
+<p>include: 將目標當作instance來使用；並不直接擁有method，需建立一個實例後才能用
+extend: 相當於把目標的code直接放進來；具有目標的class methods</p>
+
+<figure class='code'><figcaption><span>include_extend.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">Say</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">say_hi</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;Hi!&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">People</span>
+</span><span class='line'>  <span class="kp">include</span> <span class="no">Say</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Person</span>
+</span><span class='line'>  <span class="kp">extend</span> <span class="no">Say</span> <span class="c1"># 具有Say的method，可直接呼叫</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>irb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="m">001</span> &gt; require <span class="s1">&#39;./include_extend.rb&#39;</span>
+</span><span class='line'> <span class="o">=</span>&gt; <span class="nb">true </span>
+</span><span class='line'><span class="m">002</span> &gt; Person.say_hi
+</span><span class='line'>Hi!
+</span><span class='line'> <span class="o">=</span>&gt; nil
+</span><span class='line'><span class="m">003</span> &gt; People.new.say_hi
+</span><span class='line'>Hi!
+</span><span class='line'> <span class="o">=</span>&gt; nil
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Reference:
+<a href="http://www.slideshare.net/BruceLi2/rubypart2">http://www.slideshare.net/BruceLi2/rubypart2</a>
+<a href="http://cat-son.blogspot.tw/2012/10/2-rubyinclude-extendrequire.html#sthash.QduzPsMe.cFJYqpMb.dpbs">http://cat-son.blogspot.tw/2012/10/2-rubyinclude-extendrequire.html#sthash.QduzPsMe.cFJYqpMb.dpbs</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/03/03/aspnet-auto-return/">[ASP.NET] 自動寄信</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-03-03T12:48:00+08:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2014</span></span> <span class='time'>12:48 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>一樣是紀綠一下&hellip;</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>MailMessage mailMessage = new MailMessage();
+</span><span class='line'>mailMessage.IsBodyHtml = true;
+</span><span class='line'>
+</span><span class='line'>mailMessage.To.Add(emailAddress);
+</span><span class='line'>mailMessage.CC.Add(cCMailAddress);
+</span><span class='line'>
+</span><span class='line'>MailAddress fromWho = new MailAddress(senderMailAddress);
+</span><span class='line'>mailMessage.From = fromWho;
+</span><span class='line'>mailMessage.Subject = title;
+</span><span class='line'>mailMessage.Body = "這邊可放html"
+</span><span class='line'>
+</span><span class='line'>SmtpClient mailSmtp = new SmtpClient(mailServer,mailServerPort);
+</span><span class='line'>
+</span><span class='line'>mailSmtp.Send(mailMessage);</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/03/03/c-datatable-operation-memos/">[C#] DataTable 的操作備忘</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-03-03T12:05:00+08:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2014</span></span> <span class='time'>12:05 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>稍微記一下，相關變化都蠻簡單的</p>
+
+<figure class='code'><figcaption><span>DataTable基本語法</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="n">DataTable</span> <span class="n">dt</span> <span class="p">=</span> <span class="k">new</span> <span class="n">DataTable</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// 定義欄位</span>
+</span><span class='line'><span class="n">dt</span><span class="p">.</span><span class="n">Columns</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="n">dt</span><span class="p">.</span><span class="n">Columns</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s">&quot;cardNumber&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="c1">// 也可定義欄位型態 </span>
+</span><span class='line'><span class="c1">// dt.Columns.Add(&quot;ID&quot;, typeof(Int32));</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">dt</span><span class="p">.</span><span class="n">Rows</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s">&quot;Bob&quot;</span><span class="p">,</span> <span class="s">&quot;12345&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="n">dt</span><span class="p">.</span><span class="n">Rows</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s">&quot;Ada&quot;</span><span class="p">,</span> <span class="s">&quot;10000&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="n">dt</span><span class="p">.</span><span class="n">Rows</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s">&quot;Kilin&quot;</span><span class="p">,</span><span class="s">&quot;20000&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="c1">// 也可用DataRow來存放資料</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// 格式相同直接放入GridView</span>
+</span><span class='line'><span class="n">GridView</span><span class="p">.</span><span class="n">DataSource</span> <span class="p">=</span> <span class="n">dt</span><span class="p">;</span>
+</span><span class='line'><span class="n">GridView</span><span class="p">.</span><span class="n">DataBind</span><span class="p">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/02/15/linux-getting-started-with-hyper-basic-instructions/">[Linux] 超入門的基本指令</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-02-15T06:24:00+08:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>6:24 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>之前在非洲服役時，曾想過用Linux取代Windows (當地經濟因素等等的&hellip;)
+也嘗試用Wine來執行一些常用的Windows軟體，大致上也都沒問題，只可惜當地政府的課程始終沒有開始&hellip;</p>
+
+<p>對Linux不是完全陌生，但指令倒是全忘了&hellip;
+為了往後開發上不會綁手綁腳，還是必須把基本功打好，從零開始</p>
+
+<figure class='code'><figcaption><span>系統資訊</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span><span class="nb">echo </span>hello word
+</span><span class='line'><span class="nv">$ </span>date
+</span><span class='line'><span class="nv">$ </span>arch    // x86_64
+</span><span class='line'><span class="nv">$ </span>uname –a // list system
+</span><span class='line'><span class="nv">$ </span>who
+</span><span class='line'><span class="nv">$ </span>w // show online user
+</span><span class='line'><span class="nv">$ </span>top // show system status
+</span><span class='line'><span class="nv">$ </span>cal <span class="m">2015</span> // calendar
+</span><span class='line'><span class="nv">$ </span>cal <span class="m">9</span> <span class="m">1752</span> // *
+</span><span class='line'><span class="nv">$ </span>bc –l // calculator
+</span><span class='line'><span class="nv">$ </span><span class="nb">echo </span>77/50 <span class="p">|</span> bc –l
+</span><span class='line'><span class="nv">$ </span><span class="nb">history</span> // list <span class="nb">command history</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>網路</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>ifconfig
+</span><span class='line'><span class="nv">$ </span>nslookup
+</span><span class='line'><span class="nv">$ </span>ping
+</span><span class='line'><span class="nv">$ </span>traceroute
+</span><span class='line'><span class="nv">$ </span>wget // download
+</span><span class='line'><span class="nv">$ </span>ssh 帳號@主機   // 用SSH連線
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>chmod 調整檔案權限</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>chmod <span class="o">[</span>權限角色<span class="o">]</span> <span class="o">[</span>權限動作<span class="o">]</span> <span class="o">[</span>存取權限<span class="o">]</span> 檔案/目錄
+</span><span class='line'>chmod <span class="o">[</span>ugoa<span class="o">]</span> <span class="o">[</span>+-<span class="o">=]</span> <span class="o">[</span>rwxX<span class="o">]</span> test.txt
+</span><span class='line'><span class="nv">$ </span>chmod ugo+r test.txt
+</span><span class='line'>權限角色: u<span class="o">(</span>user/owner<span class="o">)</span>、g<span class="o">(</span>group<span class="o">)</span>、o<span class="o">(</span>other<span class="o">)</span>、a<span class="o">(</span>all<span class="o">)</span>
+</span><span class='line'>權限動作: +<span class="o">(</span>增加權限<span class="o">)</span>、-<span class="o">(</span>取消權限<span class="o">)</span>、<span class="o">=(</span>直接設定權限<span class="o">)</span>
+</span><span class='line'>存取權限: r<span class="o">(</span><span class="nb">read</span><span class="o">)</span>、w<span class="o">(</span>write<span class="o">)</span>、x<span class="o">(</span>execute<span class="o">)</span>、X<span class="o">(</span>execute<span class="p">&amp;</span>目錄or已被執行過<span class="o">)</span>
+</span><span class='line'>
+</span><span class='line'>也可用數字來調整權限
+</span><span class='line'>chmod <span class="o">[</span>u<span class="o">(</span>int<span class="o">)][</span>g<span class="o">(</span>int<span class="o">)][</span>o<span class="o">(</span>int<span class="o">)]</span> 檔案/目錄
+</span><span class='line'><span class="nv">$ </span>chmod <span class="m">777</span> test.txt
+</span><span class='line'>// <span class="nv">r</span><span class="o">=</span>4，w<span class="o">=</span>2，x<span class="o">=</span><span class="m">1</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>grep</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>...
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>tail</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>...
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Reference:
+<a href="http://www.pcnet.idv.tw/pcnet/linux/linux_command.htm">http://www.pcnet.idv.tw/pcnet/linux/linux_command.htm</a>
+<a href="http://tnrc.ncku.edu.tw/course/93/fedora_core2/page8/p8.htm">http://tnrc.ncku.edu.tw/course/93/fedora_core2/page8/p8.htm</a>
+<a href="http://jdev.tw/blog/3599/linux-terminal-commands-and-shortcuts">http://jdev.tw/blog/3599/linux-terminal-commands-and-shortcuts</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/02/14/aspnet-reset-password-in-active-directory/">[ASP.NET] Reset Password in Active Directory</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-02-14T12:47:00+08:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:47 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>重設密碼建議還是用LDAP去抓USER，以免抓錯人之類的</p>
+
+<figure class='code'><figcaption><span>Reset Password in Active Directory</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='C#'><span class='line'><span class="n">DirectoryEntry</span> <span class="n">userDirEntry</span> <span class="p">=</span> <span class="k">new</span> <span class="n">DirectoryEntry</span><span class="p">(</span><span class="s">&quot;LDAP://&quot;</span> <span class="p">+</span> <span class="n">ldapStr</span><span class="p">,</span> <span class="n">adminAccount</span><span class="p">,</span> <span class="n">adminPassword</span><span class="p">);</span>
+</span><span class='line'><span class="n">userDirEntry</span><span class="p">.</span><span class="n">Invoke</span><span class="p">(</span><span class="s">&quot;SetPassword&quot;</span><span class="p">,</span> <span class="n">CreateRandomPassword</span><span class="p">(</span><span class="m">8</span><span class="p">));</span>  <span class="c1">// 重設新密碼</span>
+</span><span class='line'><span class="n">userDirEntry</span><span class="p">.</span><span class="n">CommitChanges</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="n">userDirEntry</span><span class="p">.</span><span class="n">Properties</span><span class="p">[</span><span class="s">&quot;pwdLastSet&quot;</span><span class="p">].</span><span class="n">Value</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="c1">// 下次登入會強制要求改密碼</span>
+</span><span class='line'><span class="n">userDirEntry</span><span class="p">.</span><span class="n">CommitChanges</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">userDirEntry</span><span class="p">.</span><span class="n">Close</span><span class="p">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>Generate Random Password (Winform)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+</pre></td><td class='code'><pre><code class='C#'><span class='line'><span class="k">public</span> <span class="k">static</span> <span class="kt">string</span> <span class="nf">CreateRandomPassword</span><span class="p">(</span><span class="kt">int</span> <span class="n">passwordLength</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>      <span class="kt">string</span> <span class="n">allowedChars</span> <span class="p">=</span> <span class="s">&quot;abcdefghijkmnprstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789~!@#$%^&amp;*()_+?&quot;</span><span class="p">;</span>
+</span><span class='line'>      <span class="kt">char</span><span class="p">[]</span> <span class="n">chars</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">char</span><span class="p">[</span><span class="n">passwordLength</span><span class="p">];</span>
+</span><span class='line'>      <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">passwordLength</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+</span><span class='line'>      <span class="p">{</span>
+</span><span class='line'>            <span class="n">chars</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">=</span> <span class="n">allowedChars</span><span class="p">[</span><span class="n">rd</span><span class="p">.</span><span class="n">Next</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="n">allowedChars</span><span class="p">.</span><span class="n">Length</span><span class="p">)];</span>
+</span><span class='line'>            <span class="c1">// random.next(min,max) =&gt;int</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>      <span class="kt">string</span> <span class="n">strPwd</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">string</span><span class="p">(</span><span class="n">chars</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="k">while</span> <span class="p">(!((</span><span class="n">Regex</span><span class="p">.</span><span class="n">IsMatch</span><span class="p">(</span><span class="n">strPwd</span><span class="p">,</span> <span class="s">&quot;[0-9]&quot;</span><span class="p">))</span> <span class="p">&amp;&amp;</span>
+</span><span class='line'>      <span class="p">(</span><span class="n">Regex</span><span class="p">.</span><span class="n">IsMatch</span><span class="p">(</span><span class="n">strPwd</span><span class="p">,</span> <span class="s">&quot;[a-z]&quot;</span><span class="p">))</span> <span class="p">&amp;&amp;</span>
+</span><span class='line'>      <span class="p">(</span><span class="n">Regex</span><span class="p">.</span><span class="n">IsMatch</span><span class="p">(</span><span class="n">strPwd</span><span class="p">,</span> <span class="s">&quot;[A-Z]&quot;</span><span class="p">))</span> <span class="p">&amp;&amp;</span>
+</span><span class='line'>      <span class="p">(</span><span class="n">Regex</span><span class="p">.</span><span class="n">IsMatch</span><span class="p">(</span><span class="n">strPwd</span><span class="p">,</span> <span class="s">@&quot;[\W]&quot;</span><span class="p">))))</span>
+</span><span class='line'>      <span class="c1">// \w  [a-zA-Z0-9_]  , \W ![a-zA-Z0-9_]</span>
+</span><span class='line'>      <span class="p">{</span>
+</span><span class='line'>            <span class="n">strPwd</span> <span class="p">=</span> <span class="n">CreateRandomPassword</span><span class="p">(</span><span class="m">8</span><span class="p">);</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="k">return</span> <span class="n">strPwd</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// 靜態避免短時期內產生相同亂數</span>
+</span><span class='line'><span class="k">static</span> <span class="n">Random</span> <span class="n">rd</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Random</span><span class="p">(</span><span class="n">GetRandomSeed</span><span class="p">());</span>
+</span><span class='line'><span class="k">static</span> <span class="kt">int</span> <span class="nf">GetRandomSeed</span><span class="p">()</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>      <span class="kt">byte</span><span class="p">[]</span> <span class="n">bytes</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="p">[</span><span class="m">4</span><span class="p">];</span>
+</span><span class='line'>      <span class="n">System</span><span class="p">.</span><span class="n">Security</span><span class="p">.</span><span class="n">Cryptography</span><span class="p">.</span><span class="n">RNGCryptoServiceProvider</span> <span class="n">rng</span> <span class="p">=</span>
+</span><span class='line'>      <span class="k">new</span> <span class="n">System</span><span class="p">.</span><span class="n">Security</span><span class="p">.</span><span class="n">Cryptography</span><span class="p">.</span><span class="n">RNGCryptoServiceProvider</span><span class="p">();</span>
+</span><span class='line'>      <span class="n">rng</span><span class="p">.</span><span class="n">GetBytes</span><span class="p">(</span><span class="n">bytes</span><span class="p">);</span>
+</span><span class='line'>      <span class="k">return</span> <span class="n">BitConverter</span><span class="p">.</span><span class="n">ToInt32</span><span class="p">(</span><span class="n">bytes</span><span class="p">,</span> <span class="m">0</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/02/08/mac-set-to-open-files-by-default-software/">[Mac] 設定開啟檔案的預設軟體</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-02-08T14:32:00+08:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>2:32 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>近期在mac的環境上有點卡關，像是環境的PATH曾被我改壞&hellip;
+還好朋友有幫我救回來= =&hellip;</p>
+
+<p>在windows上習慣會調整一些檔案的預設軟體來開啟，像是影片檔的格式一堆就很需要額外設定。</p>
+
+<h2>首先，在檔案上右鍵找到「簡介」</h2>
+
+<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/178268/gVGABZ5oQ9Oca4LD8OTm_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202014-02-08%20%E4%B8%8B%E5%8D%8810.36.21.png" alt="螢幕快照 2014-02-08 下午10.36.21.png" /></p>
+
+<h2>接著找到「打開檔案的應用程式」，調整為你要的預設軟體</h2>
+
+<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/178268/kVk2SMrPT6qXdk2uoBBP_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202014-02-08%20%E4%B8%8B%E5%8D%8810.37.00.png" alt="螢幕快照 2014-02-08 下午10.37.00.png" /></p>
+
+<h2>然後按下「全部更改」</h2>
+
+<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/178268/esuLHuOZSXyw2g7fe7W8_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202014-02-08%20%E4%B8%8B%E5%8D%8810.29.35.png" alt="螢幕快照 2014-02-08 下午10.29.35.png" /></p>
+
+<h2>就可以把該副檔名的檔案都設定成此軟體開啟了yaya</h2>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/01/19/mac-directly-in-the-terminal-to-open-sublime/">[Mac] 直接在終端機開啟sublime</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-01-19T04:31:00+08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>19</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>4:31 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>應該有更方便的用法吧我想，但目前對我來說算好用了:D</p>
+
+<figure class='code'><figcaption><span>執行這行指令</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ln -s /Applications/Sublime<span class="se">\ </span>Text<span class="se">\ </span>2.app/Contents/SharedSupport/bin/subl /usr/local/bin/sublime
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>執行這行指令</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>open id_rsa.pub
+</span><span class='line'>No application knows how to open /Users/Bob/.ssh/id_rsa.pub.
+</span><span class='line'><span class="nv">$ </span>ln -s /Applications/Sublime<span class="se">\ </span>Text<span class="se">\ </span>2.app/Contents/SharedSupport/bin/subl /usr/local/bin/sublime
+</span><span class='line'><span class="nv">$ </span>sublime id_rsa.pub
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Reference:
+<a href="http://jocoomadao.blogspot.tw/2013/11/macterminal-sublime.html">http://jocoomadao.blogspot.tw/2013/11/macterminal-sublime.html</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/01/17/-rails-mac-os-environment-build/">[Mac] Ruby on Rails 基本環境建置</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-01-17T12:47:00+08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>12:47 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>是說終於買了mac，省去開箱文趕緊把環境用好來繼續練習ROR!!
+但使用上還是有一點不習慣，會覺得有些地方也蠻不人性化，但相對穩定就是了</p>
+
+<h2>以下環境為OS X 10.9.1</h2>
+
+<p>1.安裝xcode-select
+Command line tool已經獨立出來，不需要安裝XCode了</p>
+
+<figure class='code'><figcaption><span>terminal</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>xcode-select --install
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/176032/wrVy25UMQkeJEnuNKSEq_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202014-01-17%20%E4%B8%8B%E5%8D%889.07.40.png" alt="螢幕快照 2014-01-17 下午9.07.40.png" /></p>
+
+<p>如果安裝失敗的話也可以到<a href="https://developer.apple.com/downloads/index.action?q=xcode">這裡</a>下載
+<img src="http://user-image.logdown.io/user/2740/blog/2734/post/176032/umDZbcPSNWfhQ0VNDr7l_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202014-01-17%20%E4%B8%8B%E5%8D%8810.01.05.png" alt="螢幕快照 2014-01-17 下午10.01.05.png" /></p>
+
+<p>2.安裝homebrew</p>
+
+<figure class='code'><figcaption><span>terminal</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>ruby -e <span class="s2">&quot;$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>3.安裝所需要的工具</p>
+
+<figure class='code'><figcaption><span>terminal</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>brew install git
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>4.安裝RVM</p>
+
+<figure class='code'><figcaption><span>terminal</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>curl -L https://get.rvm.io <span class="p">|</span> bash -s stable
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>5.透過RVM來安裝RUBY</p>
+
+<figure class='code'><figcaption><span>terminal</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>rvm install ruby
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>6.透過RVM來安裝RubyGems</p>
+
+<figure class='code'><figcaption><span>terminal</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>rvm rubygems current
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>7.安裝Rails</p>
+
+<figure class='code'><figcaption><span>terminal</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>gem install rails
+</span></code></pre></td></tr></table></div></figure>
+
+
+<hr />
+
+<p>XCode:官方提供的一個IDE，主要用來開發IOS APP，不過它也包含了一些開發其他語言所需的環境
+Homebrew: OSX 套件管理工具
+RVM (Ruby Version Manager):Ruby版本管理工具，便於切換不同版本</p>
+
+<p>Reference:
+<a href="http://www.computersnyou.com/2025/2013/06/install-command-line-tools-in-osx-10-9-mavericks-how-to/">http://www.computersnyou.com/2025/2013/06/install-command-line-tools-in-osx-10-9-mavericks-how-to/</a>
+<a href="http://www.slideshare.net/marsz330/ruby-on-rails-for-mac">http://www.slideshare.net/marsz330/ruby-on-rails-for-mac</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/01/13/javascript-triggered-interrupt-event-or-action/">[JavaScript] 中斷事件或動作的觸發</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-01-13T14:00:00+08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>2:00 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1>bubble up 冒泡</h1>
+
+<p>當底層的元件被觸發時，會將所屬的父元件會連帶被觸發 - 多層觸發
+而要處理這問題通常會用到 stopPropagation() 或 preventDefault()</p>
+
+<h2>stopPropagation()</h2>
+
+<p>停止向上層bubble up，但仍然會觸發browser
+看例子比較快 <a href="http://jsfiddle.net/dA6R3/1/">http://jsfiddle.net/dA6R3/1/</a></p>
+
+<figure class='code'><figcaption><span>加入event.stopPropagation(); 當點擊下去時，就不會向上觸發其他動作</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;p&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;a&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</span><span class='line'><span class="nt">&lt;/div&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;script&gt;</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.p&quot;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">){</span>
+</span><span class='line'>    <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;p 外&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.a&quot;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">){</span>
+</span><span class='line'>    <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;a 內&quot;</span><span class="p">);</span>
+</span><span class='line'>    <span class="nx">event</span><span class="p">.</span><span class="nx">stopPropagation</span><span class="p">();</span>
+</span><span class='line'><span class="p">});</span>
+</span><span class='line'><span class="nt">&lt;/script&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>preventDefault()</h2>
+
+<p>會將預設的動作停掉不讓它執行，不會觸發browser
+看例子比較快 <a href="http://jsfiddle.net/88dcF/1/">http://jsfiddle.net/88dcF/1/</a></p>
+
+<figure class='code'><figcaption><span>加入event.preventDefault(); 當點擊下去時，就不會執行預設動作(連到GOOGLE)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://www.google.com&quot;</span><span class="nt">&gt;</span>go to google<span class="nt">&lt;/a&gt;</span>
+</span><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;check&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;script&gt;</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;&lt;div&gt;&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;Ya&quot;</span><span class="p">).</span><span class="nx">appendTo</span><span class="p">(</span><span class="s2">&quot;#check&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="p">});</span>
+</span><span class='line'><span class="nt">&lt;/script&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Reference:
+<a href="http://www.neoease.com/stoppropagation-and-preventdefault-and-return-false/">http://www.neoease.com/stoppropagation-and-preventdefault-and-return-false/</a>
+<a href="http://yiyingloveart.blogspot.tw/2013/08/eventpreventdefaultreturn-false.html">http://yiyingloveart.blogspot.tw/2013/08/eventpreventdefaultreturn-false.html</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
+    
+      <a class="prev" href="/posts/2">&larr; Older</a>
     
     <a href="/blog/archives">Blog Archives</a>
     
@@ -89,6 +996,26 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/05/06/ruby-csv-file/">[Ruby] 匯出批次csv檔</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/03/16/ruby-require-load-include-extend/">[Ruby] Require,load,include,extend</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/03/03/aspnet-auto-return/">[ASP.NET] 自動寄信</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/03/03/c-datatable-operation-memos/">[C#] DataTable 的操作備忘</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/02/15/linux-getting-started-with-hyper-basic-instructions/">[Linux] 超入門的基本指令</a>
+      </li>
     
   </ul>
 </section>

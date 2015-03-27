@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Sqlserver | Bob 學習筆記]]></title>
+  <link href="http://lupoyi.github.io/blog/categories/sqlserver/atom.xml" rel="self"/>
+  <link href="http://lupoyi.github.io/"/>
+  <updated>2015-03-27T23:22:55+08:00</updated>
+  <id>http://lupoyi.github.io/</id>
+  <author>
+    <name><![CDATA[Bob (PoYi)]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[[Rails] Connect SQL Server]]></title>
+    <link href="http://lupoyi.github.io/blog/2013/10/30/rails-search/"/>
+    <updated>2013-10-30T16:29:00+08:00</updated>
+    <id>http://lupoyi.github.io/blog/2013/10/30/rails-search</id>
+    <content type="html"><![CDATA[<p>看到官方提供的adpter..真的不知道怎麼下手.. <del>魯蛇無誤</del></p>
+
+<h2>Ubuntu Connect to SQL Server</h2>
+
+<p>想在Unix、Linux環境上，存取SQL Server似乎大多都使用FreeTDS
+<code>bash 安裝FreeTDS
+$ sudo apt-get install freetds-dev freetds-bin tdsodbc
+</code></p>
+
+<pre><code class="bash 檢查FreeTDS版本資訊">$ tsql -C
+</code></pre>
+
+<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/156771/0fBGvXZHQ4ug2ZQOTol3_2013-11-6%20%E4%B8%8A%E5%8D%88%2010-53-15.jpg" alt="2013-11-6 上午 10-53-15.jpg" /></p>
+
+<pre><code class="bash 這時候就可以Connect SQL Server">$ tsql -H (SQL Server IP) -p 1433 -U (account) －P (password) –D (datebase name)
+</code></pre>
+
+<pre><code class="bash 直接下TSQL，這邊要用go才會執行">$ select * from Team
+$ go
+</code></pre>
+
+<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/156771/J9JDVHr7S9uu6H8nhWLj_2013-11-6%20%E4%B8%8A%E5%8D%88%2011-03-53.jpg" alt="2013-11-6 上午 11-03-53.jpg" /></p>
+
+<p>這邊代表已能在Ubuntu Connect SQL Server
+但Rails還需要其他套件</p>
+
+<hr />
+
+<h2>Rails Connect to SQL Server (Error)</h2>
+
+<pre><code class="bash 安裝tiny_tds、sqlserver adapter">$ sudo gem install tiny_tds
+$ sudo gem install activerecord-sqlserver-adapter
+</code></pre>
+
+<p>修改DateBase.yml
+<img src="http://user-image.logdown.io/user/2740/blog/2734/post/156771/n2j3Og9gRCKcn9v70smh_2013-11-6%20%E4%B8%8A%E5%8D%88%2011-36-45.jpg" alt="2013-11-6 上午 11-36-45.jpg" /></p>
+
+<p>OK..在這邊理論上是可以直接在Rails調用..
+但執行時卻會出錯，查了一下好像還無解 (Rails 4似乎還不太支援之類的..)
+錯誤訊息可參考 > <a href="https://github.com/rails-sqlserver/activerecord-sqlserver-adapter/issues/279">https://github.com/rails-sqlserver/activerecord-sqlserver-adapter/issues/279</a>
+暫時找不到解法，除非把Rails降到3.x版</p>
+
+<p>Reference:
+<a href="https://github.com/rails-sqlserver">https://github.com/rails-sqlserver</a>
+<a href="http://www.cnblogs.com/lwm-1988/archive/2012/05/28/2520728.html">http://www.cnblogs.com/lwm-1988/archive/2012/05/28/2520728.html</a>
+<a href="http://stackoverflow.com/questions/12010780/rails-how-to-do-search">http://stackoverflow.com/questions/12010780/rails-how-to-do-search</a></p>
+]]></content>
+  </entry>
+  
+</feed>

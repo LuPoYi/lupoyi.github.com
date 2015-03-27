@@ -1,0 +1,517 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>[jQuery] Selector - Bob 學習筆記</title>
+  <meta name="author" content="Bob (PoYi)">
+
+  
+  <meta name="description" content="jQuery物件有下列三種： $(&ldquo;a&rdquo;)　 $(&ldquo;table&rdquo;)　 $(&ldquo;div&rdquo;)　 :直接指定Tag類別 $(&ldquo;#myTable&rdquo;)　 :直接指定ID $(&ldquo;.clsInput& &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://lupoyi.github.io/blog/2013/09/15/jquery-selector/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Bob 學習筆記" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-43769917-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Bob 學習筆記</a></h1>
+  
+    <h2>Loser of the year</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="lupoyi.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">[jQuery] Selector</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-09-15T12:29:00+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>12:29 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h1>jQuery物件有下列三種：</h1>
+
+<p>$(&ldquo;a&rdquo;)　 $(&ldquo;table&rdquo;)　 $(&ldquo;div&rdquo;)　 :直接指定Tag類別</p>
+
+<p>$(&ldquo;#myTable&rdquo;)　 :直接指定ID</p>
+
+<p>$(&ldquo;.clsInput&rdquo;)　 :指定使用此CSS的元件</p>
+
+<p><br></p>
+
+<h2>jQuery Selector 常用清單</h2>
+
+<div>
+<table class="dataintable">
+<tr>
+<th>選擇器</th>
+<th>實例</th>
+<th>選取</th>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_all.asp" title="jQuery * 選擇器">*</a></td>
+<td>$(&quot;*&quot;)</td>
+<td>所有元素</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_id.asp" title="jQuery # 選擇器">#<i>id</i></a></td>
+<td>$(&quot;#lastname&quot;)</td>
+<td>id=&quot;lastname&quot; 的元素</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_class.asp" title="jQuery . 選擇器">.<i>class</i></a></td>
+<td>$(&quot;.intro&quot;)</td>
+<td>所有 class=&quot;intro&quot; 的元素</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_element.asp" title="jQuery element 選擇器"><i>element</i></a></td>
+<td>$(&quot;p&quot;)</td>
+<td>所有 &lt;p&gt; 元素</td>
+</tr>
+
+<tr>
+<td>.<i>class</i>.<i>class</i></td>
+<td>$(&quot;.intro.demo&quot;)</td>
+<td>所有 class=&quot;intro&quot; 且 class=&quot;demo&quot; 的元素</td>
+</tr>
+
+<tr>
+<td style="background-color:#fff;">&nbsp;</td>
+<td style="background-color:#fff;">&nbsp;</td>
+<td style="background-color:#fff;">&nbsp;</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_first.asp" title="jQuery :first 選擇器">:first</a></td>
+<td>$(&quot;p:first&quot;)</td>
+<td>第一個 &lt;p&gt; 元素</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_last.asp" title="jQuery :last 選擇器">:last</a></td>
+<td>$(&quot;p:last&quot;)</td>
+<td>最後一個 &lt;p&gt; 元素</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_even.asp" title="jQuery :even 選擇器">:even</a></td>
+<td>$(&quot;tr:even&quot;)</td>
+<td>所有偶數 &lt;tr&gt; 元素</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_odd.asp" title="jQuery :odd 選擇器">:odd</a></td>
+<td>$(&quot;tr:odd&quot;)</td>
+<td>所有奇數 &lt;tr&gt; 元素</td>
+</tr>
+
+<tr>
+<td style="background-color:#fff;">&nbsp;</td>
+<td style="background-color:#fff;">&nbsp;</td>
+<td style="background-color:#fff;">&nbsp;</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_eq.asp" title="jQuery :eq() 選擇器">:eq(<i>index</i>)</a></td>
+<td>$(&quot;ul li:eq(3)&quot;)</td>
+<td>清單中的第四個元素（index 從 0 開始）</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_gt.asp" title="jQuery :gt 選擇器">:gt(<i>no</i>)</a></td>
+<td>$(&quot;ul li:gt(3)&quot;)</td>
+<td>列出 index 大於 3 的元素</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_lt.asp" title="jQuery :lt 選擇器">:lt(<i>no</i>)</a></td>
+<td>$(&quot;ul li:lt(3)&quot;)</td>
+<td>列出 index 小於 3 的元素</td>
+</tr>
+
+<tr>
+<td>:not(<i>selector</i>)</td>
+<td>$(&quot;input:not(:empty)&quot;)</td>
+<td>所有不為空的 input 元素</td>
+</tr>
+
+<tr>
+<td style="background-color:#fff;">&nbsp;</td>
+<td style="background-color:#fff;">&nbsp;</td>
+<td style="background-color:#fff;">&nbsp;</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_header.asp" title="jQuery :header 選擇器">:header</a></td>
+<td>$(&quot;:header&quot;)</td>
+<td>所有標題元素 &lt;h1&gt; - &lt;h6&gt;</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_animated.asp" title="jQuery :animated 選擇器">:animated</a></td>
+<td>&nbsp;</td>
+<td>所有動畫元素</td>
+</tr>
+
+<tr>
+<td style="background-color:#fff;">&nbsp;</td>
+<td style="background-color:#fff;">&nbsp;</td>
+<td style="background-color:#fff;">&nbsp;</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_contains.asp" title="jQuery :contains 選擇器">:contains(<i>text</i>)</a></td>
+<td>$(&quot;:contains(&#8216;W3School&#8217;)&quot;)</td>
+<td>包含指定字串的所有元素</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_empty.asp" title="jQuery :empty 選擇器">:empty</a></td>
+<td>$(&quot;:empty&quot;)</td>
+<td>無子（元素）節點的所有元素</td>
+</tr>
+
+<tr>
+<td>:hidden</td>
+<td>$(&quot;p:hidden&quot;)</td>
+<td>所有隱藏的 &lt;p&gt; 元素</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_visible.asp" title="jQuery :visible 選擇器">:visible</a></td>
+<td>$(&quot;table:visible&quot;)</td>
+<td>所有可見的表格</td>
+</tr>
+
+<tr>
+<td style="background-color:#fff;">&nbsp;</td>
+<td style="background-color:#fff;">&nbsp;</td>
+<td style="background-color:#fff;">&nbsp;</td>
+</tr>
+
+<tr>
+<td>s1,s2,s3</td>
+<td>$(&quot;th,td,.intro&quot;)</td>
+<td>所有帶有匹配選擇的元素</td>
+</tr>
+
+<tr>
+<td style="background-color:#fff;">&nbsp;</td>
+<td style="background-color:#fff;">&nbsp;</td>
+<td style="background-color:#fff;">&nbsp;</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_attribute.asp" title="jQuery [attribute] 選擇器">[<i>attribute</i>]</a></td>
+<td>$(&quot;[href]&quot;)</td>
+<td>所有帶有 href 屬性的元素</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_attribute_equal_value.asp" title="jQuery [attribute=value] 選擇器">[<i>attribute</i>=<i>value</i>]</a></td>
+<td>$(&quot;[href=&#8217;#&#8217;]&quot;)</td>
+<td>所有 href 屬性的值等於 &quot;#&quot; 的元素</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_attribute_notequal_value.asp" title="jQuery [attribute!=value] 選擇器">[<i>attribute</i>!=<i>value</i>]</a></td>
+<td>$(&quot;[href!=&#8217;#&#8217;]&quot;)</td>
+<td>所有 href 屬性的值不等於 &quot;#&quot; 的元素</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_attribute_end_value.asp" title="jQuery [attribute$=value] 選擇器">[<i>attribute</i>$=<i>value</i>]</a></td>
+<td>$(&quot;[href$=&#8217;.jpg&#8217;]&quot;)</td>
+<td>所有 href 屬性的值包含以 &quot;.jpg&quot; 結尾的元素</td>
+</tr>
+
+<tr>
+<td style="background-color:#fff;">&nbsp;</td>
+<td style="background-color:#fff;">&nbsp;</td>
+<td style="background-color:#fff;">&nbsp;</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_input.asp" title="jQuery :input 選擇器">:input</a></td>
+<td>$(&quot;:input&quot;)</td>
+<td>所有 &lt;input&gt; 元素</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_input_text.asp" title="jQuery :text 選擇器">:text</a></td>
+<td>$(&quot;:text&quot;)</td>
+<td>所有 type=&quot;text&quot; 的 &lt;input&gt; 元素</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_input_password.asp" title="jQuery :password 選擇器">:password</a></td>
+<td>$(&quot;:password&quot;)</td>
+<td>所有 type=&quot;password&quot; 的 &lt;input&gt; 元素</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_input_radio.asp" title="jQuery :radio 選擇器">:radio</a></td>
+<td>$(&quot;:radio&quot;)</td>
+<td>所有 type=&quot;radio&quot; 的 &lt;input&gt; 元素</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_input_checkbox.asp" title="jQuery :checkbox 選擇器">:checkbox</a></td>
+<td>$(&quot;:checkbox&quot;)</td>
+<td>所有 type=&quot;checkbox&quot; 的 &lt;input&gt; 元素</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_input_submit.asp" title="jQuery :submit 選擇器">:submit</a></td>
+<td>$(&quot;:submit&quot;)</td>
+<td>所有 type=&quot;submit&quot; 的 &lt;input&gt; 元素</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_input_reset.asp" title="jQuery :reset 選擇器">:reset</a></td>
+<td>$(&quot;:reset&quot;)</td>
+<td>所有 type=&quot;reset&quot; 的 &lt;input&gt; 元素</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_input_button.asp" title="jQuery :button 選擇器">:button</a></td>
+<td>$(&quot;:button&quot;)</td>
+<td>所有 type=&quot;button&quot; 的 &lt;input&gt; 元素</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_input_image.asp" title="jQuery :image 選擇器">:image</a></td>
+<td>$(&quot;:image&quot;)</td>
+<td>所有 type=&quot;image&quot; 的 &lt;input&gt; 元素</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_input_file.asp" title="jQuery :file 選擇器">:file</a></td>
+<td>$(&quot;:file&quot;)</td>
+<td>所有 type=&quot;file&quot; 的 &lt;input&gt; 元素</td>
+</tr>
+
+<tr>
+<td style="background-color:#fff;">&nbsp;</td>
+<td style="background-color:#fff;">&nbsp;</td>
+<td style="background-color:#fff;">&nbsp;</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_input_enabled.asp" title="jQuery :enabled 選擇器">:enabled</a></td>
+<td>$(&quot;:enabled&quot;)</td>
+<td>所有啟動的 input 元素</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_input_disabled.asp" title="jQuery :disabled 選擇器">:disabled</a></td>
+<td>$(&quot;:disabled&quot;)</td>
+<td>所有禁用的 input 元素</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_input_selected.asp" title="jQuery :selected 選擇器">:selected</a></td>
+<td>$(&quot;:selected&quot;)</td>
+<td>所有被選取的 input 元素</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_input_checked.asp" title="jQuery :checked 選擇器">:checked</a></td>
+<td>$(&quot;:checked&quot;)</td>
+<td>所有被選中的 input 元素</td>
+</tr>
+</table>
+</div>
+
+
+<p>Reference:
+<a href="http://my-web-design.blogspot.tw/2012/05/jquery-selectors.html">http://my-web-design.blogspot.tw/2012/05/jquery-selectors.html</a></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Bob (PoYi)</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2013-09-15T12:29:00+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>12:29 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/jquery/'>jquery</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://lupoyi.github.io/blog/2013/09/15/jquery-selector/" data-via="" data-counturl="http://lupoyi.github.io/blog/2013/09/15/jquery-selector/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/09/15/jquery/" title="Previous Post: [jQuery] 入門">&laquo; [jQuery] 入門</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/09/18/aspnet-archive-folder-access/" title="Next Post: [ASP.NET] 檔案資料夾存取">[ASP.NET] 檔案資料夾存取 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/05/06/ruby-csv-file/">[Ruby] 匯出批次csv檔</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/03/16/ruby-require-load-include-extend/">[Ruby] Require,load,include,extend</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/03/03/aspnet-auto-return/">[ASP.NET] 自動寄信</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/03/03/c-datatable-operation-memos/">[C#] DataTable 的操作備忘</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/02/15/linux-getting-started-with-hyper-basic-instructions/">[Linux] 超入門的基本指令</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Bob (PoYi) -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

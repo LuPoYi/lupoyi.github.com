@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Predicatebuilder | Bob 學習筆記]]></title>
+  <link href="http://lupoyi.github.io/blog/categories/predicatebuilder/atom.xml" rel="self"/>
+  <link href="http://lupoyi.github.io/"/>
+  <updated>2015-03-27T23:22:55+08:00</updated>
+  <id>http://lupoyi.github.io/</id>
+  <author>
+    <name><![CDATA[Bob (PoYi)]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[[ASP.NET] Linq 動態條件搜尋]]></title>
+    <link href="http://lupoyi.github.io/blog/2013/09/29/aspnet-linq-dynamic-conditions/"/>
+    <updated>2013-09-29T08:10:00+08:00</updated>
+    <id>http://lupoyi.github.io/blog/2013/09/29/aspnet-linq-dynamic-conditions</id>
+    <content type="html"><![CDATA[<p>一般Linq在多種動態條件的組合時會顯得比較麻煩，要額外加很多if else判斷式來達成
+而「PredicateBuilder」可以解決這些麻煩，原理上是將where的條件獨立出來</p>
+
+<pre><code class="Console">static void linqPB()
+    {
+        var list = new List&lt;string&gt; { "apple", "bob", "coco", "durex", "enter", "fuck"};
+        var searchKeyword = new List&lt;string&gt; { "o", "e" };
+        var predicate = PredicateBuilder.False&lt;string&gt;();
+
+        foreach (var word in searchKeyword)
+        {
+            var temp = word;  // 避免參考到相同變數位址
+            predicate = predicate.Or(p =&gt; p.Contains(temp));
+        }
+        var qry = list.Where(predicate.Compile());
+
+        foreach (var item in qry)
+        {
+            Console.WriteLine(item);
+        }
+        Console.Read();
+    }
+// result: apple bob coco durex enter
+</code></pre>
+
+<p>主要的重點如下，將條件放入xxx
+<code>
+  var predicate = PredicateBuilder.False(); // 這邊的true/false會與下列的or做串接
+  predicate = predicate.Or(p =&gt; p.name.Contains(xxx));
+  predicate = predicate.Or(p =&gt; p.department.Contains (xxx));
+  myDB.employee.Where (predicate);
+</code></p>
+
+<p>Reference:
+要使用PredicateBuilder，需要加入參考: LinqKit.dll
+<a href="http://www.albahari.com/nutshell/predicatebuilder.aspx">http://www.albahari.com/nutshell/predicatebuilder.aspx</a> <br/>
+<a href="http://blog.sanc.idv.tw/2010/10/linq.html">http://blog.sanc.idv.tw/2010/10/linq.html</a>
+<a href="http://leaflet-t-h.blogspot.tw/2011/11/linq-predicatebuilder.html">http://leaflet-t-h.blogspot.tw/2011/11/linq-predicatebuilder.html</a></p>
+]]></content>
+  </entry>
+  
+</feed>

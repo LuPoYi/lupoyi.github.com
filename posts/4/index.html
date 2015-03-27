@@ -1,0 +1,1021 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Bob 學習筆記</title>
+  <meta name="author" content="Bob (PoYi)">
+
+  
+  <meta name="description" content="最近常常手動新增假員工AD帳號來測我的程式
+在嘗試跑程式step by step來測試時，想說奇怪怎麼假帳號會有電腦資產
+原來這帳號跟設計部門的元老經理的員工工號重複了&hellip;
+還好有及時發現沒有把程式執行完，不然IT部門就要起飛了&hellip; &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://lupoyi.github.io/posts/4/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Bob 學習筆記" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-43769917-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Bob 學習筆記</a></h1>
+  
+    <h2>Loser of the year</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="lupoyi.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/09/23/aspnet-string-is-padded-with-zeros/">[C#] 字串補零</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-09-23T14:01:00+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2013</span></span> <span class='time'>2:01 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>最近常常手動新增假員工AD帳號來測我的程式
+在嘗試跑程式step by step來測試時，想說奇怪怎麼假帳號會有電腦資產
+原來這帳號跟設計部門的元老經理的員工工號重複了&hellip;
+還好有及時發現沒有把程式執行完，不然IT部門就要起飛了&hellip;</p>
+
+<p>所以想說寫個迴圈來測是不是有其他工號也有重複的案例
+而工號欄位都是五位數(BOB00001~BOB99999)
+像我的工號是4104需要補足五位數
+有三種方式：</p>
+
+<pre><code>int myEmpNo = 4104;
+empNo.ToString("00000");  
+empNo.ToString("D5");                        
+empNo.ToString().PadLeft(5,'0'); 
+// 04104
+</code></pre>
+
+<p>查了才知道原來ToString蠻方便的，有些好用的例子</p>
+
+<pre><code>empNo.ToString("BOB00000"); // BOB04104
+empNo.ToString("C");  // NT$4,104.00
+empNo.ToString("C", new System.Globalization.CultureInfo("en-US")); $4,104.00
+
+int myPhoneNo =123456789;
+myPhoneNo.ToString("(##) ###-####"); // (12) 345-6789
+</code></pre>
+
+<p>PadLeft ：字串向右靠齊，將指定字元填滿左邊。
+PadRight：字串向左靠齊，將指定字元填滿右邊。</p>
+
+<p>Reference:
+<a href="http://msdn.microsoft.com/zh-tw/library/0c899ak8(v=vs.95">http://msdn.microsoft.com/zh-tw/library/0c899ak8(v=vs.95).aspx</a>.aspx)
+<a href="http://www.dotblogs.com.tw/ethon.chi/archive/2010/09/27/17917.aspx">http://www.dotblogs.com.tw/ethon.chi/archive/2010/09/27/17917.aspx</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/09/18/aspnet-archive-folder-access/">[ASP.NET] 檔案資料夾存取</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-09-18T14:49:00+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>2:49 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>刪除</p>
+
+<pre><code>    System.IO.File.Delete(filePath);
+    System.IO.Directory.Delete(folderPath);
+</code></pre>
+
+<p>搬移</p>
+
+<pre><code>    System.IO.File.Move(sourceFilePath, destinationFilePath);
+    System.IO.Directory.Move(sourceFolderPath, destinationFolderPath);
+</code></pre>
+
+<p>複製</p>
+
+<pre><code>    System.IO.File.Copy(sourceFilePath, destinationFilePath, true); 
+    System.IO.Directory.Copy(sourceFolderPath, destinationFolderPath, true);// true表示是否覆寫
+</code></pre>
+
+<p>取得該目標下所有檔案</p>
+
+<pre><code>    string[] files = System.IO.Directory.GetFiles(folderPath);
+</code></pre>
+
+<p>比較需要注意的是做任何動作之前，都要需要先檢查目標是否存在，否則會跳出錯誤。</p>
+
+<p>這樣也一篇…</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/09/15/jquery-selector/">[jQuery] Selector</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-09-15T12:29:00+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>12:29 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1>jQuery物件有下列三種：</h1>
+
+<p>$(&ldquo;a&rdquo;)　 $(&ldquo;table&rdquo;)　 $(&ldquo;div&rdquo;)　 :直接指定Tag類別</p>
+
+<p>$(&ldquo;#myTable&rdquo;)　 :直接指定ID</p>
+
+<p>$(&ldquo;.clsInput&rdquo;)　 :指定使用此CSS的元件</p>
+
+<p><br></p>
+
+<h2>jQuery Selector 常用清單</h2>
+
+<div>
+<table class="dataintable">
+<tr>
+<th>選擇器</th>
+<th>實例</th>
+<th>選取</th>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_all.asp" title="jQuery * 選擇器">*</a></td>
+<td>$(&quot;*&quot;)</td>
+<td>所有元素</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_id.asp" title="jQuery # 選擇器">#<i>id</i></a></td>
+<td>$(&quot;#lastname&quot;)</td>
+<td>id=&quot;lastname&quot; 的元素</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_class.asp" title="jQuery . 選擇器">.<i>class</i></a></td>
+<td>$(&quot;.intro&quot;)</td>
+<td>所有 class=&quot;intro&quot; 的元素</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_element.asp" title="jQuery element 選擇器"><i>element</i></a></td>
+<td>$(&quot;p&quot;)</td>
+<td>所有 &lt;p&gt; 元素</td>
+</tr>
+
+<tr>
+<td>.<i>class</i>.<i>class</i></td>
+<td>$(&quot;.intro.demo&quot;)</td>
+<td>所有 class=&quot;intro&quot; 且 class=&quot;demo&quot; 的元素</td>
+</tr>
+
+<tr>
+<td style="background-color:#fff;">&nbsp;</td>
+<td style="background-color:#fff;">&nbsp;</td>
+<td style="background-color:#fff;">&nbsp;</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_first.asp" title="jQuery :first 選擇器">:first</a></td>
+<td>$(&quot;p:first&quot;)</td>
+<td>第一個 &lt;p&gt; 元素</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_last.asp" title="jQuery :last 選擇器">:last</a></td>
+<td>$(&quot;p:last&quot;)</td>
+<td>最後一個 &lt;p&gt; 元素</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_even.asp" title="jQuery :even 選擇器">:even</a></td>
+<td>$(&quot;tr:even&quot;)</td>
+<td>所有偶數 &lt;tr&gt; 元素</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_odd.asp" title="jQuery :odd 選擇器">:odd</a></td>
+<td>$(&quot;tr:odd&quot;)</td>
+<td>所有奇數 &lt;tr&gt; 元素</td>
+</tr>
+
+<tr>
+<td style="background-color:#fff;">&nbsp;</td>
+<td style="background-color:#fff;">&nbsp;</td>
+<td style="background-color:#fff;">&nbsp;</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_eq.asp" title="jQuery :eq() 選擇器">:eq(<i>index</i>)</a></td>
+<td>$(&quot;ul li:eq(3)&quot;)</td>
+<td>清單中的第四個元素（index 從 0 開始）</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_gt.asp" title="jQuery :gt 選擇器">:gt(<i>no</i>)</a></td>
+<td>$(&quot;ul li:gt(3)&quot;)</td>
+<td>列出 index 大於 3 的元素</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_lt.asp" title="jQuery :lt 選擇器">:lt(<i>no</i>)</a></td>
+<td>$(&quot;ul li:lt(3)&quot;)</td>
+<td>列出 index 小於 3 的元素</td>
+</tr>
+
+<tr>
+<td>:not(<i>selector</i>)</td>
+<td>$(&quot;input:not(:empty)&quot;)</td>
+<td>所有不為空的 input 元素</td>
+</tr>
+
+<tr>
+<td style="background-color:#fff;">&nbsp;</td>
+<td style="background-color:#fff;">&nbsp;</td>
+<td style="background-color:#fff;">&nbsp;</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_header.asp" title="jQuery :header 選擇器">:header</a></td>
+<td>$(&quot;:header&quot;)</td>
+<td>所有標題元素 &lt;h1&gt; - &lt;h6&gt;</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_animated.asp" title="jQuery :animated 選擇器">:animated</a></td>
+<td>&nbsp;</td>
+<td>所有動畫元素</td>
+</tr>
+
+<tr>
+<td style="background-color:#fff;">&nbsp;</td>
+<td style="background-color:#fff;">&nbsp;</td>
+<td style="background-color:#fff;">&nbsp;</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_contains.asp" title="jQuery :contains 選擇器">:contains(<i>text</i>)</a></td>
+<td>$(&quot;:contains(&#8216;W3School&#8217;)&quot;)</td>
+<td>包含指定字串的所有元素</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_empty.asp" title="jQuery :empty 選擇器">:empty</a></td>
+<td>$(&quot;:empty&quot;)</td>
+<td>無子（元素）節點的所有元素</td>
+</tr>
+
+<tr>
+<td>:hidden</td>
+<td>$(&quot;p:hidden&quot;)</td>
+<td>所有隱藏的 &lt;p&gt; 元素</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_visible.asp" title="jQuery :visible 選擇器">:visible</a></td>
+<td>$(&quot;table:visible&quot;)</td>
+<td>所有可見的表格</td>
+</tr>
+
+<tr>
+<td style="background-color:#fff;">&nbsp;</td>
+<td style="background-color:#fff;">&nbsp;</td>
+<td style="background-color:#fff;">&nbsp;</td>
+</tr>
+
+<tr>
+<td>s1,s2,s3</td>
+<td>$(&quot;th,td,.intro&quot;)</td>
+<td>所有帶有匹配選擇的元素</td>
+</tr>
+
+<tr>
+<td style="background-color:#fff;">&nbsp;</td>
+<td style="background-color:#fff;">&nbsp;</td>
+<td style="background-color:#fff;">&nbsp;</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_attribute.asp" title="jQuery [attribute] 選擇器">[<i>attribute</i>]</a></td>
+<td>$(&quot;[href]&quot;)</td>
+<td>所有帶有 href 屬性的元素</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_attribute_equal_value.asp" title="jQuery [attribute=value] 選擇器">[<i>attribute</i>=<i>value</i>]</a></td>
+<td>$(&quot;[href=&#8217;#&#8217;]&quot;)</td>
+<td>所有 href 屬性的值等於 &quot;#&quot; 的元素</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_attribute_notequal_value.asp" title="jQuery [attribute!=value] 選擇器">[<i>attribute</i>!=<i>value</i>]</a></td>
+<td>$(&quot;[href!=&#8217;#&#8217;]&quot;)</td>
+<td>所有 href 屬性的值不等於 &quot;#&quot; 的元素</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_attribute_end_value.asp" title="jQuery [attribute$=value] 選擇器">[<i>attribute</i>$=<i>value</i>]</a></td>
+<td>$(&quot;[href$=&#8217;.jpg&#8217;]&quot;)</td>
+<td>所有 href 屬性的值包含以 &quot;.jpg&quot; 結尾的元素</td>
+</tr>
+
+<tr>
+<td style="background-color:#fff;">&nbsp;</td>
+<td style="background-color:#fff;">&nbsp;</td>
+<td style="background-color:#fff;">&nbsp;</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_input.asp" title="jQuery :input 選擇器">:input</a></td>
+<td>$(&quot;:input&quot;)</td>
+<td>所有 &lt;input&gt; 元素</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_input_text.asp" title="jQuery :text 選擇器">:text</a></td>
+<td>$(&quot;:text&quot;)</td>
+<td>所有 type=&quot;text&quot; 的 &lt;input&gt; 元素</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_input_password.asp" title="jQuery :password 選擇器">:password</a></td>
+<td>$(&quot;:password&quot;)</td>
+<td>所有 type=&quot;password&quot; 的 &lt;input&gt; 元素</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_input_radio.asp" title="jQuery :radio 選擇器">:radio</a></td>
+<td>$(&quot;:radio&quot;)</td>
+<td>所有 type=&quot;radio&quot; 的 &lt;input&gt; 元素</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_input_checkbox.asp" title="jQuery :checkbox 選擇器">:checkbox</a></td>
+<td>$(&quot;:checkbox&quot;)</td>
+<td>所有 type=&quot;checkbox&quot; 的 &lt;input&gt; 元素</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_input_submit.asp" title="jQuery :submit 選擇器">:submit</a></td>
+<td>$(&quot;:submit&quot;)</td>
+<td>所有 type=&quot;submit&quot; 的 &lt;input&gt; 元素</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_input_reset.asp" title="jQuery :reset 選擇器">:reset</a></td>
+<td>$(&quot;:reset&quot;)</td>
+<td>所有 type=&quot;reset&quot; 的 &lt;input&gt; 元素</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_input_button.asp" title="jQuery :button 選擇器">:button</a></td>
+<td>$(&quot;:button&quot;)</td>
+<td>所有 type=&quot;button&quot; 的 &lt;input&gt; 元素</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_input_image.asp" title="jQuery :image 選擇器">:image</a></td>
+<td>$(&quot;:image&quot;)</td>
+<td>所有 type=&quot;image&quot; 的 &lt;input&gt; 元素</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_input_file.asp" title="jQuery :file 選擇器">:file</a></td>
+<td>$(&quot;:file&quot;)</td>
+<td>所有 type=&quot;file&quot; 的 &lt;input&gt; 元素</td>
+</tr>
+
+<tr>
+<td style="background-color:#fff;">&nbsp;</td>
+<td style="background-color:#fff;">&nbsp;</td>
+<td style="background-color:#fff;">&nbsp;</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_input_enabled.asp" title="jQuery :enabled 選擇器">:enabled</a></td>
+<td>$(&quot;:enabled&quot;)</td>
+<td>所有啟動的 input 元素</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_input_disabled.asp" title="jQuery :disabled 選擇器">:disabled</a></td>
+<td>$(&quot;:disabled&quot;)</td>
+<td>所有禁用的 input 元素</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_input_selected.asp" title="jQuery :selected 選擇器">:selected</a></td>
+<td>$(&quot;:selected&quot;)</td>
+<td>所有被選取的 input 元素</td>
+</tr>
+
+<tr>
+<td><a href="/jquery/selector_input_checked.asp" title="jQuery :checked 選擇器">:checked</a></td>
+<td>$(&quot;:checked&quot;)</td>
+<td>所有被選中的 input 元素</td>
+</tr>
+</table>
+</div>
+
+
+<p>Reference:
+<a href="http://my-web-design.blogspot.tw/2012/05/jquery-selectors.html">http://my-web-design.blogspot.tw/2012/05/jquery-selectors.html</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/09/15/jquery/">[jQuery] 入門</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-09-15T09:20:00+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>9:20 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>jQuery 是一套 JavaScript 的 Library，目的是簡化dom的操作，也可以說是簡化HTML與JavaScript之間的操作</p>
+
+<p>基本規則：jQuery物件.方法( ).方法( )</p>
+
+<p>具名函數</p>
+
+<pre><code>var person = new Object();
+person.Name = "Bob";
+person.Speak = say;
+
+function say(msg) {
+    alert(this.Name + ": " + msg);
+}
+person.Speak("Fuck You Jex");
+</code></pre>
+
+<p>不具名函數</p>
+
+<pre><code>var person = new Object();
+person.Name = "Bob";
+person.Speak = function (msg) { alert(this.Name + ": " + msg); }
+
+person.Speak("Fuck You Jex");
+</code></pre>
+
+<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/139105/UhKVDZTaTaWvACtSs3ix_2013-9-15%20%E4%B8%8B%E5%8D%88%2005-26-04.jpg" alt="2013-9-15 下午 05-26-04.jpg" /></p>
+
+<p>Reference:
+<a href="http://msdn.microsoft.com/zh-tw/asp.net/dd452439.aspx">http://msdn.microsoft.com/zh-tw/asp.net/dd452439.aspx</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/09/12/sql-date/">[SQL] 常用的日期函數</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-09-12T07:46:00+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>7:46 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>DATEADD (datepart , number , date )
+將日期加上n個datepart</p>
+
+<pre><code>Select dateadd( day , 1 , '2020-10-20') // 2020-10-21
+Select dateadd( year , 5 , '2020-10-20') // 2025-10-20
+</code></pre>
+
+<p>DATEDIFF ( datepart , startdate , enddate )
+計算startdate跟enddate距離幾個datepart</p>
+
+<pre><code>Select datediff ( day , '2015-06-17', '2015-06-20') // 3 
+    Select datediff ( MONTH , '2015-06-17', '2016-06-20') // 12
+</code></pre>
+
+<p>  DATEPART( datepart , date )
+  可查詢日期的細部資料：第幾季、第幾週、星期幾..傳回整數</p>
+
+<pre><code>Select DATEPART( weekday , getdate() ) // 4
+Select DATEPART( quarter , getdate() ) // 3
+</code></pre>
+
+<p>  DATENAME ( datepart , date )
+  可查詢日期的細部資料：第幾季、第幾週、星期幾..傳回字串</p>
+
+<pre><code>Select DATENAME( weekday , getdate() ) // Wednesday
+Select DATENAME( month  , getdate() ) // September
+</code></pre>
+
+<p>其他</p>
+
+<pre><code>IsDate() 判斷是否為合法日期
+getdate()   取得系統目前時間
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/09/12/aspnet-access-to-ad-domain/">[ASP.NET] 存取AD網域</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-09-12T01:27:00+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>1:27 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>透過AD網域來存取帳號資料</h2>
+
+<h2>查詢資料</h2>
+
+<pre><code>string QueryString = "LDAP://網域";
+DirectoryEntry de = new DirectoryEntry(QueryString,adminAccount,adminPassword);
+DirectorySearcher ds = new DirectorySearcher(de);
+SearchResultCollection Results = null;
+
+// 設定查詢條件：依姓名及工號查詢
+ds.Filter = @"(&amp;(samaccountname=" + employeeName + ")(Description=" + employeeNo + "))";
+// 將查詢結果放入Results
+Results = ds.FindAll();
+
+foreach (SearchResult result in Results)
+{
+    if (result.Properties["description"].Count &gt; 0)
+    {
+        // 透過AD裡的屬性「description」，取得工號
+        string resultNo = result.Properties["description"][0].ToString();
+        Response.Write(resultNo);
+        Response.Write("&lt;br&gt;");
+    }
+}
+ds.Dispose(); // 釋放資源
+de.Dispose();
+</code></pre>
+
+<h2>修改指定帳號的屬性值</h2>
+
+<pre><code>string QueryString = "LDAP://"+ userLDAP;
+DirectoryEntry de = new DirectoryEntry(QueryString, adminAccount,adminPassword);
+
+de.Properties["TelephoneNumber"].Value = 123;     
+
+// 停用此帳號：userAccountControl = 514 
+de.Properties["userAccountControl"].Value = 514;
+
+// 重設密碼
+de.Invoke("SetPassword", newPassword);
+
+de.CommitChanges();
+de.Close();
+</code></pre>
+
+<h2>刪除帳號</h2>
+
+<pre><code>string QueryString = LDAP://" + userLDAP;
+DirectoryEntry user = new DirectoryEntry(QueryString, adminAccount, adminPassword);
+// 找上一層
+DirectoryEntry ou = user.Parent;
+// 再回去刪它
+ou.Children.Remove(user);
+ou.CommitChanges();
+</code></pre>
+
+<p>基本屬性KEY跟VALUE可以在AD裡面找到
+<img src="http://user-image.logdown.io/user/2740/blog/2734/post/138560/iH5dxsHMS6SoXINR2EX2_2013-9-15%20%E4%B8%8B%E5%8D%88%2001-58-35.jpg" alt="2013-9-15 下午 01-58-35.jpg" /></p>
+
+<p>Reference:
+<a href="http://www.dotblogs.com.tw/yc421206/archive/2010/02/07/13510.aspx">http://www.dotblogs.com.tw/yc421206/archive/2010/02/07/13510.aspx</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/09/05/aspnet-date/">[ASP.NET] 日期處理</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-09-05T09:07:00+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>9:07 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1>日期運算其實還蠻常用到的，但好像變化不多</h1>
+
+<pre><code>// 利用TimeSpan 日期相減
+TimeSpan ts = DateTime1 - DateTime2;
+int differenceInDays = ts.Days;
+
+// 加上指定月數、天數、時間
+DateTime DateTime3 = DateTime1.AddDays(50);
+DateTime DateTime4 = DateTime1.AddMonths(12);
+
+// 顯示特定格式
+TextBox1.Text = DateTime4.ToString("dddd"); // 星期二
+TextBox1.Text = DateTime4.ToString("MMMM"); // 七月
+TextBox1.Text = DateTime4.ToString("MMMM",CultureInfo.CreateSpecificCulture("en-US"))); // July
+TextBox1.Text = DateTime4.ToString("yyyy-MM-dd HH:mm:ss");
+</code></pre>
+
+<p>Reference:
+<a href="http://www.dotblogs.com.tw/hung-chin/archive/2012/10/15/77503.aspx">http://www.dotblogs.com.tw/hung-chin/archive/2012/10/15/77503.aspx</a>
+<a href="http://gogo1119.pixnet.net/blog/post/28140411-%5Bc%23%5D-datetime-tostring%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%99%95%E7%90%86">http://gogo1119.pixnet.net/blog/post/28140411-%5Bc%23%5D-datetime-tostring%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%99%95%E7%90%86</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/09/04/aspnet-implementation/">[ASP.NET] 呼叫執行檔</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-09-04T07:12:00+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>7:12 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>執行指定檔案(or .exe)</h2>
+
+<h2>Client端</h2>
+
+<pre><code>Process p = new Process();
+p.StartInfo.FileName   = "@"C:\Users\PoYi\Desktop\test.txt"";
+p.Start();
+</code></pre>
+
+<h2>Server端</h2>
+
+<pre><code>System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo();
+psi.FileName = @"C:\Users\PoYi\Desktop\test.txt";
+psi.Arguments="";
+System.Diagnostics.Process.Start(psi);
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/09/04/aspnet-print/">[ASP.NET] 列印</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-09-04T02:46:00+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>2:46 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1>列印指定文件</h1>
+
+<pre><code>string filePath = "C:\\test.txt";
+
+// 使用預設印表機
+LocalPrintServer ps = new LocalPrintServer();
+PrintQueue queue = ps.DefaultPrintQueue;
+
+// 指定特定印表機
+PrintServer ps = new PrintServer(@"\\TY-SRV-PRINT01");
+PrintQueue queue = new PrintQueue(ps, "FUJIXEROX");
+
+PrintSystemJobInfo pj = queue.AddJob(filePath);
+Stream myStream = pj.JobStream;
+Byte[] myByteBuffer = System.IO.File.ReadAllBytes(filePath);
+myStream.Write(myByteBuffer, 0, myByteBuffer.Length);
+myStream.Close();
+
+queue.Commit();
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/09/04/network-attacks/">[ASP.NET] 資安基本概念</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-09-04T01:25:00+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>1:25 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>以往都是寫供內部使用的網站，也沒想過有什麼資安的問題…
+也就是說資安這一環，幾乎是無知的狀態…</p>
+
+<hr />
+
+<h1>SQL Injection</h1>
+
+<p><strong>將字串中夾帶SQL指令，讓SERVER認為是正常指令而執行</strong></p>
+
+<h2>ASP.NET 防範方法</h2>
+
+<ol>
+<li>避免直接將使用者輸入的資料作為SQL指令；或是利用SQLParameter來處理參數</li>
+<li>將設定customErrors:On，至少出錯時不會show出程式碼</li>
+<li>設定專屬SQL帳號及必要權限，避免使用sa</li>
+<li>其他&hellip;</li>
+</ol>
+
+
+<hr />
+
+<h1>XSS</h1>
+
+<p><strong>－通常是指對方將有害程式碼惡意嵌入網頁當中，使得其他人連進此網頁時會受到影響；或是對方竊取更高的權限、Cookie等等…；(常見的為JavaScript)</strong></p>
+
+<h2>ASP.NET 防範方法</h2>
+
+<ol>
+<li>盡量保持ValidateRequest為啟用</li>
+<li>進行Html Encode(前端或後端)</li>
+<li>其他&hellip;必須防範所有有機會寫入Html tag的地方</li>
+</ol>
+
+
+<hr />
+
+<p>Reference:
+<a href="http://anti-hacker.blogspot.tw/2008/01/xss.html">http://anti-hacker.blogspot.tw/2008/01/xss.html</a>
+<a href="http://zh.wikipedia.org/wiki/%E8%B7%A8%E7%B6%B2%E7%AB%99%E6%8C%87%E4%BB%A4%E7%A2%BC">http://zh.wikipedia.org/wiki/%E8%B7%A8%E7%B6%B2%E7%AB%99%E6%8C%87%E4%BB%A4%E7%A2%BC</a>
+<a href="https://www.google.com.tw/#q=csrf">https://www.google.com.tw/#q=csrf</a>
+<a href="http://blog.darkthread.net/blogs/darkthreadtw/archive/2008/05/07/are-your-website-naked.aspx">http://blog.darkthread.net/blogs/darkthreadtw/archive/2008/05/07/are-your-website-naked.aspx</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/posts/5">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/posts/3">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/05/06/ruby-csv-file/">[Ruby] 匯出批次csv檔</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/03/16/ruby-require-load-include-extend/">[Ruby] Require,load,include,extend</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/03/03/aspnet-auto-return/">[ASP.NET] 自動寄信</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/03/03/c-datatable-operation-memos/">[C#] DataTable 的操作備忘</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/02/15/linux-getting-started-with-hyper-basic-instructions/">[Linux] 超入門的基本指令</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Bob (PoYi) -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Html5 | Bob 學習筆記]]></title>
+  <link href="http://lupoyi.github.io/blog/categories/html5/atom.xml" rel="self"/>
+  <link href="http://lupoyi.github.io/"/>
+  <updated>2015-03-27T23:22:55+08:00</updated>
+  <id>http://lupoyi.github.io/</id>
+  <author>
+    <name><![CDATA[Bob (PoYi)]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[[HTML5] 入門]]></title>
+    <link href="http://lupoyi.github.io/blog/2013/08/29/html5/"/>
+    <updated>2013-08-29T13:17:00+08:00</updated>
+    <id>http://lupoyi.github.io/blog/2013/08/29/html5</id>
+    <content type="html"><![CDATA[<h1>HTML 5 基本樣式</h1>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;HTML 5&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+  &lt;p&gt;Hello World!&lt;p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h1>視訊播放</h1>
+
+<p>瀏覽器會依type特性來決定要顯示哪一個影片檔，也可以依照不同尺寸來設定觀看的的解析度。
+video標籤可用的屬性:Preload(不自動下載視訊)、Loop(重複播放)、autoplay(開啟後自動播放)、width、height&hellip;</p>
+
+<pre><code>    &lt;video controls autoplay&gt;
+      &lt;source src="Simple Plan.720p.webm" type="video/webm" media="screen and (min-width: 500px)"&gt;
+      &lt;source src="Simple Plan.360p.webm" type="video/webm"&gt;
+      &lt;source src="Simple Plan.mp4" type="video/mp4"&gt;
+      &lt;source src="Simple Plan.ogg" type="video/ogg"&gt;
+      Sorry...Your browser is crap...
+    &lt;/video&gt;
+</code></pre>
+
+<p>目前查到的資料：
+IE、Safari 只支援mp4
+Opera 支援webm ogg
+FireFox 支援webm ogg (mp4部分支援)
+Chrome 全都支援</p>
+
+<p><a href="http://www.w3schools.com/html/html5_video.asp">http://www.w3schools.com/html/html5_video.asp</a></p>
+]]></content>
+  </entry>
+  
+</feed>

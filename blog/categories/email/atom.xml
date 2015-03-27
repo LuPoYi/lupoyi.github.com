@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Email | Bob 學習筆記]]></title>
+  <link href="http://lupoyi.github.io/blog/categories/email/atom.xml" rel="self"/>
+  <link href="http://lupoyi.github.io/"/>
+  <updated>2015-03-27T23:22:55+08:00</updated>
+  <id>http://lupoyi.github.io/</id>
+  <author>
+    <name><![CDATA[Bob (PoYi)]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[[ASP.NET] 自動寄信]]></title>
+    <link href="http://lupoyi.github.io/blog/2014/03/03/aspnet-auto-return/"/>
+    <updated>2014-03-03T12:48:00+08:00</updated>
+    <id>http://lupoyi.github.io/blog/2014/03/03/aspnet-auto-return</id>
+    <content type="html"><![CDATA[<p>一樣是紀綠一下&hellip;</p>
+
+<pre><code>MailMessage mailMessage = new MailMessage();
+mailMessage.IsBodyHtml = true;
+
+mailMessage.To.Add(emailAddress);
+mailMessage.CC.Add(cCMailAddress);
+
+MailAddress fromWho = new MailAddress(senderMailAddress);
+mailMessage.From = fromWho;
+mailMessage.Subject = title;
+mailMessage.Body = "這邊可放html"
+
+SmtpClient mailSmtp = new SmtpClient(mailServer,mailServerPort);
+
+mailSmtp.Send(mailMessage);
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>
