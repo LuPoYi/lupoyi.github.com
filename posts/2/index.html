@@ -9,9 +9,9 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="以前都是直接用現成的，或是抓別人的css來用
-一堆語法都知道是幹麻的，但自己寫的時候就完全不行
-尤其是layout的配置..明明感覺很簡單的卻要一直亂試喬半天&hellip; 趁著最近面試的機會來記一下CSS&hellip;. 不然平常都很懶得學 Position position, 依top, &hellip;">
+  <meta name="description" content="bubble up 冒泡 當底層的元件被觸發時，會將所屬的父元件會連帶被觸發 - 多層觸發
+而要處理這問題通常會用到 stopPropagation() 或 preventDefault() stopPropagation() 停止向上層bubble up，但仍然會觸發browser
+看例子比較快 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +79,104 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/01/13/javascript-triggered-interrupt-event-or-action/">[JavaScript] 中斷事件或動作的觸發</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-01-13T14:00:00+08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>2:00 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1>bubble up 冒泡</h1>
+
+<p>當底層的元件被觸發時，會將所屬的父元件會連帶被觸發 - 多層觸發
+而要處理這問題通常會用到 stopPropagation() 或 preventDefault()</p>
+
+<h2>stopPropagation()</h2>
+
+<p>停止向上層bubble up，但仍然會觸發browser
+看例子比較快 <a href="http://jsfiddle.net/dA6R3/1/">http://jsfiddle.net/dA6R3/1/</a></p>
+
+<figure class='code'><figcaption><span>加入event.stopPropagation(); 當點擊下去時，就不會向上觸發其他動作</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;p&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;a&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</span><span class='line'><span class="nt">&lt;/div&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;script&gt;</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.p&quot;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">){</span>
+</span><span class='line'>    <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;p 外&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.a&quot;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">){</span>
+</span><span class='line'>    <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;a 內&quot;</span><span class="p">);</span>
+</span><span class='line'>    <span class="nx">event</span><span class="p">.</span><span class="nx">stopPropagation</span><span class="p">();</span>
+</span><span class='line'><span class="p">});</span>
+</span><span class='line'><span class="nt">&lt;/script&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>preventDefault()</h2>
+
+<p>會將預設的動作停掉不讓它執行，不會觸發browser
+看例子比較快 <a href="http://jsfiddle.net/88dcF/1/">http://jsfiddle.net/88dcF/1/</a></p>
+
+<figure class='code'><figcaption><span>加入event.preventDefault(); 當點擊下去時，就不會執行預設動作(連到GOOGLE)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://www.google.com&quot;</span><span class="nt">&gt;</span>go to google<span class="nt">&lt;/a&gt;</span>
+</span><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;check&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;script&gt;</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;&lt;div&gt;&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;Ya&quot;</span><span class="p">).</span><span class="nx">appendTo</span><span class="p">(</span><span class="s2">&quot;#check&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="p">});</span>
+</span><span class='line'><span class="nt">&lt;/script&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Reference:
+<a href="http://www.neoease.com/stoppropagation-and-preventdefault-and-return-false/">http://www.neoease.com/stoppropagation-and-preventdefault-and-return-false/</a>
+<a href="http://yiyingloveart.blogspot.tw/2013/08/eventpreventdefaultreturn-false.html">http://yiyingloveart.blogspot.tw/2013/08/eventpreventdefaultreturn-false.html</a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -843,85 +941,6 @@ IThome「防駭演練與危機處理」研習會</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/11/14/rails-rest/">[Rails] RESTful</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2013-11-14T10:45:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>10:45 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><table border="1">
-        <tr>
-            <td>Action</td>
-            <td>helpers</td>
-            <td>Verb</td>
-            <td>Path</td>
-        </tr>
-        <tr>
-            <td>index</td>
-            <td>groups_path</td>
-            <td>GET</td>
-            <td>/groups</td>
-        </tr>
-        <tr>
-            <td>show</td>
-            <td>group_path(@group)</td>
-            <td>GET</td>
-            <td>/groups/1</td>
-        </tr>
-        <tr>
-            <td>new</td>
-            <td>new_group_path</td>
-            <td>GET</td>
-            <td>/groups/new</td>
-        </tr>
-        <tr>
-            <td>create</td>
-            <td>groups_path</td>
-            <td>POST</td>
-            <td>/groups</td>
-        </tr>
-        <tr>
-            <td>edit</td>
-            <td>edit_group_path(@group)</td>
-            <td>GET</td>
-            <td>/groups/1/edit</td>
-        </tr>
-        <tr>
-            <td>update</td>
-            <td>group_path(@group)</td>
-            <td>PUT</td>
-            <td>/groups/1</td>
-        </tr>
-        <tr>
-            <td>destroy</td>
-            <td>group_path(@group)</td>
-            <td>DELETE</td>
-            <td>/groups/1</td>
-        </tr>
-    </table>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/3">&larr; Older</a>
@@ -939,6 +958,10 @@ IThome「防駭演練與危機處理」研習會</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/03/31/ruby-basic-1/">[Ruby] 教學 - 基本使用介紹</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/05/06/ruby-csv-file/">[Ruby] 匯出批次csv檔</a>
       </li>
     
@@ -952,10 +975,6 @@ IThome「防駭演練與危機處理」研習會</p>
     
       <li class="post">
         <a href="/blog/2014/03/03/c-datatable-operation-memos/">[C#] DataTable 的操作備忘</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/02/15/linux-getting-started-with-hyper-basic-instructions/">[Linux] 超入門的基本指令</a>
       </li>
     
   </ul>

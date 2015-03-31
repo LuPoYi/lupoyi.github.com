@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | Bob 學習筆記]]></title>
   <link href="http://lupoyi.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://lupoyi.github.io/"/>
-  <updated>2015-03-27T23:22:55+08:00</updated>
+  <updated>2015-03-31T23:01:14+08:00</updated>
   <id>http://lupoyi.github.io/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -12,6 +12,80 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[[Ruby] 教學 - 基本使用介紹]]></title>
+    <link href="http://lupoyi.github.io/blog/2015/03/31/ruby-basic-1/"/>
+    <updated>2015-03-31T22:27:04+08:00</updated>
+    <id>http://lupoyi.github.io/blog/2015/03/31/ruby-basic-1</id>
+    <content type="html"><![CDATA[<h2>Everything is Ruby is an object</h2>
+
+<p>Ruby 內皆為物件，無基本型別</p>
+
+<pre><code class="ruby X.class，X.methods 的用法">123.methods #=&gt; 123可用的method列表  
+123.class   #=&gt; Fixnum #知道class後就可以查doc  
+true.class  #=&gt; TrueClass  
+nil.class   #=&gt; NilClass  
+</code></pre>
+
+<pre><code class="ruby ">&gt; 2.even?
+ =&gt; true
+&gt; 3.next
+ =&gt; 4
+&gt; -1.abs
+ =&gt; 1
+</code></pre>
+
+<h2>基本使用介紹</h2>
+
+<pre><code class="ruby 各種常見型別">123.class #integer
+42343243243243243242343242344234234234.class #bignum  
+123.123.class #float  
+“123”.class #string  
+[].class #array  
+{}.class  #hash  
+:abc.class #symbol  
+nil.class #nilClass  
+true.class #TrueClass
+false.class #FalseClass  
+</code></pre>
+
+<h3>輸出String的用法</h3>
+
+<pre><code class="ruby 輸出String的用法">“123” + “345” + “333”  
+x = 18  
+puts "your age is #{x}"  
+puts ‘\n\t’ #單引號 (無視內容，直接輸出)  
+puts "\n\t" #雙引號  
+</code></pre>
+
+<h2>#</h2>
+
+<pre><code class="ruby hash宣告方式">x = {:wer =&gt; 123, :sdf =&gt; 234}  
+#symbol 拿來當key用  
+:wer.object_id  # symbol會比string還相對快 存放記憶體  
+“wer”.object_id  
+</code></pre>
+
+<h3>Nil/ False</h3>
+
+<pre><code class="ruby 只有兩種東西是非 ( nil false)  (JS裡面0也是false)">nil || false || 0   # 0    
+nil &amp;&amp; false &amp;&amp; 0   # nil  
+</code></pre>
+
+<h3>判斷式</h3>
+
+<pre><code class="ruby">if size &gt; 30  
+  puts "winner"  
+else  
+  puts "loser"  
+end  
+
+condition ? 123 : 456
+puts size &gt; 30 ? "winner" : "loser"    
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[[Ruby] 匯出批次csv檔]]></title>
