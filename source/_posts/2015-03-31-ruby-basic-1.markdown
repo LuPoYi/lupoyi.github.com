@@ -1,0 +1,78 @@
+---
+layout: post
+title: "[ruby] 教學 - 基本使用介紹"
+date: 2015-03-31 22:27:04 +0800
+comments: true
+categories: [ruby]
+---
+
+##Everything is Ruby is an object
+
+Ruby 內皆為物件，無基本型別
+
+```ruby X.class，X.methods 的用法
+123.methods #=> 123可用的method列表  
+123.class   #=> Fixnum #知道class後就可以查doc  
+true.class  #=> TrueClass  
+nil.class   #=> NilClass  
+```
+
+```ruby 
+> 2.even?
+ => true
+> 3.next
+ => 4
+> -1.abs
+ => 1
+```
+
+##基本使用介紹
+
+```ruby 各種常見型別
+123.class #integer
+42343243243243243242343242344234234234.class #bignum  
+123.123.class #float  
+“123”.class #string  
+[].class #array  
+{}.class  #hash  
+:abc.class #symbol  
+nil.class #nilClass  
+true.class #TrueClass
+false.class #FalseClass  
+```
+
+###輸出String的用法
+```ruby 輸出String的用法
+“123” + “345” + “333”  
+x = 18  
+puts "your age is #{x}"  
+puts ‘\n\t’ #單引號 (無視內容，直接輸出)  
+puts "\n\t" #雙引號  
+```
+
+###
+```ruby hash宣告方式
+x = {:wer => 123, :sdf => 234}  
+#symbol 拿來當key用  
+:wer.object_id  # symbol會比string還相對快 存放記憶體  
+“wer”.object_id  
+```
+
+###Nil/ False
+``` ruby 只有兩種東西是非 ( nil false)  (JS裡面0也是false)
+nil || false || 0   # 0    
+nil && false && 0   # nil  
+```
+
+###判斷式
+
+``` ruby
+if size > 30  
+  puts "winner"  
+else  
+  puts "loser"  
+end  
+
+condition ? 123 : 456
+puts size > 30 ? "winner" : "loser"    
+```
