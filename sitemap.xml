@@ -197,6 +197,9 @@
     <lastmod>2013-07-22T11:37:00+08:00</lastmod>
   </url>
   <url>
+    <loc>http://lupoyi.github.io/about/</loc>
+  </url>
+  <url>
     <loc>http://lupoyi.github.io/blog/archives/</loc>
   </url>
   <url>
@@ -291,17 +294,5 @@
   </url>
   <url>
     <loc>http://lupoyi.github.io/blog/categories/csv/</loc>
-  </url>
-  <url>
-    <loc>http://lupoyi.github.io/posts/2/</loc>
-  </url>
-  <url>
-    <loc>http://lupoyi.github.io/posts/3/</loc>
-  </url>
-  <url>
-    <loc>http://lupoyi.github.io/posts/4/</loc>
-  </url>
-  <url>
-    <loc>http://lupoyi.github.io/posts/5/</loc>
   </url>
 </urlset>
