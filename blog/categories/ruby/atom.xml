@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | Bob 學習筆記]]></title>
   <link href="http://lupoyi.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://lupoyi.github.io/"/>
-  <updated>2015-04-01T23:36:38+08:00</updated>
+  <updated>2015-04-01T23:37:53+08:00</updated>
   <id>http://lupoyi.github.io/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -59,7 +59,7 @@ puts ‘\n\t’ #單引號 (無視內容，直接輸出)
 puts "\n\t" #雙引號  
 </code></pre>
 
-<h2>#</h2>
+<h3>Hash</h3>
 
 <pre><code class="ruby hash宣告方式">x = {:wer =&gt; 123, :sdf =&gt; 234}  
 #symbol 拿來當key用  
