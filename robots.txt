@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://lupoyi.github.io/sitemap.xml 
+Sitemap: http://blog.poyi.tw/sitemap.xml 

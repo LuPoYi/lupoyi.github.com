@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: C# | Bob 學習筆記]]></title>
-  <link href="http://lupoyi.github.io/blog/categories/c-number/atom.xml" rel="self"/>
-  <link href="http://lupoyi.github.io/"/>
-  <updated>2015-04-01T23:37:53+08:00</updated>
-  <id>http://lupoyi.github.io/</id>
+  <link href="http://blog.poyi.tw/blog/categories/c-number/atom.xml" rel="self"/>
+  <link href="http://blog.poyi.tw/"/>
+  <updated>2015-04-01T23:41:01+08:00</updated>
+  <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[[ASP.NET] 自動寄信]]></title>
-    <link href="http://lupoyi.github.io/blog/2014/03/03/aspnet-auto-return/"/>
+    <link href="http://blog.poyi.tw/blog/2014/03/03/aspnet-auto-return/"/>
     <updated>2014-03-03T12:48:00+08:00</updated>
-    <id>http://lupoyi.github.io/blog/2014/03/03/aspnet-auto-return</id>
+    <id>http://blog.poyi.tw/blog/2014/03/03/aspnet-auto-return</id>
     <content type="html"><![CDATA[<p>一樣是紀綠一下&hellip;</p>
 
 <pre><code>MailMessage mailMessage = new MailMessage();
@@ -40,9 +40,9 @@ mailSmtp.Send(mailMessage);
   
   <entry>
     <title type="html"><![CDATA[[C#] DataTable 的操作備忘]]></title>
-    <link href="http://lupoyi.github.io/blog/2014/03/03/c-datatable-operation-memos/"/>
+    <link href="http://blog.poyi.tw/blog/2014/03/03/c-datatable-operation-memos/"/>
     <updated>2014-03-03T12:05:00+08:00</updated>
-    <id>http://lupoyi.github.io/blog/2014/03/03/c-datatable-operation-memos</id>
+    <id>http://blog.poyi.tw/blog/2014/03/03/c-datatable-operation-memos</id>
     <content type="html"><![CDATA[<p>稍微記一下，相關變化都蠻簡單的</p>
 
 <pre><code class="c# DataTable基本語法">DataTable dt = new DataTable();
@@ -68,9 +68,9 @@ GridView.DataBind();
   
   <entry>
     <title type="html"><![CDATA[[ASP.NET] Reset Password in Active Directory]]></title>
-    <link href="http://lupoyi.github.io/blog/2014/02/14/aspnet-reset-password-in-active-directory/"/>
+    <link href="http://blog.poyi.tw/blog/2014/02/14/aspnet-reset-password-in-active-directory/"/>
     <updated>2014-02-14T12:47:00+08:00</updated>
-    <id>http://lupoyi.github.io/blog/2014/02/14/aspnet-reset-password-in-active-directory</id>
+    <id>http://blog.poyi.tw/blog/2014/02/14/aspnet-reset-password-in-active-directory</id>
     <content type="html"><![CDATA[<p>重設密碼建議還是用LDAP去抓USER，以免抓錯人之類的</p>
 
 <pre><code class="C# Reset Password in Active Directory">DirectoryEntry userDirEntry = new DirectoryEntry("LDAP://" + ldapStr, adminAccount, adminPassword);
@@ -124,9 +124,9 @@ static int GetRandomSeed()
   
   <entry>
     <title type="html"><![CDATA[[C#] IEnumerable vs IQueryable]]></title>
-    <link href="http://lupoyi.github.io/blog/2013/09/30/c-ienumerable/"/>
+    <link href="http://blog.poyi.tw/blog/2013/09/30/c-ienumerable/"/>
     <updated>2013-09-30T14:34:00+08:00</updated>
-    <id>http://lupoyi.github.io/blog/2013/09/30/c-ienumerable</id>
+    <id>http://blog.poyi.tw/blog/2013/09/30/c-ienumerable</id>
     <content type="html"><![CDATA[<p>在linq的使用上，IEnumerable<T>是不可或缺的泛型介面
 像是foreach迴圈就是利用IEnumerable的特性(MoveNext)來實現逐一檢查。</p>
 

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Include | Bob 學習筆記]]></title>
-  <link href="http://lupoyi.github.io/blog/categories/include/atom.xml" rel="self"/>
-  <link href="http://lupoyi.github.io/"/>
-  <updated>2015-04-01T23:37:53+08:00</updated>
-  <id>http://lupoyi.github.io/</id>
+  <link href="http://blog.poyi.tw/blog/categories/include/atom.xml" rel="self"/>
+  <link href="http://blog.poyi.tw/"/>
+  <updated>2015-04-01T23:41:01+08:00</updated>
+  <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[[Ruby] Require,load,include,extend]]></title>
-    <link href="http://lupoyi.github.io/blog/2014/03/16/ruby-require-load-include-extend/"/>
+    <link href="http://blog.poyi.tw/blog/2014/03/16/ruby-require-load-include-extend/"/>
     <updated>2014-03-16T21:14:00+08:00</updated>
-    <id>http://lupoyi.github.io/blog/2014/03/16/ruby-require-load-include-extend</id>
+    <id>http://blog.poyi.tw/blog/2014/03/16/ruby-require-load-include-extend</id>
     <content type="html"><![CDATA[<h2>require vs load</h2>
 
 <p>首先require與load都是用來載入指定的檔案

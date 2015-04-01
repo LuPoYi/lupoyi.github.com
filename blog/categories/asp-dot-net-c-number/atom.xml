@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: asp.net(c#) | Bob 學習筆記]]></title>
-  <link href="http://lupoyi.github.io/blog/categories/asp-dot-net-c-number/atom.xml" rel="self"/>
-  <link href="http://lupoyi.github.io/"/>
-  <updated>2015-04-01T23:37:53+08:00</updated>
-  <id>http://lupoyi.github.io/</id>
+  <link href="http://blog.poyi.tw/blog/categories/asp-dot-net-c-number/atom.xml" rel="self"/>
+  <link href="http://blog.poyi.tw/"/>
+  <updated>2015-04-01T23:41:01+08:00</updated>
+  <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[[C#] String常用語法]]></title>
-    <link href="http://lupoyi.github.io/blog/2013/07/22/string-syntax/"/>
+    <link href="http://blog.poyi.tw/blog/2013/07/22/string-syntax/"/>
     <updated>2013-07-22T11:37:00+08:00</updated>
-    <id>http://lupoyi.github.io/blog/2013/07/22/string-syntax</id>
+    <id>http://blog.poyi.tw/blog/2013/07/22/string-syntax</id>
     <content type="html"><![CDATA[<p>StringBuilder: 用append串接；大量動態字串時效率較高
 String: 用+串接；固定字串時，效率較高</p>
 

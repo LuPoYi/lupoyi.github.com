@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Csv | Bob 學習筆記]]></title>
-  <link href="http://lupoyi.github.io/blog/categories/csv/atom.xml" rel="self"/>
-  <link href="http://lupoyi.github.io/"/>
-  <updated>2015-04-01T23:37:53+08:00</updated>
-  <id>http://lupoyi.github.io/</id>
+  <link href="http://blog.poyi.tw/blog/categories/csv/atom.xml" rel="self"/>
+  <link href="http://blog.poyi.tw/"/>
+  <updated>2015-04-01T23:41:01+08:00</updated>
+  <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[[Ruby] 匯出批次csv檔]]></title>
-    <link href="http://lupoyi.github.io/blog/2014/05/06/ruby-csv-file/"/>
+    <link href="http://blog.poyi.tw/blog/2014/05/06/ruby-csv-file/"/>
     <updated>2014-05-06T21:14:00+08:00</updated>
-    <id>http://lupoyi.github.io/blog/2014/05/06/ruby-csv-file</id>
+    <id>http://blog.poyi.tw/blog/2014/05/06/ruby-csv-file</id>
     <content type="html"><![CDATA[<p>讀取或寫入csv在ruby都蠻方便的，只是編碼或格式要稍微注意一下</p>
 
 <h2>匯出csv</h2>

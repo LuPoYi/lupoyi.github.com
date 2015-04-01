@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Mac | Bob 學習筆記]]></title>
-  <link href="http://lupoyi.github.io/blog/categories/mac/atom.xml" rel="self"/>
-  <link href="http://lupoyi.github.io/"/>
-  <updated>2015-04-01T23:37:53+08:00</updated>
-  <id>http://lupoyi.github.io/</id>
+  <link href="http://blog.poyi.tw/blog/categories/mac/atom.xml" rel="self"/>
+  <link href="http://blog.poyi.tw/"/>
+  <updated>2015-04-01T23:41:01+08:00</updated>
+  <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[[Mac] 設定開啟檔案的預設軟體]]></title>
-    <link href="http://lupoyi.github.io/blog/2014/02/08/mac-set-to-open-files-by-default-software/"/>
+    <link href="http://blog.poyi.tw/blog/2014/02/08/mac-set-to-open-files-by-default-software/"/>
     <updated>2014-02-08T14:32:00+08:00</updated>
-    <id>http://lupoyi.github.io/blog/2014/02/08/mac-set-to-open-files-by-default-software</id>
+    <id>http://blog.poyi.tw/blog/2014/02/08/mac-set-to-open-files-by-default-software</id>
     <content type="html"><![CDATA[<p>近期在mac的環境上有點卡關，像是環境的PATH曾被我改壞&hellip;
 還好朋友有幫我救回來= =&hellip;</p>
 
@@ -41,9 +41,9 @@
   
   <entry>
     <title type="html"><![CDATA[[Mac] 直接在終端機開啟sublime]]></title>
-    <link href="http://lupoyi.github.io/blog/2014/01/19/mac-directly-in-the-terminal-to-open-sublime/"/>
+    <link href="http://blog.poyi.tw/blog/2014/01/19/mac-directly-in-the-terminal-to-open-sublime/"/>
     <updated>2014-01-19T04:31:00+08:00</updated>
-    <id>http://lupoyi.github.io/blog/2014/01/19/mac-directly-in-the-terminal-to-open-sublime</id>
+    <id>http://blog.poyi.tw/blog/2014/01/19/mac-directly-in-the-terminal-to-open-sublime</id>
     <content type="html"><![CDATA[<p>應該有更方便的用法吧我想，但目前對我來說算好用了:D</p>
 
 <pre><code class="bash 執行這行指令">ln -s /Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl /usr/local/bin/sublime

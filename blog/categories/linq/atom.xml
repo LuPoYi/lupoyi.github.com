@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Linq | Bob 學習筆記]]></title>
-  <link href="http://lupoyi.github.io/blog/categories/linq/atom.xml" rel="self"/>
-  <link href="http://lupoyi.github.io/"/>
-  <updated>2015-04-01T23:37:53+08:00</updated>
-  <id>http://lupoyi.github.io/</id>
+  <link href="http://blog.poyi.tw/blog/categories/linq/atom.xml" rel="self"/>
+  <link href="http://blog.poyi.tw/"/>
+  <updated>2015-04-01T23:41:01+08:00</updated>
+  <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[[ASP.NET] Linq 動態條件搜尋]]></title>
-    <link href="http://lupoyi.github.io/blog/2013/09/29/aspnet-linq-dynamic-conditions/"/>
+    <link href="http://blog.poyi.tw/blog/2013/09/29/aspnet-linq-dynamic-conditions/"/>
     <updated>2013-09-29T08:10:00+08:00</updated>
-    <id>http://lupoyi.github.io/blog/2013/09/29/aspnet-linq-dynamic-conditions</id>
+    <id>http://blog.poyi.tw/blog/2013/09/29/aspnet-linq-dynamic-conditions</id>
     <content type="html"><![CDATA[<p>一般Linq在多種動態條件的組合時會顯得比較麻煩，要額外加很多if else判斷式來達成
 而「PredicateBuilder」可以解決這些麻煩，原理上是將where的條件獨立出來</p>
 
@@ -61,9 +61,9 @@
   
   <entry>
     <title type="html"><![CDATA[[ASP.NET] Linq基本用法]]></title>
-    <link href="http://lupoyi.github.io/blog/2013/08/23/linq-introduction/"/>
+    <link href="http://blog.poyi.tw/blog/2013/08/23/linq-introduction/"/>
     <updated>2013-08-23T02:28:00+08:00</updated>
-    <id>http://lupoyi.github.io/blog/2013/08/23/linq-introduction</id>
+    <id>http://blog.poyi.tw/blog/2013/08/23/linq-introduction</id>
     <content type="html"><![CDATA[<p>公司前輩跟我提過可以用用看Linq比較潮(?)
 寫.NET的時候就不需要寫的這麼..無腦</p>
 

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Network Security | Bob 學習筆記]]></title>
-  <link href="http://lupoyi.github.io/blog/categories/network-security/atom.xml" rel="self"/>
-  <link href="http://lupoyi.github.io/"/>
-  <updated>2015-04-01T23:37:53+08:00</updated>
-  <id>http://lupoyi.github.io/</id>
+  <link href="http://blog.poyi.tw/blog/categories/network-security/atom.xml" rel="self"/>
+  <link href="http://blog.poyi.tw/"/>
+  <updated>2015-04-01T23:41:01+08:00</updated>
+  <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[[ASP.NET] 資安基本概念]]></title>
-    <link href="http://lupoyi.github.io/blog/2013/09/04/network-attacks/"/>
+    <link href="http://blog.poyi.tw/blog/2013/09/04/network-attacks/"/>
     <updated>2013-09-04T01:25:00+08:00</updated>
-    <id>http://lupoyi.github.io/blog/2013/09/04/network-attacks</id>
+    <id>http://blog.poyi.tw/blog/2013/09/04/network-attacks</id>
     <content type="html"><![CDATA[<p>以往都是寫供內部使用的網站，也沒想過有什麼資安的問題…
 也就是說資安這一環，幾乎是無知的狀態…</p>
 

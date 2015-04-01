@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Javascript | Bob 學習筆記]]></title>
-  <link href="http://lupoyi.github.io/blog/categories/javascript/atom.xml" rel="self"/>
-  <link href="http://lupoyi.github.io/"/>
-  <updated>2015-04-01T23:37:53+08:00</updated>
-  <id>http://lupoyi.github.io/</id>
+  <link href="http://blog.poyi.tw/blog/categories/javascript/atom.xml" rel="self"/>
+  <link href="http://blog.poyi.tw/"/>
+  <updated>2015-04-01T23:41:01+08:00</updated>
+  <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[[JavaScript] 中斷事件或動作的觸發]]></title>
-    <link href="http://lupoyi.github.io/blog/2014/01/13/javascript-triggered-interrupt-event-or-action/"/>
+    <link href="http://blog.poyi.tw/blog/2014/01/13/javascript-triggered-interrupt-event-or-action/"/>
     <updated>2014-01-13T14:00:00+08:00</updated>
-    <id>http://lupoyi.github.io/blog/2014/01/13/javascript-triggered-interrupt-event-or-action</id>
+    <id>http://blog.poyi.tw/blog/2014/01/13/javascript-triggered-interrupt-event-or-action</id>
     <content type="html"><![CDATA[<h1>bubble up 冒泡</h1>
 
 <p>當底層的元件被觸發時，會將所屬的父元件會連帶被觸發 - 多層觸發

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Rails | Bob 學習筆記]]></title>
-  <link href="http://lupoyi.github.io/blog/categories/rails/atom.xml" rel="self"/>
-  <link href="http://lupoyi.github.io/"/>
-  <updated>2015-04-01T23:37:53+08:00</updated>
-  <id>http://lupoyi.github.io/</id>
+  <link href="http://blog.poyi.tw/blog/categories/rails/atom.xml" rel="self"/>
+  <link href="http://blog.poyi.tw/"/>
+  <updated>2015-04-01T23:41:01+08:00</updated>
+  <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[[Ruby] 匯出批次csv檔]]></title>
-    <link href="http://lupoyi.github.io/blog/2014/05/06/ruby-csv-file/"/>
+    <link href="http://blog.poyi.tw/blog/2014/05/06/ruby-csv-file/"/>
     <updated>2014-05-06T21:14:00+08:00</updated>
-    <id>http://lupoyi.github.io/blog/2014/05/06/ruby-csv-file</id>
+    <id>http://blog.poyi.tw/blog/2014/05/06/ruby-csv-file</id>
     <content type="html"><![CDATA[<p>讀取或寫入csv在ruby都蠻方便的，只是編碼或格式要稍微注意一下</p>
 
 <h2>匯出csv</h2>
@@ -83,9 +83,9 @@ Reference:
   
   <entry>
     <title type="html"><![CDATA[[Rails] Bootstrap for Rails]]></title>
-    <link href="http://lupoyi.github.io/blog/2013/12/07/rails-bootstrap-for-rails/"/>
+    <link href="http://blog.poyi.tw/blog/2013/12/07/rails-bootstrap-for-rails/"/>
     <updated>2013-12-07T06:46:00+08:00</updated>
-    <id>http://lupoyi.github.io/blog/2013/12/07/rails-bootstrap-for-rails</id>
+    <id>http://blog.poyi.tw/blog/2013/12/07/rails-bootstrap-for-rails</id>
     <content type="html"><![CDATA[<pre><code class="bash add to gemfile.rb and remember to bundle install">gem 'bootstrap-sass'
 </code></pre>
 
@@ -101,9 +101,9 @@ Reference:
   
   <entry>
     <title type="html"><![CDATA[[Rails] 打包Gem套件]]></title>
-    <link href="http://lupoyi.github.io/blog/2013/12/02/rails-gem/"/>
+    <link href="http://blog.poyi.tw/blog/2013/12/02/rails-gem/"/>
     <updated>2013-12-02T12:27:00+08:00</updated>
-    <id>http://lupoyi.github.io/blog/2013/12/02/rails-gem</id>
+    <id>http://blog.poyi.tw/blog/2013/12/02/rails-gem</id>
     <content type="html"><![CDATA[<p>當我們要安裝別人寫好的Library、API時，通常會
 <code>ruby Gemfile
 gem 'google-translate'
@@ -149,9 +149,9 @@ irb&gt;BobTestPlugin.name
   
   <entry>
     <title type="html"><![CDATA[[Rails] Connect SQL Server]]></title>
-    <link href="http://lupoyi.github.io/blog/2013/10/30/rails-search/"/>
+    <link href="http://blog.poyi.tw/blog/2013/10/30/rails-search/"/>
     <updated>2013-10-30T16:29:00+08:00</updated>
-    <id>http://lupoyi.github.io/blog/2013/10/30/rails-search</id>
+    <id>http://blog.poyi.tw/blog/2013/10/30/rails-search</id>
     <content type="html"><![CDATA[<p>看到官方提供的adpter..真的不知道怎麼下手.. <del>魯蛇無誤</del></p>
 
 <h2>Ubuntu Connect to SQL Server</h2>
@@ -203,9 +203,9 @@ $ sudo gem install activerecord-sqlserver-adapter
   
   <entry>
     <title type="html"><![CDATA[[Rails] CRUD 備忘]]></title>
-    <link href="http://lupoyi.github.io/blog/2013/10/30/rails-crud/"/>
+    <link href="http://blog.poyi.tw/blog/2013/10/30/rails-crud/"/>
     <updated>2013-10-30T01:07:00+08:00</updated>
-    <id>http://lupoyi.github.io/blog/2013/10/30/rails-crud</id>
+    <id>http://blog.poyi.tw/blog/2013/10/30/rails-crud</id>
     <content type="html"><![CDATA[<pre><code class="ruby index">&lt;%= link_to 'list', teams_path %&gt; # GET
 
 def index

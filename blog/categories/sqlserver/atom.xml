@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Sqlserver | Bob 學習筆記]]></title>
-  <link href="http://lupoyi.github.io/blog/categories/sqlserver/atom.xml" rel="self"/>
-  <link href="http://lupoyi.github.io/"/>
-  <updated>2015-04-01T23:37:53+08:00</updated>
-  <id>http://lupoyi.github.io/</id>
+  <link href="http://blog.poyi.tw/blog/categories/sqlserver/atom.xml" rel="self"/>
+  <link href="http://blog.poyi.tw/"/>
+  <updated>2015-04-01T23:41:01+08:00</updated>
+  <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[[Rails] Connect SQL Server]]></title>
-    <link href="http://lupoyi.github.io/blog/2013/10/30/rails-search/"/>
+    <link href="http://blog.poyi.tw/blog/2013/10/30/rails-search/"/>
     <updated>2013-10-30T16:29:00+08:00</updated>
-    <id>http://lupoyi.github.io/blog/2013/10/30/rails-search</id>
+    <id>http://blog.poyi.tw/blog/2013/10/30/rails-search</id>
     <content type="html"><![CDATA[<p>看到官方提供的adpter..真的不知道怎麼下手.. <del>魯蛇無誤</del></p>
 
 <h2>Ubuntu Connect to SQL Server</h2>

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: asp.net | Bob 學習筆記]]></title>
-  <link href="http://lupoyi.github.io/blog/categories/asp-dot-net/atom.xml" rel="self"/>
-  <link href="http://lupoyi.github.io/"/>
-  <updated>2015-04-01T23:37:53+08:00</updated>
-  <id>http://lupoyi.github.io/</id>
+  <link href="http://blog.poyi.tw/blog/categories/asp-dot-net/atom.xml" rel="self"/>
+  <link href="http://blog.poyi.tw/"/>
+  <updated>2015-04-01T23:41:01+08:00</updated>
+  <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[[ASP.NET] Linq 動態條件搜尋]]></title>
-    <link href="http://lupoyi.github.io/blog/2013/09/29/aspnet-linq-dynamic-conditions/"/>
+    <link href="http://blog.poyi.tw/blog/2013/09/29/aspnet-linq-dynamic-conditions/"/>
     <updated>2013-09-29T08:10:00+08:00</updated>
-    <id>http://lupoyi.github.io/blog/2013/09/29/aspnet-linq-dynamic-conditions</id>
+    <id>http://blog.poyi.tw/blog/2013/09/29/aspnet-linq-dynamic-conditions</id>
     <content type="html"><![CDATA[<p>一般Linq在多種動態條件的組合時會顯得比較麻煩，要額外加很多if else判斷式來達成
 而「PredicateBuilder」可以解決這些麻煩，原理上是將where的條件獨立出來</p>
 
@@ -61,9 +61,9 @@
   
   <entry>
     <title type="html"><![CDATA[[C#] 字串補零]]></title>
-    <link href="http://lupoyi.github.io/blog/2013/09/23/aspnet-string-is-padded-with-zeros/"/>
+    <link href="http://blog.poyi.tw/blog/2013/09/23/aspnet-string-is-padded-with-zeros/"/>
     <updated>2013-09-23T14:01:00+08:00</updated>
-    <id>http://lupoyi.github.io/blog/2013/09/23/aspnet-string-is-padded-with-zeros</id>
+    <id>http://blog.poyi.tw/blog/2013/09/23/aspnet-string-is-padded-with-zeros</id>
     <content type="html"><![CDATA[<p>最近常常手動新增假員工AD帳號來測我的程式
 在嘗試跑程式step by step來測試時，想說奇怪怎麼假帳號會有電腦資產
 原來這帳號跟設計部門的元老經理的員工工號重複了&hellip;
@@ -102,9 +102,9 @@ PadRight：字串向左靠齊，將指定字元填滿右邊。</p>
   
   <entry>
     <title type="html"><![CDATA[[ASP.NET] 檔案資料夾存取]]></title>
-    <link href="http://lupoyi.github.io/blog/2013/09/18/aspnet-archive-folder-access/"/>
+    <link href="http://blog.poyi.tw/blog/2013/09/18/aspnet-archive-folder-access/"/>
     <updated>2013-09-18T14:49:00+08:00</updated>
-    <id>http://lupoyi.github.io/blog/2013/09/18/aspnet-archive-folder-access</id>
+    <id>http://blog.poyi.tw/blog/2013/09/18/aspnet-archive-folder-access</id>
     <content type="html"><![CDATA[<p>刪除</p>
 
 <pre><code>    System.IO.File.Delete(filePath);
@@ -136,9 +136,9 @@ PadRight：字串向左靠齊，將指定字元填滿右邊。</p>
   
   <entry>
     <title type="html"><![CDATA[[ASP.NET] 存取AD網域]]></title>
-    <link href="http://lupoyi.github.io/blog/2013/09/12/aspnet-access-to-ad-domain/"/>
+    <link href="http://blog.poyi.tw/blog/2013/09/12/aspnet-access-to-ad-domain/"/>
     <updated>2013-09-12T01:27:00+08:00</updated>
-    <id>http://lupoyi.github.io/blog/2013/09/12/aspnet-access-to-ad-domain</id>
+    <id>http://blog.poyi.tw/blog/2013/09/12/aspnet-access-to-ad-domain</id>
     <content type="html"><![CDATA[<h2>透過AD網域來存取帳號資料</h2>
 
 <h2>查詢資料</h2>
@@ -205,9 +205,9 @@ ou.CommitChanges();
   
   <entry>
     <title type="html"><![CDATA[[ASP.NET] 日期處理]]></title>
-    <link href="http://lupoyi.github.io/blog/2013/09/05/aspnet-date/"/>
+    <link href="http://blog.poyi.tw/blog/2013/09/05/aspnet-date/"/>
     <updated>2013-09-05T09:07:00+08:00</updated>
-    <id>http://lupoyi.github.io/blog/2013/09/05/aspnet-date</id>
+    <id>http://blog.poyi.tw/blog/2013/09/05/aspnet-date</id>
     <content type="html"><![CDATA[<h1>日期運算其實還蠻常用到的，但好像變化不多</h1>
 
 <pre><code>// 利用TimeSpan 日期相減

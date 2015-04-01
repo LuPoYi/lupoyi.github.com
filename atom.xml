@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Bob 學習筆記]]></title>
-  <link href="http://lupoyi.github.io/atom.xml" rel="self"/>
-  <link href="http://lupoyi.github.io/"/>
-  <updated>2015-04-01T23:37:53+08:00</updated>
-  <id>http://lupoyi.github.io/</id>
+  <link href="http://blog.poyi.tw/atom.xml" rel="self"/>
+  <link href="http://blog.poyi.tw/"/>
+  <updated>2015-04-01T23:41:01+08:00</updated>
+  <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[[Ruby] 教學 - 基本使用介紹(未補完)]]></title>
-    <link href="http://lupoyi.github.io/blog/2015/03/31/ruby-basic-1/"/>
+    <link href="http://blog.poyi.tw/blog/2015/03/31/ruby-basic-1/"/>
     <updated>2015-03-31T22:27:04+08:00</updated>
-    <id>http://lupoyi.github.io/blog/2015/03/31/ruby-basic-1</id>
+    <id>http://blog.poyi.tw/blog/2015/03/31/ruby-basic-1</id>
     <content type="html"><![CDATA[<h2>Everything is Ruby is an object</h2>
 
 <p>Ruby 內皆為物件，無基本型別</p>
@@ -137,9 +137,9 @@
   
   <entry>
     <title type="html"><![CDATA[[Ruby] 匯出批次csv檔]]></title>
-    <link href="http://lupoyi.github.io/blog/2014/05/06/ruby-csv-file/"/>
+    <link href="http://blog.poyi.tw/blog/2014/05/06/ruby-csv-file/"/>
     <updated>2014-05-06T21:14:00+08:00</updated>
-    <id>http://lupoyi.github.io/blog/2014/05/06/ruby-csv-file</id>
+    <id>http://blog.poyi.tw/blog/2014/05/06/ruby-csv-file</id>
     <content type="html"><![CDATA[<p>讀取或寫入csv在ruby都蠻方便的，只是編碼或格式要稍微注意一下</p>
 
 <h2>匯出csv</h2>
@@ -235,9 +235,9 @@ Reference:
   
   <entry>
     <title type="html"><![CDATA[[Ruby] Require,load,include,extend]]></title>
-    <link href="http://lupoyi.github.io/blog/2014/03/16/ruby-require-load-include-extend/"/>
+    <link href="http://blog.poyi.tw/blog/2014/03/16/ruby-require-load-include-extend/"/>
     <updated>2014-03-16T21:14:00+08:00</updated>
-    <id>http://lupoyi.github.io/blog/2014/03/16/ruby-require-load-include-extend</id>
+    <id>http://blog.poyi.tw/blog/2014/03/16/ruby-require-load-include-extend</id>
     <content type="html"><![CDATA[<h2>require vs load</h2>
 
 <p>首先require與load都是用來載入指定的檔案
@@ -339,9 +339,9 @@ extend: 相當於把目標的code直接放進來；具有目標的class methods<
   
   <entry>
     <title type="html"><![CDATA[[ASP.NET] 自動寄信]]></title>
-    <link href="http://lupoyi.github.io/blog/2014/03/03/aspnet-auto-return/"/>
+    <link href="http://blog.poyi.tw/blog/2014/03/03/aspnet-auto-return/"/>
     <updated>2014-03-03T12:48:00+08:00</updated>
-    <id>http://lupoyi.github.io/blog/2014/03/03/aspnet-auto-return</id>
+    <id>http://blog.poyi.tw/blog/2014/03/03/aspnet-auto-return</id>
     <content type="html"><![CDATA[<p>一樣是紀綠一下&hellip;</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -378,9 +378,9 @@ extend: 相當於把目標的code直接放進來；具有目標的class methods<
   
   <entry>
     <title type="html"><![CDATA[[C#] DataTable 的操作備忘]]></title>
-    <link href="http://lupoyi.github.io/blog/2014/03/03/c-datatable-operation-memos/"/>
+    <link href="http://blog.poyi.tw/blog/2014/03/03/c-datatable-operation-memos/"/>
     <updated>2014-03-03T12:05:00+08:00</updated>
-    <id>http://lupoyi.github.io/blog/2014/03/03/c-datatable-operation-memos</id>
+    <id>http://blog.poyi.tw/blog/2014/03/03/c-datatable-operation-memos</id>
     <content type="html"><![CDATA[<p>稍微記一下，相關變化都蠻簡單的</p>
 
 <figure class='code'><figcaption><span>DataTable基本語法</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -424,9 +424,9 @@ extend: 相當於把目標的code直接放進來；具有目標的class methods<
   
   <entry>
     <title type="html"><![CDATA[[Linux] 超入門的基本指令]]></title>
-    <link href="http://lupoyi.github.io/blog/2014/02/15/linux-getting-started-with-hyper-basic-instructions/"/>
+    <link href="http://blog.poyi.tw/blog/2014/02/15/linux-getting-started-with-hyper-basic-instructions/"/>
     <updated>2014-02-15T06:24:00+08:00</updated>
-    <id>http://lupoyi.github.io/blog/2014/02/15/linux-getting-started-with-hyper-basic-instructions</id>
+    <id>http://blog.poyi.tw/blog/2014/02/15/linux-getting-started-with-hyper-basic-instructions</id>
     <content type="html"><![CDATA[<p>之前在非洲服役時，曾想過用Linux取代Windows (當地經濟因素等等的&hellip;)
 也嘗試用Wine來執行一些常用的Windows軟體，大致上也都沒問題，只可惜當地政府的課程始終沒有開始&hellip;</p>
 
@@ -527,9 +527,9 @@ extend: 相當於把目標的code直接放進來；具有目標的class methods<
   
   <entry>
     <title type="html"><![CDATA[[ASP.NET] Reset Password in Active Directory]]></title>
-    <link href="http://lupoyi.github.io/blog/2014/02/14/aspnet-reset-password-in-active-directory/"/>
+    <link href="http://blog.poyi.tw/blog/2014/02/14/aspnet-reset-password-in-active-directory/"/>
     <updated>2014-02-14T12:47:00+08:00</updated>
-    <id>http://lupoyi.github.io/blog/2014/02/14/aspnet-reset-password-in-active-directory</id>
+    <id>http://blog.poyi.tw/blog/2014/02/14/aspnet-reset-password-in-active-directory</id>
     <content type="html"><![CDATA[<p>重設密碼建議還是用LDAP去抓USER，以免抓錯人之類的</p>
 
 <figure class='code'><figcaption><span>Reset Password in Active Directory</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -628,9 +628,9 @@ extend: 相當於把目標的code直接放進來；具有目標的class methods<
   
   <entry>
     <title type="html"><![CDATA[[Mac] 設定開啟檔案的預設軟體]]></title>
-    <link href="http://lupoyi.github.io/blog/2014/02/08/mac-set-to-open-files-by-default-software/"/>
+    <link href="http://blog.poyi.tw/blog/2014/02/08/mac-set-to-open-files-by-default-software/"/>
     <updated>2014-02-08T14:32:00+08:00</updated>
-    <id>http://lupoyi.github.io/blog/2014/02/08/mac-set-to-open-files-by-default-software</id>
+    <id>http://blog.poyi.tw/blog/2014/02/08/mac-set-to-open-files-by-default-software</id>
     <content type="html"><![CDATA[<p>近期在mac的環境上有點卡關，像是環境的PATH曾被我改壞&hellip;
 還好朋友有幫我救回來= =&hellip;</p>
 
@@ -654,9 +654,9 @@ extend: 相當於把目標的code直接放進來；具有目標的class methods<
   
   <entry>
     <title type="html"><![CDATA[[Mac] 直接在終端機開啟sublime]]></title>
-    <link href="http://lupoyi.github.io/blog/2014/01/19/mac-directly-in-the-terminal-to-open-sublime/"/>
+    <link href="http://blog.poyi.tw/blog/2014/01/19/mac-directly-in-the-terminal-to-open-sublime/"/>
     <updated>2014-01-19T04:31:00+08:00</updated>
-    <id>http://lupoyi.github.io/blog/2014/01/19/mac-directly-in-the-terminal-to-open-sublime</id>
+    <id>http://blog.poyi.tw/blog/2014/01/19/mac-directly-in-the-terminal-to-open-sublime</id>
     <content type="html"><![CDATA[<p>應該有更方便的用法吧我想，但目前對我來說算好用了:D</p>
 
 <figure class='code'><figcaption><span>執行這行指令</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -684,9 +684,9 @@ extend: 相當於把目標的code直接放進來；具有目標的class methods<
   
   <entry>
     <title type="html"><![CDATA[[Mac] Ruby on Rails 基本環境建置]]></title>
-    <link href="http://lupoyi.github.io/blog/2014/01/17/-rails-mac-os-environment-build/"/>
+    <link href="http://blog.poyi.tw/blog/2014/01/17/-rails-mac-os-environment-build/"/>
     <updated>2014-01-17T12:47:00+08:00</updated>
-    <id>http://lupoyi.github.io/blog/2014/01/17/-rails-mac-os-environment-build</id>
+    <id>http://blog.poyi.tw/blog/2014/01/17/-rails-mac-os-environment-build</id>
     <content type="html"><![CDATA[<p>是說終於買了mac，省去開箱文趕緊把環境用好來繼續練習ROR!!
 但使用上還是有一點不習慣，會覺得有些地方也蠻不人性化，但相對穩定就是了</p>
 
@@ -761,9 +761,9 @@ RVM (Ruby Version Manager):Ruby版本管理工具，便於切換不同版本</p>
   
   <entry>
     <title type="html"><![CDATA[[JavaScript] 中斷事件或動作的觸發]]></title>
-    <link href="http://lupoyi.github.io/blog/2014/01/13/javascript-triggered-interrupt-event-or-action/"/>
+    <link href="http://blog.poyi.tw/blog/2014/01/13/javascript-triggered-interrupt-event-or-action/"/>
     <updated>2014-01-13T14:00:00+08:00</updated>
-    <id>http://lupoyi.github.io/blog/2014/01/13/javascript-triggered-interrupt-event-or-action</id>
+    <id>http://blog.poyi.tw/blog/2014/01/13/javascript-triggered-interrupt-event-or-action</id>
     <content type="html"><![CDATA[<h1>bubble up 冒泡</h1>
 
 <p>當底層的元件被觸發時，會將所屬的父元件會連帶被觸發 - 多層觸發
@@ -839,9 +839,9 @@ RVM (Ruby Version Manager):Ruby版本管理工具，便於切換不同版本</p>
   
   <entry>
     <title type="html"><![CDATA[[CSS] 定位]]></title>
-    <link href="http://lupoyi.github.io/blog/2014/01/02/css-position/"/>
+    <link href="http://blog.poyi.tw/blog/2014/01/02/css-position/"/>
     <updated>2014-01-02T02:43:00+08:00</updated>
-    <id>http://lupoyi.github.io/blog/2014/01/02/css-position</id>
+    <id>http://blog.poyi.tw/blog/2014/01/02/css-position</id>
     <content type="html"><![CDATA[<p>以前都是直接用現成的，或是抓別人的css來用
 一堆語法都知道是幹麻的，但自己寫的時候就完全不行
 尤其是layout的配置..明明感覺很簡單的卻要一直亂試喬半天&hellip;</p>
@@ -888,9 +888,9 @@ RVM (Ruby Version Manager):Ruby版本管理工具，便於切換不同版本</p>
   
   <entry>
     <title type="html"><![CDATA[[Ruby] 例外處理]]></title>
-    <link href="http://lupoyi.github.io/blog/2013/12/23/ruby-exception-handling/"/>
+    <link href="http://blog.poyi.tw/blog/2013/12/23/ruby-exception-handling/"/>
     <updated>2013-12-23T15:57:00+08:00</updated>
-    <id>http://lupoyi.github.io/blog/2013/12/23/ruby-exception-handling</id>
+    <id>http://blog.poyi.tw/blog/2013/12/23/ruby-exception-handling</id>
     <content type="html"><![CDATA[<p>好像各語言都大同小異，try..catch..finally語法轉換一下就差不多了</p>
 
 <h1>例外處理</h1>
@@ -955,9 +955,9 @@ RVM (Ruby Version Manager):Ruby版本管理工具，便於切換不同版本</p>
   
   <entry>
     <title type="html"><![CDATA[[Ruby] Functions for Numbers]]></title>
-    <link href="http://lupoyi.github.io/blog/2013/12/18/ruby-functions-for-numbers/"/>
+    <link href="http://blog.poyi.tw/blog/2013/12/18/ruby-functions-for-numbers/"/>
     <updated>2013-12-18T03:40:00+08:00</updated>
-    <id>http://lupoyi.github.io/blog/2013/12/18/ruby-functions-for-numbers</id>
+    <id>http://blog.poyi.tw/blog/2013/12/18/ruby-functions-for-numbers</id>
     <content type="html"><![CDATA[<figure class='code'><figcaption><span>Math</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -1037,9 +1037,9 @@ RVM (Ruby Version Manager):Ruby版本管理工具，便於切換不同版本</p>
   
   <entry>
     <title type="html"><![CDATA[[Ruby] 變數]]></title>
-    <link href="http://lupoyi.github.io/blog/2013/12/14/ruby-is-a-small-note/"/>
+    <link href="http://blog.poyi.tw/blog/2013/12/14/ruby-is-a-small-note/"/>
     <updated>2013-12-14T13:19:00+08:00</updated>
-    <id>http://lupoyi.github.io/blog/2013/12/14/ruby-is-a-small-note</id>
+    <id>http://blog.poyi.tw/blog/2013/12/14/ruby-is-a-small-note</id>
     <content type="html"><![CDATA[<p>Ruby 有一個重要特性 Convention Over Configuration
 希望去做到一個約定成俗的習慣/慣例，省去過多的設定，讓程式更為簡潔。(ex:route maping)</p>
 
@@ -1080,9 +1080,9 @@ RVM (Ruby Version Manager):Ruby版本管理工具，便於切換不同版本</p>
   
   <entry>
     <title type="html"><![CDATA[[Ruby] And與&&的差別]]></title>
-    <link href="http://lupoyi.github.io/blog/2013/12/09/ruby-and/"/>
+    <link href="http://blog.poyi.tw/blog/2013/12/09/ruby-and/"/>
     <updated>2013-12-09T03:01:00+08:00</updated>
-    <id>http://lupoyi.github.io/blog/2013/12/09/ruby-and</id>
+    <id>http://blog.poyi.tw/blog/2013/12/09/ruby-and</id>
     <content type="html"><![CDATA[<p>在Ruby中的邏輯運算有兩組，[!,&amp;&amp;,||]及[not,and,or]
 +   [!,&amp;&amp;,||]         <br/>
     + higher precedence
@@ -1161,9 +1161,9 @@ RVM (Ruby Version Manager):Ruby版本管理工具，便於切換不同版本</p>
   
   <entry>
     <title type="html"><![CDATA[[Rails] Bootstrap for Rails]]></title>
-    <link href="http://lupoyi.github.io/blog/2013/12/07/rails-bootstrap-for-rails/"/>
+    <link href="http://blog.poyi.tw/blog/2013/12/07/rails-bootstrap-for-rails/"/>
     <updated>2013-12-07T06:46:00+08:00</updated>
-    <id>http://lupoyi.github.io/blog/2013/12/07/rails-bootstrap-for-rails</id>
+    <id>http://blog.poyi.tw/blog/2013/12/07/rails-bootstrap-for-rails</id>
     <content type="html"><![CDATA[<figure class='code'><figcaption><span>add to gemfile.rb and remember to bundle install</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>gem <span class="s1">&#39;bootstrap-sass&#39;</span>
 </span></code></pre></td></tr></table></div></figure>
@@ -1189,9 +1189,9 @@ RVM (Ruby Version Manager):Ruby版本管理工具，便於切換不同版本</p>
   
   <entry>
     <title type="html"><![CDATA[[Rails] 打包Gem套件]]></title>
-    <link href="http://lupoyi.github.io/blog/2013/12/02/rails-gem/"/>
+    <link href="http://blog.poyi.tw/blog/2013/12/02/rails-gem/"/>
     <updated>2013-12-02T12:27:00+08:00</updated>
-    <id>http://lupoyi.github.io/blog/2013/12/02/rails-gem</id>
+    <id>http://blog.poyi.tw/blog/2013/12/02/rails-gem</id>
     <content type="html"><![CDATA[<p>當我們要安裝別人寫好的Library、API時，通常會</p>
 
 <figure class='code'><figcaption><span>Gemfile</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -1259,9 +1259,9 @@ RVM (Ruby Version Manager):Ruby版本管理工具，便於切換不同版本</p>
   
   <entry>
     <title type="html"><![CDATA[[APT] 進階持續性滲透攻擊 筆記]]></title>
-    <link href="http://lupoyi.github.io/blog/2013/11/22/apt/"/>
+    <link href="http://blog.poyi.tw/blog/2013/11/22/apt/"/>
     <updated>2013-11-22T04:50:00+08:00</updated>
-    <id>http://lupoyi.github.io/blog/2013/11/22/apt</id>
+    <id>http://blog.poyi.tw/blog/2013/11/22/apt</id>
     <content type="html"><![CDATA[<h1>Advanced Persistent Threat</h1>
 
 <p> Advanced: 精心策劃的進階攻擊手法，並採用多元手段嘗試入侵。
@@ -1321,9 +1321,9 @@ IThome「防駭演練與危機處理」研習會</p>
   
   <entry>
     <title type="html"><![CDATA[[Rails] ActiveRecord]]></title>
-    <link href="http://lupoyi.github.io/blog/2013/11/20/rails-activerecord/"/>
+    <link href="http://blog.poyi.tw/blog/2013/11/20/rails-activerecord/"/>
     <updated>2013-11-20T07:39:00+08:00</updated>
-    <id>http://lupoyi.github.io/blog/2013/11/20/rails-activerecord</id>
+    <id>http://blog.poyi.tw/blog/2013/11/20/rails-activerecord</id>
     <content type="html"><![CDATA[<figure class='code'><figcaption><span>Model之間要關聯時，雙方都要設定 (單複數要注意)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
