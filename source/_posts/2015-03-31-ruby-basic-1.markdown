@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[ruby] 教學 - 基本使用介紹"
+title: "[ruby] 教學 - 基本使用介紹(未補完)"
 date: 2015-03-31 22:27:04 +0800
 comments: true
 categories: [ruby]
@@ -50,7 +50,7 @@ puts ‘\n\t’ #單引號 (無視內容，直接輸出)
 puts "\n\t" #雙引號  
 ```
 
-###
+###Hash
 ```ruby hash宣告方式
 x = {:wer => 123, :sdf => 234}  
 #symbol 拿來當key用  

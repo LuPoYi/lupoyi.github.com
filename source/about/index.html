@@ -1,0 +1,27 @@
+---
+layout: page
+title: 關於我
+footer: false
+---
+
+<div id="blog-about">
+
+  <h2>Bob</h2>
+  <p>maydaybob2000 at gmail.com</p>
+  <div>Bitcoin: <span id="qrcode_serial">1KbG9Fa22hpPf33jXTGqwkeD9dJT6YBr6m</span></div>
+  <a class="qrcode_me" id="qrcode_image" href="bitcoin://1KbG9Fa22hpPf33jXTGqwkeD9dJT6YBr6m"></a>
+</div>
+
+<script>
+jQuery(function($){
+  new QRCode("qrcode_image" , {
+    text: 'bitcoin://1KbG9Fa22hpPf33jXTGqwkeD9dJT6YBr6m',
+    width: 178,
+    height: 178,
+    colorDark : "#000000",
+    colorLight : "#ffffff",
+    correctLevel : QRCode.CorrectLevel.L
+  });
+});
+
+</script>
