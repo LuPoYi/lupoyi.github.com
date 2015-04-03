@@ -4,7 +4,7 @@
   <title><![CDATA[Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2015-04-02T00:18:19+08:00</updated>
+  <updated>2015-04-03T15:20:26+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[[Ruby] 教學 - 基本使用介紹(未補完)]]></title>
+    <title type="html"><![CDATA[[Ruby] 教學 - 基本使用介紹]]></title>
     <link href="http://blog.poyi.tw/blog/2015/03/31/ruby-basic-1/"/>
     <updated>2015-03-31T22:27:04+08:00</updated>
     <id>http://blog.poyi.tw/blog/2015/03/31/ruby-basic-1</id>
@@ -50,7 +50,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h2>基本使用介紹</h2>
+<h2>基本使用</h2>
 
 <figure class='code'><figcaption><span>各種常見型別</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -86,7 +86,7 @@
 </span><span class='line'><span class="n">x</span> <span class="o">=</span> <span class="mi">18</span>
 </span><span class='line'><span class="nb">puts</span> <span class="s2">&quot;your age is </span><span class="si">#{</span><span class="n">x</span><span class="si">}</span><span class="s2">&quot;</span>
 </span><span class='line'><span class="nb">puts</span> <span class="err">‘</span><span class="p">\</span><span class="n">n</span><span class="p">\</span><span class="n">t</span><span class="err">’</span> <span class="c1">#單引號 (無視內容，直接輸出)  </span>
-</span><span class='line'><span class="nb">puts</span> <span class="s2">&quot;</span><span class="se">\n\t</span><span class="s2">&quot;</span> <span class="c1">#雙引號  </span>
+</span><span class='line'><span class="nb">puts</span> <span class="s2">&quot;</span><span class="se">\n\t</span><span class="s2">&quot;</span> <span class="c1">#雙引號 (換行)</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -96,16 +96,19 @@
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">x</span> <span class="o">=</span> <span class="p">{</span><span class="ss">:wer</span> <span class="o">=&gt;</span> <span class="mi">123</span><span class="p">,</span> <span class="ss">:sdf</span> <span class="o">=&gt;</span> <span class="mi">234</span><span class="p">}</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">x</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;wer&quot;</span> <span class="o">=&gt;</span> <span class="mi">123</span><span class="p">,</span> <span class="s2">&quot;sdf&quot;</span> <span class="o">=&gt;</span> <span class="mi">234</span><span class="p">}</span>
+</span><span class='line'><span class="n">y</span> <span class="o">=</span> <span class="p">{</span><span class="ss">:wer</span> <span class="o">=&gt;</span> <span class="mi">123</span><span class="p">,</span> <span class="ss">:sdf</span> <span class="o">=&gt;</span> <span class="mi">234</span><span class="p">}</span>
 </span><span class='line'><span class="c1">#symbol 拿來當key用  </span>
-</span><span class='line'><span class="ss">:wer</span><span class="o">.</span><span class="n">object_id</span>  <span class="c1"># symbol會比string還相對快 存放記憶體  </span>
-</span><span class='line'><span class="err">“</span><span class="n">wer</span><span class="err">”</span><span class="o">.</span><span class="n">object_id</span>
+</span><span class='line'><span class="ss">:wer</span><span class="o">.</span><span class="n">object_id</span>  <span class="c1"># 在hash中key使用symbol會比string還相對快    </span>
 </span></code></pre></td></tr></table></div></figure>
 
 
 <h3>Nil/ False</h3>
 
-<figure class='code'><figcaption><span>只有兩種東西是非 ( nil false)  (JS裡面0也是false)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p>ruby只有兩種東西為非 => nil / false
+其他都為true</p>
+
+<figure class='code'><figcaption><span>nil false</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="kp">nil</span> <span class="o">||</span> <span class="kp">false</span> <span class="o">||</span> <span class="mi">0</span>   <span class="c1"># 0    </span>
 </span><span class='line'><span class="kp">nil</span> <span class="o">&amp;&amp;</span> <span class="kp">false</span> <span class="o">&amp;&amp;</span> <span class="mi">0</span>   <span class="c1"># nil  </span>
@@ -114,7 +117,55 @@
 
 <h3>判斷式</h3>
 
+<h5>基本上if else</h5>
+
+<figure class='code'><figcaption><span>if/else if/elsif/else unless/end</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">if</span> <span class="n">size</span> <span class="o">&gt;</span> <span class="mi">30</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;winner&quot;</span>
+</span><span class='line'><span class="k">else</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;loser&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h5>因為在ruby只有false及nil為非，所以當你要判斷該變數有沒有值時可以直接這樣寫</h5>
+
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">if</span> <span class="nb">name</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="nb">name</span>
+</span><span class='line'><span class="k">else</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;error&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h5>後置判斷式，直接把if放後面</h5>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">puts</span> <span class="nb">name</span> <span class="k">if</span> <span class="nb">name</span> <span class="c1"># 當name有值時印出來，沒有值即略過</span>
+</span><span class='line'><span class="nb">puts</span> <span class="s2">&quot;error&quot;</span> <span class="k">unless</span> <span class="nb">name</span> <span class="c1"># 當name沒有值時印error</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h5>簡單的判斷式也可以寫成單行</h5>
+
+<figure class='code'><figcaption><span>condition ? true : false</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">puts</span> <span class="n">size</span> <span class="o">&gt;</span> <span class="mi">30</span> <span class="o">?</span> <span class="s2">&quot;winner&quot;</span> <span class="p">:</span> <span class="s2">&quot;loser&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h5>ruby的switch case寫法</h5>
+
+<figure class='code'><figcaption><span>case/when/end</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -122,16 +173,49 @@
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">if</span> <span class="n">size</span> <span class="o">&gt;</span> <span class="mi">30</span>
-</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;winner&quot;</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">case</span> <span class="n">lang</span>
+</span><span class='line'><span class="k">when</span> <span class="s2">&quot;java&quot;</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;good&quot;</span>
+</span><span class='line'><span class="k">when</span> <span class="s2">&quot;python&quot;</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;great!&quot;</span>
+</span><span class='line'><span class="k">when</span> <span class="s2">&quot;ruby&quot;</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;perfect!&quot;</span>
 </span><span class='line'><span class="k">else</span>
-</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;loser&quot;</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;WTF&quot;</span>
 </span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">condition</span> <span class="p">?</span> <span class="mi">123</span> <span class="p">:</span> <span class="mi">456</span>
-</span><span class='line'><span class="nb">puts</span> <span class="n">size</span> <span class="o">&gt;</span> <span class="mi">30</span> <span class="o">?</span> <span class="s2">&quot;winner&quot;</span> <span class="p">:</span> <span class="s2">&quot;loser&quot;</span>
 </span></code></pre></td></tr></table></div></figure>
 
+
+<h3>迴圈</h3>
+
+<p>在ruby中比較少在用for跟while迴圈，大部分情況都使用each(iterator迭代器)</p>
+
+<figure class='code'><figcaption><span>each</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">lang</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;ruby&quot;</span><span class="p">,</span><span class="s2">&quot;python&quot;</span><span class="p">,</span><span class="s2">&quot;java&quot;</span><span class="p">,</span><span class="s2">&quot;c&quot;</span><span class="p">,</span><span class="s2">&quot;php&quot;</span><span class="o">]</span>
+</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="n">lang</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="n">i</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">lang</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="n">i</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="o">].</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Reference: RailsFun - JokerCatz</p>
 ]]></content>
   </entry>
   
@@ -225,11 +309,15 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>匯出匯入csv也可以試試FasterCSV這個gem
-Reference:
-<a href="http://www.sitepoint.com/guide-ruby-csv-library-part/">http://www.sitepoint.com/guide-ruby-csv-library-part/</a>
-<a href="http://blog.inheart.tw/2013/09/rubyraisl-csv-excel.html">http://blog.inheart.tw/2013/09/rubyraisl-csv-excel.html</a>
-<a href="http://salayhin.wordpress.com/2014/05/10/export-csv-file-from-rails-console/">http://salayhin.wordpress.com/2014/05/10/export-csv-file-from-rails-console/</a></p>
+<p>匯出匯入csv也可以試試FasterCSV這個gem</p>
+
+<p>Reference:</p>
+
+<p><a href="http://www.sitepoint.com/guide-ruby-csv-library-part/">http://www.sitepoint.com/guide-ruby-csv-library-part/</a></p>
+
+<p><a href="http://blog.inheart.tw/2013/09/rubyraisl-csv-excel.html">http://blog.inheart.tw/2013/09/rubyraisl-csv-excel.html</a></p>
+
+<p><a href="http://salayhin.wordpress.com/2014/05/10/export-csv-file-from-rails-console/">http://salayhin.wordpress.com/2014/05/10/export-csv-file-from-rails-console/</a></p>
 ]]></content>
   </entry>
   
