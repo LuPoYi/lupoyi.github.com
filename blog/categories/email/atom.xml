@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Email | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/email/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2015-04-10T22:18:08+08:00</updated>
+  <updated>2015-04-10T22:23:24+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[[ASP.NET] 自動寄信]]></title>
-    <link href="http://blog.poyi.tw/blog/2014/03/03/aspnet-auto-return/"/>
-    <updated>2014-03-03T12:48:00+08:00</updated>
-    <id>http://blog.poyi.tw/blog/2014/03/03/aspnet-auto-return</id>
+    <link href="http://blog.poyi.tw/blog/2013/03/03/aspnet-auto-return/"/>
+    <updated>2013-03-03T12:48:00+08:00</updated>
+    <id>http://blog.poyi.tw/blog/2013/03/03/aspnet-auto-return</id>
     <content type="html"><![CDATA[<p>一樣是紀綠一下&hellip;</p>
 
 <pre><code>MailMessage mailMessage = new MailMessage();

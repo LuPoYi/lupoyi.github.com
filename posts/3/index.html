@@ -9,7 +9,18 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="Action helpers Verb Path index groups_path GET /groups show group_path(@group) GET /groups/1 new new_group_path GET /groups/new create groups_path &hellip;">
+  <meta name="description" content="index1
+2
+3
+4
+5
+&lt;%= link_to &#39;list&#39;, teams_path %&gt; # GET def index @teams = Team.all
+end show1
+2
+3
+4
+5
+&lt;%= link_to &#39;show&#39;, &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,173 +91,6 @@
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/11/14/rails-rest/">[Rails] RESTful</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2013-11-14T10:45:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>10:45 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><table border="1">
-        <tr>
-            <td>Action</td>
-            <td>helpers</td>
-            <td>Verb</td>
-            <td>Path</td>
-        </tr>
-        <tr>
-            <td>index</td>
-            <td>groups_path</td>
-            <td>GET</td>
-            <td>/groups</td>
-        </tr>
-        <tr>
-            <td>show</td>
-            <td>group_path(@group)</td>
-            <td>GET</td>
-            <td>/groups/1</td>
-        </tr>
-        <tr>
-            <td>new</td>
-            <td>new_group_path</td>
-            <td>GET</td>
-            <td>/groups/new</td>
-        </tr>
-        <tr>
-            <td>create</td>
-            <td>groups_path</td>
-            <td>POST</td>
-            <td>/groups</td>
-        </tr>
-        <tr>
-            <td>edit</td>
-            <td>edit_group_path(@group)</td>
-            <td>GET</td>
-            <td>/groups/1/edit</td>
-        </tr>
-        <tr>
-            <td>update</td>
-            <td>group_path(@group)</td>
-            <td>PUT</td>
-            <td>/groups/1</td>
-        </tr>
-        <tr>
-            <td>destroy</td>
-            <td>group_path(@group)</td>
-            <td>DELETE</td>
-            <td>/groups/1</td>
-        </tr>
-    </table>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/10/30/rails-search/">[Rails] Connect SQL Server</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2013-10-30T16:29:00+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>4:29 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>看到官方提供的adpter..真的不知道怎麼下手.. <del>魯蛇無誤</del></p>
-
-<h2>Ubuntu Connect to SQL Server</h2>
-
-<p>想在Unix、Linux環境上，存取SQL Server似乎大多都使用FreeTDS</p>
-
-<figure class='code'><figcaption><span>安裝FreeTDS</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo apt-get install freetds-dev freetds-bin tdsodbc
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>檢查FreeTDS版本資訊</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>tsql -C
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/156771/0fBGvXZHQ4ug2ZQOTol3_2013-11-6%20%E4%B8%8A%E5%8D%88%2010-53-15.jpg" alt="2013-11-6 上午 10-53-15.jpg" /></p>
-
-<figure class='code'><figcaption><span>這時候就可以Connect SQL Server</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>tsql -H <span class="o">(</span>SQL Server IP<span class="o">)</span> -p <span class="m">1433</span> -U <span class="o">(</span>account<span class="o">)</span> －P <span class="o">(</span>password<span class="o">)</span> –D <span class="o">(</span>datebase name<span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<figure class='code'><figcaption><span>直接下TSQL，這邊要用go才會執行</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span><span class="k">select</span> * from Team
-</span><span class='line'><span class="nv">$ </span>go
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/156771/J9JDVHr7S9uu6H8nhWLj_2013-11-6%20%E4%B8%8A%E5%8D%88%2011-03-53.jpg" alt="2013-11-6 上午 11-03-53.jpg" /></p>
-
-<p>這邊代表已能在Ubuntu Connect SQL Server
-但Rails還需要其他套件</p>
-
-<hr />
-
-<h2>Rails Connect to SQL Server (Error)</h2>
-
-<figure class='code'><figcaption><span>安裝tiny_tds、sqlserver adapter</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo gem install tiny_tds
-</span><span class='line'><span class="nv">$ </span>sudo gem install activerecord-sqlserver-adapter
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>修改DateBase.yml
-<img src="http://user-image.logdown.io/user/2740/blog/2734/post/156771/n2j3Og9gRCKcn9v70smh_2013-11-6%20%E4%B8%8A%E5%8D%88%2011-36-45.jpg" alt="2013-11-6 上午 11-36-45.jpg" /></p>
-
-<p>OK..在這邊理論上是可以直接在Rails調用..
-但執行時卻會出錯，查了一下好像還無解 (Rails 4似乎還不太支援之類的..)
-錯誤訊息可參考 > <a href="https://github.com/rails-sqlserver/activerecord-sqlserver-adapter/issues/279">https://github.com/rails-sqlserver/activerecord-sqlserver-adapter/issues/279</a>
-暫時找不到解法，除非把Rails降到3.x版</p>
-
-<p>Reference:
-<a href="https://github.com/rails-sqlserver">https://github.com/rails-sqlserver</a>
-<a href="http://www.cnblogs.com/lwm-1988/archive/2012/05/28/2520728.html">http://www.cnblogs.com/lwm-1988/archive/2012/05/28/2520728.html</a>
-<a href="http://stackoverflow.com/questions/12010780/rails-how-to-do-search">http://stackoverflow.com/questions/12010780/rails-how-to-do-search</a></p>
-</div>
-  
-  
-
-
-    </article>
   
   
     <article>
@@ -946,6 +790,159 @@ public static void SayGoodnight()
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/09/29/aspnet-linq-dynamic-conditions/">[ASP.NET] Linq 動態條件搜尋</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-09-29T08:10:00+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>29</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>8:10 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>一般Linq在多種動態條件的組合時會顯得比較麻煩，要額外加很多if else判斷式來達成
+而「PredicateBuilder」可以解決這些麻煩，原理上是將where的條件獨立出來</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='Console'><span class='line'><span class="go">static void linqPB()</span>
+</span><span class='line'><span class="go">    {</span>
+</span><span class='line'><span class="go">        var list = new List&lt;string&gt; { &quot;apple&quot;, &quot;bob&quot;, &quot;coco&quot;, &quot;durex&quot;, &quot;enter&quot;, &quot;fuck&quot;};</span>
+</span><span class='line'><span class="go">        var searchKeyword = new List&lt;string&gt; { &quot;o&quot;, &quot;e&quot; };</span>
+</span><span class='line'><span class="go">        var predicate = PredicateBuilder.False&lt;string&gt;();</span>
+</span><span class='line'>
+</span><span class='line'><span class="go">        foreach (var word in searchKeyword)</span>
+</span><span class='line'><span class="go">        {</span>
+</span><span class='line'><span class="go">            var temp = word;  // 避免參考到相同變數位址</span>
+</span><span class='line'><span class="go">            predicate = predicate.Or(p =&gt; p.Contains(temp));</span>
+</span><span class='line'><span class="go">        }</span>
+</span><span class='line'><span class="go">        var qry = list.Where(predicate.Compile());</span>
+</span><span class='line'>
+</span><span class='line'><span class="go">        foreach (var item in qry)</span>
+</span><span class='line'><span class="go">        {</span>
+</span><span class='line'><span class="go">            Console.WriteLine(item);</span>
+</span><span class='line'><span class="go">        }</span>
+</span><span class='line'><span class="go">        Console.Read();</span>
+</span><span class='line'><span class="go">    }</span>
+</span><span class='line'><span class="go">// result: apple bob coco durex enter</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>主要的重點如下，將條件放入xxx</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='Console'><span class='line'><span class="go">  var predicate = PredicateBuilder.False();  // 這邊的true/false會與下列的or做串接</span>
+</span><span class='line'><span class="go">  predicate = predicate.Or(p =&gt; p.name.Contains(xxx));</span>
+</span><span class='line'><span class="go">  predicate = predicate.Or(p =&gt; p.department.Contains (xxx));</span>
+</span><span class='line'><span class="go">  myDB.employee.Where (predicate);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Reference:
+要使用PredicateBuilder，需要加入參考: LinqKit.dll
+<a href="http://www.albahari.com/nutshell/predicatebuilder.aspx">http://www.albahari.com/nutshell/predicatebuilder.aspx</a> <br/>
+<a href="http://blog.sanc.idv.tw/2010/10/linq.html">http://blog.sanc.idv.tw/2010/10/linq.html</a>
+<a href="http://leaflet-t-h.blogspot.tw/2011/11/linq-predicatebuilder.html">http://leaflet-t-h.blogspot.tw/2011/11/linq-predicatebuilder.html</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/09/23/aspnet-string-is-padded-with-zeros/">[C#] 字串補零</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-09-23T14:01:00+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2013</span></span> <span class='time'>2:01 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>最近常常手動新增假員工AD帳號來測我的程式
+在嘗試跑程式step by step來測試時，想說奇怪怎麼假帳號會有電腦資產
+原來這帳號跟設計部門的元老經理的員工工號重複了&hellip;
+還好有及時發現沒有把程式執行完，不然IT部門就要起飛了&hellip;</p>
+
+<p>所以想說寫個迴圈來測是不是有其他工號也有重複的案例
+而工號欄位都是五位數(BOB00001~BOB99999)
+像我的工號是4104需要補足五位數
+有三種方式：</p>
+
+<pre><code>int myEmpNo = 4104;
+empNo.ToString("00000");  
+empNo.ToString("D5");                        
+empNo.ToString().PadLeft(5,'0'); 
+// 04104
+</code></pre>
+
+<p>查了才知道原來ToString蠻方便的，有些好用的例子</p>
+
+<pre><code>empNo.ToString("BOB00000"); // BOB04104
+empNo.ToString("C");  // NT$4,104.00
+empNo.ToString("C", new System.Globalization.CultureInfo("en-US")); $4,104.00
+
+int myPhoneNo =123456789;
+myPhoneNo.ToString("(##) ###-####"); // (12) 345-6789
+</code></pre>
+
+<p>PadLeft ：字串向右靠齊，將指定字元填滿左邊。
+PadRight：字串向左靠齊，將指定字元填滿右邊。</p>
+
+<p>Reference:
+<a href="http://msdn.microsoft.com/zh-tw/library/0c899ak8(v=vs.95">http://msdn.microsoft.com/zh-tw/library/0c899ak8(v=vs.95).aspx</a>.aspx)
+<a href="http://www.dotblogs.com.tw/ethon.chi/archive/2010/09/27/17917.aspx">http://www.dotblogs.com.tw/ethon.chi/archive/2010/09/27/17917.aspx</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/posts/4">&larr; Older</a>
@@ -975,11 +972,31 @@ public static void SayGoodnight()
       </li>
     
       <li class="post">
-        <a href="/blog/2014/03/03/aspnet-auto-return/">[ASP.NET] 自動寄信</a>
+        <a href="/blog/2014/03/03/c-datatable-operation-memos/">[C#] DataTable 的操作備忘</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2014/03/03/c-datatable-operation-memos/">[C#] DataTable 的操作備忘</a>
+        <a href="/blog/2014/02/14/aspnet-reset-password-in-active-directory/">[ASP.NET] Reset Password in Active Directory</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/02/08/mac-set-to-open-files-by-default-software/">[Mac] 設定開啟檔案的預設軟體</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/19/mac-directly-in-the-terminal-to-open-sublime/">[Mac] 直接在終端機開啟sublime</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/17/-rails-mac-os-environment-build/">[Mac] Ruby on Rails 基本環境建置</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/13/javascript-triggered-interrupt-event-or-action/">[JavaScript] 中斷事件或動作的觸發</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/02/css-position/">[CSS] 定位</a>
       </li>
     
   </ul>

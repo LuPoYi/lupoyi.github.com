@@ -13,16 +13,8 @@
     <lastmod>2014-03-16T21:14:00+08:00</lastmod>
   </url>
   <url>
-    <loc>http://blog.poyi.tw/blog/2014/03/03/aspnet-auto-return/</loc>
-    <lastmod>2014-03-03T12:48:00+08:00</lastmod>
-  </url>
-  <url>
     <loc>http://blog.poyi.tw/blog/2014/03/03/c-datatable-operation-memos/</loc>
     <lastmod>2014-03-03T12:05:00+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://blog.poyi.tw/blog/2014/02/15/linux-getting-started-with-hyper-basic-instructions/</loc>
-    <lastmod>2014-02-15T06:24:00+08:00</lastmod>
   </url>
   <url>
     <loc>http://blog.poyi.tw/blog/2014/02/14/aspnet-reset-password-in-active-directory/</loc>
@@ -197,6 +189,14 @@
     <lastmod>2013-07-22T11:37:00+08:00</lastmod>
   </url>
   <url>
+    <loc>http://blog.poyi.tw/blog/2013/03/03/aspnet-auto-return/</loc>
+    <lastmod>2013-03-03T12:48:00+08:00</lastmod>
+  </url>
+  <url>
+    <loc>http://blog.poyi.tw/blog/2013/02/15/linux-getting-started-with-hyper-basic-instructions/</loc>
+    <lastmod>2013-02-15T06:24:00+08:00</lastmod>
+  </url>
+  <url>
     <loc>http://blog.poyi.tw/about/</loc>
   </url>
   <url>
@@ -204,6 +204,12 @@
   </url>
   <url>
     <loc>http://blog.poyi.tw/</loc>
+  </url>
+  <url>
+    <loc>http://blog.poyi.tw/blog/categories/c-number/</loc>
+  </url>
+  <url>
+    <loc>http://blog.poyi.tw/blog/categories/email/</loc>
   </url>
   <url>
     <loc>http://blog.poyi.tw/blog/categories/asp-dot-net-c-number/</loc>
@@ -234,9 +240,6 @@
   </url>
   <url>
     <loc>http://blog.poyi.tw/blog/categories/predicatebuilder/</loc>
-  </url>
-  <url>
-    <loc>http://blog.poyi.tw/blog/categories/c-number/</loc>
   </url>
   <url>
     <loc>http://blog.poyi.tw/blog/categories/ienumerable/</loc>
@@ -278,9 +281,6 @@
     <loc>http://blog.poyi.tw/blog/categories/password/</loc>
   </url>
   <url>
-    <loc>http://blog.poyi.tw/blog/categories/email/</loc>
-  </url>
-  <url>
     <loc>http://blog.poyi.tw/blog/categories/extend/</loc>
   </url>
   <url>
@@ -294,17 +294,5 @@
   </url>
   <url>
     <loc>http://blog.poyi.tw/blog/categories/csv/</loc>
-  </url>
-  <url>
-    <loc>http://blog.poyi.tw/posts/2/</loc>
-  </url>
-  <url>
-    <loc>http://blog.poyi.tw/posts/3/</loc>
-  </url>
-  <url>
-    <loc>http://blog.poyi.tw/posts/4/</loc>
-  </url>
-  <url>
-    <loc>http://blog.poyi.tw/posts/5/</loc>
   </url>
 </urlset>

@@ -4,7 +4,7 @@
   <title><![CDATA[Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2015-04-10T22:18:08+08:00</updated>
+  <updated>2015-04-10T22:23:24+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -434,45 +434,6 @@ extend: 相當於把目標的code直接放進來；具有目標的class methods<
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[[ASP.NET] 自動寄信]]></title>
-    <link href="http://blog.poyi.tw/blog/2014/03/03/aspnet-auto-return/"/>
-    <updated>2014-03-03T12:48:00+08:00</updated>
-    <id>http://blog.poyi.tw/blog/2014/03/03/aspnet-auto-return</id>
-    <content type="html"><![CDATA[<p>一樣是紀綠一下&hellip;</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>MailMessage mailMessage = new MailMessage();
-</span><span class='line'>mailMessage.IsBodyHtml = true;
-</span><span class='line'>
-</span><span class='line'>mailMessage.To.Add(emailAddress);
-</span><span class='line'>mailMessage.CC.Add(cCMailAddress);
-</span><span class='line'>
-</span><span class='line'>MailAddress fromWho = new MailAddress(senderMailAddress);
-</span><span class='line'>mailMessage.From = fromWho;
-</span><span class='line'>mailMessage.Subject = title;
-</span><span class='line'>mailMessage.Body = "這邊可放html"
-</span><span class='line'>
-</span><span class='line'>SmtpClient mailSmtp = new SmtpClient(mailServer,mailServerPort);
-</span><span class='line'>
-</span><span class='line'>mailSmtp.Send(mailMessage);</span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
     <title type="html"><![CDATA[[C#] DataTable 的操作備忘]]></title>
     <link href="http://blog.poyi.tw/blog/2014/03/03/c-datatable-operation-memos/"/>
     <updated>2014-03-03T12:05:00+08:00</updated>
@@ -515,109 +476,6 @@ extend: 相當於把目標的code直接放進來；具有目標的class methods<
 </span><span class='line'><span class="n">GridView</span><span class="p">.</span><span class="n">DataBind</span><span class="p">();</span>
 </span></code></pre></td></tr></table></div></figure>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[[Linux] 超入門的基本指令]]></title>
-    <link href="http://blog.poyi.tw/blog/2014/02/15/linux-getting-started-with-hyper-basic-instructions/"/>
-    <updated>2014-02-15T06:24:00+08:00</updated>
-    <id>http://blog.poyi.tw/blog/2014/02/15/linux-getting-started-with-hyper-basic-instructions</id>
-    <content type="html"><![CDATA[<p>之前在非洲服役時，曾想過用Linux取代Windows (當地經濟因素等等的&hellip;)
-也嘗試用Wine來執行一些常用的Windows軟體，大致上也都沒問題，只可惜當地政府的課程始終沒有開始&hellip;</p>
-
-<p>對Linux不是完全陌生，但指令倒是全忘了&hellip;
-為了往後開發上不會綁手綁腳，還是必須把基本功打好，從零開始</p>
-
-<figure class='code'><figcaption><span>系統資訊</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span><span class="nb">echo </span>hello word
-</span><span class='line'><span class="nv">$ </span>date
-</span><span class='line'><span class="nv">$ </span>arch    // x86_64
-</span><span class='line'><span class="nv">$ </span>uname –a // list system
-</span><span class='line'><span class="nv">$ </span>who
-</span><span class='line'><span class="nv">$ </span>w // show online user
-</span><span class='line'><span class="nv">$ </span>top // show system status
-</span><span class='line'><span class="nv">$ </span>cal <span class="m">2015</span> // calendar
-</span><span class='line'><span class="nv">$ </span>cal <span class="m">9</span> <span class="m">1752</span> // *
-</span><span class='line'><span class="nv">$ </span>bc –l // calculator
-</span><span class='line'><span class="nv">$ </span><span class="nb">echo </span>77/50 <span class="p">|</span> bc –l
-</span><span class='line'><span class="nv">$ </span><span class="nb">history</span> // list <span class="nb">command history</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>網路</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>ifconfig
-</span><span class='line'><span class="nv">$ </span>nslookup
-</span><span class='line'><span class="nv">$ </span>ping
-</span><span class='line'><span class="nv">$ </span>traceroute
-</span><span class='line'><span class="nv">$ </span>wget // download
-</span><span class='line'><span class="nv">$ </span>ssh 帳號@主機   // 用SSH連線
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>chmod 調整檔案權限</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>chmod <span class="o">[</span>權限角色<span class="o">]</span> <span class="o">[</span>權限動作<span class="o">]</span> <span class="o">[</span>存取權限<span class="o">]</span> 檔案/目錄
-</span><span class='line'>chmod <span class="o">[</span>ugoa<span class="o">]</span> <span class="o">[</span>+-<span class="o">=]</span> <span class="o">[</span>rwxX<span class="o">]</span> test.txt
-</span><span class='line'><span class="nv">$ </span>chmod ugo+r test.txt
-</span><span class='line'>權限角色: u<span class="o">(</span>user/owner<span class="o">)</span>、g<span class="o">(</span>group<span class="o">)</span>、o<span class="o">(</span>other<span class="o">)</span>、a<span class="o">(</span>all<span class="o">)</span>
-</span><span class='line'>權限動作: +<span class="o">(</span>增加權限<span class="o">)</span>、-<span class="o">(</span>取消權限<span class="o">)</span>、<span class="o">=(</span>直接設定權限<span class="o">)</span>
-</span><span class='line'>存取權限: r<span class="o">(</span><span class="nb">read</span><span class="o">)</span>、w<span class="o">(</span>write<span class="o">)</span>、x<span class="o">(</span>execute<span class="o">)</span>、X<span class="o">(</span>execute<span class="p">&amp;</span>目錄or已被執行過<span class="o">)</span>
-</span><span class='line'>
-</span><span class='line'>也可用數字來調整權限
-</span><span class='line'>chmod <span class="o">[</span>u<span class="o">(</span>int<span class="o">)][</span>g<span class="o">(</span>int<span class="o">)][</span>o<span class="o">(</span>int<span class="o">)]</span> 檔案/目錄
-</span><span class='line'><span class="nv">$ </span>chmod <span class="m">777</span> test.txt
-</span><span class='line'>// <span class="nv">r</span><span class="o">=</span>4，w<span class="o">=</span>2，x<span class="o">=</span><span class="m">1</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>grep</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>...
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>tail</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>...
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Reference:
-<a href="http://www.pcnet.idv.tw/pcnet/linux/linux_command.htm">http://www.pcnet.idv.tw/pcnet/linux/linux_command.htm</a>
-<a href="http://tnrc.ncku.edu.tw/course/93/fedora_core2/page8/p8.htm">http://tnrc.ncku.edu.tw/course/93/fedora_core2/page8/p8.htm</a>
-<a href="http://jdev.tw/blog/3599/linux-terminal-commands-and-shortcuts">http://jdev.tw/blog/3599/linux-terminal-commands-and-shortcuts</a></p>
 ]]></content>
   </entry>
   
@@ -1513,6 +1371,133 @@ IThome「防駭演練與危機處理」研習會</p>
 
 <p>Reference:
 <a href="http://guides.rubyonrails.org/v3.2.13/active_record_validations_callbacks.html#validation-helpers">http://guides.rubyonrails.org/v3.2.13/active_record_validations_callbacks.html#validation-helpers</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[[Rails] RESTful]]></title>
+    <link href="http://blog.poyi.tw/blog/2013/11/14/rails-rest/"/>
+    <updated>2013-11-14T10:45:00+08:00</updated>
+    <id>http://blog.poyi.tw/blog/2013/11/14/rails-rest</id>
+    <content type="html"><![CDATA[<table border="1">
+        <tr>
+            <td>Action</td>
+            <td>helpers</td>
+            <td>Verb</td>
+            <td>Path</td>
+        </tr>
+        <tr>
+            <td>index</td>
+            <td>groups_path</td>
+            <td>GET</td>
+            <td>/groups</td>
+        </tr>
+        <tr>
+            <td>show</td>
+            <td>group_path(@group)</td>
+            <td>GET</td>
+            <td>/groups/1</td>
+        </tr>
+        <tr>
+            <td>new</td>
+            <td>new_group_path</td>
+            <td>GET</td>
+            <td>/groups/new</td>
+        </tr>
+        <tr>
+            <td>create</td>
+            <td>groups_path</td>
+            <td>POST</td>
+            <td>/groups</td>
+        </tr>
+        <tr>
+            <td>edit</td>
+            <td>edit_group_path(@group)</td>
+            <td>GET</td>
+            <td>/groups/1/edit</td>
+        </tr>
+        <tr>
+            <td>update</td>
+            <td>group_path(@group)</td>
+            <td>PUT</td>
+            <td>/groups/1</td>
+        </tr>
+        <tr>
+            <td>destroy</td>
+            <td>group_path(@group)</td>
+            <td>DELETE</td>
+            <td>/groups/1</td>
+        </tr>
+    </table>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[[Rails] Connect SQL Server]]></title>
+    <link href="http://blog.poyi.tw/blog/2013/10/30/rails-search/"/>
+    <updated>2013-10-30T16:29:00+08:00</updated>
+    <id>http://blog.poyi.tw/blog/2013/10/30/rails-search</id>
+    <content type="html"><![CDATA[<p>看到官方提供的adpter..真的不知道怎麼下手.. <del>魯蛇無誤</del></p>
+
+<h2>Ubuntu Connect to SQL Server</h2>
+
+<p>想在Unix、Linux環境上，存取SQL Server似乎大多都使用FreeTDS</p>
+
+<figure class='code'><figcaption><span>安裝FreeTDS</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo apt-get install freetds-dev freetds-bin tdsodbc
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>檢查FreeTDS版本資訊</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>tsql -C
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/156771/0fBGvXZHQ4ug2ZQOTol3_2013-11-6%20%E4%B8%8A%E5%8D%88%2010-53-15.jpg" alt="2013-11-6 上午 10-53-15.jpg" /></p>
+
+<figure class='code'><figcaption><span>這時候就可以Connect SQL Server</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>tsql -H <span class="o">(</span>SQL Server IP<span class="o">)</span> -p <span class="m">1433</span> -U <span class="o">(</span>account<span class="o">)</span> －P <span class="o">(</span>password<span class="o">)</span> –D <span class="o">(</span>datebase name<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><figcaption><span>直接下TSQL，這邊要用go才會執行</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span><span class="k">select</span> * from Team
+</span><span class='line'><span class="nv">$ </span>go
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/156771/J9JDVHr7S9uu6H8nhWLj_2013-11-6%20%E4%B8%8A%E5%8D%88%2011-03-53.jpg" alt="2013-11-6 上午 11-03-53.jpg" /></p>
+
+<p>這邊代表已能在Ubuntu Connect SQL Server
+但Rails還需要其他套件</p>
+
+<hr />
+
+<h2>Rails Connect to SQL Server (Error)</h2>
+
+<figure class='code'><figcaption><span>安裝tiny_tds、sqlserver adapter</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo gem install tiny_tds
+</span><span class='line'><span class="nv">$ </span>sudo gem install activerecord-sqlserver-adapter
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>修改DateBase.yml
+<img src="http://user-image.logdown.io/user/2740/blog/2734/post/156771/n2j3Og9gRCKcn9v70smh_2013-11-6%20%E4%B8%8A%E5%8D%88%2011-36-45.jpg" alt="2013-11-6 上午 11-36-45.jpg" /></p>
+
+<p>OK..在這邊理論上是可以直接在Rails調用..
+但執行時卻會出錯，查了一下好像還無解 (Rails 4似乎還不太支援之類的..)
+錯誤訊息可參考 > <a href="https://github.com/rails-sqlserver/activerecord-sqlserver-adapter/issues/279">https://github.com/rails-sqlserver/activerecord-sqlserver-adapter/issues/279</a>
+暫時找不到解法，除非把Rails降到3.x版</p>
+
+<p>Reference:
+<a href="https://github.com/rails-sqlserver">https://github.com/rails-sqlserver</a>
+<a href="http://www.cnblogs.com/lwm-1988/archive/2012/05/28/2520728.html">http://www.cnblogs.com/lwm-1988/archive/2012/05/28/2520728.html</a>
+<a href="http://stackoverflow.com/questions/12010780/rails-how-to-do-search">http://stackoverflow.com/questions/12010780/rails-how-to-do-search</a></p>
 ]]></content>
   </entry>
   

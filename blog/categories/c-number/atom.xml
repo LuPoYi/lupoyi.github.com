@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C# | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/c-number/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2015-04-10T22:18:08+08:00</updated>
+  <updated>2015-04-10T22:23:24+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -12,31 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[[ASP.NET] 自動寄信]]></title>
-    <link href="http://blog.poyi.tw/blog/2014/03/03/aspnet-auto-return/"/>
-    <updated>2014-03-03T12:48:00+08:00</updated>
-    <id>http://blog.poyi.tw/blog/2014/03/03/aspnet-auto-return</id>
-    <content type="html"><![CDATA[<p>一樣是紀綠一下&hellip;</p>
-
-<pre><code>MailMessage mailMessage = new MailMessage();
-mailMessage.IsBodyHtml = true;
-
-mailMessage.To.Add(emailAddress);
-mailMessage.CC.Add(cCMailAddress);
-
-MailAddress fromWho = new MailAddress(senderMailAddress);
-mailMessage.From = fromWho;
-mailMessage.Subject = title;
-mailMessage.Body = "這邊可放html"
-
-SmtpClient mailSmtp = new SmtpClient(mailServer,mailServerPort);
-
-mailSmtp.Send(mailMessage);
-</code></pre>
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[[C#] DataTable 的操作備忘]]></title>
@@ -160,6 +135,31 @@ WHERE [t0].[EmpName] LIKE @p0
 <a href="http://msdn.microsoft.com/zh-tw/library/ttw7t8t6.ASPX">http://msdn.microsoft.com/zh-tw/library/ttw7t8t6.ASPX</a>
 <a href="http://www.cnblogs.com/seebook/archive/2009/02/21/1395310.html">http://www.cnblogs.com/seebook/archive/2009/02/21/1395310.html</a>
 <a href="http://www.dotnet-tricks.com/Tutorial/linq/I8SY160612-IEnumerable-VS-IQueryable.html">http://www.dotnet-tricks.com/Tutorial/linq/I8SY160612-IEnumerable-VS-IQueryable.html</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[[ASP.NET] 自動寄信]]></title>
+    <link href="http://blog.poyi.tw/blog/2013/03/03/aspnet-auto-return/"/>
+    <updated>2013-03-03T12:48:00+08:00</updated>
+    <id>http://blog.poyi.tw/blog/2013/03/03/aspnet-auto-return</id>
+    <content type="html"><![CDATA[<p>一樣是紀綠一下&hellip;</p>
+
+<pre><code>MailMessage mailMessage = new MailMessage();
+mailMessage.IsBodyHtml = true;
+
+mailMessage.To.Add(emailAddress);
+mailMessage.CC.Add(cCMailAddress);
+
+MailAddress fromWho = new MailAddress(senderMailAddress);
+mailMessage.From = fromWho;
+mailMessage.Subject = title;
+mailMessage.Body = "這邊可放html"
+
+SmtpClient mailSmtp = new SmtpClient(mailServer,mailServerPort);
+
+mailSmtp.Send(mailMessage);
+</code></pre>
 ]]></content>
   </entry>
   

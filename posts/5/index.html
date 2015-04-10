@@ -9,8 +9,14 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="以往都是寫供內部使用的網站，也沒想過有什麼資安的問題…
-也就是說資安這一環，幾乎是無知的狀態… SQL Injection 將字串中夾帶SQL指令，讓SERVER認為是正常指令而執行 ASP.NET 防範方法 避免直接將使用者輸入的資料作為SQL指令；或是利用SQLParameter來處理參數 &hellip;">
+  <meta name="description" content="git1
+2
+3
+4
+5
+6
+apt-get install git-core git config --global user.name &quot;name&quot;
+git config --global user.email &quot;email&quot; git config -- &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -81,138 +87,6 @@
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/09/04/network-attacks/">[ASP.NET] 資安基本概念</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2013-09-04T01:25:00+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>1:25 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>以往都是寫供內部使用的網站，也沒想過有什麼資安的問題…
-也就是說資安這一環，幾乎是無知的狀態…</p>
-
-<hr />
-
-<h1>SQL Injection</h1>
-
-<p><strong>將字串中夾帶SQL指令，讓SERVER認為是正常指令而執行</strong></p>
-
-<h2>ASP.NET 防範方法</h2>
-
-<ol>
-<li>避免直接將使用者輸入的資料作為SQL指令；或是利用SQLParameter來處理參數</li>
-<li>將設定customErrors:On，至少出錯時不會show出程式碼</li>
-<li>設定專屬SQL帳號及必要權限，避免使用sa</li>
-<li>其他&hellip;</li>
-</ol>
-
-
-<hr />
-
-<h1>XSS</h1>
-
-<p><strong>－通常是指對方將有害程式碼惡意嵌入網頁當中，使得其他人連進此網頁時會受到影響；或是對方竊取更高的權限、Cookie等等…；(常見的為JavaScript)</strong></p>
-
-<h2>ASP.NET 防範方法</h2>
-
-<ol>
-<li>盡量保持ValidateRequest為啟用</li>
-<li>進行Html Encode(前端或後端)</li>
-<li>其他&hellip;必須防範所有有機會寫入Html tag的地方</li>
-</ol>
-
-
-<hr />
-
-<p>Reference:
-<a href="http://anti-hacker.blogspot.tw/2008/01/xss.html">http://anti-hacker.blogspot.tw/2008/01/xss.html</a>
-<a href="http://zh.wikipedia.org/wiki/%E8%B7%A8%E7%B6%B2%E7%AB%99%E6%8C%87%E4%BB%A4%E7%A2%BC">http://zh.wikipedia.org/wiki/%E8%B7%A8%E7%B6%B2%E7%AB%99%E6%8C%87%E4%BB%A4%E7%A2%BC</a>
-<a href="https://www.google.com.tw/#q=csrf">https://www.google.com.tw/#q=csrf</a>
-<a href="http://blog.darkthread.net/blogs/darkthreadtw/archive/2008/05/07/are-your-website-naked.aspx">http://blog.darkthread.net/blogs/darkthreadtw/archive/2008/05/07/are-your-website-naked.aspx</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/08/29/html5/">[HTML5] 入門</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2013-08-29T13:17:00+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>29</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>1:17 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1>HTML 5 基本樣式</h1>
-
-<pre><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-  &lt;head&gt;
-  &lt;meta charset="UTF-8"&gt;
-  &lt;title&gt;HTML 5&lt;/title&gt;
-  &lt;/head&gt;
-  &lt;body&gt;
-  &lt;p&gt;Hello World!&lt;p&gt;
-  &lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
-
-<h1>視訊播放</h1>
-
-<p>瀏覽器會依type特性來決定要顯示哪一個影片檔，也可以依照不同尺寸來設定觀看的的解析度。
-video標籤可用的屬性:Preload(不自動下載視訊)、Loop(重複播放)、autoplay(開啟後自動播放)、width、height&hellip;</p>
-
-<pre><code>    &lt;video controls autoplay&gt;
-      &lt;source src="Simple Plan.720p.webm" type="video/webm" media="screen and (min-width: 500px)"&gt;
-      &lt;source src="Simple Plan.360p.webm" type="video/webm"&gt;
-      &lt;source src="Simple Plan.mp4" type="video/mp4"&gt;
-      &lt;source src="Simple Plan.ogg" type="video/ogg"&gt;
-      Sorry...Your browser is crap...
-    &lt;/video&gt;
-</code></pre>
-
-<p>目前查到的資料：
-IE、Safari 只支援mp4
-Opera 支援webm ogg
-FireFox 支援webm ogg (mp4部分支援)
-Chrome 全都支援</p>
-
-<p><a href="http://www.w3schools.com/html/html5_video.asp">http://www.w3schools.com/html/html5_video.asp</a></p>
-</div>
-  
-  
-
-
-    </article>
   
   
     <article>
@@ -643,6 +517,188 @@ Regex.IsMatch(strPwd, @"[\W]")
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/03/aspnet-auto-return/">[ASP.NET] 自動寄信</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-03-03T12:48:00+08:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2013</span></span> <span class='time'>12:48 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>一樣是紀綠一下&hellip;</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>MailMessage mailMessage = new MailMessage();
+</span><span class='line'>mailMessage.IsBodyHtml = true;
+</span><span class='line'>
+</span><span class='line'>mailMessage.To.Add(emailAddress);
+</span><span class='line'>mailMessage.CC.Add(cCMailAddress);
+</span><span class='line'>
+</span><span class='line'>MailAddress fromWho = new MailAddress(senderMailAddress);
+</span><span class='line'>mailMessage.From = fromWho;
+</span><span class='line'>mailMessage.Subject = title;
+</span><span class='line'>mailMessage.Body = "這邊可放html"
+</span><span class='line'>
+</span><span class='line'>SmtpClient mailSmtp = new SmtpClient(mailServer,mailServerPort);
+</span><span class='line'>
+</span><span class='line'>mailSmtp.Send(mailMessage);</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/02/15/linux-getting-started-with-hyper-basic-instructions/">[Linux] 超入門的基本指令</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-02-15T06:24:00+08:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>6:24 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>之前在非洲服役時，曾想過用Linux取代Windows (當地經濟因素等等的&hellip;)
+也嘗試用Wine來執行一些常用的Windows軟體，大致上也都沒問題，只可惜當地政府的課程始終沒有開始&hellip;</p>
+
+<p>對Linux不是完全陌生，但指令倒是全忘了&hellip;
+為了往後開發上不會綁手綁腳，還是必須把基本功打好，從零開始</p>
+
+<figure class='code'><figcaption><span>系統資訊</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span><span class="nb">echo </span>hello word
+</span><span class='line'><span class="nv">$ </span>date
+</span><span class='line'><span class="nv">$ </span>arch    // x86_64
+</span><span class='line'><span class="nv">$ </span>uname –a // list system
+</span><span class='line'><span class="nv">$ </span>who
+</span><span class='line'><span class="nv">$ </span>w // show online user
+</span><span class='line'><span class="nv">$ </span>top // show system status
+</span><span class='line'><span class="nv">$ </span>cal <span class="m">2015</span> // calendar
+</span><span class='line'><span class="nv">$ </span>cal <span class="m">9</span> <span class="m">1752</span> // *
+</span><span class='line'><span class="nv">$ </span>bc –l // calculator
+</span><span class='line'><span class="nv">$ </span><span class="nb">echo </span>77/50 <span class="p">|</span> bc –l
+</span><span class='line'><span class="nv">$ </span><span class="nb">history</span> // list <span class="nb">command history</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>網路</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>ifconfig
+</span><span class='line'><span class="nv">$ </span>nslookup
+</span><span class='line'><span class="nv">$ </span>ping
+</span><span class='line'><span class="nv">$ </span>traceroute
+</span><span class='line'><span class="nv">$ </span>wget // download
+</span><span class='line'><span class="nv">$ </span>ssh 帳號@主機   // 用SSH連線
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>chmod 調整檔案權限</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>chmod <span class="o">[</span>權限角色<span class="o">]</span> <span class="o">[</span>權限動作<span class="o">]</span> <span class="o">[</span>存取權限<span class="o">]</span> 檔案/目錄
+</span><span class='line'>chmod <span class="o">[</span>ugoa<span class="o">]</span> <span class="o">[</span>+-<span class="o">=]</span> <span class="o">[</span>rwxX<span class="o">]</span> test.txt
+</span><span class='line'><span class="nv">$ </span>chmod ugo+r test.txt
+</span><span class='line'>權限角色: u<span class="o">(</span>user/owner<span class="o">)</span>、g<span class="o">(</span>group<span class="o">)</span>、o<span class="o">(</span>other<span class="o">)</span>、a<span class="o">(</span>all<span class="o">)</span>
+</span><span class='line'>權限動作: +<span class="o">(</span>增加權限<span class="o">)</span>、-<span class="o">(</span>取消權限<span class="o">)</span>、<span class="o">=(</span>直接設定權限<span class="o">)</span>
+</span><span class='line'>存取權限: r<span class="o">(</span><span class="nb">read</span><span class="o">)</span>、w<span class="o">(</span>write<span class="o">)</span>、x<span class="o">(</span>execute<span class="o">)</span>、X<span class="o">(</span>execute<span class="p">&amp;</span>目錄or已被執行過<span class="o">)</span>
+</span><span class='line'>
+</span><span class='line'>也可用數字來調整權限
+</span><span class='line'>chmod <span class="o">[</span>u<span class="o">(</span>int<span class="o">)][</span>g<span class="o">(</span>int<span class="o">)][</span>o<span class="o">(</span>int<span class="o">)]</span> 檔案/目錄
+</span><span class='line'><span class="nv">$ </span>chmod <span class="m">777</span> test.txt
+</span><span class='line'>// <span class="nv">r</span><span class="o">=</span>4，w<span class="o">=</span>2，x<span class="o">=</span><span class="m">1</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>grep</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>...
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>tail</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>...
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Reference:
+<a href="http://www.pcnet.idv.tw/pcnet/linux/linux_command.htm">http://www.pcnet.idv.tw/pcnet/linux/linux_command.htm</a>
+<a href="http://tnrc.ncku.edu.tw/course/93/fedora_core2/page8/p8.htm">http://tnrc.ncku.edu.tw/course/93/fedora_core2/page8/p8.htm</a>
+<a href="http://jdev.tw/blog/3599/linux-terminal-commands-and-shortcuts">http://jdev.tw/blog/3599/linux-terminal-commands-and-shortcuts</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
     <a href="/blog/archives">Blog Archives</a>
@@ -670,11 +726,31 @@ Regex.IsMatch(strPwd, @"[\W]")
       </li>
     
       <li class="post">
-        <a href="/blog/2014/03/03/aspnet-auto-return/">[ASP.NET] 自動寄信</a>
+        <a href="/blog/2014/03/03/c-datatable-operation-memos/">[C#] DataTable 的操作備忘</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2014/03/03/c-datatable-operation-memos/">[C#] DataTable 的操作備忘</a>
+        <a href="/blog/2014/02/14/aspnet-reset-password-in-active-directory/">[ASP.NET] Reset Password in Active Directory</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/02/08/mac-set-to-open-files-by-default-software/">[Mac] 設定開啟檔案的預設軟體</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/19/mac-directly-in-the-terminal-to-open-sublime/">[Mac] 直接在終端機開啟sublime</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/17/-rails-mac-os-environment-build/">[Mac] Ruby on Rails 基本環境建置</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/13/javascript-triggered-interrupt-event-or-action/">[JavaScript] 中斷事件或動作的觸發</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/02/css-position/">[CSS] 定位</a>
       </li>
     
   </ul>
