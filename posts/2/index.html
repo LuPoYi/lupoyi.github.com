@@ -9,16 +9,9 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="好像各語言都大同小異，try..catch..finally語法轉換一下就差不多了 例外處理 begin..end當中的rescue1
-2
-3
-4
-5
-6
-7
-begin # 有機會發生例外的code
-rescue # 發現例外後要執行的code
-ensure # 無論是否例外都會執行的code &hellip;">
+  <meta name="description" content="add to gemfile.rb and remember to bundle install1
+gem &#39;bootstrap-sass&#39; 新增一個app/assets/stylesheets/styles.css.scss並將bootstrap import1
+@import &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -89,359 +82,6 @@ ensure # 無論是否例外都會執行的code &hellip;">
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/12/23/ruby-exception-handling/">[Ruby] 例外處理</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2013-12-23T15:57:00+08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2013</span></span> <span class='time'>3:57 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>好像各語言都大同小異，try..catch..finally語法轉換一下就差不多了</p>
-
-<h1>例外處理</h1>
-
-<figure class='code'><figcaption><span>begin..end當中的rescue</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">begin</span>
-</span><span class='line'>  <span class="c1"># 有機會發生例外的code</span>
-</span><span class='line'><span class="k">rescue</span>
-</span><span class='line'>  <span class="c1"># 發現例外後要執行的code</span>
-</span><span class='line'><span class="k">ensure</span>
-</span><span class='line'>  <span class="c1"># 無論是否例外都會執行的code</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>而當例外發生時，如果沒有指定變數，Ruby會將錯誤資訊存放至$!及$@
-* $! (例外物件)
-  * .class
-  * .message
-  * .backtrace (等同於$@)
-* $@ (例外的位置資訊)</p>
-
-<figure class='code'><figcaption><span>example</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">begin</span>
-</span><span class='line'>  <span class="n">abc</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">0</span>
-</span><span class='line'><span class="k">rescue</span> <span class="o">=&gt;</span> <span class="n">ex</span>
-</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;Except class:  </span><span class="si">#{</span><span class="n">ex</span><span class="o">.</span><span class="n">class</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span class='line'>      <span class="nb">puts</span> <span class="s2">&quot;Except message: </span><span class="si">#{</span><span class="n">ex</span><span class="o">.</span><span class="n">message</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span class='line'><span class="k">ensure</span>
-</span><span class='line'>  <span class="nb">puts</span> <span class="s1">&#39;Always print&#39;</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="no">Except</span> <span class="ss">class</span><span class="p">:</span>  <span class="no">ZeroDivisionError</span>
-</span><span class='line'><span class="no">Except</span> <span class="ss">message</span><span class="p">:</span> <span class="n">divided</span> <span class="n">by</span> <span class="mi">0</span>
-</span><span class='line'><span class="no">Always</span> <span class="nb">print</span>
-</span><span class='line'><span class="o">=&gt;</span> <span class="kp">nil</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Reference:
-<a href="http://blog.tonycube.com/2011/07/ruby8.html">http://blog.tonycube.com/2011/07/ruby8.html</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/12/18/ruby-functions-for-numbers/">[Ruby] Functions for Numbers</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2013-12-18T03:40:00+08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>3:40 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><figure class='code'><figcaption><span>Math</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;</span> <span class="mi">2</span> <span class="o">**</span> <span class="mi">3</span> <span class="c1"># 次方</span>
-</span><span class='line'> <span class="o">=&gt;</span> <span class="mi">8</span>
-</span><span class='line'>
-</span><span class='line'> <span class="o">=</span><span class="k">begin</span>
-</span><span class='line'>  <span class="no">Addition</span> <span class="p">(</span><span class="o">+</span><span class="p">)</span>
-</span><span class='line'>  <span class="no">Subtraction</span> <span class="p">(</span><span class="o">-</span><span class="p">)</span>
-</span><span class='line'>  <span class="no">Multiplication</span> <span class="p">(</span><span class="o">*</span><span class="p">)</span>
-</span><span class='line'>  <span class="no">Division</span> <span class="p">(</span><span class="sr">/)</span>
-</span><span class='line'><span class="sr">  Exponentiation (**)</span>
-</span><span class='line'><span class="sr">  Modulo (%)</span>
-</span><span class='line'><span class="sr"> =end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>常用的</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;</span> <span class="mi">9</span><span class="o">.</span><span class="mi">9</span><span class="o">.</span><span class="n">integer?</span>
-</span><span class='line'> <span class="o">=&gt;</span> <span class="kp">false</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&gt;</span> <span class="o">-</span><span class="mi">5</span><span class="o">.</span><span class="n">abs</span>
-</span><span class='line'> <span class="o">=&gt;</span> <span class="mi">5</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&gt;</span> <span class="mi">5</span><span class="o">.</span><span class="mi">6</span><span class="o">.</span><span class="n">round</span> <span class="c1"># 取最近的整數/四捨五入</span>
-</span><span class='line'> <span class="o">=&gt;</span> <span class="mi">6</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&gt;</span> <span class="mi">9</span><span class="o">.</span><span class="mi">9</span><span class="o">.</span><span class="n">floor</span>    <span class="c1"># 取整數/無條件捨去</span>
-</span><span class='line'> <span class="o">=&gt;</span> <span class="mi">9</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&gt;</span> <span class="mi">2</span><span class="o">.</span><span class="n">next</span>
-</span><span class='line'> <span class="o">=&gt;</span> <span class="mi">3</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>二元運算</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">n</span> <span class="o">&amp;</span> <span class="n">num</span>
-</span><span class='line'><span class="n">n</span> <span class="o">|</span> <span class="n">num</span>
-</span><span class='line'><span class="n">n</span> <span class="o">^</span> <span class="n">num</span> <span class="p">(</span><span class="no">XOR</span><span class="p">)</span>
-</span><span class='line'><span class="n">n</span> <span class="o">&lt;&lt;</span> <span class="n">num</span> <span class="p">(</span><span class="err">向左位移</span><span class="p">)</span>
-</span><span class='line'><span class="n">n</span> <span class="o">&gt;&gt;</span> <span class="n">num</span> <span class="p">(</span><span class="err">向右位移</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Reference: <a href="http://www.tutorialspoint.com/ruby/ruby_builtin_functions.htm">http://www.tutorialspoint.com/ruby/ruby_builtin_functions.htm</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/12/14/ruby-is-a-small-note/">[Ruby] 變數</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2013-12-14T13:19:00+08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>1:19 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Ruby 有一個重要特性 Convention Over Configuration
-希望去做到一個約定成俗的習慣/慣例，省去過多的設定，讓程式更為簡潔。(ex:route maping)</p>
-
-<p>Ruby命名也有一定的慣例
-* $name:全域變數
-* @name:實例變數，作用域僅限定於 self 指示的物件
-* name:區域變數(小寫字母或底線開頭；初始化前並沒有 nil 值)
-* Name:常數(大寫開頭；重覆定義時會出現警告)</p>
-
-<figure class='code'><figcaption><span>全域變數 vs 實例變數 vs 區域變數</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ruby</span><span class="o">&gt;</span> <span class="vg">$foo</span>
-</span><span class='line'>  <span class="o">=&gt;</span> <span class="kp">nil</span>
-</span><span class='line'><span class="n">ruby</span><span class="o">&gt;</span> <span class="vi">@foo</span>
-</span><span class='line'>  <span class="o">=&gt;</span> <span class="kp">nil</span>
-</span><span class='line'><span class="n">ruby</span><span class="o">&gt;</span> <span class="n">foo</span>
-</span><span class='line'><span class="ss">ERR</span><span class="p">:</span> <span class="p">(</span><span class="nb">eval</span><span class="p">):</span><span class="mi">1</span><span class="p">:</span> <span class="n">undefined</span> <span class="n">local</span> <span class="n">variable</span> <span class="ow">or</span> <span class="nb">method</span> <span class="sb">`foo&#39; for main(Object)</span>
-</span><span class='line'><span class="sb">ruby&gt; Foo = 2</span>
-</span><span class='line'><span class="sb"> =&gt; 2</span>
-</span><span class='line'><span class="sb">ruby&gt; Foo = 3</span>
-</span><span class='line'><span class="sb">  =&gt; warning: alread initialized constant Foo</span>
-</span><span class='line'><span class="sb">  =&gt; 3</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/12/09/ruby-and/">[Ruby] And與&&的差別</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2013-12-09T03:01:00+08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>9</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>3:01 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>在Ruby中的邏輯運算有兩組，[!,&amp;&amp;,||]及[not,and,or]
-+   [!,&amp;&amp;,||]         <br/>
-    + higher precedence
-+   [=,%=,~=,/=]
-    + between this two
-+   [not,and,or]
-    + lower precedence
-        * 優先權：&amp;&amp;　→　||　→　and　＝　or 。
-        * &amp;&amp; 或 || 會將符號前後方都認定為boolean(true,false)</p>
-
-<figure class='code'><figcaption><span>&& 與 and 的比較</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="kp">true</span> <span class="o">&amp;&amp;</span> <span class="kp">false</span>
-</span><span class='line'> <span class="o">=&gt;</span> <span class="kp">false</span>
-</span><span class='line'><span class="o">&gt;</span> <span class="n">a</span>
-</span><span class='line'> <span class="o">=&gt;</span> <span class="kp">false</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="kp">true</span> <span class="ow">and</span> <span class="kp">false</span>
-</span><span class='line'> <span class="o">=&gt;</span> <span class="kp">false</span>
-</span><span class='line'><span class="o">&gt;</span> <span class="n">a</span>
-</span><span class='line'> <span class="o">=&gt;</span> <span class="kp">true</span>  <span class="c1">#</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<figure class='code'><figcaption><span>|| 與 or 的比較</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="kp">false</span> <span class="o">||</span> <span class="kp">true</span>
-</span><span class='line'> <span class="o">=&gt;</span> <span class="kp">true</span>
-</span><span class='line'><span class="o">&gt;</span> <span class="n">a</span>
-</span><span class='line'> <span class="o">=&gt;</span> <span class="kp">true</span>
-</span><span class='line'><span class="o">&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="kp">false</span> <span class="ow">or</span> <span class="kp">true</span>
-</span><span class='line'> <span class="o">=&gt;</span> <span class="kp">true</span>
-</span><span class='line'><span class="o">&gt;</span> <span class="n">a</span>
-</span><span class='line'> <span class="o">=&gt;</span> <span class="kp">false</span>  <span class="c1">#</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>總結，布林運算用[!,&&,||]，流程控制用[not,and,or]</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># boolean expression</span>
-</span><span class='line'><span class="k">if</span> <span class="n">some_condition</span> <span class="o">&amp;&amp;</span> <span class="n">some_other_condition</span>
-</span><span class='line'>  <span class="n">do_something</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># control flow</span>
-</span><span class='line'><span class="n">document</span><span class="o">.</span><span class="n">saved?</span> <span class="ow">or</span> <span class="n">document</span><span class="o">.</span><span class="n">save!</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Reference:
-<a href="http://phrogz.net/ProgrammingRuby/language.html#table%5F18.4">Ruby operators 優先順序</a>
-<a href="http://blog.jeffean.net/wiki/ruby.html">http://blog.jeffean.net/wiki/ruby.html</a>
-<a href="http://stackoverflow.com/questions/1426826/difference-between-and-and-in-ruby">http://stackoverflow.com/questions/1426826/difference-between-and-and-in-ruby</a></p>
-</div>
-  
-  
-
-
-    </article>
   
   
     <article>
@@ -951,6 +591,312 @@ IThome「防駭演練與危機處理」研習會</p>
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/10/30/rails-crud/">[Rails] CRUD 備忘</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-10-30T01:07:00+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>1:07 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><figure class='code'><figcaption><span>index</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sx">%= link_to &#39;list&#39;, teams_path %&gt; # GET</span>
+</span><span class='line'>
+</span><span class='line'><span class="sx">def index</span>
+</span><span class='line'><span class="sx"> @teams =</span> <span class="no">Team</span><span class="o">.</span><span class="n">all</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>show</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sx">%= link_to &#39;show&#39;, team_path(team) %&gt; # GET</span>
+</span><span class='line'>
+</span><span class='line'><span class="sx">def show</span>
+</span><span class='line'><span class="sx"> @team =</span> <span class="no">Team</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>new</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sx">%= link_to &#39;new Team&#39;, new_team_path %&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sx">def new</span>
+</span><span class='line'><span class="sx"> @team =</span> <span class="no">Team</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><figcaption><span>create</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sx">%= form_for @team, :url =</span><span class="o">&gt;</span> <span class="n">teams_path</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span> <span class="sx">%&gt; #In a form, the default request method is POST</span>
+</span><span class='line'><span class="sx">&lt;%= t.text_field :name %&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sx">%= t.text_field :year %&gt;</span>
+</span><span class='line'><span class="sx">&lt;%=</span> <span class="n">t</span><span class="o">.</span><span class="n">submit</span> <span class="s2">&quot;Create&quot;</span> <span class="sx">%&gt;</span>
+</span><span class='line'><span class="sx">&lt;% end %&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">create</span>
+</span><span class='line'>  <span class="no">Team</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>edit</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sx">%= link_to &#39;edit&#39;, edit_team_path(team) %&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sx">def edit</span>
+</span><span class='line'><span class="sx"> @team =</span> <span class="no">Team</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>update</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sx">%= form_for @team, :url =</span><span class="o">&gt;</span> <span class="n">teams_path</span><span class="p">(</span><span class="vi">@team</span><span class="p">),</span><span class="ss">:method</span> <span class="o">=&gt;</span> <span class="ss">:put</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span> <span class="sx">%&gt; </span>
+</span><span class='line'><span class="sx">&lt;%= t.text_field :name %&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sx">%= t.text_field :year %&gt;</span>
+</span><span class='line'><span class="sx">&lt;%=</span> <span class="n">t</span><span class="o">.</span><span class="n">submit</span> <span class="s2">&quot;Create&quot;</span> <span class="sx">%&gt;</span>
+</span><span class='line'><span class="sx">&lt;% end %&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">update</span>
+</span><span class='line'>  <span class="vi">@team</span><span class="o">.</span><span class="n">update_attributes</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:team</span><span class="o">]</span><span class="p">)</span> <span class="c1">#...</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>destroy</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sx">%= link_to @team, team_path(@team), :method =</span><span class="o">&gt;</span> <span class="ss">:delete</span> <span class="o">%&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">destroy</span>
+</span><span class='line'>  <span class="no">Team</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">].</span><span class="n">destroy</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/10/25/vmware-vcenter-cluster-exercises/">[VMware] VCenter Cluster 練習筆記</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-10-25T08:11:00+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>25</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>8:11 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/154247/91YcA52rS8Owm0IT1612_SHL-TEST.COM.jpg" alt="SHL-TEST.COM.jpg" /></p>
+
+<p>vSphere ESXi: 整個虛擬化平台，算是一個作業系統
+vSphere Client: 操作VM用的軟體(遠端連線到ESXi)
+vCenter: 可統一管理，支援ADD 容錯</p>
+
+<p>&ndash;VLAN 45(橘底)
+- 準備兩台電腦，灌上vSphere ESXi，設定名稱、IP、VLAN
+- 分別灌上不同OS，其中一台用來架AD網域，並將每個OS加入網域
+- 找一台安裝vCenter，安裝後直接連入這台就可直接操作其他OS</p>
+
+<p>Cluster</p>
+
+<p>註記：
+HT Hyper-threading 可將核心分成兩個序列在處理 cpu數<em>核心數</em>(2)(HT)=邏輯核心
+硬碟分區格式 GPT VS MBR：MBR上限為2T(超過2T以上的空間無法分配出來)</p>
+
+<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/154247/MiZIdkkTlW47nQrleONw_2013-10-27%20%E4%B8%8B%E5%8D%88%2006-32-23.jpg" alt="2013-10-27 下午 06-32-23.jpg" /></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/10/16/rails-tips/">[Rails] 小技巧</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-10-16T15:33:00+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>3:33 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>.erb的註解</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;% #註解可寫在井號後面 %&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;% if false %&gt;
+</span><span class='line'>或寫在這
+</span><span class='line'>&lt;% end %&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>.rb的註解</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># 一般只用單行註解
+</span><span class='line'>
+</span><span class='line'>=begin
+</span><span class='line'>  多行註解比較少見
+</span><span class='line'>=end
+</span><span class='line'>
+</span><span class='line'></span></code></pre></td></tr></table></div></figure>
+
+
+<h2>檢查自己寫了多少code</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ bundle exec rake stats</span></code></pre></td></tr></table></div></figure>
+
+
+<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/147937/9dPiFwgmRd61Oaf5xz2Z_2013-10-17%20%E4%B8%8B%E5%8D%88%2010-38-13.jpg" alt="2013-10-17 下午 10-38-13.jpg" /></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ rake routes</span></code></pre></td></tr></table></div></figure>
+
+
+<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/147937/gXa3Ts8RrqxlUGr0Ducw_2013-11-1%20%E4%B8%8B%E5%8D%88%2002-58-54.jpg" alt="2013-11-1 下午 02-58-54.jpg" /></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/10/14/vmware-vcenter-80-port-is-already-in-use/">[VMware] VCenter 80 Port 已被使用</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-10-14T13:50:00+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>1:50 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>在嘗試安裝vCenter時，中途出現了「VMware VirtualCenter HTTP Port: 80」</p>
+
+<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/147088/Dh30xvaKQpiGNxLRUEAh_2013-10-14%20%E4%B8%8B%E5%8D%88%2002-30-11.jpg" alt="2013-10-14 下午 02-30-11.jpg" /></p>
+
+<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/147088/BSI6GB26R6GYxsu7JrMh_181188866_x.jpg" alt="181188866_x.jpg" /></p>
+
+<p>原因是vCenter自動安裝時會把SQL Server及.NET Framework相關的元件裝上，導致IIS佔用了80Port。</p>
+
+<p>解法之一就是直接在Roles裡把IIS移掉就行了(想在vCenter上使用IIS就要另求解了)</p>
+
+<p><br>
+Reference:
+<a href="http://blog.xuite.net/cadmus.lin/yo/43386562-%E3%80%90%E7%B3%BB%E3%80%91%E5%A6%82%E4%BD%95%E6%9F%A5%E8%A9%A2%E5%93%AA%E5%80%8B%E7%A8%8B%E5%BC%8F%E4%BD%94%E7%94%A8%E4%BA%86%E6%8C%87%E5%AE%9APort">http://blog.xuite.net/cadmus.lin/yo/43386562-%E3%80%90%E7%B3%BB%E3%80%91%E5%A6%82%E4%BD%95%E6%9F%A5%E8%A9%A2%E5%93%AA%E5%80%8B%E7%A8%8B%E5%BC%8F%E4%BD%94%E7%94%A8%E4%BA%86%E6%8C%87%E5%AE%9APort</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/posts/3">&larr; Older</a>
@@ -980,18 +926,6 @@ IThome「防駭演練與危機處理」研習會</p>
       </li>
     
       <li class="post">
-        <a href="/blog/2014/03/03/c-datatable-operation-memos/">[C#] DataTable 的操作備忘</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/02/14/aspnet-reset-password-in-active-directory/">[ASP.NET] Reset Password in Active Directory</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/02/08/mac-set-to-open-files-by-default-software/">[Mac] 設定開啟檔案的預設軟體</a>
-      </li>
-    
-      <li class="post">
         <a href="/blog/2014/01/19/mac-directly-in-the-terminal-to-open-sublime/">[Mac] 直接在終端機開啟sublime</a>
       </li>
     
@@ -1004,7 +938,19 @@ IThome「防駭演練與危機處理」研習會</p>
       </li>
     
       <li class="post">
-        <a href="/blog/2014/01/02/css-position/">[CSS] 定位</a>
+        <a href="/blog/2013/12/23/ruby-exception-handling/">[Ruby] 例外處理</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/18/ruby-functions-for-numbers/">[Ruby] Functions for Numbers</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/14/ruby-is-a-small-note/">[Ruby] 變數</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/09/ruby-and/">[Ruby] And與&&的差別</a>
       </li>
     
   </ul>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Mac | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/mac/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2015-04-10T22:23:24+08:00</updated>
+  <updated>2015-04-10T22:26:23+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -12,32 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[[Mac] 設定開啟檔案的預設軟體]]></title>
-    <link href="http://blog.poyi.tw/blog/2014/02/08/mac-set-to-open-files-by-default-software/"/>
-    <updated>2014-02-08T14:32:00+08:00</updated>
-    <id>http://blog.poyi.tw/blog/2014/02/08/mac-set-to-open-files-by-default-software</id>
-    <content type="html"><![CDATA[<p>近期在mac的環境上有點卡關，像是環境的PATH曾被我改壞&hellip;
-還好朋友有幫我救回來= =&hellip;</p>
-
-<p>在windows上習慣會調整一些檔案的預設軟體來開啟，像是影片檔的格式一堆就很需要額外設定。</p>
-
-<h2>首先，在檔案上右鍵找到「簡介」</h2>
-
-<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/178268/gVGABZ5oQ9Oca4LD8OTm_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202014-02-08%20%E4%B8%8B%E5%8D%8810.36.21.png" alt="螢幕快照 2014-02-08 下午10.36.21.png" /></p>
-
-<h2>接著找到「打開檔案的應用程式」，調整為你要的預設軟體</h2>
-
-<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/178268/kVk2SMrPT6qXdk2uoBBP_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202014-02-08%20%E4%B8%8B%E5%8D%8810.37.00.png" alt="螢幕快照 2014-02-08 下午10.37.00.png" /></p>
-
-<h2>然後按下「全部更改」</h2>
-
-<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/178268/esuLHuOZSXyw2g7fe7W8_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202014-02-08%20%E4%B8%8B%E5%8D%8810.29.35.png" alt="螢幕快照 2014-02-08 下午10.29.35.png" /></p>
-
-<h2>就可以把該副檔名的檔案都設定成此軟體開啟了yaya</h2>
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[[Mac] 直接在終端機開啟sublime]]></title>
@@ -57,6 +31,32 @@ $ sublime id_rsa.pub
 
 <p>Reference:
 <a href="http://jocoomadao.blogspot.tw/2013/11/macterminal-sublime.html">http://jocoomadao.blogspot.tw/2013/11/macterminal-sublime.html</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[[Mac] 設定開啟檔案的預設軟體]]></title>
+    <link href="http://blog.poyi.tw/blog/2013/02/08/mac-set-to-open-files-by-default-software/"/>
+    <updated>2013-02-08T14:32:00+08:00</updated>
+    <id>http://blog.poyi.tw/blog/2013/02/08/mac-set-to-open-files-by-default-software</id>
+    <content type="html"><![CDATA[<p>近期在mac的環境上有點卡關，像是環境的PATH曾被我改壞&hellip;
+還好朋友有幫我救回來= =&hellip;</p>
+
+<p>在windows上習慣會調整一些檔案的預設軟體來開啟，像是影片檔的格式一堆就很需要額外設定。</p>
+
+<h2>首先，在檔案上右鍵找到「簡介」</h2>
+
+<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/178268/gVGABZ5oQ9Oca4LD8OTm_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202014-02-08%20%E4%B8%8B%E5%8D%8810.36.21.png" alt="螢幕快照 2014-02-08 下午10.36.21.png" /></p>
+
+<h2>接著找到「打開檔案的應用程式」，調整為你要的預設軟體</h2>
+
+<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/178268/kVk2SMrPT6qXdk2uoBBP_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202014-02-08%20%E4%B8%8B%E5%8D%8810.37.00.png" alt="螢幕快照 2014-02-08 下午10.37.00.png" /></p>
+
+<h2>然後按下「全部更改」</h2>
+
+<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/178268/esuLHuOZSXyw2g7fe7W8_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202014-02-08%20%E4%B8%8B%E5%8D%8810.29.35.png" alt="螢幕快照 2014-02-08 下午10.29.35.png" /></p>
+
+<h2>就可以把該副檔名的檔案都設定成此軟體開啟了yaya</h2>
 ]]></content>
   </entry>
   

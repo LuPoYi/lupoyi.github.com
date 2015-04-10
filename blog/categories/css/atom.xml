@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Css | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/css/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2015-04-10T22:23:24+08:00</updated>
+  <updated>2015-04-10T22:26:23+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[[CSS] 定位]]></title>
-    <link href="http://blog.poyi.tw/blog/2014/01/02/css-position/"/>
-    <updated>2014-01-02T02:43:00+08:00</updated>
-    <id>http://blog.poyi.tw/blog/2014/01/02/css-position</id>
+    <link href="http://blog.poyi.tw/blog/2013/01/02/css-position/"/>
+    <updated>2013-01-02T02:43:00+08:00</updated>
+    <id>http://blog.poyi.tw/blog/2013/01/02/css-position</id>
     <content type="html"><![CDATA[<p>以前都是直接用現成的，或是抓別人的css來用
 一堆語法都知道是幹麻的，但自己寫的時候就完全不行
 尤其是layout的配置..明明感覺很簡單的卻要一直亂試喬半天&hellip;</p>

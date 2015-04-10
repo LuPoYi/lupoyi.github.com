@@ -9,14 +9,8 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="git1
-2
-3
-4
-5
-6
-apt-get install git-core git config --global user.name &quot;name&quot;
-git config --global user.email &quot;email&quot; git config -- &hellip;">
+  <meta name="description" content="不一定是常用…而是記不太起來，每次都要查… DBCC CHECKIDENT ( tablename, RESEED, new_reseed_value ) 強制重設table的識別值 DBCC CHECKIDENT(tablename, RESEED, 0) // 歸零識別值 SQL驗證
+Data &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -87,260 +81,6 @@ git config --global user.email &quot;email&quot; git config -- &hellip;">
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/08/29/git/">GIT</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2013-08-29T09:06:00+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>29</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>9:06 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><figure class='code'><figcaption><span>git</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>apt-get install git-core
-</span><span class='line'>
-</span><span class='line'>git config --global user.name <span class="s2">&quot;name&quot;</span>
-</span><span class='line'>git config --global user.email <span class="s2">&quot;email&quot;</span>
-</span><span class='line'>
-</span><span class='line'>git config --list <span class="c">#查看設定</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>Git的基本功(status, add, commit, log, .gitignore)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>git status
-</span><span class='line'>
-</span><span class='line'>git add
-</span><span class='line'>git add .
-</span><span class='line'>
-</span><span class='line'>git commit
-</span><span class='line'>git commit -m <span class="s2">&quot;Add test.rb to test git function&quot;</span>
-</span><span class='line'>
-</span><span class='line'>git log <span class="o">(</span>-p<span class="o">)</span>
-</span><span class='line'>git log --stat
-</span></code></pre></td></tr></table></div></figure>
-
-
-<figure class='code'><figcaption><span>Git</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>gitk --all <span class="o">(</span><span class="p">&amp;</span><span class="o">)</span> 內建gui
-</span><span class='line'>git branch 這個指令可以列出所有的 branch 並告訴你目前正在哪個 branch：
-</span><span class='line'>git branch <span class="o">(</span>new_branch_name<span class="o">)</span>
-</span><span class='line'>
-</span><span class='line'>git checkout <span class="s2">&quot;Loser&quot;</span> 切換branch
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><a href="http://howar31.blogspot.tw/2013/06/git.html">http://howar31.blogspot.tw/2013/06/git.html</a>
-<a href="http://tech.marsw.tw/blog/2013/08/16/git-notes-github">http://tech.marsw.tw/blog/2013/08/16/git-notes-github</a>
-因此我們稍微做一下流程的整理：
-修改檔案 => 加入 stage (git add) => 提交( git commit )=> 繼續修改其他檔案</p>
-
-<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/95260/DcnMzKdwRnym16KQJwvF_2013-10-31%20%E4%B8%8A%E5%8D%88%2011-36-28.jpg" alt="2013-10-31 上午 11-36-28.jpg" /></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/08/28/aspnet-file-download/">[ASP.NET] 檔案下載寫法</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2013-08-28T08:57:00+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>8:57 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>Response.WriteFile 檔案下載方式一</h2>
-
-<pre><code>using System.IO;
-
-string filePath = "C:/porn.jpg";
-FileInfo file = new FileInfo(filePath);
-Response.Clear()
-Response.Buffer = false; 
-Response.ContentType = "application/octet-stream"; // 指定檔案類型
-Response.AddHeader("Content-Disposition","attachment;filename="+"porn.jpg"); // 設定檔名
-// System.Web.HttpUtility.UrlEncode(newFileName, System.Text.Encoding.UTF8) 解決中文檔名亂碼
-Response.AppendHeader("Content-Length", file.Length.ToString()); // 表頭加入檔案大小
-Response.WriteFile(file.FullName);
-Response.Flush();
-Response.End();
-</code></pre>
-
-<h2>System.Net.WebClient.DownloadData 檔案下載方式二</h2>
-
-<pre><code>using System.Net;
-
-WebClient wc = new WebClient();
-byte[] byteFile = null;
-string path = "C:/porn.jpg"; // 設定路徑
-byteFile = wc.DownloadData(path);
-string fileName = System.IO.Path.GetFileName(path); // 取得檔案名稱
-Response.AppendHeader("content-disposition", "attachment;filename=" + "porn.jpg"); //設定檔名
-// HttpContext.Current.Server.UrlEncode(fileName) 解決中文檔名亂碼
-Response.ContentType = "application/octet-stream";  // 指定檔案類型   
-Response.BinaryWrite(byteFile); // 內容轉出作檔案下載
-Response.End();
-</code></pre>
-
-<h2>參考資料</h2>
-
-<p><a href="http://www.dotblogs.com.tw/jerrymow/archive/2013/04/22/102084.aspx">http://www.dotblogs.com.tw/jerrymow/archive/2013/04/22/102084.aspx</a>
-<a href="http://blog.miniasp.com/post/2008/03/12/Caution-about-ASPNET-Response-a-Large-File.aspx">http://blog.miniasp.com/post/2008/03/12/Caution-about-ASPNET-Response-a-Large-File.aspx</a>
-<a href="http://www.dotblogs.com.tw/whitewing/archive/2010/03/18/14102.aspx">http://www.dotblogs.com.tw/whitewing/archive/2010/03/18/14102.aspx</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/08/23/linq-introduction/">[ASP.NET] Linq基本用法</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2013-08-23T02:28:00+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2013</span></span> <span class='time'>2:28 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>公司前輩跟我提過可以用用看Linq比較潮(?)
-寫.NET的時候就不需要寫的這麼..無腦</p>
-
-<pre><code>sqlStr += "Select ...";
-sqlStr += "from ....";
-sqlStr += "join ...";
-sqlStr += "where ...."
-
-string sql = @"SELECT ...
-           FROM table1
-           WHERE field3 = @Param1";
-</code></pre>
-
-<p>基本Linq類似這樣</p>
-
-<pre><code>var Query =
-    from q in myDB.Employee
-    where q.Name == "Bob"
-    select q;
-</code></pre>
-
-<p>Group By</p>
-
-<pre><code>int[] values = {1,2,3,4,5,6};
-var Query =
-    from p in values
-    group p by p % 2 ==0;
-    // values =&gt; 1 3 5 0 2 4
-</code></pre>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/08/22/91974/">[ASP.NET] 頁面傳值</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2013-08-22T02:05:00+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>22</span><span class='date-suffix'>nd</span>, <span class='date-year'>2013</span></span> <span class='time'>2:05 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>Client-Base</h2>
-
-<h3>ViewState：相當於把值存放於hidden field當中</h3>
-
-<p>只存在單一Web form
-預設開啟、未完善加密
-不會佔用系統資源
-<em>較不適合大量或機密資料</em></p>
-
-<h2>Server-Base</h2>
-
-<h3>Session：類似跨網頁的全域變數</h3>
-
-<p>多個頁面傳值
-預設存放記憶體
-可設定Time out</p>
-</div>
-  
-  
-
-
-    </article>
   
   
     <article>
@@ -581,6 +321,72 @@ Regex.IsMatch(strPwd, @"[\W]")
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2013/03/03/c-datatable-operation-memos/">[C#] DataTable 的操作備忘</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-03-03T12:05:00+08:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2013</span></span> <span class='time'>12:05 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>稍微記一下，相關變化都蠻簡單的</p>
+
+<figure class='code'><figcaption><span>DataTable基本語法</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="n">DataTable</span> <span class="n">dt</span> <span class="p">=</span> <span class="k">new</span> <span class="n">DataTable</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// 定義欄位</span>
+</span><span class='line'><span class="n">dt</span><span class="p">.</span><span class="n">Columns</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="n">dt</span><span class="p">.</span><span class="n">Columns</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s">&quot;cardNumber&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="c1">// 也可定義欄位型態 </span>
+</span><span class='line'><span class="c1">// dt.Columns.Add(&quot;ID&quot;, typeof(Int32));</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">dt</span><span class="p">.</span><span class="n">Rows</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s">&quot;Bob&quot;</span><span class="p">,</span> <span class="s">&quot;12345&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="n">dt</span><span class="p">.</span><span class="n">Rows</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s">&quot;Ada&quot;</span><span class="p">,</span> <span class="s">&quot;10000&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="n">dt</span><span class="p">.</span><span class="n">Rows</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s">&quot;Kilin&quot;</span><span class="p">,</span><span class="s">&quot;20000&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="c1">// 也可用DataRow來存放資料</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// 格式相同直接放入GridView</span>
+</span><span class='line'><span class="n">GridView</span><span class="p">.</span><span class="n">DataSource</span> <span class="p">=</span> <span class="n">dt</span><span class="p">;</span>
+</span><span class='line'><span class="n">GridView</span><span class="p">.</span><span class="n">DataBind</span><span class="p">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2013/02/15/linux-getting-started-with-hyper-basic-instructions/">[Linux] 超入門的基本指令</a></h1>
     
     
@@ -699,6 +505,242 @@ Regex.IsMatch(strPwd, @"[\W]")
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/02/14/aspnet-reset-password-in-active-directory/">[ASP.NET] Reset Password in Active Directory</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-02-14T12:47:00+08:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>12:47 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>重設密碼建議還是用LDAP去抓USER，以免抓錯人之類的</p>
+
+<figure class='code'><figcaption><span>Reset Password in Active Directory</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='C#'><span class='line'><span class="n">DirectoryEntry</span> <span class="n">userDirEntry</span> <span class="p">=</span> <span class="k">new</span> <span class="n">DirectoryEntry</span><span class="p">(</span><span class="s">&quot;LDAP://&quot;</span> <span class="p">+</span> <span class="n">ldapStr</span><span class="p">,</span> <span class="n">adminAccount</span><span class="p">,</span> <span class="n">adminPassword</span><span class="p">);</span>
+</span><span class='line'><span class="n">userDirEntry</span><span class="p">.</span><span class="n">Invoke</span><span class="p">(</span><span class="s">&quot;SetPassword&quot;</span><span class="p">,</span> <span class="n">CreateRandomPassword</span><span class="p">(</span><span class="m">8</span><span class="p">));</span>  <span class="c1">// 重設新密碼</span>
+</span><span class='line'><span class="n">userDirEntry</span><span class="p">.</span><span class="n">CommitChanges</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="n">userDirEntry</span><span class="p">.</span><span class="n">Properties</span><span class="p">[</span><span class="s">&quot;pwdLastSet&quot;</span><span class="p">].</span><span class="n">Value</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="c1">// 下次登入會強制要求改密碼</span>
+</span><span class='line'><span class="n">userDirEntry</span><span class="p">.</span><span class="n">CommitChanges</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">userDirEntry</span><span class="p">.</span><span class="n">Close</span><span class="p">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>Generate Random Password (Winform)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+</pre></td><td class='code'><pre><code class='C#'><span class='line'><span class="k">public</span> <span class="k">static</span> <span class="kt">string</span> <span class="nf">CreateRandomPassword</span><span class="p">(</span><span class="kt">int</span> <span class="n">passwordLength</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>      <span class="kt">string</span> <span class="n">allowedChars</span> <span class="p">=</span> <span class="s">&quot;abcdefghijkmnprstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789~!@#$%^&amp;*()_+?&quot;</span><span class="p">;</span>
+</span><span class='line'>      <span class="kt">char</span><span class="p">[]</span> <span class="n">chars</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">char</span><span class="p">[</span><span class="n">passwordLength</span><span class="p">];</span>
+</span><span class='line'>      <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">passwordLength</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+</span><span class='line'>      <span class="p">{</span>
+</span><span class='line'>            <span class="n">chars</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">=</span> <span class="n">allowedChars</span><span class="p">[</span><span class="n">rd</span><span class="p">.</span><span class="n">Next</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="n">allowedChars</span><span class="p">.</span><span class="n">Length</span><span class="p">)];</span>
+</span><span class='line'>            <span class="c1">// random.next(min,max) =&gt;int</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>      <span class="kt">string</span> <span class="n">strPwd</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">string</span><span class="p">(</span><span class="n">chars</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="k">while</span> <span class="p">(!((</span><span class="n">Regex</span><span class="p">.</span><span class="n">IsMatch</span><span class="p">(</span><span class="n">strPwd</span><span class="p">,</span> <span class="s">&quot;[0-9]&quot;</span><span class="p">))</span> <span class="p">&amp;&amp;</span>
+</span><span class='line'>      <span class="p">(</span><span class="n">Regex</span><span class="p">.</span><span class="n">IsMatch</span><span class="p">(</span><span class="n">strPwd</span><span class="p">,</span> <span class="s">&quot;[a-z]&quot;</span><span class="p">))</span> <span class="p">&amp;&amp;</span>
+</span><span class='line'>      <span class="p">(</span><span class="n">Regex</span><span class="p">.</span><span class="n">IsMatch</span><span class="p">(</span><span class="n">strPwd</span><span class="p">,</span> <span class="s">&quot;[A-Z]&quot;</span><span class="p">))</span> <span class="p">&amp;&amp;</span>
+</span><span class='line'>      <span class="p">(</span><span class="n">Regex</span><span class="p">.</span><span class="n">IsMatch</span><span class="p">(</span><span class="n">strPwd</span><span class="p">,</span> <span class="s">@&quot;[\W]&quot;</span><span class="p">))))</span>
+</span><span class='line'>      <span class="c1">// \w  [a-zA-Z0-9_]  , \W ![a-zA-Z0-9_]</span>
+</span><span class='line'>      <span class="p">{</span>
+</span><span class='line'>            <span class="n">strPwd</span> <span class="p">=</span> <span class="n">CreateRandomPassword</span><span class="p">(</span><span class="m">8</span><span class="p">);</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="k">return</span> <span class="n">strPwd</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// 靜態避免短時期內產生相同亂數</span>
+</span><span class='line'><span class="k">static</span> <span class="n">Random</span> <span class="n">rd</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Random</span><span class="p">(</span><span class="n">GetRandomSeed</span><span class="p">());</span>
+</span><span class='line'><span class="k">static</span> <span class="kt">int</span> <span class="nf">GetRandomSeed</span><span class="p">()</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>      <span class="kt">byte</span><span class="p">[]</span> <span class="n">bytes</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="p">[</span><span class="m">4</span><span class="p">];</span>
+</span><span class='line'>      <span class="n">System</span><span class="p">.</span><span class="n">Security</span><span class="p">.</span><span class="n">Cryptography</span><span class="p">.</span><span class="n">RNGCryptoServiceProvider</span> <span class="n">rng</span> <span class="p">=</span>
+</span><span class='line'>      <span class="k">new</span> <span class="n">System</span><span class="p">.</span><span class="n">Security</span><span class="p">.</span><span class="n">Cryptography</span><span class="p">.</span><span class="n">RNGCryptoServiceProvider</span><span class="p">();</span>
+</span><span class='line'>      <span class="n">rng</span><span class="p">.</span><span class="n">GetBytes</span><span class="p">(</span><span class="n">bytes</span><span class="p">);</span>
+</span><span class='line'>      <span class="k">return</span> <span class="n">BitConverter</span><span class="p">.</span><span class="n">ToInt32</span><span class="p">(</span><span class="n">bytes</span><span class="p">,</span> <span class="m">0</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/02/08/mac-set-to-open-files-by-default-software/">[Mac] 設定開啟檔案的預設軟體</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-02-08T14:32:00+08:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>2:32 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>近期在mac的環境上有點卡關，像是環境的PATH曾被我改壞&hellip;
+還好朋友有幫我救回來= =&hellip;</p>
+
+<p>在windows上習慣會調整一些檔案的預設軟體來開啟，像是影片檔的格式一堆就很需要額外設定。</p>
+
+<h2>首先，在檔案上右鍵找到「簡介」</h2>
+
+<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/178268/gVGABZ5oQ9Oca4LD8OTm_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202014-02-08%20%E4%B8%8B%E5%8D%8810.36.21.png" alt="螢幕快照 2014-02-08 下午10.36.21.png" /></p>
+
+<h2>接著找到「打開檔案的應用程式」，調整為你要的預設軟體</h2>
+
+<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/178268/kVk2SMrPT6qXdk2uoBBP_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202014-02-08%20%E4%B8%8B%E5%8D%8810.37.00.png" alt="螢幕快照 2014-02-08 下午10.37.00.png" /></p>
+
+<h2>然後按下「全部更改」</h2>
+
+<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/178268/esuLHuOZSXyw2g7fe7W8_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202014-02-08%20%E4%B8%8B%E5%8D%8810.29.35.png" alt="螢幕快照 2014-02-08 下午10.29.35.png" /></p>
+
+<h2>就可以把該副檔名的檔案都設定成此軟體開啟了yaya</h2>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/01/02/css-position/">[CSS] 定位</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-01-02T02:43:00+08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2013</span></span> <span class='time'>2:43 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>以前都是直接用現成的，或是抓別人的css來用
+一堆語法都知道是幹麻的，但自己寫的時候就完全不行
+尤其是layout的配置..明明感覺很簡單的卻要一直亂試喬半天&hellip;</p>
+
+<p>趁著最近面試的機會來記一下CSS&hellip;. <del>不然平常都很懶得學</del></p>
+
+<h2>Position</h2>
+
+<figure class='code'><figcaption><span>position, 依top, left, right, bottom調整位置</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nt">position</span><span class="o">:</span> <span class="nt">absloute</span> <span class="c">/* 絕對位置 */</span>
+</span><span class='line'><span class="nt">position</span><span class="o">:</span> <span class="nt">relative</span> <span class="c">/* 相對位置，以該元件所屬的左上角做基準點，移動位置仍會佔有原先位置的空間 */</span>
+</span><span class='line'><span class="nt">position</span><span class="o">:</span> <span class="nt">fixed</span>    <span class="c">/* 固定位置，定在視窗上 */</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">/* 當相對位置包住絕對位置時，絕對位置所基準就會為相對位置 */</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>z-index</h2>
+
+<p>z-index 元件重疊時，值愈大，顯示愈上面</p>
+
+<h2>overflow</h2>
+
+<figure class='code'><figcaption><span>控制轉軸</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nt">overflow</span><span class="o">:</span> <span class="nt">visible</span> <span class="c">/* 內容完整呈現 */</span>
+</span><span class='line'><span class="nt">overflow</span><span class="o">:</span> <span class="nt">hidden</span>  <span class="c">/* 只顯示放得下的內容 */</span>
+</span><span class='line'><span class="nt">overflow</span><span class="o">:</span> <span class="nt">scroll</span>  <span class="c">/* 強制加右方下方捲軸 */</span>
+</span><span class='line'><span class="nt">overflow</span><span class="o">:</span> <span class="nt">auto</span>    <span class="c">/* 內容放不下時，加右方捲軸 */</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Reference:
+<a href="http://my-web-design.blogspot.tw/2007/10/css-divposition.html">http://my-web-design.blogspot.tw/2007/10/css-divposition.html</a>
+<a href="http://www.1keydata.com/css-tutorial/tw/position.php">http://www.1keydata.com/css-tutorial/tw/position.php</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
     <a href="/blog/archives">Blog Archives</a>
@@ -726,18 +768,6 @@ Regex.IsMatch(strPwd, @"[\W]")
       </li>
     
       <li class="post">
-        <a href="/blog/2014/03/03/c-datatable-operation-memos/">[C#] DataTable 的操作備忘</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/02/14/aspnet-reset-password-in-active-directory/">[ASP.NET] Reset Password in Active Directory</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/02/08/mac-set-to-open-files-by-default-software/">[Mac] 設定開啟檔案的預設軟體</a>
-      </li>
-    
-      <li class="post">
         <a href="/blog/2014/01/19/mac-directly-in-the-terminal-to-open-sublime/">[Mac] 直接在終端機開啟sublime</a>
       </li>
     
@@ -750,7 +780,19 @@ Regex.IsMatch(strPwd, @"[\W]")
       </li>
     
       <li class="post">
-        <a href="/blog/2014/01/02/css-position/">[CSS] 定位</a>
+        <a href="/blog/2013/12/23/ruby-exception-handling/">[Ruby] 例外處理</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/18/ruby-functions-for-numbers/">[Ruby] Functions for Numbers</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/14/ruby-is-a-small-note/">[Ruby] 變數</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/09/ruby-and/">[Ruby] And與&&的差別</a>
       </li>
     
   </ul>
