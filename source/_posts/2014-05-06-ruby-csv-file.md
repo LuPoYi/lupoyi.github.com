@@ -52,7 +52,11 @@ convert_to_wide_word("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUV
  ＭＮＯＰＱＲＳＴＵＶＷＸＹＺ" 
 ```
 匯出匯入csv也可以試試FasterCSV這個gem
+
 Reference:
+
 http://www.sitepoint.com/guide-ruby-csv-library-part/
+
 http://blog.inheart.tw/2013/09/rubyraisl-csv-excel.html
+
 http://salayhin.wordpress.com/2014/05/10/export-csv-file-from-rails-console/

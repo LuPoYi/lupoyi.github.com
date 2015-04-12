@@ -1,7 +1,7 @@
 ---
 layout: post
 title: '[Linux] 超入門的基本指令'
-date: 2014-02-15 06:24
+date: 2013-02-15 06:24
 comments: true
 categories: 
 ---

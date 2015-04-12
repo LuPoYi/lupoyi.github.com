@@ -1,7 +1,7 @@
 ---
 layout: post
 title: '[Mac] 設定開啟檔案的預設軟體'
-date: 2014-02-08 14:32
+date: 2013-02-08 14:32
 comments: true
 categories: [mac]
 ---

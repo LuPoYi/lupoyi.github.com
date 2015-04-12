@@ -1,0 +1,39 @@
+---
+layout: post
+title: "[ruby] 教學 - 基本使用介紹2(未補)"
+date: 2015-04-12 22:27:04 +0800
+comments: true
+categories: [ruby]
+---
+## Define Methods
+```ruby 基本的method定義
+def temp
+  puts 123
+end
+
+temp() 
+temp
+
+def temp(a,b,c)
+puts “#{a} , #{b}, #{c}”
+end
+temp(1,2,3)
+temp 1 , 2 , 3
+
+def temp(a,b,c=99) # 第三個參數若沒傳入的話預設值為99
+puts “#{a} , #{b}, #{c}”
+end
+temp()  # wrong arguments (0 for 2..3) 錯誤訊息提示傳入值需要2~3個
+temp(1,2)
+temp(1,2,3)
+
+def temp(a,b,c=99, *argv)   
+  ap [a,b,c,argv]
+end
+temp()  # wrong arguments (0 for 2+) 錯誤訊息提示傳入值需要2個以上
+temp(1,2,3,4,5,6,7,8)
+```
+
+```ruby 進階的method定義 (block)
+
+```

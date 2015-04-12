@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ' [Mac] Ruby on Rails 基本環境建置'
+title: '[Mac] Ruby on Rails 基本環境建置'
 date: 2014-01-17 12:47
 comments: true
 categories: 

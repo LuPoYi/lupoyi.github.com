@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[ruby] 教學 - 基本使用介紹(未補完)"
+title: "[ruby] 教學 - 基本使用介紹"
 date: 2015-03-31 22:27:04 +0800
 comments: true
 categories: [ruby]
@@ -26,7 +26,7 @@ nil.class   #=> NilClass
  => 1
 ```
 
-##基本使用介紹
+##基本使用
 
 ```ruby 各種常見型別
 123.class #integer
@@ -47,32 +47,96 @@ false.class #FalseClass
 x = 18  
 puts "your age is #{x}"  
 puts ‘\n\t’ #單引號 (無視內容，直接輸出)  
-puts "\n\t" #雙引號  
+puts "\n\t" #雙引號 (換行)
 ```
 
 ###Hash
 ```ruby hash宣告方式
-x = {:wer => 123, :sdf => 234}  
+x = {"wer" => 123, "sdf" => 234}  
+y = {:wer => 123, :sdf => 234}  
 #symbol 拿來當key用  
-:wer.object_id  # symbol會比string還相對快 存放記憶體  
-“wer”.object_id  
+:wer.object_id  # 在hash中key使用symbol會比string還相對快    
 ```
 
 ###Nil/ False
-``` ruby 只有兩種東西是非 ( nil false)  (JS裡面0也是false)
+ruby只有兩種東西為非 => nil / false
+其他都為true
+
+``` ruby nil false
 nil || false || 0   # 0    
 nil && false && 0   # nil  
 ```
 
 ###判斷式
 
-``` ruby
+#####基本上if else
+
+``` ruby if/else if/elsif/else unless/end
 if size > 30  
   puts "winner"  
 else  
   puts "loser"  
-end  
+end
+```
 
-condition ? 123 : 456
+#####因為在ruby只有false及nil為非，所以當你要判斷該變數有沒有值時可以直接這樣寫
+``` ruby 
+if name
+  puts name
+else
+  puts "error"
+end
+```
+#####後置判斷式，直接把if放後面
+``` ruby 
+puts name if name # 當name有值時印出來，沒有值即略過
+puts "error" unless name # 當name沒有值時印error
+```
+
+
+#####簡單的判斷式也可以寫成單行
+
+``` ruby condition ? true : false
 puts size > 30 ? "winner" : "loser"    
 ```
+
+
+#####ruby的switch case寫法
+
+``` ruby case/when/end
+case lang
+when "java"
+  puts "good"
+when "python"
+  puts "great!"
+when "ruby"
+  puts "perfect!"
+else
+  puts "WTF"
+end
+```
+
+###迴圈
+
+在ruby中比較少在用for跟while迴圈，大部分情況都使用each(iterator迭代器)
+
+``` ruby each
+lang = ["ruby","python","java","c","php"]
+for i in lang
+  puts i
+end
+
+lang.each do |i|
+  puts 'I love ' + i
+end
+
+[1,2,3,4,5,6].each do |i| end
+
+3.times do
+  puts 'Good Job!'
+end
+```
+
+
+
+Reference: RailsFun - JokerCatz

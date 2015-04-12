@@ -1,7 +1,7 @@
 ---
 layout: post
 title: '[ASP.NET] Reset Password in Active Directory'
-date: 2014-02-14 12:47
+date: 2013-02-14 12:47
 comments: true
 categories: [C#, Active Directory, Password]
 ---

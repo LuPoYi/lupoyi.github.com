@@ -1,7 +1,7 @@
 ---
 layout: post
 title: '[ASP.NET] 自動寄信'
-date: 2014-03-03 12:48
+date: 2013-03-03 12:48
 comments: true
 categories: [C#, email]
 ---
