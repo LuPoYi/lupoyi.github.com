@@ -9,22 +9,7 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="config/database.yml1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-development: # 開發用 adapter: sqlite3 database: db/development.sqlite3 pool: 5 timeout: 5000 &hellip;">
+  <meta name="description" content="在嘗試安裝vCenter時，中途出現了「VMware VirtualCenter HTTP Port: 80」 原因是vCenter自動安裝時會把SQL Server及.NET Framework相關的元件裝上，導致IIS佔用了80Port。 解法之一就是直接在Roles裡把IIS移掉就行了( &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -95,6 +80,47 @@ development: # 開發用 adapter: sqlite3 database: db/development.sqlite3 pool:
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/10/14/vmware-vcenter-80-port-is-already-in-use/">[VMware] VCenter 80 Port 已被使用</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-10-14T13:50:00+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>1:50 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>在嘗試安裝vCenter時，中途出現了「VMware VirtualCenter HTTP Port: 80」</p>
+
+<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/147088/Dh30xvaKQpiGNxLRUEAh_2013-10-14%20%E4%B8%8B%E5%8D%88%2002-30-11.jpg" alt="2013-10-14 下午 02-30-11.jpg" /></p>
+
+<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/147088/BSI6GB26R6GYxsu7JrMh_181188866_x.jpg" alt="181188866_x.jpg" /></p>
+
+<p>原因是vCenter自動安裝時會把SQL Server及.NET Framework相關的元件裝上，導致IIS佔用了80Port。</p>
+
+<p>解法之一就是直接在Roles裡把IIS移掉就行了(想在vCenter上使用IIS就要另求解了)</p>
+
+<p><br>
+Reference:
+<a href="http://blog.xuite.net/cadmus.lin/yo/43386562-%E3%80%90%E7%B3%BB%E3%80%91%E5%A6%82%E4%BD%95%E6%9F%A5%E8%A9%A2%E5%93%AA%E5%80%8B%E7%A8%8B%E5%BC%8F%E4%BD%94%E7%94%A8%E4%BA%86%E6%8C%87%E5%AE%9APort">http://blog.xuite.net/cadmus.lin/yo/43386562-%E3%80%90%E7%B3%BB%E3%80%91%E5%A6%82%E4%BD%95%E6%9F%A5%E8%A9%A2%E5%93%AA%E5%80%8B%E7%A8%8B%E5%BC%8F%E4%BD%94%E7%94%A8%E4%BA%86%E6%8C%87%E5%AE%9APort</a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1081,67 +1107,6 @@ person.Speak("Fuck You Jex");
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/09/12/sql-date/">[SQL] 常用的日期函數</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2013-09-12T07:46:00+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>7:46 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>DATEADD (datepart , number , date )
-將日期加上n個datepart</p>
-
-<pre><code>Select dateadd( day , 1 , '2020-10-20') // 2020-10-21
-Select dateadd( year , 5 , '2020-10-20') // 2025-10-20
-</code></pre>
-
-<p>DATEDIFF ( datepart , startdate , enddate )
-計算startdate跟enddate距離幾個datepart</p>
-
-<pre><code>Select datediff ( day , '2015-06-17', '2015-06-20') // 3 
-    Select datediff ( MONTH , '2015-06-17', '2016-06-20') // 12
-</code></pre>
-
-<p>  DATEPART( datepart , date )
-  可查詢日期的細部資料：第幾季、第幾週、星期幾..傳回整數</p>
-
-<pre><code>Select DATEPART( weekday , getdate() ) // 4
-Select DATEPART( quarter , getdate() ) // 3
-</code></pre>
-
-<p>  DATENAME ( datepart , date )
-  可查詢日期的細部資料：第幾季、第幾週、星期幾..傳回字串</p>
-
-<pre><code>Select DATENAME( weekday , getdate() ) // Wednesday
-Select DATENAME( month  , getdate() ) // September
-</code></pre>
-
-<p>其他</p>
-
-<pre><code>IsDate() 判斷是否為合法日期
-getdate()   取得系統目前時間
-</code></pre>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/4">&larr; Older</a>
@@ -1157,6 +1122,10 @@ getdate()   取得系統目前時間
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/04/12/ruby-basic-2/">[Ruby] 教學 - 基本使用介紹2(未補)</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2015/03/31/ruby-basic-1/">[Ruby] 教學 - 基本使用介紹</a>
@@ -1192,10 +1161,6 @@ getdate()   取得系統目前時間
     
       <li class="post">
         <a href="/blog/2013/12/14/ruby-is-a-small-note/">[Ruby] 變數</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/12/09/ruby-and/">[Ruby] And與&&的差別</a>
       </li>
     
   </ul>

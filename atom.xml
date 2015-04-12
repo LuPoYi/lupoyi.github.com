@@ -4,7 +4,7 @@
   <title><![CDATA[Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2015-04-10T22:26:23+08:00</updated>
+  <updated>2015-04-12T17:09:59+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -12,6 +12,70 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[[Ruby] 教學 - 基本使用介紹2(未補)]]></title>
+    <link href="http://blog.poyi.tw/blog/2015/04/12/ruby-basic-2/"/>
+    <updated>2015-04-12T22:27:04+08:00</updated>
+    <id>http://blog.poyi.tw/blog/2015/04/12/ruby-basic-2</id>
+    <content type="html"><![CDATA[<h2>Define Methods</h2>
+
+<figure class='code'><figcaption><span>基本的method定義</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">temp</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="mi">123</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">temp</span><span class="p">()</span>
+</span><span class='line'><span class="n">temp</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">temp</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">)</span>
+</span><span class='line'><span class="nb">puts</span> <span class="err">“</span><span class="c1">#{a} , #{b}, #{c}”</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="n">temp</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+</span><span class='line'><span class="n">temp</span> <span class="mi">1</span> <span class="p">,</span> <span class="mi">2</span> <span class="p">,</span> <span class="mi">3</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">temp</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="mi">99</span><span class="p">)</span> <span class="c1"># 第三個參數若沒傳入的話預設值為99</span>
+</span><span class='line'><span class="nb">puts</span> <span class="err">“</span><span class="c1">#{a} , #{b}, #{c}”</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="n">temp</span><span class="p">()</span>  <span class="c1"># wrong arguments (0 for 2..3) 錯誤訊息提示傳入值需要2~3個</span>
+</span><span class='line'><span class="n">temp</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+</span><span class='line'><span class="n">temp</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">temp</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="mi">99</span><span class="p">,</span> <span class="o">*</span><span class="n">argv</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">ap</span> <span class="o">[</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">argv</span><span class="o">]</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="n">temp</span><span class="p">()</span>  <span class="c1"># wrong arguments (0 for 2+) 錯誤訊息提示傳入值需要2個以上</span>
+</span><span class='line'><span class="n">temp</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<pre><code class="ruby 進階的method定義 (block)"></code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[[Ruby] 教學 - 基本使用介紹]]></title>
@@ -1481,27 +1545,6 @@ HT Hyper-threading 可將核心分成兩個序列在處理 cpu數<em>核心數</
 
 
 <p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/147937/gXa3Ts8RrqxlUGr0Ducw_2013-11-1%20%E4%B8%8B%E5%8D%88%2002-58-54.jpg" alt="2013-11-1 下午 02-58-54.jpg" /></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[[VMware] VCenter 80 Port 已被使用]]></title>
-    <link href="http://blog.poyi.tw/blog/2013/10/14/vmware-vcenter-80-port-is-already-in-use/"/>
-    <updated>2013-10-14T13:50:00+08:00</updated>
-    <id>http://blog.poyi.tw/blog/2013/10/14/vmware-vcenter-80-port-is-already-in-use</id>
-    <content type="html"><![CDATA[<p>在嘗試安裝vCenter時，中途出現了「VMware VirtualCenter HTTP Port: 80」</p>
-
-<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/147088/Dh30xvaKQpiGNxLRUEAh_2013-10-14%20%E4%B8%8B%E5%8D%88%2002-30-11.jpg" alt="2013-10-14 下午 02-30-11.jpg" /></p>
-
-<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/147088/BSI6GB26R6GYxsu7JrMh_181188866_x.jpg" alt="181188866_x.jpg" /></p>
-
-<p>原因是vCenter自動安裝時會把SQL Server及.NET Framework相關的元件裝上，導致IIS佔用了80Port。</p>
-
-<p>解法之一就是直接在Roles裡把IIS移掉就行了(想在vCenter上使用IIS就要另求解了)</p>
-
-<p><br>
-Reference:
-<a href="http://blog.xuite.net/cadmus.lin/yo/43386562-%E3%80%90%E7%B3%BB%E3%80%91%E5%A6%82%E4%BD%95%E6%9F%A5%E8%A9%A2%E5%93%AA%E5%80%8B%E7%A8%8B%E5%BC%8F%E4%BD%94%E7%94%A8%E4%BA%86%E6%8C%87%E5%AE%9APort">http://blog.xuite.net/cadmus.lin/yo/43386562-%E3%80%90%E7%B3%BB%E3%80%91%E5%A6%82%E4%BD%95%E6%9F%A5%E8%A9%A2%E5%93%AA%E5%80%8B%E7%A8%8B%E5%BC%8F%E4%BD%94%E7%94%A8%E4%BA%86%E6%8C%87%E5%AE%9APort</a></p>
 ]]></content>
   </entry>
   
