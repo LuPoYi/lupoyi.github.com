@@ -210,7 +210,7 @@
     <loc>http://blog.poyi.tw/about/</loc>
   </url>
   <url>
-    <loc>http://blog.poyi.tw/about/</loc>
+    <loc>http://blog.poyi.tw/about/index2.html</loc>
   </url>
   <url>
     <loc>http://blog.poyi.tw/blog/categories/css/</loc>
@@ -301,5 +301,17 @@
   </url>
   <url>
     <loc>http://blog.poyi.tw/blog/categories/csv/</loc>
+  </url>
+  <url>
+    <loc>http://blog.poyi.tw/posts/2/</loc>
+  </url>
+  <url>
+    <loc>http://blog.poyi.tw/posts/3/</loc>
+  </url>
+  <url>
+    <loc>http://blog.poyi.tw/posts/4/</loc>
+  </url>
+  <url>
+    <loc>http://blog.poyi.tw/posts/5/</loc>
   </url>
 </urlset>

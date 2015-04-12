@@ -9,26 +9,11 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="稍微記一下，相關變化都蠻簡單的 DataTable基本語法1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-DataTable dt = new DataTable(); // 定義欄位
-dt.Columns.Add(&quot;name&quot;);
-dt. &hellip;">
+  <meta name="description" content="稍微記一下，相關變化都蠻簡單的 DataTable dt = new DataTable(); // 定義欄位
+dt.Columns.Add(&ldquo;name&rdquo;);
+dt.Columns.Add(&ldquo;cardNumber&rdquo;);
+// 也可定義欄位型態
+// &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -41,9 +26,12 @@ dt. &hellip;">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
    <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/libs/jquery.min.js" type="text/javascript"></script>
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+
   <link href="/atom.xml" rel="alternate" title="Bob 學習筆記" type="application/atom+xml">
   <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
@@ -51,6 +39,39 @@ dt. &hellip;">
 <link href='http://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro:200,300,400,500,600,700,900' rel='stylesheet' type='text/css'>
+
+
+	<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 
 
 
@@ -109,42 +130,22 @@ dt. &hellip;">
 
 <div class="entry-content"><p>稍微記一下，相關變化都蠻簡單的</p>
 
-<figure class='code'><figcaption><span>DataTable基本語法</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="n">DataTable</span> <span class="n">dt</span> <span class="p">=</span> <span class="k">new</span> <span class="n">DataTable</span><span class="p">();</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">// 定義欄位</span>
-</span><span class='line'><span class="n">dt</span><span class="p">.</span><span class="n">Columns</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">);</span>
-</span><span class='line'><span class="n">dt</span><span class="p">.</span><span class="n">Columns</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s">&quot;cardNumber&quot;</span><span class="p">);</span>
-</span><span class='line'><span class="c1">// 也可定義欄位型態 </span>
-</span><span class='line'><span class="c1">// dt.Columns.Add(&quot;ID&quot;, typeof(Int32));</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">dt</span><span class="p">.</span><span class="n">Rows</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s">&quot;Bob&quot;</span><span class="p">,</span> <span class="s">&quot;12345&quot;</span><span class="p">);</span>
-</span><span class='line'><span class="n">dt</span><span class="p">.</span><span class="n">Rows</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s">&quot;Ada&quot;</span><span class="p">,</span> <span class="s">&quot;10000&quot;</span><span class="p">);</span>
-</span><span class='line'><span class="n">dt</span><span class="p">.</span><span class="n">Rows</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s">&quot;Kilin&quot;</span><span class="p">,</span><span class="s">&quot;20000&quot;</span><span class="p">);</span>
-</span><span class='line'><span class="c1">// 也可用DataRow來存放資料</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="c1">// 格式相同直接放入GridView</span>
-</span><span class='line'><span class="n">GridView</span><span class="p">.</span><span class="n">DataSource</span> <span class="p">=</span> <span class="n">dt</span><span class="p">;</span>
-</span><span class='line'><span class="n">GridView</span><span class="p">.</span><span class="n">DataBind</span><span class="p">();</span>
-</span></code></pre></td></tr></table></div></figure>
+<p>DataTable dt = new DataTable();</p>
 
+<p>// 定義欄位
+dt.Columns.Add(&ldquo;name&rdquo;);
+dt.Columns.Add(&ldquo;cardNumber&rdquo;);
+// 也可定義欄位型態
+// dt.Columns.Add(&ldquo;ID&rdquo;, typeof(Int32));</p>
+
+<p>dt.Rows.Add(&ldquo;Bob&rdquo;, &ldquo;12345&rdquo;);
+dt.Rows.Add(&ldquo;Ada&rdquo;, &ldquo;10000&rdquo;);
+dt.Rows.Add(&ldquo;Kilin&rdquo;,&ldquo;20000&rdquo;);
+// 也可用DataRow來存放資料</p>
+
+<p>// 格式相同直接放入GridView
+GridView.DataSource = dt;
+GridView.DataBind();</p>
 </div>
 
 
@@ -213,8 +214,8 @@ dt. &hellip;">
   <ul>
     <li><i class="fa fa-home fa-lg"></i><a href="http://blog.poyi.tw"> Home </a></li>
     <li><i class="fa fa-calendar fa-lg"></i><a href="http://blog.poyi.tw/blog/archives/"> Archives </a></li>
-    <li><i class="fa fa-user fa-lg"></i><a href="http://blog.poyi.tw/about/"> About </a></li>
-    <li><i class="fa fa-rss fa-lg"></i><a href="http://blog.poyi.tw/atom.xml"> Feed </a></li>
+    <li><i class="fa fa-user fa-lg"></i><a href="http://blog.poyi.tw/about"> About </a></li>
+    <li><i class="fa fa-user fa-lg"></i><a href="http://blog.poyi.tw/aboutme"> About </a></li>
   </ul>
 </section>
 

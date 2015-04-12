@@ -4,7 +4,7 @@
   <title><![CDATA[Category: c# | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/c-number/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2015-04-12T17:37:21+08:00</updated>
+  <updated>2015-04-12T23:34:45+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -86,24 +86,22 @@ mailSmtp.Send(mailMessage);
     <id>http://blog.poyi.tw/blog/2013/03/03/c-datatable-operation-memos</id>
     <content type="html"><![CDATA[<p>稍微記一下，相關變化都蠻簡單的</p>
 
-<pre><code class="c# DataTable基本語法">DataTable dt = new DataTable();
+<p>DataTable dt = new DataTable();</p>
 
-// 定義欄位
-dt.Columns.Add("name");
-dt.Columns.Add("cardNumber");
-// 也可定義欄位型態 
-// dt.Columns.Add("ID", typeof(Int32));
+<p>// 定義欄位
+dt.Columns.Add(&ldquo;name&rdquo;);
+dt.Columns.Add(&ldquo;cardNumber&rdquo;);
+// 也可定義欄位型態
+// dt.Columns.Add(&ldquo;ID&rdquo;, typeof(Int32));</p>
 
-dt.Rows.Add("Bob", "12345");
-dt.Rows.Add("Ada", "10000");
-dt.Rows.Add("Kilin","20000");
-// 也可用DataRow來存放資料
+<p>dt.Rows.Add(&ldquo;Bob&rdquo;, &ldquo;12345&rdquo;);
+dt.Rows.Add(&ldquo;Ada&rdquo;, &ldquo;10000&rdquo;);
+dt.Rows.Add(&ldquo;Kilin&rdquo;,&ldquo;20000&rdquo;);
+// 也可用DataRow來存放資料</p>
 
-
-// 格式相同直接放入GridView
+<p>// 格式相同直接放入GridView
 GridView.DataSource = dt;
-GridView.DataBind();
-</code></pre>
+GridView.DataBind();</p>
 ]]></content>
   </entry>
   
