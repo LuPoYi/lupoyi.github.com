@@ -201,13 +201,16 @@
     <lastmod>2013-01-02T02:43:00+08:00</lastmod>
   </url>
   <url>
-    <loc>http://blog.poyi.tw/about/</loc>
-  </url>
-  <url>
     <loc>http://blog.poyi.tw/blog/archives/</loc>
   </url>
   <url>
     <loc>http://blog.poyi.tw/</loc>
+  </url>
+  <url>
+    <loc>http://blog.poyi.tw/about/</loc>
+  </url>
+  <url>
+    <loc>http://blog.poyi.tw/about/</loc>
   </url>
   <url>
     <loc>http://blog.poyi.tw/blog/categories/css/</loc>
@@ -298,17 +301,5 @@
   </url>
   <url>
     <loc>http://blog.poyi.tw/blog/categories/csv/</loc>
-  </url>
-  <url>
-    <loc>http://blog.poyi.tw/posts/2/</loc>
-  </url>
-  <url>
-    <loc>http://blog.poyi.tw/posts/3/</loc>
-  </url>
-  <url>
-    <loc>http://blog.poyi.tw/posts/4/</loc>
-  </url>
-  <url>
-    <loc>http://blog.poyi.tw/posts/5/</loc>
   </url>
 </urlset>

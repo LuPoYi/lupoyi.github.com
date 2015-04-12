@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Ruby | Bob 學習筆記]]></title>
+  <title><![CDATA[Category: ruby | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2015-04-12T17:09:59+08:00</updated>
+  <updated>2015-04-12T17:37:21+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[[Ruby] 教學 - 基本使用介紹2(未補)]]></title>
+    <title type="html"><![CDATA[[ruby] 教學 - 基本使用介紹2(未補)]]></title>
     <link href="http://blog.poyi.tw/blog/2015/04/12/ruby-basic-2/"/>
     <updated>2015-04-12T22:27:04+08:00</updated>
     <id>http://blog.poyi.tw/blog/2015/04/12/ruby-basic-2</id>
@@ -52,7 +52,7 @@ temp(1,2,3,4,5,6,7,8)
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[[Ruby] 教學 - 基本使用介紹]]></title>
+    <title type="html"><![CDATA[[ruby] 教學 - 基本使用介紹]]></title>
     <link href="http://blog.poyi.tw/blog/2015/03/31/ruby-basic-1/"/>
     <updated>2015-03-31T22:27:04+08:00</updated>
     <id>http://blog.poyi.tw/blog/2015/03/31/ruby-basic-1</id>
@@ -184,7 +184,7 @@ end
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[[Ruby] 匯出批次csv檔]]></title>
+    <title type="html"><![CDATA[[ruby] 匯出批次csv檔]]></title>
     <link href="http://blog.poyi.tw/blog/2014/05/06/ruby-csv-file/"/>
     <updated>2014-05-06T21:14:00+08:00</updated>
     <id>http://blog.poyi.tw/blog/2014/05/06/ruby-csv-file</id>
@@ -256,7 +256,7 @@ body = ['ruby','1000','18']
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[[Ruby] Require,load,include,extend]]></title>
+    <title type="html"><![CDATA[[ruby] require,load,include,extend]]></title>
     <link href="http://blog.poyi.tw/blog/2014/03/16/ruby-require-load-include-extend/"/>
     <updated>2014-03-16T21:14:00+08:00</updated>
     <id>http://blog.poyi.tw/blog/2014/03/16/ruby-require-load-include-extend</id>
@@ -319,7 +319,7 @@ Hi!
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[[Ruby] And與&&的差別]]></title>
+    <title type="html"><![CDATA[[Ruby] and與&&的差別]]></title>
     <link href="http://blog.poyi.tw/blog/2013/12/09/ruby-and/"/>
     <updated>2013-12-09T03:01:00+08:00</updated>
     <id>http://blog.poyi.tw/blog/2013/12/09/ruby-and</id>
