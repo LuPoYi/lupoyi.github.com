@@ -4,7 +4,7 @@
   <title><![CDATA[Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2015-04-12T23:36:17+08:00</updated>
+  <updated>2015-04-13T22:36:36+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -73,7 +73,27 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<pre><code class="ruby 進階的method定義 (block)"></code></pre>
+
+
+<figure class='code'><figcaption><span>進階的method定義 (block)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="mi">1212</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>$name:全域變數</li>
+<li>@name:實例變數，作用域僅限定於 self 指示的物件</li>
+<li>@@name: 類別變數，在class內才使用，跨class</li>
+<li>name:區域變數(小寫字母或底線開頭；初始化前並沒有 nil 值)</li>
+<li>Name:常數(大寫開頭；重覆定義時會出現警告)</li>
+</ul>
+
+
+<h4>Marshal</h4>
+
+<h4>Error Handling</h4>
+
+<h4>Class &amp; Module</h4>
 ]]></content>
   </entry>
   
