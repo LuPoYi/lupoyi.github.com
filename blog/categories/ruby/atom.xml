@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2015-04-14T22:53:45+08:00</updated>
+  <updated>2015-04-14T22:54:37+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[[ruby] 教學 - 基本使用介紹2(未補)]]></title>
+    <title type="html"><![CDATA[[Ruby] 教學 - 基本使用介紹2(未補)]]></title>
     <link href="http://blog.poyi.tw/blog/2015/04/12/ruby-basic-2/"/>
     <updated>2015-04-12T22:27:04+08:00</updated>
     <id>http://blog.poyi.tw/blog/2015/04/12/ruby-basic-2</id>
@@ -68,7 +68,7 @@ temp(1,2,3,4,5,6,7,8)
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[[ruby] 教學 - 基本使用介紹]]></title>
+    <title type="html"><![CDATA[[Ruby] 教學 - 基本使用介紹]]></title>
     <link href="http://blog.poyi.tw/blog/2015/03/31/ruby-basic-1/"/>
     <updated>2015-03-31T22:27:04+08:00</updated>
     <id>http://blog.poyi.tw/blog/2015/03/31/ruby-basic-1</id>
@@ -272,7 +272,7 @@ body = ['ruby','1000','18']
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[[ruby] require,load,include,extend]]></title>
+    <title type="html"><![CDATA[[Ruby] require,load,include,extend]]></title>
     <link href="http://blog.poyi.tw/blog/2014/03/16/ruby-require-load-include-extend/"/>
     <updated>2014-03-16T21:14:00+08:00</updated>
     <id>http://blog.poyi.tw/blog/2014/03/16/ruby-require-load-include-extend</id>
