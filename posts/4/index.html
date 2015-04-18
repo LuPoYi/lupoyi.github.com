@@ -9,9 +9,8 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="DATEADD (datepart , number , date )
-將日期加上n個datepart Select dateadd( day , 1 , '2020-10-20') // 2020-10-21
-Select dateadd( year , 5 , '2020-10-20 &hellip;">
+  <meta name="description" content="jQuery 是一套 JavaScript 的 Library，目的是簡化dom的操作，也可以說是簡化HTML與JavaScript之間的操作 基本規則：jQuery物件.方法( ).方法( ) 具名函數 var person = new Object();
+person.Name = "Bob &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -100,6 +99,70 @@ Select dateadd( year , 5 , '2020-10-20 &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/09/15/jquery/">[jQuery] 入門</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-15T09:20:00+08:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>jQuery 是一套 JavaScript 的 Library，目的是簡化dom的操作，也可以說是簡化HTML與JavaScript之間的操作</p>
+
+<p>基本規則：jQuery物件.方法( ).方法( )</p>
+
+<p>具名函數</p>
+
+<pre><code>var person = new Object();
+person.Name = "Bob";
+person.Speak = say;
+
+function say(msg) {
+    alert(this.Name + ": " + msg);
+}
+person.Speak("Fuck You Jex");
+</code></pre>
+
+<p>不具名函數</p>
+
+<pre><code>var person = new Object();
+person.Name = "Bob";
+person.Speak = function (msg) { alert(this.Name + ": " + msg); }
+
+person.Speak("Fuck You Jex");
+</code></pre>
+
+<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/139105/UhKVDZTaTaWvACtSs3ix_2013-9-15%20%E4%B8%8B%E5%8D%88%2005-26-04.jpg" alt="2013-9-15 下午 05-26-04.jpg" /></p>
+
+<p>Reference:
+<a href="http://msdn.microsoft.com/zh-tw/asp.net/dd452439.aspx">http://msdn.microsoft.com/zh-tw/asp.net/dd452439.aspx</a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -739,70 +802,6 @@ Response.End();
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/08/23/linq-introduction/">[ASP.NET] Linq基本用法</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-08-23T02:28:00+08:00" pubdate data-updated="true"></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>公司前輩跟我提過可以用用看Linq比較潮(?)
-寫.NET的時候就不需要寫的這麼..無腦</p>
-
-<pre><code>sqlStr += "Select ...";
-sqlStr += "from ....";
-sqlStr += "join ...";
-sqlStr += "where ...."
-
-string sql = @"SELECT ...
-           FROM table1
-           WHERE field3 = @Param1";
-</code></pre>
-
-<p>基本Linq類似這樣</p>
-
-<pre><code>var Query =
-    from q in myDB.Employee
-    where q.Name == "Bob"
-    select q;
-</code></pre>
-
-<p>Group By</p>
-
-<pre><code>int[] values = {1,2,3,4,5,6};
-var Query =
-    from p in values
-    group p by p % 2 ==0;
-    // values =&gt; 1 3 5 0 2 4
-</code></pre>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/5">&larr; Older</a>
@@ -848,6 +847,10 @@ var Query =
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/04/18/all-your-important-files-are-encrypted/">[其他] 資料被綁架軟體加密，贖金要求用比特幣支付</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2015/04/12/ruby-basic-2/">[Ruby] 教學 - 基本使用介紹2(未補)</a>
@@ -903,10 +906,6 @@ var Query =
     
       <li class="post">
         <a href="/blog/2013/11/22/apt/">[APT] 進階持續性滲透攻擊 筆記</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/11/20/rails-activerecord/">[Rails] ActiveRecord</a>
       </li>
     
   </ul>

@@ -9,13 +9,11 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="Client-Base ViewState：相當於把值存放於hidden field當中 只存在單一Web form
-預設開啟、未完善加密
-不會佔用系統資源
-較不適合大量或機密資料 Server-Base Session：類似跨網頁的全域變數 多個頁面傳值
-預設存放記憶體
-可設定Time out
-">
+  <meta name="description" content="公司前輩跟我提過可以用用看Linq比較潮(?)
+寫.NET的時候就不需要寫的這麼..無腦 sqlStr += "Select ...";
+sqlStr += "from ....";
+sqlStr += "join ...";
+sqlStr += "where ...." string sql &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -104,6 +102,70 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/08/23/linq-introduction/">[ASP.NET] Linq基本用法</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-23T02:28:00+08:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>公司前輩跟我提過可以用用看Linq比較潮(?)
+寫.NET的時候就不需要寫的這麼..無腦</p>
+
+<pre><code>sqlStr += "Select ...";
+sqlStr += "from ....";
+sqlStr += "join ...";
+sqlStr += "where ...."
+
+string sql = @"SELECT ...
+           FROM table1
+           WHERE field3 = @Param1";
+</code></pre>
+
+<p>基本Linq類似這樣</p>
+
+<pre><code>var Query =
+    from q in myDB.Employee
+    where q.Name == "Bob"
+    select q;
+</code></pre>
+
+<p>Group By</p>
+
+<pre><code>int[] values = {1,2,3,4,5,6};
+var Query =
+    from p in values
+    group p by p % 2 ==0;
+    // values =&gt; 1 3 5 0 2 4
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -782,83 +844,9 @@ GridView.DataBind();</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/01/02/css-position/">[CSS] 定位</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-01-02T02:43:00+08:00" pubdate data-updated="true"></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>以前都是直接用現成的，或是抓別人的css來用
-一堆語法都知道是幹麻的，但自己寫的時候就完全不行
-尤其是layout的配置..明明感覺很簡單的卻要一直亂試喬半天&hellip;</p>
-
-<p>趁著最近面試的機會來記一下CSS&hellip;. <del>不然平常都很懶得學</del></p>
-
-<h2>Position</h2>
-
-<figure class='code'><figcaption><span>position, 依top, left, right, bottom調整位置</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nt">position</span><span class="o">:</span> <span class="nt">absloute</span> <span class="c">/* 絕對位置 */</span>
-</span><span class='line'><span class="nt">position</span><span class="o">:</span> <span class="nt">relative</span> <span class="c">/* 相對位置，以該元件所屬的左上角做基準點，移動位置仍會佔有原先位置的空間 */</span>
-</span><span class='line'><span class="nt">position</span><span class="o">:</span> <span class="nt">fixed</span>    <span class="c">/* 固定位置，定在視窗上 */</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">/* 當相對位置包住絕對位置時，絕對位置所基準就會為相對位置 */</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>z-index</h2>
-
-<p>z-index 元件重疊時，值愈大，顯示愈上面</p>
-
-<h2>overflow</h2>
-
-<figure class='code'><figcaption><span>控制轉軸</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nt">overflow</span><span class="o">:</span> <span class="nt">visible</span> <span class="c">/* 內容完整呈現 */</span>
-</span><span class='line'><span class="nt">overflow</span><span class="o">:</span> <span class="nt">hidden</span>  <span class="c">/* 只顯示放得下的內容 */</span>
-</span><span class='line'><span class="nt">overflow</span><span class="o">:</span> <span class="nt">scroll</span>  <span class="c">/* 強制加右方下方捲軸 */</span>
-</span><span class='line'><span class="nt">overflow</span><span class="o">:</span> <span class="nt">auto</span>    <span class="c">/* 內容放不下時，加右方捲軸 */</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Reference:
-<a href="http://my-web-design.blogspot.tw/2007/10/css-divposition.html">http://my-web-design.blogspot.tw/2007/10/css-divposition.html</a>
-<a href="http://www.1keydata.com/css-tutorial/tw/position.php">http://www.1keydata.com/css-tutorial/tw/position.php</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
+    
+      <a class="prev" href="/posts/6">&larr; Older</a>
     
     <a href="/blog/archives/"> Archives </a>
     
@@ -901,6 +889,10 @@ GridView.DataBind();</p>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/04/18/all-your-important-files-are-encrypted/">[其他] 資料被綁架軟體加密，贖金要求用比特幣支付</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2015/04/12/ruby-basic-2/">[Ruby] 教學 - 基本使用介紹2(未補)</a>
@@ -956,10 +948,6 @@ GridView.DataBind();</p>
     
       <li class="post">
         <a href="/blog/2013/11/22/apt/">[APT] 進階持續性滲透攻擊 筆記</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/11/20/rails-activerecord/">[Rails] ActiveRecord</a>
       </li>
     
   </ul>
