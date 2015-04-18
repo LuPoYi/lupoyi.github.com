@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>[Ruby] 教學 - 基本使用介紹2(未補) - Bob 學習筆記</title>
+  <title>[Ruby] 教學 - 基本使用介紹2 - Bob 學習筆記</title>
   <meta name="author" content="Bob (PoYi)">
 
   
@@ -129,7 +129,7 @@ puts &hellip;">
   
   <header>
     
-      <h1 class="entry-title">[Ruby] 教學 - 基本使用介紹2(未補)</h1>
+      <h1 class="entry-title">[Ruby] 教學 - 基本使用介紹2</h1>
     
     
       <p class="meta">
@@ -210,7 +210,62 @@ puts &hellip;">
 
 
 <figure class='code'><figcaption><span>進階的method定義 (block)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="mi">1212</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">temp</span><span class="p">(</span><span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">temp</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1">#=&gt; wrong number of arguments (1 for 0) &amp;block不是傳入的參數</span>
+</span><span class='line'><span class="n">temp</span><span class="p">()</span>   <span class="c1">#=&gt; nil</span>
+</span><span class='line'><span class="n">temp</span><span class="p">(){</span><span class="nb">puts</span> <span class="s2">&quot;temp&quot;</span><span class="p">}</span> <span class="c1">#=&gt; nil </span>
+</span><span class='line'><span class="c1"># 當temp()後面有block時會把這一段code放置&amp;block當中，但因為裡面沒有呼叫它執行所以nil</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">temp2</span><span class="p">(</span><span class="o">&amp;</span><span class="n">abc</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">abc</span><span class="o">.</span><span class="n">call</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">temp2</span><span class="p">{</span><span class="nb">puts</span> <span class="s2">&quot;gogo&quot;</span><span class="p">}</span> <span class="c1">#=&gt; &quot;gogo&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>class methods  / instance methods</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Car</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">hi</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="err">“</span><span class="n">aaa</span><span class="err">”</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">hi</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="err">“</span><span class="n">bbb</span><span class="err">”</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">car</span> <span class="o">=</span> <span class="no">Car</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'><span class="no">Car</span><span class="o">.</span><span class="n">hi</span> <span class="c1">#=&gt; &quot;aaa&quot;</span>
+</span><span class='line'><span class="n">car</span><span class="o">.</span><span class="n">hi</span> <span class="c1">#=&gt; &quot;bbb&quot;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -223,11 +278,63 @@ puts &hellip;">
 </ul>
 
 
-<h4>Marshal</h4>
+<h4>Class &amp; Module</h4>
+
+<p>Moudule只是一個不能被new的class</p>
+
+<figure class='code'><figcaption><span>class / module </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Class</span><span class="o">.</span><span class="n">superclass</span> <span class="c1">#=&gt; module </span>
+</span><span class='line'>
+</span><span class='line'><span class="k">module</span> <span class="nn">Flyable</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">fly</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;I can fly!&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Cat</span>
+</span><span class='line'>  <span class="kp">include</span> <span class="no">Flyable</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">kitty</span> <span class="o">=</span> <span class="no">Cat</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'><span class="n">kitty</span><span class="o">.</span><span class="n">fly</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <h4>Error Handling</h4>
 
-<h4>Class &amp; Module</h4>
+<p>沒額外指定變數的話，錯誤資訊會放至$!(ERROR_INFO)及$@(ERROR_POSITION)</p>
+
+<figure class='code'><figcaption><span>begin/rescue/ensure/end</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">begin</span>
+</span><span class='line'>  <span class="c1"># 有機會發生例外的code</span>
+</span><span class='line'><span class="k">rescue</span>
+</span><span class='line'>  <span class="c1"># 發現例外後要執行的code</span>
+</span><span class='line'><span class="k">ensure</span>
+</span><span class='line'>  <span class="c1"># 無論是否例外都會執行的code</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
 </div>
 
 
@@ -325,7 +432,7 @@ puts &hellip;">
       </li>
     
       <li class="post">
-        <a href="/blog/2015/04/12/ruby-basic-2/">[Ruby] 教學 - 基本使用介紹2(未補)</a>
+        <a href="/blog/2015/04/12/ruby-basic-2/">[Ruby] 教學 - 基本使用介紹2</a>
       </li>
     
       <li class="post">
