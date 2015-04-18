@@ -4,7 +4,7 @@
   <title><![CDATA[Category: bitcoin | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/bitcoin/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2015-04-18T15:42:32+08:00</updated>
+  <updated>2015-04-18T16:21:39+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -20,7 +20,7 @@
     <id>http://blog.poyi.tw/blog/2015/04/18/all-your-important-files-are-encrypted</id>
     <content type="html"><![CDATA[<p>最近遇到幾間公司發現這種事，突然所有檔案被綁架軟體加密無法開啟，而桌面多了一份文字檔，裡面附上特殊網址及比特幣錢包位址…。(這只是其中一款綁架軟體)</p>
 
-<p><img src="/images/poyi/bitcoin1.png" title="&lsquo;image&rsquo; &lsquo;images&rsquo;" ></p>
+<p>{% img /images/poyi/bitcoin1.png &lsquo;image&rsquo; &lsquo;images&rsquo; %}</p>
 
 <p>輸入它給的錢包地址登入後，就可以看到所要求的贖金或相關資料了…</p>
 
@@ -29,13 +29,13 @@ At the moment, the cost of private key for decrypting your file is 2.5 BTC&helli
 
 <p>而為了證明你付完贖金真的幫你解密，它還幫你解密其中一個的檔案讓你下載看看是否沒問題… <del>不得不說還蠻貼心的…</del></p>
 
-<p><img src="/images/poyi/bitcoin2.jpg" title="&lsquo;image&rsquo; &lsquo;images&rsquo;" ></p>
+<p>{% img /images/poyi/bitcoin2.jpg &lsquo;image&rsquo; &lsquo;images&rsquo; %}</p>
 
 <p>而聽說沒付指定的贖金，對方不但不解密還會提高贖金</p>
 
 <p>所以如果資料沒備份又找不到解法，可能還是得付贖金吧</p>
 
-<p><img src="/images/poyi/bitcoin3.png" title="&lsquo;image&rsquo; &lsquo;images&rsquo;" ></p>
+<p>{% img /images/poyi/bitcoin3.png &lsquo;image&rsquo; &lsquo;images&rsquo; %}</p>
 
 <p>另外它也提供如何購買比特幣相關資訊…<del>貼心再+1…</del></p>
 
