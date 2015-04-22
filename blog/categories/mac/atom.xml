@@ -4,7 +4,7 @@
   <title><![CDATA[Category: mac | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/mac/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2015-04-21T21:10:51+08:00</updated>
+  <updated>2015-04-22T23:14:49+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -29,8 +29,9 @@ $ ln -s /Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl /usr/
 $ sublime id_rsa.pub
 </code></pre>
 
-<p>Reference:
-<a href="http://jocoomadao.blogspot.tw/2013/11/macterminal-sublime.html">http://jocoomadao.blogspot.tw/2013/11/macterminal-sublime.html</a></p>
+<p>Reference:</p>
+
+<p><a href="http://jocoomadao.blogspot.tw/2013/11/macterminal-sublime.html">http://jocoomadao.blogspot.tw/2013/11/macterminal-sublime.html</a></p>
 ]]></content>
   </entry>
   
