@@ -4,7 +4,7 @@
   <title><![CDATA[Category: require | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/require/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2015-04-22T23:14:49+08:00</updated>
+  <updated>2015-04-22T23:18:01+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -70,8 +70,9 @@ Hi!
  =&gt; nil 
 </code></pre>
 
-<p>Reference:
-<a href="http://www.slideshare.net/BruceLi2/rubypart2">http://www.slideshare.net/BruceLi2/rubypart2</a>
+<p>Reference:</p>
+
+<p><a href="http://www.slideshare.net/BruceLi2/rubypart2">http://www.slideshare.net/BruceLi2/rubypart2</a>
 <a href="http://cat-son.blogspot.tw/2012/10/2-rubyinclude-extendrequire.html#sthash.QduzPsMe.cFJYqpMb.dpbs">http://cat-son.blogspot.tw/2012/10/2-rubyinclude-extendrequire.html#sthash.QduzPsMe.cFJYqpMb.dpbs</a></p>
 ]]></content>
   </entry>
