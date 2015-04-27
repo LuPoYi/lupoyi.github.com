@@ -271,6 +271,11 @@ puts &hellip;">
 </span></code></pre></td></tr></table></div></figure>
 
 
+<ul>
+<li>attr_accessor 自動設定setter &amp; getter</li>
+<li>attr_reader 設定getter</li>
+<li>attr_writer 設定setter</li>
+</ul>
 
 
 <figure class='code'><figcaption><span>attr_accessor 等同於 getter & setter</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -299,8 +304,8 @@ puts &hellip;">
 </span><span class='line'><span class="k">end</span>
 </span><span class='line'>
 </span><span class='line'><span class="n">person</span> <span class="o">=</span> <span class="no">Person</span><span class="o">.</span><span class="n">new</span>
-</span><span class='line'><span class="n">person</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Bob&#39;</span>
-</span><span class='line'><span class="n">person</span><span class="o">.</span><span class="n">name</span> <span class="c1"># =&gt; &quot;bob&quot;</span>
+</span><span class='line'><span class="n">person</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Bob&#39;</span> <span class="c1"># setter</span>
+</span><span class='line'><span class="n">person</span><span class="o">.</span><span class="n">name</span> <span class="c1"># =&gt; &quot;bob&quot; # getter</span>
 </span></code></pre></td></tr></table></div></figure>
 
 

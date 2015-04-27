@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2015-04-27T23:10:17+08:00</updated>
+  <updated>2015-04-27T23:17:22+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -77,6 +77,13 @@ Car.hi #=&gt; "aaa"
 car.hi #=&gt; "bbb"
 </code></pre>
 
+<ul>
+<li>attr_accessor 自動設定setter &amp; getter</li>
+<li>attr_reader 設定getter</li>
+<li>attr_writer 設定setter</li>
+</ul>
+
+
 <pre><code class="ruby attr_accessor 等同於 getter & setter">class Person
   # attr_accessor :name 
   def name # getter
@@ -89,8 +96,8 @@ car.hi #=&gt; "bbb"
 end
 
 person = Person.new
-person.name = 'Bob'
-person.name # =&gt; "bob"
+person.name = 'Bob' # setter
+person.name # =&gt; "bob" # getter
 </code></pre>
 
 <ul>
