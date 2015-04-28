@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2015-04-27T23:17:22+08:00</updated>
+  <updated>2015-04-28T20:22:39+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -162,7 +162,9 @@ end
     <link href="http://blog.poyi.tw/blog/2015/03/31/ruby-basic-1/"/>
     <updated>2015-03-31T22:27:04+08:00</updated>
     <id>http://blog.poyi.tw/blog/2015/03/31/ruby-basic-1</id>
-    <content type="html"><![CDATA[<h2>Everything is Ruby is an object</h2>
+    <content type="html"><![CDATA[<p>其實比較偏向一個總複習的概念:D</p>
+
+<h2>Everything is Ruby is an object</h2>
 
 <p>Ruby 內皆為物件，無基本型別</p>
 
