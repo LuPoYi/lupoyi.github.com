@@ -121,7 +121,8 @@
   <p>Ruby on Rails Developer</p>
   <p>往Full Stack發展中 :D</p>
   <p>maydaybob2000 at gmail.com</p>
-  <div>Bitcoin: <span id="qrcode_serial">1BobLu5mh5H6sbhGYcwfKt2griDkV6Vhmw</span>　(無聊可donate一下…)</div>
+  <div>Bitcoin: <span id="qrcode_serial">1BobLu5mh5H6sbhGYcwfKt2griDkV6Vhmw</span>　(無聊可donate一下…<span id="amount"></span>)</div>
+  
   <br><br>
   <a class="qrcode_me" id="qrcode_image" href="bitcoin://1BobLu5mh5H6sbhGYcwfKt2griDkV6Vhmw"></a>
 </div>
@@ -140,6 +141,11 @@ jQuery(function($){
     colorLight : "#ffffff",
     correctLevel : QRCode.CorrectLevel.L
   });
+
+  $.getJSON("https://blockchain.info/q/addressbalance/1BobLu5mh5H6sbhGYcwfKt2griDkV6Vhmw", function(data) {
+      $('#amount').html(data.toFixed(8));
+  });
+
 });
 </script>
 
