@@ -4,7 +4,7 @@
   <title><![CDATA[Category: bitcoin | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/bitcoin/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2015-05-04T20:39:25+08:00</updated>
+  <updated>2015-05-04T20:54:34+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -18,16 +18,19 @@
     <link href="http://blog.poyi.tw/blog/2015/04/18/all-your-important-files-are-encrypted/"/>
     <updated>2015-04-18T00:13:56+08:00</updated>
     <id>http://blog.poyi.tw/blog/2015/04/18/all-your-important-files-are-encrypted</id>
-    <content type="html"><![CDATA[<p>最近遇到幾間公司發現這種事，突然所有檔案被綁架軟體加密無法開啟，而桌面多了一份文字檔，裡面附上特殊網址及比特幣錢包位址…。(這只是其中一款綁架軟體)</p>
+    <content type="html"><![CDATA[<p><strong>這篇單純紀錄一下被綁架後頁面的流程。</strong></p>
+
+<p>最近遇到幾間公司發現這種事，突然所有檔案被綁架軟體加密無法開啟，而桌面多了一份文字檔，裡面附上特殊網址及比特幣錢包位址…。(當然，這只是其中一款綁架軟體的方式)</p>
 
 <p><img src="/images/poyi/bitcoin1.png" title="&lsquo;image&rsquo; &lsquo;images&rsquo;" ></p>
 
-<p>輸入它給的錢包地址登入後，就可以看到所要求的贖金或相關資料了…</p>
+<p>輸入它給的錢包地址登入後，就可以看到所要求的贖金或相關資料了</p>
 
-<p>應該會有類似的字眼「All your important files are encrypted.
-At the moment, the cost of private key for decrypting your file is 2.5 BTC&hellip;」，這邊贖金要求你付2.5顆比特幣</p>
+<p>應該會有類似以下的字眼 (這邊贖金要求你付2.5顆比特幣)</p>
 
-<p>而為了證明你付完贖金真的幫你解密，它還幫你解密其中一個的檔案讓你下載看看是否沒問題… <del>不得不說還蠻貼心的…</del></p>
+<p><strong>All your important files are encrypted. <br>At the moment, the cost of private key for decrypting your file is 2.5 BTC</strong></p>
+
+<p>而為了證明你付完贖金真的幫你解密，它還幫你解密其中一個的檔案讓你下載看看是否沒問題(如下圖下方的xlsx檔)… <del>不得不說還蠻貼心的…</del></p>
 
 <p><img src="/images/poyi/bitcoin2.jpg" title="&lsquo;image&rsquo; &lsquo;images&rsquo;" ></p>
 
@@ -35,13 +38,20 @@ At the moment, the cost of private key for decrypting your file is 2.5 BTC&helli
 
 <p>所以如果資料沒備份又找不到解法，也許就甘願一點付錢吧…</p>
 
-<p>算是這年頭支付太過方便的缺點吧…(?)</p>
+<p>算是這年頭支付太過方便的缺點吧</p>
 
 <p><img src="/images/poyi/bitcoin3.png" title="&lsquo;image&rsquo; &lsquo;images&rsquo;" ></p>
 
-<p>另外它也提供如何購買比特幣相關資訊…<del>貼心再+1…</del></p>
+<p>而另外它也提供如何購買比特幣相關資訊…<del>貼心再+1…</del></p>
 
-<p>目前在台灣是可以直接去全家買會比較方便，這邊就請自行google</p>
+<p>目前在台灣是可以直接去全家買會比較方便，這邊就請自行google :D</p>
+
+<p><br>
+Reference:</p>
+
+<p><a href="http://buzzorange.com/techorange/2015/01/19/how-my-mom-got-hacked/">http://buzzorange.com/techorange/2015/01/19/how-my-mom-got-hacked/</a></p>
+
+<p><a href="http://www.epochtimes.com/b5/15/4/9/n4407355.htm">http://www.epochtimes.com/b5/15/4/9/n4407355.htm</a></p>
 ]]></content>
   </entry>
   
