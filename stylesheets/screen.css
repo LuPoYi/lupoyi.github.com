@@ -50,3 +50,15 @@ a#logo:hover {
   border: 1px solid rgba(0, 0, 0, 0.6);
 }
 
+section#titles{
+  text-align: center;
+}
+
+@media only screen and (min-width: 992px){
+  #content {
+    margin-right: 316px;
+  }
+  aside.sidebar {
+    width: 246px;
+  }
+}
