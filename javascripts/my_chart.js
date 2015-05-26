@@ -57,13 +57,7 @@ var chart = AmCharts.makeChart("chartdiv", {
     "export": {
         "enabled": true
     },
-    "dataProvider": [{
-        "date": "2012-07-27",
-        "value": 13
-    }, {
-        "date": "2012-07-28",
-        "value": 11
-    }]
+    "dataProvider": [my_json]
 });
 
 chart.addListener("rendered", zoomChart);
