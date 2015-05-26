@@ -1,6 +1,6 @@
 var chart = AmCharts.makeChart("chartdiv", {
     "type": "serial",
-    "theme": "light",
+    "theme": "dark",
     "marginRight": 80,
     "autoMarginOffset": 20,
     "path": "http://www.amcharts.com/lib/3/",
