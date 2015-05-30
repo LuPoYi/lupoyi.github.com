@@ -3,7 +3,6 @@ var chart = AmCharts.makeChart("chartdiv", {
     "theme": "dark",
     "marginRight": 80,
     "autoMarginOffset": 20,
-    "path": "http://www.amcharts.com/lib/3/",
     "dataDateFormat": "YYYY-MM-DD",
     "valueAxes": [{
         "id": "v1",
@@ -57,7 +56,7 @@ var chart = AmCharts.makeChart("chartdiv", {
     "export": {
         "enabled": true
     },
-    "dataProvider": [my_json]
+    "dataProvider": my_json
 });
 
 chart.addListener("rendered", zoomChart);
