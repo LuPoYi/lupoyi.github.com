@@ -9,11 +9,10 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="公司前輩跟我提過可以用用看Linq比較潮(?)
-寫.NET的時候就不需要寫的這麼..無腦 sqlStr += "Select ...";
-sqlStr += "from ....";
-sqlStr += "join ...";
-sqlStr += "where ...." string sql &hellip;">
+  <meta name="description" content="Response.WriteFile 檔案下載方式一 using System.IO; string filePath = "C:/porn.jpg";
+FileInfo file = new FileInfo(filePath);
+Response.Clear()
+Response.Buffer &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -102,6 +101,81 @@ sqlStr += "where ...." string sql &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/08/28/aspnet-file-download/">[ASP.NET] 檔案下載寫法</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-28T08:57:00+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2013/08/28/aspnet-file-download/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>Response.WriteFile 檔案下載方式一</h2>
+
+<pre><code>using System.IO;
+
+string filePath = "C:/porn.jpg";
+FileInfo file = new FileInfo(filePath);
+Response.Clear()
+Response.Buffer = false; 
+Response.ContentType = "application/octet-stream"; // 指定檔案類型
+Response.AddHeader("Content-Disposition","attachment;filename="+"porn.jpg"); // 設定檔名
+// System.Web.HttpUtility.UrlEncode(newFileName, System.Text.Encoding.UTF8) 解決中文檔名亂碼
+Response.AppendHeader("Content-Length", file.Length.ToString()); // 表頭加入檔案大小
+Response.WriteFile(file.FullName);
+Response.Flush();
+Response.End();
+</code></pre>
+
+<h2>System.Net.WebClient.DownloadData 檔案下載方式二</h2>
+
+<pre><code>using System.Net;
+
+WebClient wc = new WebClient();
+byte[] byteFile = null;
+string path = "C:/porn.jpg"; // 設定路徑
+byteFile = wc.DownloadData(path);
+string fileName = System.IO.Path.GetFileName(path); // 取得檔案名稱
+Response.AppendHeader("content-disposition", "attachment;filename=" + "porn.jpg"); //設定檔名
+// HttpContext.Current.Server.UrlEncode(fileName) 解決中文檔名亂碼
+Response.ContentType = "application/octet-stream";  // 指定檔案類型   
+Response.BinaryWrite(byteFile); // 內容轉出作檔案下載
+Response.End();
+</code></pre>
+
+<h2>參考資料</h2>
+
+<p><a href="http://www.dotblogs.com.tw/jerrymow/archive/2013/04/22/102084.aspx">http://www.dotblogs.com.tw/jerrymow/archive/2013/04/22/102084.aspx</a>
+<a href="http://blog.miniasp.com/post/2008/03/12/Caution-about-ASPNET-Response-a-Large-File.aspx">http://blog.miniasp.com/post/2008/03/12/Caution-about-ASPNET-Response-a-Large-File.aspx</a>
+<a href="http://www.dotblogs.com.tw/whitewing/archive/2010/03/18/14102.aspx">http://www.dotblogs.com.tw/whitewing/archive/2010/03/18/14102.aspx</a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -809,61 +883,6 @@ GridView.DataBind();</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/02/08/mac-set-to-open-files-by-default-software/">[Mac] 設定開啟檔案的預設軟體</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-02-08T14:32:00+08:00" pubdate data-updated="true"></time>
-        
-         | <a href="/blog/2013/02/08/mac-set-to-open-files-by-default-software/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>近期在mac的環境上有點卡關，像是環境的PATH曾被我改壞&hellip;
-還好朋友有幫我救回來= =&hellip;</p>
-
-<p>在windows上習慣會調整一些檔案的預設軟體來開啟，像是影片檔的格式一堆就很需要額外設定。</p>
-
-<h2>首先，在檔案上右鍵找到「簡介」</h2>
-
-<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/178268/gVGABZ5oQ9Oca4LD8OTm_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202014-02-08%20%E4%B8%8B%E5%8D%8810.36.21.png" alt="螢幕快照 2014-02-08 下午10.36.21.png" /></p>
-
-<h2>接著找到「打開檔案的應用程式」，調整為你要的預設軟體</h2>
-
-<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/178268/kVk2SMrPT6qXdk2uoBBP_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202014-02-08%20%E4%B8%8B%E5%8D%8810.37.00.png" alt="螢幕快照 2014-02-08 下午10.37.00.png" /></p>
-
-<h2>然後按下「全部更改」</h2>
-
-<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/178268/esuLHuOZSXyw2g7fe7W8_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202014-02-08%20%E4%B8%8B%E5%8D%8810.29.35.png" alt="螢幕快照 2014-02-08 下午10.29.35.png" /></p>
-
-<h2>就可以把該副檔名的檔案都設定成此軟體開啟了yaya</h2>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/6">&larr; Older</a>
@@ -912,6 +931,10 @@ GridView.DataBind();</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/06/12/rails-ajax-render-error-in-json/">[Rails] AJAX render errors in json</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/04/18/all-your-important-files-are-encrypted/">資料被綁架軟體加密，要求贖金用比特幣支付</a>
       </li>
     
@@ -924,7 +947,7 @@ GridView.DataBind();</p>
       </li>
     
       <li class="post">
-        <a href="/blog/2014/05/06/ruby-csv-file/">[ruby] 匯出批次csv檔</a>
+        <a href="/blog/2014/05/06/ruby-csv-file/">[Ruby] 匯出批次csv檔</a>
       </li>
     
       <li class="post">
@@ -965,10 +988,6 @@ GridView.DataBind();</p>
     
       <li class="post">
         <a href="/blog/2013/12/02/rails-gem/">[Rails] 打包Gem套件</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/11/22/apt/">[APT] 進階持續性滲透攻擊 筆記</a>
       </li>
     
   </ul>

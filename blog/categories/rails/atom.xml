@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rails | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2015-06-10T20:40:32+08:00</updated>
+  <updated>2015-06-12T19:07:02+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -14,7 +14,47 @@
 
   
   <entry>
-    <title type="html"><![CDATA[[ruby] 匯出批次csv檔]]></title>
+    <title type="html"><![CDATA[[Rails] AJAX render errors in json]]></title>
+    <link href="http://blog.poyi.tw/blog/2015/06/12/rails-ajax-render-error-in-json/"/>
+    <updated>2015-06-12T19:02:48+08:00</updated>
+    <id>http://blog.poyi.tw/blog/2015/06/12/rails-ajax-render-error-in-json</id>
+    <content type="html"><![CDATA[<pre><code class="javascript new.html.erb">$.ajax({
+  url: URL,
+  async:false,
+  data:{
+    amount: 100,
+  },
+  dataType:'json',
+  method:'post',
+  success:function(data){
+    // do success things
+  },
+  error:function(xhr){
+    var errors = $.parseJSON(xhr.responseText).errors
+    alert(errors);
+  }
+);
+</code></pre>
+
+<pre><code class="ruby orders_controller.rb ">def create
+  if amount &lt; 100
+    render :json =&gt; { :errors =&gt; "金額不足" }, :status =&gt; 422
+    return 
+  end
+end
+</code></pre>
+
+<p>當錯誤回傳時，使用422(Unprocessable Entity)來做error handling</p>
+
+<p>Reference:</p>
+
+<p><a href="http://travisjeffery.com/b/2012/04/rendering-errors-in-json-with-rails/">http://travisjeffery.com/b/2012/04/rendering-errors-in-json-with-rails/</a>
+<a href="http://stackoverflow.com/questions/16133923/400-vs-422-response-to-post-of-data">http://stackoverflow.com/questions/16133923/400-vs-422-response-to-post-of-data</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[[Ruby] 匯出批次csv檔]]></title>
     <link href="http://blog.poyi.tw/blog/2014/05/06/ruby-csv-file/"/>
     <updated>2014-05-06T21:14:00+08:00</updated>
     <id>http://blog.poyi.tw/blog/2014/05/06/ruby-csv-file</id>
@@ -202,70 +242,6 @@ $ sudo gem install activerecord-sqlserver-adapter
 <a href="https://github.com/rails-sqlserver">https://github.com/rails-sqlserver</a>
 <a href="http://www.cnblogs.com/lwm-1988/archive/2012/05/28/2520728.html">http://www.cnblogs.com/lwm-1988/archive/2012/05/28/2520728.html</a>
 <a href="http://stackoverflow.com/questions/12010780/rails-how-to-do-search">http://stackoverflow.com/questions/12010780/rails-how-to-do-search</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[[Rails] CRUD 備忘]]></title>
-    <link href="http://blog.poyi.tw/blog/2013/10/30/rails-crud/"/>
-    <updated>2013-10-30T01:07:00+08:00</updated>
-    <id>http://blog.poyi.tw/blog/2013/10/30/rails-crud</id>
-    <content type="html"><![CDATA[<pre><code class="ruby index">&lt;%= link_to 'list', teams_path %&gt; # GET
-
-def index
-    @teams = Team.all
-end
-</code></pre>
-
-<pre><code class="ruby show">&lt;%= link_to 'show', team_path(team) %&gt; # GET
-
-def show
-    @team = Team.find(params[:id])
-end
-</code></pre>
-
-<pre><code class="ruby new">&lt;%= link_to 'new Team', new_team_path %&gt;
-
-def new
-    @team = Team.new
-end
-</code></pre>
-
-<pre><code class="ruby create">&lt;%= form_for @team, :url =&gt; teams_path do |t| %&gt; #In a form, the default request method is POST
-&lt;%= t.text_field :name %&gt;
-&lt;%= t.text_field :year %&gt;
-&lt;%= t.submit "Create" %&gt;
-&lt;% end %&gt;
-
-def create
-    Team.create(params[:id])
-end
-</code></pre>
-
-<pre><code class="ruby edit">&lt;%= link_to 'edit', edit_team_path(team) %&gt;
-
-def edit
-    @team = Team.find(params[:id])
-end
-</code></pre>
-
-<pre><code class="ruby update">&lt;%= form_for @team, :url =&gt; teams_path(@team),:method =&gt; :put do |t| %&gt; 
-&lt;%= t.text_field :name %&gt;
-&lt;%= t.text_field :year %&gt;
-&lt;%= t.submit "Create" %&gt;
-&lt;% end %&gt;
-
-def update
-    @team.update_attributes(params[:team]) #...
-end
-</code></pre>
-
-<pre><code class="ruby destroy">&lt;%= link_to @team, team_path(@team), :method =&gt; :delete %&gt;
-
-def destroy
-    Team.find(params[:id].destroy
-end
-</code></pre>
 ]]></content>
   </entry>
   

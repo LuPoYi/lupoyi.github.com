@@ -5,11 +5,27 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>[ASP.NET] 檔案資料夾存取 - Bob 學習筆記</title>
+  <title>[Rails] AJAX render errors in json - Bob 學習筆記</title>
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="刪除 System.IO.File.Delete(filePath); System.IO.Directory.Delete(folderPath); 搬移 System.IO.File.Move(sourceFilePath, destinationFilePath); System.IO. &hellip;">
+  <meta name="description" content="new.html.erb1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+$.ajax({ url: URL, async:false, data:{ amount: 100, }, dataType:&#39;json&#39;, method:&#39;post&# &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +34,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.poyi.tw/blog/2013/09/18/aspnet-archive-folder-access/">
+  <link rel="canonical" href="http://blog.poyi.tw/blog/2015/06/12/rails-ajax-render-error-in-json/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
    <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
@@ -101,7 +117,7 @@
   
   <header>
     
-      <h1 class="entry-title">[ASP.NET] 檔案資料夾存取</h1>
+      <h1 class="entry-title">[Rails] AJAX Render Errors in Json</h1>
     
     
       <p class="meta">
@@ -117,7 +133,7 @@
   
 
 
-<time datetime="2013-09-18T14:49:00+08:00" pubdate data-updated="true"></time>
+<time datetime="2015-06-12T19:02:48+08:00" pubdate data-updated="true"></time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -126,32 +142,64 @@
   </header>
 
 
-<div class="entry-content"><p>刪除</p>
+<div class="entry-content"><figure class='code'><figcaption><span>new.html.erb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+</span><span class='line'>  <span class="nx">url</span><span class="o">:</span> <span class="nx">URL</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">async</span><span class="o">:</span><span class="kc">false</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">data</span><span class="o">:</span><span class="p">{</span>
+</span><span class='line'>    <span class="nx">amount</span><span class="o">:</span> <span class="mi">100</span><span class="p">,</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>  <span class="nx">dataType</span><span class="o">:</span><span class="s1">&#39;json&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">method</span><span class="o">:</span><span class="s1">&#39;post&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">success</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+</span><span class='line'>    <span class="c1">// do success things</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>  <span class="nx">error</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">xhr</span><span class="p">){</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">errors</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">parseJSON</span><span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">responseText</span><span class="p">).</span><span class="nx">errors</span>
+</span><span class='line'>    <span class="nx">alert</span><span class="p">(</span><span class="nx">errors</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<pre><code>    System.IO.File.Delete(filePath);
-    System.IO.Directory.Delete(folderPath);
-</code></pre>
 
-<p>搬移</p>
 
-<pre><code>    System.IO.File.Move(sourceFilePath, destinationFilePath);
-    System.IO.Directory.Move(sourceFolderPath, destinationFolderPath);
-</code></pre>
 
-<p>複製</p>
+<figure class='code'><figcaption><span>orders_controller.rb </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">create</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">amount</span> <span class="o">&lt;</span> <span class="mi">100</span>
+</span><span class='line'>    <span class="n">render</span> <span class="ss">:json</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:errors</span> <span class="o">=&gt;</span> <span class="s2">&quot;金額不足&quot;</span> <span class="p">},</span> <span class="ss">:status</span> <span class="o">=&gt;</span> <span class="mi">422</span>
+</span><span class='line'>    <span class="k">return</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<pre><code>    System.IO.File.Copy(sourceFilePath, destinationFilePath, true); 
-    System.IO.Directory.Copy(sourceFolderPath, destinationFolderPath, true);// true表示是否覆寫
-</code></pre>
 
-<p>取得該目標下所有檔案</p>
+<p>當錯誤回傳時，使用422(Unprocessable Entity)來做error handling</p>
 
-<pre><code>    string[] files = System.IO.Directory.GetFiles(folderPath);
-</code></pre>
+<p>Reference:</p>
 
-<p>比較需要注意的是做任何動作之前，都要需要先檢查目標是否存在，否則會跳出錯誤。</p>
-
-<p>這樣也一篇…</p>
+<p><a href="http://travisjeffery.com/b/2012/04/rendering-errors-in-json-with-rails/">http://travisjeffery.com/b/2012/04/rendering-errors-in-json-with-rails/</a>
+<a href="http://stackoverflow.com/questions/16133923/400-vs-422-response-to-post-of-data">http://stackoverflow.com/questions/16133923/400-vs-422-response-to-post-of-data</a></p>
 </div>
 
 
@@ -174,12 +222,12 @@
   
 
 
-<time datetime="2013-09-18T14:49:00+08:00" pubdate data-updated="true"></time>
+<time datetime="2015-06-12T19:02:48+08:00" pubdate data-updated="true"></time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/asp-dot-net/'>asp.net</a>
+    <a class='category' href='/blog/categories/rails/'>rails</a>
   
 </span>
 
@@ -188,7 +236,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.poyi.tw/blog/2013/09/18/aspnet-archive-folder-access/" data-via="" data-counturl="http://blog.poyi.tw/blog/2013/09/18/aspnet-archive-folder-access/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.poyi.tw/blog/2015/06/12/rails-ajax-render-error-in-json/" data-via="" data-counturl="http://blog.poyi.tw/blog/2015/06/12/rails-ajax-render-error-in-json/" >Tweet</a>
   
   
   
@@ -197,10 +245,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/09/15/jquery-selector/" title="Previous Post: [jQuery] Selector">&laquo; [jQuery] Selector</a>
+        <a class="basic-alignment left" href="/blog/2015/04/18/all-your-important-files-are-encrypted/" title="Previous Post: 資料被綁架軟體加密，要求贖金用比特幣支付">&laquo; 資料被綁架軟體加密，要求贖金用比特幣支付</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2013/09/23/aspnet-string-is-padded-with-zeros/" title="Next Post: [C#] 字串補零">[C#] 字串補零 &raquo;</a>
       
     </p>
   </footer>
@@ -337,8 +383,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://blog.poyi.tw/blog/2013/09/18/aspnet-archive-folder-access/';
-        var disqus_url = 'http://blog.poyi.tw/blog/2013/09/18/aspnet-archive-folder-access/';
+        var disqus_identifier = 'http://blog.poyi.tw/blog/2015/06/12/rails-ajax-render-error-in-json/';
+        var disqus_url = 'http://blog.poyi.tw/blog/2015/06/12/rails-ajax-render-error-in-json/';
         var disqus_script = 'embed.js';
       
     (function () {
