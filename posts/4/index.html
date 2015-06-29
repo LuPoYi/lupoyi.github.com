@@ -9,7 +9,7 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="jQuery物件有下列三種： $(&ldquo;a&rdquo;)　 $(&ldquo;table&rdquo;)　 $(&ldquo;div&rdquo;)　 :直接指定Tag類別 $(&ldquo;#myTable&rdquo;)　 :直接指定ID $(&ldquo;.clsInput& &hellip;">
+  <meta name="description" content="刪除 System.IO.File.Delete(filePath); System.IO.Directory.Delete(folderPath); 搬移 System.IO.File.Move(sourceFilePath, destinationFilePath); System.IO. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -98,6 +98,69 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/09/18/aspnet-archive-folder-access/">[ASP.NET] 檔案資料夾存取</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-18T14:49:00+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2013/09/18/aspnet-archive-folder-access/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>刪除</p>
+
+<pre><code>    System.IO.File.Delete(filePath);
+    System.IO.Directory.Delete(folderPath);
+</code></pre>
+
+<p>搬移</p>
+
+<pre><code>    System.IO.File.Move(sourceFilePath, destinationFilePath);
+    System.IO.Directory.Move(sourceFolderPath, destinationFolderPath);
+</code></pre>
+
+<p>複製</p>
+
+<pre><code>    System.IO.File.Copy(sourceFilePath, destinationFilePath, true); 
+    System.IO.Directory.Copy(sourceFolderPath, destinationFolderPath, true);// true表示是否覆寫
+</code></pre>
+
+<p>取得該目標下所有檔案</p>
+
+<pre><code>    string[] files = System.IO.Directory.GetFiles(folderPath);
+</code></pre>
+
+<p>比較需要注意的是做任何動作之前，都要需要先檢查目標是否存在，否則會跳出錯誤。</p>
+
+<p>這樣也一篇…</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -988,102 +1051,6 @@ Chrome 全都支援</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/08/29/git/">GIT</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-08-29T09:06:00+08:00" pubdate data-updated="true"></time>
-        
-         | <a href="/blog/2013/08/29/git/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><figure class='code'><figcaption><span>git</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>apt-get install git-core
-</span><span class='line'>
-</span><span class='line'>git config --global user.name <span class="s2">&quot;name&quot;</span>
-</span><span class='line'>git config --global user.email <span class="s2">&quot;email&quot;</span>
-</span><span class='line'>
-</span><span class='line'>git config --list <span class="c">#查看設定</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>Git的基本功(status, add, commit, log, .gitignore)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>git status
-</span><span class='line'>
-</span><span class='line'>git add
-</span><span class='line'>git add .
-</span><span class='line'>
-</span><span class='line'>git commit
-</span><span class='line'>git commit -m <span class="s2">&quot;Add test.rb to test git function&quot;</span>
-</span><span class='line'>
-</span><span class='line'>git log <span class="o">(</span>-p<span class="o">)</span>
-</span><span class='line'>git log --stat
-</span></code></pre></td></tr></table></div></figure>
-
-
-<figure class='code'><figcaption><span>Git</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>gitk --all <span class="o">(</span><span class="p">&amp;</span><span class="o">)</span> 內建gui
-</span><span class='line'>git branch 這個指令可以列出所有的 branch 並告訴你目前正在哪個 branch：
-</span><span class='line'>git branch <span class="o">(</span>new_branch_name<span class="o">)</span>
-</span><span class='line'>
-</span><span class='line'>git checkout <span class="s2">&quot;Loser&quot;</span> 切換branch
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><a href="http://howar31.blogspot.tw/2013/06/git.html">http://howar31.blogspot.tw/2013/06/git.html</a>
-<a href="http://tech.marsw.tw/blog/2013/08/16/git-notes-github">http://tech.marsw.tw/blog/2013/08/16/git-notes-github</a>
-因此我們稍微做一下流程的整理：
-修改檔案 => 加入 stage (git add) => 提交( git commit )=> 繼續修改其他檔案</p>
-
-<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/95260/DcnMzKdwRnym16KQJwvF_2013-10-31%20%E4%B8%8A%E5%8D%88%2011-36-28.jpg" alt="2013-10-31 上午 11-36-28.jpg" /></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/5">&larr; Older</a>
@@ -1130,6 +1097,10 @@ Chrome 全都支援</p>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/06/29/mac-build-ubuntu-flash-using-command/">[Mac] 三步驟純指令建立Ubuntu的USB隨身碟</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2015/06/12/rails-ajax-render-error-in-json/">[Rails] AJAX render errors in json</a>
@@ -1185,10 +1156,6 @@ Chrome 全都支援</p>
     
       <li class="post">
         <a href="/blog/2013/12/07/rails-bootstrap-for-rails/">[Rails] Bootstrap for Rails</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/12/02/rails-gem/">[Rails] 打包Gem套件</a>
       </li>
     
   </ul>

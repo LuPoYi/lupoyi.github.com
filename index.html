@@ -9,7 +9,7 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="new.html.erb1
+  <meta name="description" content="將載好的ubuntu.dmg 轉成 iso1
 2
 3
 4
@@ -22,10 +22,7 @@
 11
 12
 13
-14
-15
-16
-$.ajax({ url: URL, async:false, data:{ amount: 100, }, dataType:&#39;json&#39;, method:&#39;post&# &hellip;">
+Bob:Downloads $ hdiutil convert -format UDRW -o ubuntu-14.04.2-server-amd64.dmg ubuntu-14.04.2- &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -114,6 +111,119 @@ $.ajax({ url: URL, async:false, data:{ amount: 100, }, dataType:&#39;json&#39;, 
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/06/29/mac-build-ubuntu-flash-using-command/">[Mac] 三步驟純指令建立Ubuntu的USB隨身碟</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-06-29T23:39:10+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2015/06/29/mac-build-ubuntu-flash-using-command/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><figure class='code'><figcaption><span>將載好的ubuntu.dmg 轉成 iso</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>Bob:Downloads <span class="nv">$ </span>hdiutil convert -format UDRW -o ubuntu-14.04.2-server-amd64.dmg ubuntu-14.04.2-server-amd64.iso
+</span><span class='line'>正在讀取Driver Descriptor Map（DDM：0）⋯
+</span><span class='line'>正在讀取Ubuntu-Server 14.04.2 LTS amd64 （Apple_ISO：1）⋯
+</span><span class='line'>正在讀取Apple（Apple_partition_map：2）⋯
+</span><span class='line'>正在讀取Ubuntu-Server 14.04.2 LTS amd64 （Apple_ISO：3）⋯
+</span><span class='line'>..............
+</span><span class='line'>正在讀取EFI（Apple_HFS：4）⋯
+</span><span class='line'>...............
+</span><span class='line'>正在讀取Ubuntu-Server 14.04.2 LTS amd64 （Apple_ISO：5）⋯
+</span><span class='line'>..............................................................................
+</span><span class='line'>經過時間： 7.977s
+</span><span class='line'>速度：74.6Mbyte/秒
+</span><span class='line'>節省：0.0%
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>找到你的usb隨身碟後卸載它</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>Bob:Downloads <span class="nv">$ </span>diskutil list
+</span><span class='line'>/dev/disk0
+</span><span class='line'>  ...
+</span><span class='line'>/dev/disk1
+</span><span class='line'>  ...
+</span><span class='line'>/dev/disk2
+</span><span class='line'>   <span class="c">#:                       TYPE NAME                    SIZE       IDENTIFIER</span>
+</span><span class='line'>   0:     FDisk_partition_scheme                        *8.1 GB     disk2
+</span><span class='line'>   1:             Windows_FAT_32 ADATA UFD               8.1 GB     disk2s1
+</span><span class='line'>Bob:Downloads <span class="nv">$ </span>diskutil unmountDisk /dev/disk2
+</span><span class='line'>Unmount of all volumes on disk2 was successful
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>dd 把資料寫入隨身碟</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>Bob:Downloads <span class="nv">$ </span>sudo dd <span class="k">if</span><span class="o">=</span>ubuntu-14.04.2-server-amd64.dmg <span class="nv">of</span><span class="o">=</span>/dev/rdisk2 <span class="nv">bs</span><span class="o">=</span>1m
+</span><span class='line'>Password:
+</span><span class='line'>595+0 records in
+</span><span class='line'>595+0 records out
+</span><span class='line'><span class="m">623902720</span> bytes transferred in 43.058655 secs <span class="o">(</span><span class="m">14489601</span> bytes/sec<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>執行完會跳「電腦讀不到您放入的磁碟。」，代表就成功了！</p>
+
+<p>Reference:</p>
+
+<p><a href="http://blog.itist.tw/2015/01/burning-linux-iso-image-to-usb-disk-on-osx.html">http://blog.itist.tw/2015/01/burning-linux-iso-image-to-usb-disk-on-osx.html</a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1325,102 +1435,6 @@ RVM (Ruby Version Manager):Ruby版本管理工具，便於切換不同版本</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/12/23/ruby-exception-handling/">[Ruby] 例外處理</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-12-23T15:57:00+08:00" pubdate data-updated="true"></time>
-        
-         | <a href="/blog/2013/12/23/ruby-exception-handling/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>好像各語言都大同小異，try..catch..finally語法轉換一下就差不多了</p>
-
-<h1>例外處理</h1>
-
-<figure class='code'><figcaption><span>begin..end當中的rescue</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">begin</span>
-</span><span class='line'>  <span class="c1"># 有機會發生例外的code</span>
-</span><span class='line'><span class="k">rescue</span>
-</span><span class='line'>  <span class="c1"># 發現例外後要執行的code</span>
-</span><span class='line'><span class="k">ensure</span>
-</span><span class='line'>  <span class="c1"># 無論是否例外都會執行的code</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>而當例外發生時，如果沒有指定變數，Ruby會將錯誤資訊存放至$!及$@
-* $! (例外物件)
-  * .class
-  * .message
-  * .backtrace (等同於$@)
-* $@ (例外的位置資訊)</p>
-
-<figure class='code'><figcaption><span>example</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">begin</span>
-</span><span class='line'>  <span class="n">abc</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">0</span>
-</span><span class='line'><span class="k">rescue</span> <span class="o">=&gt;</span> <span class="n">ex</span>
-</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;Except class:  </span><span class="si">#{</span><span class="n">ex</span><span class="o">.</span><span class="n">class</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span class='line'>      <span class="nb">puts</span> <span class="s2">&quot;Except message: </span><span class="si">#{</span><span class="n">ex</span><span class="o">.</span><span class="n">message</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span class='line'><span class="k">ensure</span>
-</span><span class='line'>  <span class="nb">puts</span> <span class="s1">&#39;Always print&#39;</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="no">Except</span> <span class="ss">class</span><span class="p">:</span>  <span class="no">ZeroDivisionError</span>
-</span><span class='line'><span class="no">Except</span> <span class="ss">message</span><span class="p">:</span> <span class="n">divided</span> <span class="n">by</span> <span class="mi">0</span>
-</span><span class='line'><span class="no">Always</span> <span class="nb">print</span>
-</span><span class='line'><span class="o">=&gt;</span> <span class="kp">nil</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Reference:
-<a href="http://blog.tonycube.com/2011/07/ruby8.html">http://blog.tonycube.com/2011/07/ruby8.html</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -1465,6 +1479,10 @@ RVM (Ruby Version Manager):Ruby版本管理工具，便於切換不同版本</p>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/06/29/mac-build-ubuntu-flash-using-command/">[Mac] 三步驟純指令建立Ubuntu的USB隨身碟</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2015/06/12/rails-ajax-render-error-in-json/">[Rails] AJAX render errors in json</a>
@@ -1520,10 +1538,6 @@ RVM (Ruby Version Manager):Ruby版本管理工具，便於切換不同版本</p>
     
       <li class="post">
         <a href="/blog/2013/12/07/rails-bootstrap-for-rails/">[Rails] Bootstrap for Rails</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/12/02/rails-gem/">[Rails] 打包Gem套件</a>
       </li>
     
   </ul>

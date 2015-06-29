@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rails | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2015-06-28T15:15:07+08:00</updated>
+  <updated>2015-06-29T23:51:20+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -126,6 +126,66 @@ body = ['ruby','1000','18']
   </entry>
   
   <entry>
+    <title type="html"><![CDATA[[Mac] Ruby on Rails 基本環境建置]]></title>
+    <link href="http://blog.poyi.tw/blog/2014/01/17/rails-mac-os-environment-build/"/>
+    <updated>2014-01-17T12:47:00+08:00</updated>
+    <id>http://blog.poyi.tw/blog/2014/01/17/rails-mac-os-environment-build</id>
+    <content type="html"><![CDATA[<p>是說終於買了mac，省去開箱文趕緊把環境用好來繼續練習ROR!!
+但使用上還是有一點不習慣，會覺得有些地方也蠻不人性化，但相對穩定就是了</p>
+
+<h2>以下環境為OS X 10.9.1</h2>
+
+<p>1.安裝xcode-select
+Command line tool已經獨立出來，不需要安裝XCode了
+<code>bash terminal
+$ xcode-select --install
+</code>
+<img src="http://user-image.logdown.io/user/2740/blog/2734/post/176032/wrVy25UMQkeJEnuNKSEq_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202014-01-17%20%E4%B8%8B%E5%8D%889.07.40.png" alt="螢幕快照 2014-01-17 下午9.07.40.png" /></p>
+
+<p>如果安裝失敗的話也可以到<a href="https://developer.apple.com/downloads/index.action?q=xcode">這裡</a>下載
+<img src="http://user-image.logdown.io/user/2740/blog/2734/post/176032/umDZbcPSNWfhQ0VNDr7l_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202014-01-17%20%E4%B8%8B%E5%8D%8810.01.05.png" alt="螢幕快照 2014-01-17 下午10.01.05.png" /></p>
+
+<p>2.安裝homebrew
+<code>bash terminal
+$ ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)"
+</code></p>
+
+<p>3.安裝所需要的工具
+<code>bash terminal
+$ brew install git
+</code></p>
+
+<p>4.安裝RVM
+<code>bash terminal
+$ curl -L https://get.rvm.io | bash -s stable
+</code>
+5.透過RVM來安裝RUBY
+<code>bash terminal
+$ rvm install ruby
+</code>
+6.透過RVM來安裝RubyGems
+<code>bash terminal
+$ rvm rubygems current
+</code>
+7.安裝Rails
+<code>bash terminal
+$ gem install rails
+</code></p>
+
+<hr />
+
+<p>XCode:官方提供的一個IDE，主要用來開發IOS APP，不過它也包含了一些開發其他語言所需的環境
+Homebrew: OSX 套件管理工具
+RVM (Ruby Version Manager):Ruby版本管理工具，便於切換不同版本</p>
+
+<p>Reference:</p>
+
+<p><a href="http://www.computersnyou.com/2025/2013/06/install-command-line-tools-in-osx-10-9-mavericks-how-to/">http://www.computersnyou.com/2025/2013/06/install-command-line-tools-in-osx-10-9-mavericks-how-to/</a>
+<a href="http://www.slideshare.net/marsz330/ruby-on-rails-for-mac">http://www.slideshare.net/marsz330/ruby-on-rails-for-mac</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[[Rails] Bootstrap for Rails]]></title>
     <link href="http://blog.poyi.tw/blog/2013/12/07/rails-bootstrap-for-rails/"/>
     <updated>2013-12-07T06:46:00+08:00</updated>
@@ -188,60 +248,6 @@ irb&gt;BobTestPlugin.name
 <p>Reference:
 <a href="http://blog.xdite.net/posts/2012/01/04/how-to-pack-a-gem">http://blog.xdite.net/posts/2012/01/04/how-to-pack-a-gem</a>
 <a href="http://jex.logdown.com/posts/164687-ruby-build-his-own-gem-packages">http://jex.logdown.com/posts/164687-ruby-build-his-own-gem-packages</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[[Rails] Connect SQL Server]]></title>
-    <link href="http://blog.poyi.tw/blog/2013/10/30/rails-search/"/>
-    <updated>2013-10-30T16:29:00+08:00</updated>
-    <id>http://blog.poyi.tw/blog/2013/10/30/rails-search</id>
-    <content type="html"><![CDATA[<p>看到官方提供的adpter..真的不知道怎麼下手.. <del>魯蛇無誤</del></p>
-
-<h2>Ubuntu Connect to SQL Server</h2>
-
-<p>想在Unix、Linux環境上，存取SQL Server似乎大多都使用FreeTDS
-<code>bash 安裝FreeTDS
-$ sudo apt-get install freetds-dev freetds-bin tdsodbc
-</code></p>
-
-<pre><code class="bash 檢查FreeTDS版本資訊">$ tsql -C
-</code></pre>
-
-<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/156771/0fBGvXZHQ4ug2ZQOTol3_2013-11-6%20%E4%B8%8A%E5%8D%88%2010-53-15.jpg" alt="2013-11-6 上午 10-53-15.jpg" /></p>
-
-<pre><code class="bash 這時候就可以Connect SQL Server">$ tsql -H (SQL Server IP) -p 1433 -U (account) －P (password) –D (datebase name)
-</code></pre>
-
-<pre><code class="bash 直接下TSQL，這邊要用go才會執行">$ select * from Team
-$ go
-</code></pre>
-
-<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/156771/J9JDVHr7S9uu6H8nhWLj_2013-11-6%20%E4%B8%8A%E5%8D%88%2011-03-53.jpg" alt="2013-11-6 上午 11-03-53.jpg" /></p>
-
-<p>這邊代表已能在Ubuntu Connect SQL Server
-但Rails還需要其他套件</p>
-
-<hr />
-
-<h2>Rails Connect to SQL Server (Error)</h2>
-
-<pre><code class="bash 安裝tiny_tds、sqlserver adapter">$ sudo gem install tiny_tds
-$ sudo gem install activerecord-sqlserver-adapter
-</code></pre>
-
-<p>修改DateBase.yml
-<img src="http://user-image.logdown.io/user/2740/blog/2734/post/156771/n2j3Og9gRCKcn9v70smh_2013-11-6%20%E4%B8%8A%E5%8D%88%2011-36-45.jpg" alt="2013-11-6 上午 11-36-45.jpg" /></p>
-
-<p>OK..在這邊理論上是可以直接在Rails調用..
-但執行時卻會出錯，查了一下好像還無解 (Rails 4似乎還不太支援之類的..)
-錯誤訊息可參考 > <a href="https://github.com/rails-sqlserver/activerecord-sqlserver-adapter/issues/279">https://github.com/rails-sqlserver/activerecord-sqlserver-adapter/issues/279</a>
-暫時找不到解法，除非把Rails降到3.x版</p>
-
-<p>Reference:
-<a href="https://github.com/rails-sqlserver">https://github.com/rails-sqlserver</a>
-<a href="http://www.cnblogs.com/lwm-1988/archive/2012/05/28/2520728.html">http://www.cnblogs.com/lwm-1988/archive/2012/05/28/2520728.html</a>
-<a href="http://stackoverflow.com/questions/12010780/rails-how-to-do-search">http://stackoverflow.com/questions/12010780/rails-how-to-do-search</a></p>
 ]]></content>
   </entry>
   

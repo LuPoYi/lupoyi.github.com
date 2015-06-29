@@ -9,10 +9,18 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="vSphere ESXi: 整個虛擬化平台，算是一個作業系統
-vSphere Client: 操作VM用的軟體(遠端連線到ESXi)
-vCenter: 可統一管理，支援ADD 容錯 &ndash;VLAN 45(橘底)
-- 準備兩台電腦，灌上vSphere ESXi，設定名稱、IP、VLAN &hellip;">
+  <meta name="description" content="index1
+2
+3
+4
+5
+&lt;%= link_to &#39;list&#39;, teams_path %&gt; # GET def index @teams = Team.all
+end show1
+2
+3
+4
+5
+&lt;%= link_to &#39;show&#39;, &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -101,6 +109,161 @@ vCenter: 可統一管理，支援ADD 容錯 &ndash;VLAN 45(橘底)
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/10/30/rails-crud/">[Rails] CRUD 備忘</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-30T01:07:00+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2013/10/30/rails-crud/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><figure class='code'><figcaption><span>index</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sx">%= link_to &#39;list&#39;, teams_path %&gt; # GET</span>
+</span><span class='line'>
+</span><span class='line'><span class="sx">def index</span>
+</span><span class='line'><span class="sx"> @teams =</span> <span class="no">Team</span><span class="o">.</span><span class="n">all</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>show</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sx">%= link_to &#39;show&#39;, team_path(team) %&gt; # GET</span>
+</span><span class='line'>
+</span><span class='line'><span class="sx">def show</span>
+</span><span class='line'><span class="sx"> @team =</span> <span class="no">Team</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>new</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sx">%= link_to &#39;new Team&#39;, new_team_path %&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sx">def new</span>
+</span><span class='line'><span class="sx"> @team =</span> <span class="no">Team</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><figcaption><span>create</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sx">%= form_for @team, :url =</span><span class="o">&gt;</span> <span class="n">teams_path</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span> <span class="sx">%&gt; #In a form, the default request method is POST</span>
+</span><span class='line'><span class="sx">&lt;%= t.text_field :name %&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sx">%= t.text_field :year %&gt;</span>
+</span><span class='line'><span class="sx">&lt;%=</span> <span class="n">t</span><span class="o">.</span><span class="n">submit</span> <span class="s2">&quot;Create&quot;</span> <span class="sx">%&gt;</span>
+</span><span class='line'><span class="sx">&lt;% end %&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">create</span>
+</span><span class='line'>  <span class="no">Team</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>edit</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sx">%= link_to &#39;edit&#39;, edit_team_path(team) %&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sx">def edit</span>
+</span><span class='line'><span class="sx"> @team =</span> <span class="no">Team</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>update</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sx">%= form_for @team, :url =</span><span class="o">&gt;</span> <span class="n">teams_path</span><span class="p">(</span><span class="vi">@team</span><span class="p">),</span><span class="ss">:method</span> <span class="o">=&gt;</span> <span class="ss">:put</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span> <span class="sx">%&gt; </span>
+</span><span class='line'><span class="sx">&lt;%= t.text_field :name %&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sx">%= t.text_field :year %&gt;</span>
+</span><span class='line'><span class="sx">&lt;%=</span> <span class="n">t</span><span class="o">.</span><span class="n">submit</span> <span class="s2">&quot;Create&quot;</span> <span class="sx">%&gt;</span>
+</span><span class='line'><span class="sx">&lt;% end %&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">update</span>
+</span><span class='line'>  <span class="vi">@team</span><span class="o">.</span><span class="n">update_attributes</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:team</span><span class="o">]</span><span class="p">)</span> <span class="c1">#...</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>destroy</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sx">%= link_to @team, team_path(@team), :method =</span><span class="o">&gt;</span> <span class="ss">:delete</span> <span class="o">%&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">destroy</span>
+</span><span class='line'>  <span class="no">Team</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">].</span><span class="n">destroy</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -888,69 +1051,6 @@ PadRight：字串向左靠齊，將指定字元填滿右邊。</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/09/18/aspnet-archive-folder-access/">[ASP.NET] 檔案資料夾存取</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-18T14:49:00+08:00" pubdate data-updated="true"></time>
-        
-         | <a href="/blog/2013/09/18/aspnet-archive-folder-access/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>刪除</p>
-
-<pre><code>    System.IO.File.Delete(filePath);
-    System.IO.Directory.Delete(folderPath);
-</code></pre>
-
-<p>搬移</p>
-
-<pre><code>    System.IO.File.Move(sourceFilePath, destinationFilePath);
-    System.IO.Directory.Move(sourceFolderPath, destinationFolderPath);
-</code></pre>
-
-<p>複製</p>
-
-<pre><code>    System.IO.File.Copy(sourceFilePath, destinationFilePath, true); 
-    System.IO.Directory.Copy(sourceFolderPath, destinationFolderPath, true);// true表示是否覆寫
-</code></pre>
-
-<p>取得該目標下所有檔案</p>
-
-<pre><code>    string[] files = System.IO.Directory.GetFiles(folderPath);
-</code></pre>
-
-<p>比較需要注意的是做任何動作之前，都要需要先檢查目標是否存在，否則會跳出錯誤。</p>
-
-<p>這樣也一篇…</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/4">&larr; Older</a>
@@ -997,6 +1097,10 @@ PadRight：字串向左靠齊，將指定字元填滿右邊。</p>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/06/29/mac-build-ubuntu-flash-using-command/">[Mac] 三步驟純指令建立Ubuntu的USB隨身碟</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2015/06/12/rails-ajax-render-error-in-json/">[Rails] AJAX render errors in json</a>
@@ -1052,10 +1156,6 @@ PadRight：字串向左靠齊，將指定字元填滿右邊。</p>
     
       <li class="post">
         <a href="/blog/2013/12/07/rails-bootstrap-for-rails/">[Rails] Bootstrap for Rails</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/12/02/rails-gem/">[Rails] 打包Gem套件</a>
       </li>
     
   </ul>

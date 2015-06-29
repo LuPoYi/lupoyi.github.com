@@ -1,0 +1,433 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>[Mac] 三步驟純指令建立Ubuntu的USB隨身碟 - Bob 學習筆記</title>
+  <meta name="author" content="Bob (PoYi)">
+
+  
+  <meta name="description" content="將載好的ubuntu.dmg 轉成 iso1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+Bob:Downloads $ hdiutil convert -format UDRW -o ubuntu-14.04.2-server-amd64.dmg ubuntu-14.04.2- &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blog.poyi.tw/blog/2015/06/29/mac-build-ubuntu-flash-using-command/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+   <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/libs/jquery.min.js" type="text/javascript"></script>
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+
+  <link href="/atom.xml" rel="alternate" title="Bob 學習筆記" type="application/atom+xml">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Source+Code+Pro:200,300,400,500,600,700,900' rel='stylesheet' type='text/css'>
+
+
+	<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-43769917-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+  <style>html{background: url(/images/background.png) no-repeat center center fixed;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;}</style>
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">[Mac] 三步驟純指令建立Ubuntu的USB隨身碟</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-06-29T23:39:10+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><figure class='code'><figcaption><span>將載好的ubuntu.dmg 轉成 iso</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>Bob:Downloads <span class="nv">$ </span>hdiutil convert -format UDRW -o ubuntu-14.04.2-server-amd64.dmg ubuntu-14.04.2-server-amd64.iso
+</span><span class='line'>正在讀取Driver Descriptor Map（DDM：0）⋯
+</span><span class='line'>正在讀取Ubuntu-Server 14.04.2 LTS amd64 （Apple_ISO：1）⋯
+</span><span class='line'>正在讀取Apple（Apple_partition_map：2）⋯
+</span><span class='line'>正在讀取Ubuntu-Server 14.04.2 LTS amd64 （Apple_ISO：3）⋯
+</span><span class='line'>..............
+</span><span class='line'>正在讀取EFI（Apple_HFS：4）⋯
+</span><span class='line'>...............
+</span><span class='line'>正在讀取Ubuntu-Server 14.04.2 LTS amd64 （Apple_ISO：5）⋯
+</span><span class='line'>..............................................................................
+</span><span class='line'>經過時間： 7.977s
+</span><span class='line'>速度：74.6Mbyte/秒
+</span><span class='line'>節省：0.0%
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>找到你的usb隨身碟後卸載它</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>Bob:Downloads <span class="nv">$ </span>diskutil list
+</span><span class='line'>/dev/disk0
+</span><span class='line'>  ...
+</span><span class='line'>/dev/disk1
+</span><span class='line'>  ...
+</span><span class='line'>/dev/disk2
+</span><span class='line'>   <span class="c">#:                       TYPE NAME                    SIZE       IDENTIFIER</span>
+</span><span class='line'>   0:     FDisk_partition_scheme                        *8.1 GB     disk2
+</span><span class='line'>   1:             Windows_FAT_32 ADATA UFD               8.1 GB     disk2s1
+</span><span class='line'>Bob:Downloads <span class="nv">$ </span>diskutil unmountDisk /dev/disk2
+</span><span class='line'>Unmount of all volumes on disk2 was successful
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>dd 把資料寫入隨身碟</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>Bob:Downloads <span class="nv">$ </span>sudo dd <span class="k">if</span><span class="o">=</span>ubuntu-14.04.2-server-amd64.dmg <span class="nv">of</span><span class="o">=</span>/dev/rdisk2 <span class="nv">bs</span><span class="o">=</span>1m
+</span><span class='line'>Password:
+</span><span class='line'>595+0 records in
+</span><span class='line'>595+0 records out
+</span><span class='line'><span class="m">623902720</span> bytes transferred in 43.058655 secs <span class="o">(</span><span class="m">14489601</span> bytes/sec<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>執行完會跳「電腦讀不到您放入的磁碟。」，代表就成功了！</p>
+
+<p>Reference:</p>
+
+<p><a href="http://blog.itist.tw/2015/01/burning-linux-iso-image-to-usb-disk-on-osx.html">http://blog.itist.tw/2015/01/burning-linux-iso-image-to-usb-disk-on-osx.html</a></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Bob (PoYi)</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-06-29T23:39:10+08:00" pubdate data-updated="true"></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/mac/'>mac</a>, <a class='category' href='/blog/categories/ubuntu/'>ubuntu</a>, <a class='category' href='/blog/categories/usb/'>usb</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.poyi.tw/blog/2015/06/29/mac-build-ubuntu-flash-using-command/" data-via="" data-counturl="http://blog.poyi.tw/blog/2015/06/29/mac-build-ubuntu-flash-using-command/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/06/12/rails-ajax-render-error-in-json/" title="Previous Post: [Rails] AJAX render errors in json">&laquo; [Rails] AJAX render errors in json</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section id="titles">
+  <a id="logo" href="http://blog.poyi.tw" title="Bob 學習筆記"></a>
+  <h1 id="site_title"><a href="http://blog.poyi.tw" title="Bob 學習筆記">Bob 學習筆記</a></h1>
+  <h3 id="site_subtitle">Loser of the year</h3>
+</section>
+
+<section id="menu">
+  <ul>
+    <li><i class="fa fa-home fa-lg"></i><a href="http://blog.poyi.tw"> Home </a></li>
+    <li><i class="fa fa-calendar fa-lg"></i><a href="http://blog.poyi.tw/blog/archives/"> Archives </a></li>
+    <li><i class="fa fa-user fa-lg"></i><a href="http://blog.poyi.tw/about"> About </a></li>
+    <li><i class="fa fa-users fa-lg"></i><a href="http://blog.poyi.tw/friends"> Friends </a></li>
+    <li><i class="fa fa-magic fa-lg"></i><a href="http://blog.poyi.tw/others"> Others </a></li>
+  </ul>
+</section>
+
+<section id="social">
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/06/29/mac-build-ubuntu-flash-using-command/">[Mac] 三步驟純指令建立Ubuntu的USB隨身碟</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/06/12/rails-ajax-render-error-in-json/">[Rails] AJAX render errors in json</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/04/18/all-your-important-files-are-encrypted/">資料被綁架軟體加密，要求贖金用比特幣支付</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/04/12/ruby-basic-2/">[Ruby] 教學 - 基本使用介紹2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/03/31/ruby-basic-1/">[Ruby] 教學 - 基本使用介紹</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/05/06/ruby-csv-file/">[Ruby] 匯出批次csv檔</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/03/16/ruby-require-load-include-extend/">[Ruby] require,load,include,extend</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/19/mac-directly-in-the-terminal-to-open-sublime/">[Mac] 直接在終端機開啟sublime</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/17/rails-mac-os-environment-build/">[Mac] Ruby on Rails 基本環境建置</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/13/javascript-triggered-interrupt-event-or-action/">[JavaScript] 中斷事件或動作的觸發</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/23/ruby-exception-handling/">[Ruby] 例外處理</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/18/ruby-functions-for-numbers/">[Ruby] Functions for Numbers</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/14/ruby-is-a-small-note/">[Ruby] 變數</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/09/ruby-and/">[Ruby] and與&&的差別</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/07/rails-bootstrap-for-rails/">[Rails] Bootstrap for Rails</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Bob (PoYi) -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'blogpoyitw';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://blog.poyi.tw/blog/2015/06/29/mac-build-ubuntu-flash-using-command/';
+        var disqus_url = 'http://blog.poyi.tw/blog/2015/06/29/mac-build-ubuntu-flash-using-command/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

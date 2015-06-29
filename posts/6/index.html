@@ -9,8 +9,16 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="近期在mac的環境上有點卡關，像是環境的PATH曾被我改壞&hellip;
-還好朋友有幫我救回來= =&hellip; 在windows上習慣會調整一些檔案的預設軟體來開啟，像是影片檔的格式一堆就很需要額外設定。 首先，在檔案上右鍵找到「簡介」 接著找到「打開檔案的應用程式」，調整為你要的預設軟體 &hellip;">
+  <meta name="description" content="重設密碼建議還是用LDAP去抓USER，以免抓錯人之類的 Reset Password in Active Directory1
+2
+3
+4
+5
+6
+7
+8
+9
+DirectoryEntry userDirEntry = new DirectoryEntry(&quot;LDAP://&quot &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -99,6 +107,136 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/02/14/aspnet-reset-password-in-active-directory/">[ASP.NET] Reset Password in Active Directory</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-14T12:47:00+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2013/02/14/aspnet-reset-password-in-active-directory/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>重設密碼建議還是用LDAP去抓USER，以免抓錯人之類的</p>
+
+<figure class='code'><figcaption><span>Reset Password in Active Directory</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='C#'><span class='line'><span class="n">DirectoryEntry</span> <span class="n">userDirEntry</span> <span class="p">=</span> <span class="k">new</span> <span class="n">DirectoryEntry</span><span class="p">(</span><span class="s">&quot;LDAP://&quot;</span> <span class="p">+</span> <span class="n">ldapStr</span><span class="p">,</span> <span class="n">adminAccount</span><span class="p">,</span> <span class="n">adminPassword</span><span class="p">);</span>
+</span><span class='line'><span class="n">userDirEntry</span><span class="p">.</span><span class="n">Invoke</span><span class="p">(</span><span class="s">&quot;SetPassword&quot;</span><span class="p">,</span> <span class="n">CreateRandomPassword</span><span class="p">(</span><span class="m">8</span><span class="p">));</span>  <span class="c1">// 重設新密碼</span>
+</span><span class='line'><span class="n">userDirEntry</span><span class="p">.</span><span class="n">CommitChanges</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="n">userDirEntry</span><span class="p">.</span><span class="n">Properties</span><span class="p">[</span><span class="s">&quot;pwdLastSet&quot;</span><span class="p">].</span><span class="n">Value</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="c1">// 下次登入會強制要求改密碼</span>
+</span><span class='line'><span class="n">userDirEntry</span><span class="p">.</span><span class="n">CommitChanges</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">userDirEntry</span><span class="p">.</span><span class="n">Close</span><span class="p">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>Generate Random Password (Winform)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+</pre></td><td class='code'><pre><code class='C#'><span class='line'><span class="k">public</span> <span class="k">static</span> <span class="kt">string</span> <span class="nf">CreateRandomPassword</span><span class="p">(</span><span class="kt">int</span> <span class="n">passwordLength</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>      <span class="kt">string</span> <span class="n">allowedChars</span> <span class="p">=</span> <span class="s">&quot;abcdefghijkmnprstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789~!@#$%^&amp;*()_+?&quot;</span><span class="p">;</span>
+</span><span class='line'>      <span class="kt">char</span><span class="p">[]</span> <span class="n">chars</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">char</span><span class="p">[</span><span class="n">passwordLength</span><span class="p">];</span>
+</span><span class='line'>      <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">passwordLength</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+</span><span class='line'>      <span class="p">{</span>
+</span><span class='line'>            <span class="n">chars</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">=</span> <span class="n">allowedChars</span><span class="p">[</span><span class="n">rd</span><span class="p">.</span><span class="n">Next</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="n">allowedChars</span><span class="p">.</span><span class="n">Length</span><span class="p">)];</span>
+</span><span class='line'>            <span class="c1">// random.next(min,max) =&gt;int</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>      <span class="kt">string</span> <span class="n">strPwd</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">string</span><span class="p">(</span><span class="n">chars</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="k">while</span> <span class="p">(!((</span><span class="n">Regex</span><span class="p">.</span><span class="n">IsMatch</span><span class="p">(</span><span class="n">strPwd</span><span class="p">,</span> <span class="s">&quot;[0-9]&quot;</span><span class="p">))</span> <span class="p">&amp;&amp;</span>
+</span><span class='line'>      <span class="p">(</span><span class="n">Regex</span><span class="p">.</span><span class="n">IsMatch</span><span class="p">(</span><span class="n">strPwd</span><span class="p">,</span> <span class="s">&quot;[a-z]&quot;</span><span class="p">))</span> <span class="p">&amp;&amp;</span>
+</span><span class='line'>      <span class="p">(</span><span class="n">Regex</span><span class="p">.</span><span class="n">IsMatch</span><span class="p">(</span><span class="n">strPwd</span><span class="p">,</span> <span class="s">&quot;[A-Z]&quot;</span><span class="p">))</span> <span class="p">&amp;&amp;</span>
+</span><span class='line'>      <span class="p">(</span><span class="n">Regex</span><span class="p">.</span><span class="n">IsMatch</span><span class="p">(</span><span class="n">strPwd</span><span class="p">,</span> <span class="s">@&quot;[\W]&quot;</span><span class="p">))))</span>
+</span><span class='line'>      <span class="c1">// \w  [a-zA-Z0-9_]  , \W ![a-zA-Z0-9_]</span>
+</span><span class='line'>      <span class="p">{</span>
+</span><span class='line'>            <span class="n">strPwd</span> <span class="p">=</span> <span class="n">CreateRandomPassword</span><span class="p">(</span><span class="m">8</span><span class="p">);</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="k">return</span> <span class="n">strPwd</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// 靜態避免短時期內產生相同亂數</span>
+</span><span class='line'><span class="k">static</span> <span class="n">Random</span> <span class="n">rd</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Random</span><span class="p">(</span><span class="n">GetRandomSeed</span><span class="p">());</span>
+</span><span class='line'><span class="k">static</span> <span class="kt">int</span> <span class="nf">GetRandomSeed</span><span class="p">()</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>      <span class="kt">byte</span><span class="p">[]</span> <span class="n">bytes</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="p">[</span><span class="m">4</span><span class="p">];</span>
+</span><span class='line'>      <span class="n">System</span><span class="p">.</span><span class="n">Security</span><span class="p">.</span><span class="n">Cryptography</span><span class="p">.</span><span class="n">RNGCryptoServiceProvider</span> <span class="n">rng</span> <span class="p">=</span>
+</span><span class='line'>      <span class="k">new</span> <span class="n">System</span><span class="p">.</span><span class="n">Security</span><span class="p">.</span><span class="n">Cryptography</span><span class="p">.</span><span class="n">RNGCryptoServiceProvider</span><span class="p">();</span>
+</span><span class='line'>      <span class="n">rng</span><span class="p">.</span><span class="n">GetBytes</span><span class="p">(</span><span class="n">bytes</span><span class="p">);</span>
+</span><span class='line'>      <span class="k">return</span> <span class="n">BitConverter</span><span class="p">.</span><span class="n">ToInt32</span><span class="p">(</span><span class="n">bytes</span><span class="p">,</span> <span class="m">0</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -279,6 +417,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/06/29/mac-build-ubuntu-flash-using-command/">[Mac] 三步驟純指令建立Ubuntu的USB隨身碟</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/06/12/rails-ajax-render-error-in-json/">[Rails] AJAX render errors in json</a>
       </li>
     
@@ -332,10 +474,6 @@
     
       <li class="post">
         <a href="/blog/2013/12/07/rails-bootstrap-for-rails/">[Rails] Bootstrap for Rails</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/12/02/rails-gem/">[Rails] 打包Gem套件</a>
       </li>
     
   </ul>
