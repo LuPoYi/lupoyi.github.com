@@ -1,10 +1,15 @@
 ---
 layout: post
-title: "[ruby] 教學 - 基本使用介紹"
+title: "[Ruby] 教學 - 基本使用介紹"
 date: 2015-03-31 22:27:04 +0800
 comments: true
 categories: [ruby]
 ---
+
+Rails熟了一點後就會發現其實大部分都是學會怎麼用它，卻很吃Ruby本身的概念
+
+未來讓以後開發不會這麼吃力，來整複習一下好了 :D
+
 
 ##Everything is Ruby is an object
 

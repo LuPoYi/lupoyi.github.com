@@ -5,9 +5,9 @@ date: 2013-03-03 12:05
 comments: true
 categories: [C#]
 ---
+
 稍微記一下，相關變化都蠻簡單的
 
-``` c# DataTable基本語法
 DataTable dt = new DataTable();
 
 // 定義欄位
@@ -25,4 +25,3 @@ dt.Rows.Add("Kilin","20000");
 // 格式相同直接放入GridView
 GridView.DataSource = dt;
 GridView.DataBind();
-```

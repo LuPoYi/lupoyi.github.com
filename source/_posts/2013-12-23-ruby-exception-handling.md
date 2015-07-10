@@ -3,7 +3,7 @@ layout: post
 title: '[Ruby] 例外處理'
 date: 2013-12-23 15:57
 comments: true
-categories: 
+categories: [ruby]
 ---
 好像各語言都大同小異，try..catch..finally語法轉換一下就差不多了
 

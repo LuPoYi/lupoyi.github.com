@@ -1,0 +1,46 @@
+---
+layout: post
+title: "資料被綁架軟體加密，要求贖金用比特幣支付"
+date: 2015-04-18 00:13:56 +0800
+comments: true
+categories: [bitcoin, encrypted]
+---
+
+__這篇單純紀錄一下被綁架後頁面的流程。__
+
+最近遇到幾間公司發現這種事，突然所有檔案被綁架軟體加密無法開啟，而桌面多了一份文字檔，裡面附上特殊網址及比特幣錢包位址…。(當然，這只是其中一款綁架軟體的方式)
+
+{% img /images/poyi/bitcoin1.png 'image' 'images' %}
+
+輸入它給的錢包地址登入後，就可以看到所要求的贖金或相關資料了
+
+應該會有類似以下的字眼 (這邊贖金要求你付2.5顆比特幣)
+
+__All your important files are encrypted. <br>At the moment, the cost of private key for decrypting your file is 2.5 BTC__
+
+而為了證明你付完贖金真的幫你解密，它還幫你解密其中一個的檔案讓你下載看看是否沒問題(如下圖下方的xlsx檔)… ~~不得不說還蠻貼心的…~~
+
+{% img /images/poyi/bitcoin2.jpg 'image' 'images' %}
+
+而聽說沒付指定的贖金，對方不但不解密還會提高贖金
+
+所以如果資料沒備份又找不到解法，也許就甘願一點付錢吧…
+
+算是這年頭支付太過方便的缺點吧
+
+{% img /images/poyi/bitcoin3.png 'image' 'images' %}
+
+而另外它也提供如何購買比特幣相關資訊…~~貼心再+1…~~
+
+目前在台灣是可以直接去全家買會比較方便，這邊就請自行google :D
+
+
+<br>
+Reference:
+
+http://buzzorange.com/techorange/2015/01/19/how-my-mom-got-hacked/
+
+http://www.epochtimes.com/b5/15/4/9/n4407355.htm
+
+
+

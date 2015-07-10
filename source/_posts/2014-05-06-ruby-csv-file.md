@@ -1,6 +1,6 @@
 ---
 layout: post
-title: '[ruby] 匯出批次csv檔'
+title: '[Ruby] 匯出批次csv檔'
 date: 2014-05-06 21:14
 comments: true
 categories: [ruby, rails, csv]

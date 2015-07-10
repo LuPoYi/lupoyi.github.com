@@ -3,7 +3,7 @@ layout: post
 title: '[Mac] Ruby on Rails 基本環境建置'
 date: 2014-01-17 12:47
 comments: true
-categories: 
+categories: [mac, ruby, rails]
 ---
 是說終於買了mac，省去開箱文趕緊把環境用好來繼續練習ROR!!
 但使用上還是有一點不習慣，會覺得有些地方也蠻不人性化，但相對穩定就是了
@@ -57,5 +57,6 @@ RVM (Ruby Version Manager):Ruby版本管理工具，便於切換不同版本
 
 
 Reference:
+
 http://www.computersnyou.com/2025/2013/06/install-command-line-tools-in-osx-10-9-mavericks-how-to/
 http://www.slideshare.net/marsz330/ruby-on-rails-for-mac

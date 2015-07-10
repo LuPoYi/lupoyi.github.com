@@ -1,0 +1,55 @@
+---
+layout: post
+title: "[Mac] 三步驟純指令建立Ubuntu的USB隨身碟"
+date: 2015-06-29 23:39:10 +0800
+comments: true
+categories: [mac, ubuntu, usb]
+---
+
+```bash 將載好的ubuntu.dmg 轉成 iso
+Bob:Downloads $ hdiutil convert -format UDRW -o ubuntu-14.04.2-server-amd64.dmg ubuntu-14.04.2-server-amd64.iso
+正在讀取Driver Descriptor Map（DDM：0）⋯
+正在讀取Ubuntu-Server 14.04.2 LTS amd64 （Apple_ISO：1）⋯
+正在讀取Apple（Apple_partition_map：2）⋯
+正在讀取Ubuntu-Server 14.04.2 LTS amd64 （Apple_ISO：3）⋯
+..............
+正在讀取EFI（Apple_HFS：4）⋯
+...............
+正在讀取Ubuntu-Server 14.04.2 LTS amd64 （Apple_ISO：5）⋯
+..............................................................................
+經過時間： 7.977s
+速度：74.6Mbyte/秒
+節省：0.0%
+```
+
+```bash 找到你的usb隨身碟後卸載它
+Bob:Downloads $ diskutil list
+/dev/disk0
+  ...
+/dev/disk1
+  ...
+/dev/disk2
+   #:                       TYPE NAME                    SIZE       IDENTIFIER
+   0:     FDisk_partition_scheme                        *8.1 GB     disk2
+   1:             Windows_FAT_32 ADATA UFD               8.1 GB     disk2s1
+Bob:Downloads $ diskutil unmountDisk /dev/disk2
+Unmount of all volumes on disk2 was successful
+```
+
+
+```bash dd 把資料寫入隨身碟
+Bob:Downloads $ sudo dd if=ubuntu-14.04.2-server-amd64.dmg of=/dev/rdisk2 bs=1m
+Password:
+595+0 records in
+595+0 records out
+623902720 bytes transferred in 43.058655 secs (14489601 bytes/sec)
+```
+
+執行完會跳「電腦讀不到您放入的磁碟。」，代表就成功了！
+
+
+
+Reference:
+
+http://blog.itist.tw/2015/01/burning-linux-iso-image-to-usb-disk-on-osx.html
+

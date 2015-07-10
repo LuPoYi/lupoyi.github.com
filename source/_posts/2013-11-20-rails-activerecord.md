@@ -3,7 +3,7 @@ layout: post
 title: '[Rails] ActiveRecord'
 date: 2013-11-20 07:39
 comments: true
-categories: 
+categories: [rails]
 ---
 ``` ruby Model之間要關聯時，雙方都要設定 (單複數要注意)
 class Boss < ActiveRecord::Base

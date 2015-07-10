@@ -3,7 +3,7 @@ layout: post
 title: '[Ruby] Functions for Numbers'
 date: 2013-12-18 03:40
 comments: true
-categories: 
+categories: [ruby]
 ---
 ``` ruby Math
 > 2 ** 3 # 次方

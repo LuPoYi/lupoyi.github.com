@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[ruby] 教學 - 基本使用介紹2(未補)"
+title: "[Ruby] 教學 - 基本使用介紹2"
 date: 2015-04-12 22:27:04 +0800
 comments: true
 categories: [ruby]
@@ -34,6 +34,97 @@ temp()  # wrong arguments (0 for 2+) 錯誤訊息提示傳入值需要2個以上
 temp(1,2,3,4,5,6,7,8)
 ```
 
-```ruby 進階的method定義 (block)
 
+```ruby 進階的method定義 (block)
+def temp(&block)
+end
+
+temp(1)  #=> wrong number of arguments (1 for 0) &block不是傳入的參數
+temp()   #=> nil
+temp(){puts "temp"} #=> nil 
+# 當temp()後面有block時會把這一段code放置&block當中，但因為裡面沒有呼叫它執行所以nil
+
+
+def temp2(&abc)
+  abc.call
+end
+
+temp2{puts "gogo"} #=> "gogo"
 ```
+
+
+```ruby class methods  / instance methods
+class Car
+  def self.hi
+    puts “aaa”
+  end
+  def hi
+    puts “bbb”
+  end
+end
+
+car = Car.new
+Car.hi #=> "aaa"
+car.hi #=> "bbb"
+```
+
+* attr_accessor 自動設定setter & getter
+* attr_reader 設定getter
+* attr_writer 設定setter
+
+```ruby attr_accessor 等同於 getter & setter
+class Person
+  # attr_accessor :name 
+  def name # getter
+    @name
+  end
+
+  def name=(str) # setter
+    @name = str
+  end
+end
+
+person = Person.new
+person.name = 'Bob' # setter
+person.name # => "bob" # getter
+```
+* $name:全域變數
+* @name:實例變數，作用域僅限定於 self 指示的物件
+* @@name: 類別變數，在class內才使用，跨class
+* name:區域變數(小寫字母或底線開頭；初始化前並沒有 nil 值)
+* Name:常數(大寫開頭；重覆定義時會出現警告)
+
+####Class & Module 
+Moudule只是一個不能被new的class
+```ruby class / module 
+Class.superclass #=> module 
+
+module Flyable
+  def fly
+    puts "I can fly!"
+  end
+end
+
+class Cat
+  include Flyable
+end
+
+kitty = Cat.new
+kitty.fly  
+```
+
+####Error Handling
+沒額外指定變數的話，錯誤資訊會放至$!(ERROR_INFO)及$@(ERROR_POSITION)
+
+```ruby begin/rescue/ensure/end
+begin
+  # 有機會發生例外的code
+rescue
+  # 發現例外後要執行的code
+ensure
+  # 無論是否例外都會執行的code
+end
+```
+
+
+
