@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: update_all | Bob 學習筆記]]></title>
+  <link href="http://blog.poyi.tw/blog/categories/update-all/atom.xml" rel="self"/>
+  <link href="http://blog.poyi.tw/"/>
+  <updated>2015-07-11T17:50:18+08:00</updated>
+  <id>http://blog.poyi.tw/</id>
+  <author>
+    <name><![CDATA[Bob (PoYi)]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[[Rails] update method]]></title>
+    <link href="http://blog.poyi.tw/blog/2015/07/11/rails-various-update-methods/"/>
+    <updated>2015-07-11T17:16:55+08:00</updated>
+    <id>http://blog.poyi.tw/blog/2015/07/11/rails-various-update-methods</id>
+    <content type="html"><![CDATA[<h2>正規Rails的更新 - update</h2>
+
+<p>會觸發validation、callback、也會更新updated_at</p>
+
+<pre><code class="Ruby update 寫法 (for 單筆)">&gt; Comment.last.update(message: 'bbb')
+   (0.1ms)  begin transaction
+  SQL (0.4ms)  UPDATE "comments" SET "message" = ?, "updated_at" = ? WHERE "comments"."id" = ?  [["message", "bbb"], ["updated_at", "2015-07-11 09:42:02.303661"], ["id", 200]]
+   (9.1ms)  commit transaction
+ =&gt; true
+</code></pre>
+
+<h2>相當於直接下SQL的更新 - update_columns, update_all</h2>
+
+<p>而 update_columns 及 update_all 是直接幫你下SQL更新欄位，會忽視Rails的validation，也沒有callback，updated_at也不會更新。所以最好是很確定要更新的值沒問題再使用這類語法。</p>
+
+<pre><code class="Ruby update_columns 寫法 (for 單筆)">&gt; Comment.where(:id =&gt; 200).first.update_columns(message: 'bbbbb', post_id: 3)
+  SQL (9.2ms)  UPDATE "comments" SET "message" = 'bbbbb', "post_id" = 3 WHERE "comments"."id" = ?  [["id", 200]]
+
+# update_column 跟 update_columns 相同，只是傳入值key跟value必須是string，並用逗點分隔
+&gt; Comment.where(:id =&gt; 200).first.update_column('message' ,'bbbbb')
+</code></pre>
+
+<pre><code class="Ruby update_all 寫法 (for relation)">&gt; Comment.where(:id =&gt; 200).update_all(message: 'aaaaaaaaaa', post_id: 10)
+  SQL (9.2ms)  UPDATE "comments" SET "message" = 'aaaaaaaaaa', "post_id" = 10 WHERE "comments"."id" = ?  [["id", 200]]
+ =&gt; 1
+</code></pre>
+
+<h2>其他 - update_attribute</h2>
+
+<p>忽視validation，有callback，會更新updated_at</p>
+
+<pre><code class="Ruby update_attribute 寫法 (for 單筆)">&gt; Comment.last.update_attribute('message' ,'bbbbb')
+   (0.1ms)  begin transaction
+  SQL (0.4ms)  UPDATE "comments" SET "message" = ?, "updated_at" = ? WHERE "comments"."id" = ?  [["message", "bbbbb"], ["updated_at", "2015-07-11 09:45:55.190026"], ["id", 200]]
+   (8.5ms)  commit transaction
+ =&gt; true
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>

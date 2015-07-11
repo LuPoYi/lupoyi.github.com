@@ -4,7 +4,7 @@
   <title><![CDATA[Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2015-07-10T23:21:31+08:00</updated>
+  <updated>2015-07-11T17:50:18+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -12,6 +12,75 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[[Rails] update method]]></title>
+    <link href="http://blog.poyi.tw/blog/2015/07/11/rails-various-update-methods/"/>
+    <updated>2015-07-11T17:16:55+08:00</updated>
+    <id>http://blog.poyi.tw/blog/2015/07/11/rails-various-update-methods</id>
+    <content type="html"><![CDATA[<h2>正規Rails的更新 - update</h2>
+
+<p>會觸發validation、callback、也會更新updated_at</p>
+
+<figure class='code'><figcaption><span>update 寫法 (for 單筆)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='Ruby'><span class='line'><span class="o">&gt;</span> <span class="no">Comment</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="ss">message</span><span class="p">:</span> <span class="s1">&#39;bbb&#39;</span><span class="p">)</span>
+</span><span class='line'>   <span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">1</span><span class="n">ms</span><span class="p">)</span>  <span class="k">begin</span> <span class="n">transaction</span>
+</span><span class='line'>  <span class="no">SQL</span> <span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">4</span><span class="n">ms</span><span class="p">)</span>  <span class="no">UPDATE</span> <span class="s2">&quot;comments&quot;</span> <span class="no">SET</span> <span class="s2">&quot;message&quot;</span> <span class="o">=</span> <span class="sc">?,</span> <span class="s2">&quot;updated_at&quot;</span> <span class="o">=</span> <span class="p">?</span> <span class="no">WHERE</span> <span class="s2">&quot;comments&quot;</span><span class="o">.</span><span class="s2">&quot;id&quot;</span> <span class="o">=</span> <span class="p">?</span>  <span class="o">[[</span><span class="s2">&quot;message&quot;</span><span class="p">,</span> <span class="s2">&quot;bbb&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;updated_at&quot;</span><span class="p">,</span> <span class="s2">&quot;2015-07-11 09:42:02.303661&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="mi">200</span><span class="o">]]</span>
+</span><span class='line'>   <span class="p">(</span><span class="mi">9</span><span class="o">.</span><span class="mi">1</span><span class="n">ms</span><span class="p">)</span>  <span class="n">commit</span> <span class="n">transaction</span>
+</span><span class='line'> <span class="o">=&gt;</span> <span class="kp">true</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>相當於直接下SQL的更新 - update_columns, update_all</h2>
+
+<p>而 update_columns 及 update_all 是直接幫你下SQL更新欄位，會忽視Rails的validation，也沒有callback，updated_at也不會更新。所以最好是很確定要更新的值沒問題再使用這類語法。</p>
+
+<figure class='code'><figcaption><span>update_columns 寫法 (for 單筆)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='Ruby'><span class='line'><span class="o">&gt;</span> <span class="no">Comment</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="ss">:id</span> <span class="o">=&gt;</span> <span class="mi">200</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">update_columns</span><span class="p">(</span><span class="ss">message</span><span class="p">:</span> <span class="s1">&#39;bbbbb&#39;</span><span class="p">,</span> <span class="ss">post_id</span><span class="p">:</span> <span class="mi">3</span><span class="p">)</span>
+</span><span class='line'>  <span class="no">SQL</span> <span class="p">(</span><span class="mi">9</span><span class="o">.</span><span class="mi">2</span><span class="n">ms</span><span class="p">)</span>  <span class="no">UPDATE</span> <span class="s2">&quot;comments&quot;</span> <span class="no">SET</span> <span class="s2">&quot;message&quot;</span> <span class="o">=</span> <span class="s1">&#39;bbbbb&#39;</span><span class="p">,</span> <span class="s2">&quot;post_id&quot;</span> <span class="o">=</span> <span class="mi">3</span> <span class="no">WHERE</span> <span class="s2">&quot;comments&quot;</span><span class="o">.</span><span class="s2">&quot;id&quot;</span> <span class="o">=</span> <span class="p">?</span>  <span class="o">[[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="mi">200</span><span class="o">]]</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># update_column 跟 update_columns 相同，只是傳入值key跟value必須是string，並用逗點分隔</span>
+</span><span class='line'><span class="o">&gt;</span> <span class="no">Comment</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="ss">:id</span> <span class="o">=&gt;</span> <span class="mi">200</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">update_column</span><span class="p">(</span><span class="s1">&#39;message&#39;</span> <span class="p">,</span><span class="s1">&#39;bbbbb&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>update_all 寫法 (for relation)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='Ruby'><span class='line'><span class="o">&gt;</span> <span class="no">Comment</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="ss">:id</span> <span class="o">=&gt;</span> <span class="mi">200</span><span class="p">)</span><span class="o">.</span><span class="n">update_all</span><span class="p">(</span><span class="ss">message</span><span class="p">:</span> <span class="s1">&#39;aaaaaaaaaa&#39;</span><span class="p">,</span> <span class="ss">post_id</span><span class="p">:</span> <span class="mi">10</span><span class="p">)</span>
+</span><span class='line'>  <span class="no">SQL</span> <span class="p">(</span><span class="mi">9</span><span class="o">.</span><span class="mi">2</span><span class="n">ms</span><span class="p">)</span>  <span class="no">UPDATE</span> <span class="s2">&quot;comments&quot;</span> <span class="no">SET</span> <span class="s2">&quot;message&quot;</span> <span class="o">=</span> <span class="s1">&#39;aaaaaaaaaa&#39;</span><span class="p">,</span> <span class="s2">&quot;post_id&quot;</span> <span class="o">=</span> <span class="mi">10</span> <span class="no">WHERE</span> <span class="s2">&quot;comments&quot;</span><span class="o">.</span><span class="s2">&quot;id&quot;</span> <span class="o">=</span> <span class="p">?</span>  <span class="o">[[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="mi">200</span><span class="o">]]</span>
+</span><span class='line'> <span class="o">=&gt;</span> <span class="mi">1</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>其他 - update_attribute</h2>
+
+<p>忽視validation，有callback，會更新updated_at</p>
+
+<figure class='code'><figcaption><span>update_attribute 寫法 (for 單筆)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='Ruby'><span class='line'><span class="o">&gt;</span> <span class="no">Comment</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">update_attribute</span><span class="p">(</span><span class="s1">&#39;message&#39;</span> <span class="p">,</span><span class="s1">&#39;bbbbb&#39;</span><span class="p">)</span>
+</span><span class='line'>   <span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">1</span><span class="n">ms</span><span class="p">)</span>  <span class="k">begin</span> <span class="n">transaction</span>
+</span><span class='line'>  <span class="no">SQL</span> <span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">4</span><span class="n">ms</span><span class="p">)</span>  <span class="no">UPDATE</span> <span class="s2">&quot;comments&quot;</span> <span class="no">SET</span> <span class="s2">&quot;message&quot;</span> <span class="o">=</span> <span class="sc">?,</span> <span class="s2">&quot;updated_at&quot;</span> <span class="o">=</span> <span class="p">?</span> <span class="no">WHERE</span> <span class="s2">&quot;comments&quot;</span><span class="o">.</span><span class="s2">&quot;id&quot;</span> <span class="o">=</span> <span class="p">?</span>  <span class="o">[[</span><span class="s2">&quot;message&quot;</span><span class="p">,</span> <span class="s2">&quot;bbbbb&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;updated_at&quot;</span><span class="p">,</span> <span class="s2">&quot;2015-07-11 09:45:55.190026&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="mi">200</span><span class="o">]]</span>
+</span><span class='line'>   <span class="p">(</span><span class="mi">8</span><span class="o">.</span><span class="mi">5</span><span class="n">ms</span><span class="p">)</span>  <span class="n">commit</span> <span class="n">transaction</span>
+</span><span class='line'> <span class="o">=&gt;</span> <span class="kp">true</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[[Mac] 三步驟純指令建立Ubuntu的USB隨身碟]]></title>
@@ -1636,74 +1705,6 @@ IThome「防駭演練與危機處理」研習會</p>
         </tr>
     </table>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[[Rails] Connect SQL Server]]></title>
-    <link href="http://blog.poyi.tw/blog/2013/10/30/rails-search/"/>
-    <updated>2013-10-30T16:29:00+08:00</updated>
-    <id>http://blog.poyi.tw/blog/2013/10/30/rails-search</id>
-    <content type="html"><![CDATA[<p>看到官方提供的adpter..真的不知道怎麼下手.. <del>魯蛇無誤</del></p>
-
-<h2>Ubuntu Connect to SQL Server</h2>
-
-<p>想在Unix、Linux環境上，存取SQL Server似乎大多都使用FreeTDS</p>
-
-<figure class='code'><figcaption><span>安裝FreeTDS</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo apt-get install freetds-dev freetds-bin tdsodbc
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>檢查FreeTDS版本資訊</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>tsql -C
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/156771/0fBGvXZHQ4ug2ZQOTol3_2013-11-6%20%E4%B8%8A%E5%8D%88%2010-53-15.jpg" alt="2013-11-6 上午 10-53-15.jpg" /></p>
-
-<figure class='code'><figcaption><span>這時候就可以Connect SQL Server</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>tsql -H <span class="o">(</span>SQL Server IP<span class="o">)</span> -p <span class="m">1433</span> -U <span class="o">(</span>account<span class="o">)</span> －P <span class="o">(</span>password<span class="o">)</span> –D <span class="o">(</span>datebase name<span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<figure class='code'><figcaption><span>直接下TSQL，這邊要用go才會執行</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span><span class="k">select</span> * from Team
-</span><span class='line'><span class="nv">$ </span>go
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/156771/J9JDVHr7S9uu6H8nhWLj_2013-11-6%20%E4%B8%8A%E5%8D%88%2011-03-53.jpg" alt="2013-11-6 上午 11-03-53.jpg" /></p>
-
-<p>這邊代表已能在Ubuntu Connect SQL Server
-但Rails還需要其他套件</p>
-
-<hr />
-
-<h2>Rails Connect to SQL Server (Error)</h2>
-
-<figure class='code'><figcaption><span>安裝tiny_tds、sqlserver adapter</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo gem install tiny_tds
-</span><span class='line'><span class="nv">$ </span>sudo gem install activerecord-sqlserver-adapter
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>修改DateBase.yml
-<img src="http://user-image.logdown.io/user/2740/blog/2734/post/156771/n2j3Og9gRCKcn9v70smh_2013-11-6%20%E4%B8%8A%E5%8D%88%2011-36-45.jpg" alt="2013-11-6 上午 11-36-45.jpg" /></p>
-
-<p>OK..在這邊理論上是可以直接在Rails調用..
-但執行時卻會出錯，查了一下好像還無解 (Rails 4似乎還不太支援之類的..)
-錯誤訊息可參考 > <a href="https://github.com/rails-sqlserver/activerecord-sqlserver-adapter/issues/279">https://github.com/rails-sqlserver/activerecord-sqlserver-adapter/issues/279</a>
-暫時找不到解法，除非把Rails降到3.x版</p>
-
-<p>Reference:
-<a href="https://github.com/rails-sqlserver">https://github.com/rails-sqlserver</a>
-<a href="http://www.cnblogs.com/lwm-1988/archive/2012/05/28/2520728.html">http://www.cnblogs.com/lwm-1988/archive/2012/05/28/2520728.html</a>
-<a href="http://stackoverflow.com/questions/12010780/rails-how-to-do-search">http://stackoverflow.com/questions/12010780/rails-how-to-do-search</a></p>
 ]]></content>
   </entry>
   

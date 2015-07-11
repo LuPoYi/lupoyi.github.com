@@ -9,16 +9,9 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="好像各語言都大同小異，try..catch..finally語法轉換一下就差不多了 例外處理 begin..end當中的rescue1
-2
-3
-4
-5
-6
-7
-begin # 有機會發生例外的code
-rescue # 發現例外後要執行的code
-ensure # 無論是否例外都會執行的code &hellip;">
+  <meta name="description" content="bubble up 冒泡 當底層的元件被觸發時，會將所屬的父元件會連帶被觸發 - 多層觸發
+而要處理這問題通常會用到 stopPropagation() 或 preventDefault() stopPropagation() 停止向上層bubble up，但仍然會觸發browser
+看例子比較快 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -107,6 +100,113 @@ ensure # 無論是否例外都會執行的code &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/01/13/javascript-triggered-interrupt-event-or-action/">[JavaScript] 中斷事件或動作的觸發</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-13T14:00:00+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2014/01/13/javascript-triggered-interrupt-event-or-action/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1>bubble up 冒泡</h1>
+
+<p>當底層的元件被觸發時，會將所屬的父元件會連帶被觸發 - 多層觸發
+而要處理這問題通常會用到 stopPropagation() 或 preventDefault()</p>
+
+<h2>stopPropagation()</h2>
+
+<p>停止向上層bubble up，但仍然會觸發browser
+看例子比較快 <a href="http://jsfiddle.net/dA6R3/1/">http://jsfiddle.net/dA6R3/1/</a></p>
+
+<figure class='code'><figcaption><span>加入event.stopPropagation(); 當點擊下去時，就不會向上觸發其他動作</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;p&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;a&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</span><span class='line'><span class="nt">&lt;/div&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;script&gt;</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.p&quot;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">){</span>
+</span><span class='line'>    <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;p 外&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.a&quot;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">){</span>
+</span><span class='line'>    <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;a 內&quot;</span><span class="p">);</span>
+</span><span class='line'>    <span class="nx">event</span><span class="p">.</span><span class="nx">stopPropagation</span><span class="p">();</span>
+</span><span class='line'><span class="p">});</span>
+</span><span class='line'><span class="nt">&lt;/script&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>preventDefault()</h2>
+
+<p>會將預設的動作停掉不讓它執行，不會觸發browser
+看例子比較快 <a href="http://jsfiddle.net/88dcF/1/">http://jsfiddle.net/88dcF/1/</a></p>
+
+<figure class='code'><figcaption><span>加入event.preventDefault(); 當點擊下去時，就不會執行預設動作(連到GOOGLE)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://www.google.com&quot;</span><span class="nt">&gt;</span>go to google<span class="nt">&lt;/a&gt;</span>
+</span><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;check&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;script&gt;</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;&lt;div&gt;&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;Ya&quot;</span><span class="p">).</span><span class="nx">appendTo</span><span class="p">(</span><span class="s2">&quot;#check&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="p">});</span>
+</span><span class='line'><span class="nt">&lt;/script&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Reference:
+<a href="http://www.neoease.com/stoppropagation-and-preventdefault-and-return-false/">http://www.neoease.com/stoppropagation-and-preventdefault-and-return-false/</a>
+<a href="http://yiyingloveart.blogspot.tw/2013/08/eventpreventdefaultreturn-false.html">http://yiyingloveart.blogspot.tw/2013/08/eventpreventdefaultreturn-false.html</a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -962,103 +1062,6 @@ IThome「防駭演練與危機處理」研習會</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/10/30/rails-search/">[Rails] Connect SQL Server</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-10-30T16:29:00+08:00" pubdate data-updated="true"></time>
-        
-         | <a href="/blog/2013/10/30/rails-search/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>看到官方提供的adpter..真的不知道怎麼下手.. <del>魯蛇無誤</del></p>
-
-<h2>Ubuntu Connect to SQL Server</h2>
-
-<p>想在Unix、Linux環境上，存取SQL Server似乎大多都使用FreeTDS</p>
-
-<figure class='code'><figcaption><span>安裝FreeTDS</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo apt-get install freetds-dev freetds-bin tdsodbc
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>檢查FreeTDS版本資訊</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>tsql -C
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/156771/0fBGvXZHQ4ug2ZQOTol3_2013-11-6%20%E4%B8%8A%E5%8D%88%2010-53-15.jpg" alt="2013-11-6 上午 10-53-15.jpg" /></p>
-
-<figure class='code'><figcaption><span>這時候就可以Connect SQL Server</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>tsql -H <span class="o">(</span>SQL Server IP<span class="o">)</span> -p <span class="m">1433</span> -U <span class="o">(</span>account<span class="o">)</span> －P <span class="o">(</span>password<span class="o">)</span> –D <span class="o">(</span>datebase name<span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<figure class='code'><figcaption><span>直接下TSQL，這邊要用go才會執行</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span><span class="k">select</span> * from Team
-</span><span class='line'><span class="nv">$ </span>go
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/156771/J9JDVHr7S9uu6H8nhWLj_2013-11-6%20%E4%B8%8A%E5%8D%88%2011-03-53.jpg" alt="2013-11-6 上午 11-03-53.jpg" /></p>
-
-<p>這邊代表已能在Ubuntu Connect SQL Server
-但Rails還需要其他套件</p>
-
-<hr />
-
-<h2>Rails Connect to SQL Server (Error)</h2>
-
-<figure class='code'><figcaption><span>安裝tiny_tds、sqlserver adapter</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo gem install tiny_tds
-</span><span class='line'><span class="nv">$ </span>sudo gem install activerecord-sqlserver-adapter
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>修改DateBase.yml
-<img src="http://user-image.logdown.io/user/2740/blog/2734/post/156771/n2j3Og9gRCKcn9v70smh_2013-11-6%20%E4%B8%8A%E5%8D%88%2011-36-45.jpg" alt="2013-11-6 上午 11-36-45.jpg" /></p>
-
-<p>OK..在這邊理論上是可以直接在Rails調用..
-但執行時卻會出錯，查了一下好像還無解 (Rails 4似乎還不太支援之類的..)
-錯誤訊息可參考 > <a href="https://github.com/rails-sqlserver/activerecord-sqlserver-adapter/issues/279">https://github.com/rails-sqlserver/activerecord-sqlserver-adapter/issues/279</a>
-暫時找不到解法，除非把Rails降到3.x版</p>
-
-<p>Reference:
-<a href="https://github.com/rails-sqlserver">https://github.com/rails-sqlserver</a>
-<a href="http://www.cnblogs.com/lwm-1988/archive/2012/05/28/2520728.html">http://www.cnblogs.com/lwm-1988/archive/2012/05/28/2520728.html</a>
-<a href="http://stackoverflow.com/questions/12010780/rails-how-to-do-search">http://stackoverflow.com/questions/12010780/rails-how-to-do-search</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/3">&larr; Older</a>
@@ -1105,6 +1108,10 @@ IThome「防駭演練與危機處理」研習會</p>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/07/11/rails-various-update-methods/">[Rails] update method</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2015/06/29/mac-build-ubuntu-flash-using-command/">[Mac] 三步驟純指令建立Ubuntu的USB隨身碟</a>
@@ -1160,10 +1167,6 @@ IThome「防駭演練與危機處理」研習會</p>
     
       <li class="post">
         <a href="/blog/2013/12/09/ruby-and/">[Ruby] and與&&的差別</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/12/07/rails-bootstrap-for-rails/">[Rails] Bootstrap for Rails</a>
       </li>
     
   </ul>

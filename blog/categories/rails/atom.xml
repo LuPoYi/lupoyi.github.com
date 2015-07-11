@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rails | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2015-07-10T23:21:31+08:00</updated>
+  <updated>2015-07-11T17:50:18+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -12,6 +12,51 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[[Rails] update method]]></title>
+    <link href="http://blog.poyi.tw/blog/2015/07/11/rails-various-update-methods/"/>
+    <updated>2015-07-11T17:16:55+08:00</updated>
+    <id>http://blog.poyi.tw/blog/2015/07/11/rails-various-update-methods</id>
+    <content type="html"><![CDATA[<h2>正規Rails的更新 - update</h2>
+
+<p>會觸發validation、callback、也會更新updated_at</p>
+
+<pre><code class="Ruby update 寫法 (for 單筆)">&gt; Comment.last.update(message: 'bbb')
+   (0.1ms)  begin transaction
+  SQL (0.4ms)  UPDATE "comments" SET "message" = ?, "updated_at" = ? WHERE "comments"."id" = ?  [["message", "bbb"], ["updated_at", "2015-07-11 09:42:02.303661"], ["id", 200]]
+   (9.1ms)  commit transaction
+ =&gt; true
+</code></pre>
+
+<h2>相當於直接下SQL的更新 - update_columns, update_all</h2>
+
+<p>而 update_columns 及 update_all 是直接幫你下SQL更新欄位，會忽視Rails的validation，也沒有callback，updated_at也不會更新。所以最好是很確定要更新的值沒問題再使用這類語法。</p>
+
+<pre><code class="Ruby update_columns 寫法 (for 單筆)">&gt; Comment.where(:id =&gt; 200).first.update_columns(message: 'bbbbb', post_id: 3)
+  SQL (9.2ms)  UPDATE "comments" SET "message" = 'bbbbb', "post_id" = 3 WHERE "comments"."id" = ?  [["id", 200]]
+
+# update_column 跟 update_columns 相同，只是傳入值key跟value必須是string，並用逗點分隔
+&gt; Comment.where(:id =&gt; 200).first.update_column('message' ,'bbbbb')
+</code></pre>
+
+<pre><code class="Ruby update_all 寫法 (for relation)">&gt; Comment.where(:id =&gt; 200).update_all(message: 'aaaaaaaaaa', post_id: 10)
+  SQL (9.2ms)  UPDATE "comments" SET "message" = 'aaaaaaaaaa', "post_id" = 10 WHERE "comments"."id" = ?  [["id", 200]]
+ =&gt; 1
+</code></pre>
+
+<h2>其他 - update_attribute</h2>
+
+<p>忽視validation，有callback，會更新updated_at</p>
+
+<pre><code class="Ruby update_attribute 寫法 (for 單筆)">&gt; Comment.last.update_attribute('message' ,'bbbbb')
+   (0.1ms)  begin transaction
+  SQL (0.4ms)  UPDATE "comments" SET "message" = ?, "updated_at" = ? WHERE "comments"."id" = ?  [["message", "bbbbb"], ["updated_at", "2015-07-11 09:45:55.190026"], ["id", 200]]
+   (8.5ms)  commit transaction
+ =&gt; true
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[[Rails] AJAX render errors in json]]></title>
@@ -200,54 +245,6 @@ RVM (Ruby Version Manager):Ruby版本管理工具，便於切換不同版本</p>
 </code></pre>
 
 <p>這樣就可以用了yaya</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[[Rails] 打包Gem套件]]></title>
-    <link href="http://blog.poyi.tw/blog/2013/12/02/rails-gem/"/>
-    <updated>2013-12-02T12:27:00+08:00</updated>
-    <id>http://blog.poyi.tw/blog/2013/12/02/rails-gem</id>
-    <content type="html"><![CDATA[<p>當我們要安裝別人寫好的Library、API時，通常會
-<code>ruby Gemfile
-gem 'google-translate'
-</code>
-或是
-<code>bash  Terminal
-$ gem install google-translate
-</code></p>
-
-<h1>打包gem</h1>
-
-<p>而當我們要打包自己的gem，自用或供他人使用，該怎麼做？
-<code>bash 用bundle 生成gem結構
-$ bundle gem bob_test_plugin
-</code></p>
-
-<pre><code class="bash 建立gem">gem build bob_test_plugin.gemspec
-</code></pre>
-
-<p>此時會生成 bob_test_plugin-0.0.1.gem</p>
-
-<pre><code class="bash 安裝gem">$ sudo gem install bob_test_plugin-0.0.1.gem
-</code></pre>
-
-<pre><code class="bash 在rails c下測試gem">irb&gt;require 'bob_test_plugin'
-=&gt; true
-irb&gt;BobTestPlugin.name
-=&gt; "BobTestPlugin"
-</code></pre>
-
-<h1>發佈在 RubyGems.org</h1>
-
-<p><a href="http://rubygems.org/sign_up">申請RubyGems帳號</a></p>
-
-<pre><code class="bash 發佈">$ gem push bob_test_plugin-0.0.1.gem
-</code></pre>
-
-<p>Reference:
-<a href="http://blog.xdite.net/posts/2012/01/04/how-to-pack-a-gem">http://blog.xdite.net/posts/2012/01/04/how-to-pack-a-gem</a>
-<a href="http://jex.logdown.com/posts/164687-ruby-build-his-own-gem-packages">http://jex.logdown.com/posts/164687-ruby-build-his-own-gem-packages</a></p>
 ]]></content>
   </entry>
   
