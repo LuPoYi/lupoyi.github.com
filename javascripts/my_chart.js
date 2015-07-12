@@ -25,7 +25,6 @@ function getWeightJson(){
     dataType: "json",
     success: function(json) {
       my_json = JSON.stringify(json);
-      //my_json = JSON.parse(json);
     },
   })
   return JSON.parse(my_json);
@@ -34,7 +33,8 @@ function getWeightJson(){
 
 var chart = AmCharts.makeChart("chartdiv", {
   "type": "serial",
-  "theme": "dark",
+  "theme": "none",
+  // "theme": "dark",
   "marginRight": 80,
   "autoMarginOffset": 20,
   "dataDateFormat": "YYYY-MM-DD",
