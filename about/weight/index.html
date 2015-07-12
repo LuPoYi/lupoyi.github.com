@@ -3,17 +3,26 @@
   <head>
     <title>當然是體重紀錄…</title>
     <style>
+    body{
+      background-color: #f3f3f4;
+    }
+    .my-panel{
+      background-color: #FFFFFF;
+      border-radius: 10px;
+      padding: 10px;
+      box-shadow: 0 2px 10px 0 rgb(0,0,0);
+      box-shadow: 0 2px 10px 0 rgba(0,0,0,0.1);
+    }
     #chartdiv {
-      background: #3f3f4f;
-      color:#ffffff; 
       width : 100%;
       height  : 500px;
     }         
     </style>
   </head>
   <body>
-
-    <div id="chartdiv"></div> 
+    <div class="my-panel">
+      <div id="chartdiv"></div> 
+    </div>
     <script>
       my_json2 = [{
         "date": "2015-05-26",
