@@ -143,7 +143,7 @@ jQuery(function($){
   });
 
   $.getJSON("https://blockchain.info/q/addressbalance/1BobLu5mh5H6sbhGYcwfKt2griDkV6Vhmw", function(data) {
-      $('#amount').html(data.toFixed(8));
+      $('#amount').html((data/100000000).toFixed(8));
   });
 
 });
