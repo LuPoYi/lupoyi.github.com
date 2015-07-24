@@ -4,7 +4,7 @@
   <title><![CDATA[Category: mac | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/mac/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2015-07-17T00:02:07+08:00</updated>
+  <updated>2015-07-24T11:33:00+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -18,7 +18,7 @@
     <link href="http://blog.poyi.tw/blog/2015/06/29/mac-build-ubuntu-flash-using-command/"/>
     <updated>2015-06-29T23:39:10+08:00</updated>
     <id>http://blog.poyi.tw/blog/2015/06/29/mac-build-ubuntu-flash-using-command</id>
-    <content type="html"><![CDATA[<pre><code class="bash 將載好的ubuntu.dmg 轉成 iso">Bob:Downloads $ hdiutil convert -format UDRW -o ubuntu-14.04.2-server-amd64.dmg ubuntu-14.04.2-server-amd64.iso
+    <content type="html"><![CDATA[<pre><code class="bash 將載好的ubuntu.iso 轉成 ubuntu.dmg">Bob:Downloads $ hdiutil convert -format UDRW -o ubuntu-14.04.2-server-amd64.dmg ubuntu-14.04.2-server-amd64.iso
 正在讀取Driver Descriptor Map（DDM：0）⋯
 正在讀取Ubuntu-Server 14.04.2 LTS amd64 （Apple_ISO：1）⋯
 正在讀取Apple（Apple_partition_map：2）⋯
