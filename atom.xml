@@ -4,7 +4,7 @@
   <title><![CDATA[Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2015-07-27T18:38:47+08:00</updated>
+  <updated>2015-08-11T11:46:47+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -1228,6 +1228,9 @@ RVM (Ruby Version Manager):Ruby版本管理工具，便於切換不同版本</p>
 <span class='line-number'>12</span>
 <span class='line-number'>13</span>
 <span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;</span> <span class="mi">9</span><span class="o">.</span><span class="mi">9</span><span class="o">.</span><span class="n">integer?</span>
 </span><span class='line'> <span class="o">=&gt;</span> <span class="kp">false</span>
 </span><span class='line'>
@@ -1239,6 +1242,9 @@ RVM (Ruby Version Manager):Ruby版本管理工具，便於切換不同版本</p>
 </span><span class='line'>
 </span><span class='line'><span class="o">&gt;</span> <span class="mi">9</span><span class="o">.</span><span class="mi">9</span><span class="o">.</span><span class="n">floor</span>    <span class="c1"># 取整數/無條件捨去</span>
 </span><span class='line'> <span class="o">=&gt;</span> <span class="mi">9</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&gt;</span> <span class="mi">2312</span><span class="o">.</span><span class="mi">22</span><span class="o">.</span><span class="n">ceil</span>   <span class="c1"># 取整數/無條件進位</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="mi">2313</span>
 </span><span class='line'>
 </span><span class='line'><span class="o">&gt;</span> <span class="mi">2</span><span class="o">.</span><span class="n">next</span>
 </span><span class='line'> <span class="o">=&gt;</span> <span class="mi">3</span>
