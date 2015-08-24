@@ -4,7 +4,7 @@
   <title><![CDATA[Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2015-08-11T11:46:47+08:00</updated>
+  <updated>2015-08-24T17:46:40+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -923,8 +923,9 @@ extend: 相當於把目標的code直接放進來；具有目標的class methods<
 
 <p>Reference:</p>
 
-<p><a href="http://www.slideshare.net/BruceLi2/rubypart2">http://www.slideshare.net/BruceLi2/rubypart2</a>
-<a href="http://cat-son.blogspot.tw/2012/10/2-rubyinclude-extendrequire.html#sthash.QduzPsMe.cFJYqpMb.dpbs">http://cat-son.blogspot.tw/2012/10/2-rubyinclude-extendrequire.html#sthash.QduzPsMe.cFJYqpMb.dpbs</a></p>
+<p><a href="http://www.slideshare.net/BruceLi2/rubypart2">http://www.slideshare.net/BruceLi2/rubypart2</a></p>
+
+<p><a href="http://cat-son.blogspot.tw/2012/10/2-rubyinclude-extendrequire.html#sthash.QduzPsMe.cFJYqpMb.dpbs">http://cat-son.blogspot.tw/2012/10/2-rubyinclude-extendrequire.html#sthash.QduzPsMe.cFJYqpMb.dpbs</a></p>
 ]]></content>
   </entry>
   
@@ -1109,9 +1110,11 @@ RVM (Ruby Version Manager):Ruby版本管理工具，便於切換不同版本</p>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Reference:
-<a href="http://www.neoease.com/stoppropagation-and-preventdefault-and-return-false/">http://www.neoease.com/stoppropagation-and-preventdefault-and-return-false/</a>
-<a href="http://yiyingloveart.blogspot.tw/2013/08/eventpreventdefaultreturn-false.html">http://yiyingloveart.blogspot.tw/2013/08/eventpreventdefaultreturn-false.html</a></p>
+<p>Reference:</p>
+
+<p><a href="http://www.neoease.com/stoppropagation-and-preventdefault-and-return-false/">http://www.neoease.com/stoppropagation-and-preventdefault-and-return-false/</a></p>
+
+<p><a href="http://yiyingloveart.blogspot.tw/2013/08/eventpreventdefaultreturn-false.html">http://yiyingloveart.blogspot.tw/2013/08/eventpreventdefaultreturn-false.html</a></p>
 ]]></content>
   </entry>
   
@@ -1141,12 +1144,20 @@ RVM (Ruby Version Manager):Ruby版本管理工具，便於切換不同版本</p>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>而當例外發生時，如果沒有指定變數，Ruby會將錯誤資訊存放至$!及$@
-* $! (例外物件)
-  * .class
-  * .message
-  * .backtrace (等同於$@)
-* $@ (例外的位置資訊)</p>
+<p>而當例外發生時，如果沒有指定變數，Ruby會將錯誤資訊存放至$!及$@</p>
+
+<ul>
+<li>$! (例外物件)
+
+<ul>
+<li>.class</li>
+<li>.message</li>
+<li>.backtrace (等同於$@)</li>
+</ul>
+</li>
+<li>$@ (例外的位置資訊)</li>
+</ul>
+
 
 <figure class='code'><figcaption><span>example</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -1275,14 +1286,19 @@ RVM (Ruby Version Manager):Ruby版本管理工具，便於切換不同版本</p>
     <link href="http://blog.poyi.tw/blog/2013/12/14/ruby-is-a-small-note/"/>
     <updated>2013-12-14T13:19:00+08:00</updated>
     <id>http://blog.poyi.tw/blog/2013/12/14/ruby-is-a-small-note</id>
-    <content type="html"><![CDATA[<p>Ruby 有一個重要特性 Convention Over Configuration
-希望去做到一個約定成俗的習慣/慣例，省去過多的設定，讓程式更為簡潔。(ex:route maping)</p>
+    <content type="html"><![CDATA[<p>Ruby 有一個重要特性 <strong>Convention Over Configuration</strong></p>
 
-<p>Ruby命名也有一定的慣例
-* $name:全域變數
-* @name:實例變數，作用域僅限定於 self 指示的物件
-* name:區域變數(小寫字母或底線開頭；初始化前並沒有 nil 值)
-* Name:常數(大寫開頭；重覆定義時會出現警告)</p>
+<p>希望去做到一個約定成俗的習慣/慣例，省去過多的設定，讓程式更為簡潔。(ex:route maping)</p>
+
+<p>Ruby命名也有一定的慣例</p>
+
+<ul>
+<li>$name:全域變數</li>
+<li>@name:實例變數，作用域僅限定於 self 指示的物件</li>
+<li>name:區域變數(小寫字母或底線開頭；初始化前並沒有 nil 值)</li>
+<li>Name:常數(大寫開頭；重覆定義時會出現警告)</li>
+</ul>
+
 
 <figure class='code'><figcaption><span>全域變數 vs 實例變數 vs 區域變數</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -1318,15 +1334,35 @@ RVM (Ruby Version Manager):Ruby版本管理工具，便於切換不同版本</p>
     <link href="http://blog.poyi.tw/blog/2013/12/09/ruby-and/"/>
     <updated>2013-12-09T03:01:00+08:00</updated>
     <id>http://blog.poyi.tw/blog/2013/12/09/ruby-and</id>
-    <content type="html"><![CDATA[<p>在Ruby中的邏輯運算有兩組，[!,&amp;&amp;,||]及[not,and,or]
-+   [!,&amp;&amp;,||]         <br/>
-    + higher precedence
-+   [=,%=,~=,/=]
-    + between this two
-+   [not,and,or]
-    + lower precedence
-        * 優先權：&amp;&amp;　→　||　→　and　＝　or 。
-        * &amp;&amp; 或 || 會將符號前後方都認定為boolean(true,false)</p>
+    <content type="html"><![CDATA[<p>在Ruby中的邏輯運算有兩組，[!,&amp;&amp;,||]及[not,and,or]</p>
+
+<ul>
+<li>[!,&amp;&amp;,||]
+
+<ul>
+<li>higher precedence</li>
+</ul>
+</li>
+<li>[=,%=,~=,/=]
+
+<ul>
+<li>between this two</li>
+</ul>
+</li>
+<li>[not,and,or]
+
+<ul>
+<li>lower precedence
+
+<ul>
+<li>優先權：&amp;&amp;　→　||　→　and　＝　or 。</li>
+<li>&amp;&amp; 或 || 會將符號前後方都認定為boolean(true,false)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
 
 <figure class='code'><figcaption><span>&& 與 and 的比較</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -1387,10 +1423,13 @@ RVM (Ruby Version Manager):Ruby版本管理工具，便於切換不同版本</p>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Reference:
-<a href="http://phrogz.net/ProgrammingRuby/language.html#table%5F18.4">Ruby operators 優先順序</a>
-<a href="http://blog.jeffean.net/wiki/ruby.html">http://blog.jeffean.net/wiki/ruby.html</a>
-<a href="http://stackoverflow.com/questions/1426826/difference-between-and-and-in-ruby">http://stackoverflow.com/questions/1426826/difference-between-and-and-in-ruby</a></p>
+<p>Reference:</p>
+
+<p><a href="http://phrogz.net/ProgrammingRuby/language.html#table%5F18.4">Ruby operators 優先順序</a></p>
+
+<p><a href="http://blog.jeffean.net/wiki/ruby.html">http://blog.jeffean.net/wiki/ruby.html</a></p>
+
+<p><a href="http://stackoverflow.com/questions/1426826/difference-between-and-and-in-ruby">http://stackoverflow.com/questions/1426826/difference-between-and-and-in-ruby</a></p>
 ]]></content>
   </entry>
   

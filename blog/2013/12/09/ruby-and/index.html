@@ -9,10 +9,7 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="在Ruby中的邏輯運算有兩組，[!,&amp;&amp;,||]及[not,and,or]
-+ [!,&amp;&amp;,||] + higher precedence
-+ [=,%=,~=,/=] + between this two
-+ [not,and,or] + lower &hellip;">
+  <meta name="description" content="在Ruby中的邏輯運算有兩組，[!,&amp;&amp;,||]及[not,and,or] [!,&amp;&amp;,||] higher precedence [=,%=,~=,/=] between this two [not,and,or] lower precedence 優先權：& &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -129,15 +126,35 @@
   </header>
 
 
-<div class="entry-content"><p>在Ruby中的邏輯運算有兩組，[!,&amp;&amp;,||]及[not,and,or]
-+   [!,&amp;&amp;,||]         <br/>
-    + higher precedence
-+   [=,%=,~=,/=]
-    + between this two
-+   [not,and,or]
-    + lower precedence
-        * 優先權：&amp;&amp;　→　||　→　and　＝　or 。
-        * &amp;&amp; 或 || 會將符號前後方都認定為boolean(true,false)</p>
+<div class="entry-content"><p>在Ruby中的邏輯運算有兩組，[!,&amp;&amp;,||]及[not,and,or]</p>
+
+<ul>
+<li>[!,&amp;&amp;,||]
+
+<ul>
+<li>higher precedence</li>
+</ul>
+</li>
+<li>[=,%=,~=,/=]
+
+<ul>
+<li>between this two</li>
+</ul>
+</li>
+<li>[not,and,or]
+
+<ul>
+<li>lower precedence
+
+<ul>
+<li>優先權：&amp;&amp;　→　||　→　and　＝　or 。</li>
+<li>&amp;&amp; 或 || 會將符號前後方都認定為boolean(true,false)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
 
 <figure class='code'><figcaption><span>&& 與 and 的比較</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -198,10 +215,13 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Reference:
-<a href="http://phrogz.net/ProgrammingRuby/language.html#table%5F18.4">Ruby operators 優先順序</a>
-<a href="http://blog.jeffean.net/wiki/ruby.html">http://blog.jeffean.net/wiki/ruby.html</a>
-<a href="http://stackoverflow.com/questions/1426826/difference-between-and-and-in-ruby">http://stackoverflow.com/questions/1426826/difference-between-and-and-in-ruby</a></p>
+<p>Reference:</p>
+
+<p><a href="http://phrogz.net/ProgrammingRuby/language.html#table%5F18.4">Ruby operators 優先順序</a></p>
+
+<p><a href="http://blog.jeffean.net/wiki/ruby.html">http://blog.jeffean.net/wiki/ruby.html</a></p>
+
+<p><a href="http://stackoverflow.com/questions/1426826/difference-between-and-and-in-ruby">http://stackoverflow.com/questions/1426826/difference-between-and-and-in-ruby</a></p>
 </div>
 
 

@@ -156,12 +156,20 @@ ensure # 無論是否例外都會執行的code &hellip;">
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>而當例外發生時，如果沒有指定變數，Ruby會將錯誤資訊存放至$!及$@
-* $! (例外物件)
-  * .class
-  * .message
-  * .backtrace (等同於$@)
-* $@ (例外的位置資訊)</p>
+<p>而當例外發生時，如果沒有指定變數，Ruby會將錯誤資訊存放至$!及$@</p>
+
+<ul>
+<li>$! (例外物件)
+
+<ul>
+<li>.class</li>
+<li>.message</li>
+<li>.backtrace (等同於$@)</li>
+</ul>
+</li>
+<li>$@ (例外的位置資訊)</li>
+</ul>
+
 
 <figure class='code'><figcaption><span>example</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
