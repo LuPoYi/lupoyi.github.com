@@ -4,7 +4,7 @@
   <title><![CDATA[Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2015-08-24T17:46:40+08:00</updated>
+  <updated>2015-11-07T15:00:38+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -12,6 +12,89 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[[Ruby] AES 加密解密]]></title>
+    <link href="http://blog.poyi.tw/blog/2015/11/07/ruby-aes-encrypt-decrypt/"/>
+    <updated>2015-11-07T14:48:06+08:00</updated>
+    <id>http://blog.poyi.tw/blog/2015/11/07/ruby-aes-encrypt-decrypt</id>
+    <content type="html"><![CDATA[<h3>對稱金鑰加密：加解密使用的金鑰是同一把</h3>
+
+<ul>
+<li>DES (Data Encryption Standard)</li>
+<li>AES (Advanced Encryption Standard)</li>
+</ul>
+
+
+<h3>非對稱金鑰加密系統(公開金鑰加密)，加解密不同把key(公鑰私鑰)</h3>
+
+<ul>
+<li>RSA</li>
+</ul>
+
+
+<figure class='code'><figcaption><span>加密解密</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="vg">$key</span> <span class="o">=</span> <span class="s2">&quot;自定key&quot;</span> <span class="c1"># 可利用rails的sercret key(Rails.application.secrets.secret_key_base)</span>
+</span><span class='line'><span class="vg">$iv</span>  <span class="o">=</span> <span class="s2">&quot;自定iv&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># 加密</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">aes_encrypt</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">cipher</span> <span class="o">=</span> <span class="no">OpenSSL</span><span class="o">::</span><span class="no">Cipher</span><span class="o">::</span><span class="no">AES128</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:CBC</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">cipher</span><span class="o">.</span><span class="n">encrypt</span>
+</span><span class='line'>  <span class="n">cipher</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="vg">$key</span>
+</span><span class='line'>  <span class="n">cipher</span><span class="o">.</span><span class="n">iv</span> <span class="o">=</span> <span class="vg">$iv</span>
+</span><span class='line'>  <span class="n">encrypted</span> <span class="o">=</span> <span class="n">cipher</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">+</span> <span class="n">cipher</span><span class="o">.</span><span class="n">final</span>
+</span><span class='line'>  <span class="n">encrypted_base64</span> <span class="o">=</span> <span class="no">Base64</span><span class="o">.</span><span class="n">encode64</span><span class="p">(</span><span class="n">encrypted</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">encrypted_base64</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># 解密  </span>
+</span><span class='line'><span class="k">def</span> <span class="nf">aes_decrypt</span><span class="p">(</span><span class="n">encrypted_base64</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">encrypted</span> <span class="o">=</span> <span class="no">Base64</span><span class="o">.</span><span class="n">decode64</span><span class="p">(</span><span class="n">encrypted_base64</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">decipher</span> <span class="o">=</span> <span class="no">OpenSSL</span><span class="o">::</span><span class="no">Cipher</span><span class="o">::</span><span class="no">AES128</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:CBC</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">decipher</span><span class="o">.</span><span class="n">decrypt</span>
+</span><span class='line'>  <span class="n">decipher</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="vg">$key</span>
+</span><span class='line'>  <span class="n">decipher</span><span class="o">.</span><span class="n">iv</span>  <span class="o">=</span> <span class="vg">$iv</span>
+</span><span class='line'>  <span class="n">data</span> <span class="o">=</span> <span class="n">decipher</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">encrypted</span><span class="p">)</span> <span class="o">+</span> <span class="n">decipher</span><span class="o">.</span><span class="n">final</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">data</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Reference:</p>
+
+<p><a href="http://wemee.blogspot.tw/2015/01/ruby-product-key-ruby.html">http://wemee.blogspot.tw/2015/01/ruby-product-key-ruby.html</a></p>
+
+<p><a href="http://webos-goodies.jp/archives/encryption_in_ruby.html">http://webos-goodies.jp/archives/encryption_in_ruby.html</a></p>
+
+<p><a href="http://blog.ifyouseewendy.com/blog/2014/11/20/encryption-in-ruby/">http://blog.ifyouseewendy.com/blog/2014/11/20/encryption-in-ruby/</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[[Rails] 各種update method]]></title>
@@ -1691,65 +1774,6 @@ IThome「防駭演練與危機處理」研習會</p>
 
 <p>Reference:
 <a href="http://guides.rubyonrails.org/v3.2.13/active_record_validations_callbacks.html#validation-helpers">http://guides.rubyonrails.org/v3.2.13/active_record_validations_callbacks.html#validation-helpers</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[[Rails] RESTful]]></title>
-    <link href="http://blog.poyi.tw/blog/2013/11/14/rails-rest/"/>
-    <updated>2013-11-14T10:45:00+08:00</updated>
-    <id>http://blog.poyi.tw/blog/2013/11/14/rails-rest</id>
-    <content type="html"><![CDATA[<table border="1">
-        <tr>
-            <td>Action</td>
-            <td>helpers</td>
-            <td>Verb</td>
-            <td>Path</td>
-        </tr>
-        <tr>
-            <td>index</td>
-            <td>groups_path</td>
-            <td>GET</td>
-            <td>/groups</td>
-        </tr>
-        <tr>
-            <td>show</td>
-            <td>group_path(@group)</td>
-            <td>GET</td>
-            <td>/groups/1</td>
-        </tr>
-        <tr>
-            <td>new</td>
-            <td>new_group_path</td>
-            <td>GET</td>
-            <td>/groups/new</td>
-        </tr>
-        <tr>
-            <td>create</td>
-            <td>groups_path</td>
-            <td>POST</td>
-            <td>/groups</td>
-        </tr>
-        <tr>
-            <td>edit</td>
-            <td>edit_group_path(@group)</td>
-            <td>GET</td>
-            <td>/groups/1/edit</td>
-        </tr>
-        <tr>
-            <td>update</td>
-            <td>group_path(@group)</td>
-            <td>PUT</td>
-            <td>/groups/1</td>
-        </tr>
-        <tr>
-            <td>destroy</td>
-            <td>group_path(@group)</td>
-            <td>DELETE</td>
-            <td>/groups/1</td>
-        </tr>
-    </table>
-
 ]]></content>
   </entry>
   

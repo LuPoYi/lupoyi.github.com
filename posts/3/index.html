@@ -9,8 +9,7 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="看到官方提供的adpter..真的不知道怎麼下手.. 魯蛇無誤 Ubuntu Connect to SQL Server 想在Unix、Linux環境上，存取SQL Server似乎大多都使用FreeTDS 安裝FreeTDS1
-$ sudo apt-get install freetds-dev &hellip;">
+  <meta name="description" content="Action helpers Verb Path index groups_path GET /groups show group_path(@group) GET /groups/1 new new_group_path GET /groups/new create groups_path &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -99,6 +98,94 @@ $ sudo apt-get install freetds-dev &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/11/14/rails-rest/">[Rails] RESTful</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-14T10:45:00+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2013/11/14/rails-rest/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><table border="1">
+        <tr>
+            <td>Action</td>
+            <td>helpers</td>
+            <td>Verb</td>
+            <td>Path</td>
+        </tr>
+        <tr>
+            <td>index</td>
+            <td>groups_path</td>
+            <td>GET</td>
+            <td>/groups</td>
+        </tr>
+        <tr>
+            <td>show</td>
+            <td>group_path(@group)</td>
+            <td>GET</td>
+            <td>/groups/1</td>
+        </tr>
+        <tr>
+            <td>new</td>
+            <td>new_group_path</td>
+            <td>GET</td>
+            <td>/groups/new</td>
+        </tr>
+        <tr>
+            <td>create</td>
+            <td>groups_path</td>
+            <td>POST</td>
+            <td>/groups</td>
+        </tr>
+        <tr>
+            <td>edit</td>
+            <td>edit_group_path(@group)</td>
+            <td>GET</td>
+            <td>/groups/1/edit</td>
+        </tr>
+        <tr>
+            <td>update</td>
+            <td>group_path(@group)</td>
+            <td>PUT</td>
+            <td>/groups/1</td>
+        </tr>
+        <tr>
+            <td>destroy</td>
+            <td>group_path(@group)</td>
+            <td>DELETE</td>
+            <td>/groups/1</td>
+        </tr>
+    </table>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -967,107 +1054,6 @@ public static void SayGoodnight()
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/09/29/aspnet-linq-dynamic-conditions/">[ASP.NET] Linq 動態條件搜尋</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-29T08:10:00+08:00" pubdate data-updated="true"></time>
-        
-         | <a href="/blog/2013/09/29/aspnet-linq-dynamic-conditions/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>一般Linq在多種動態條件的組合時會顯得比較麻煩，要額外加很多if else判斷式來達成
-而「PredicateBuilder」可以解決這些麻煩，原理上是將where的條件獨立出來</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-</pre></td><td class='code'><pre><code class='Console'><span class='line'><span class="go">static void linqPB()</span>
-</span><span class='line'><span class="go">    {</span>
-</span><span class='line'><span class="go">        var list = new List&lt;string&gt; { &quot;apple&quot;, &quot;bob&quot;, &quot;coco&quot;, &quot;durex&quot;, &quot;enter&quot;, &quot;fuck&quot;};</span>
-</span><span class='line'><span class="go">        var searchKeyword = new List&lt;string&gt; { &quot;o&quot;, &quot;e&quot; };</span>
-</span><span class='line'><span class="go">        var predicate = PredicateBuilder.False&lt;string&gt;();</span>
-</span><span class='line'>
-</span><span class='line'><span class="go">        foreach (var word in searchKeyword)</span>
-</span><span class='line'><span class="go">        {</span>
-</span><span class='line'><span class="go">            var temp = word;  // 避免參考到相同變數位址</span>
-</span><span class='line'><span class="go">            predicate = predicate.Or(p =&gt; p.Contains(temp));</span>
-</span><span class='line'><span class="go">        }</span>
-</span><span class='line'><span class="go">        var qry = list.Where(predicate.Compile());</span>
-</span><span class='line'>
-</span><span class='line'><span class="go">        foreach (var item in qry)</span>
-</span><span class='line'><span class="go">        {</span>
-</span><span class='line'><span class="go">            Console.WriteLine(item);</span>
-</span><span class='line'><span class="go">        }</span>
-</span><span class='line'><span class="go">        Console.Read();</span>
-</span><span class='line'><span class="go">    }</span>
-</span><span class='line'><span class="go">// result: apple bob coco durex enter</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>主要的重點如下，將條件放入xxx</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='Console'><span class='line'><span class="go">  var predicate = PredicateBuilder.False();  // 這邊的true/false會與下列的or做串接</span>
-</span><span class='line'><span class="go">  predicate = predicate.Or(p =&gt; p.name.Contains(xxx));</span>
-</span><span class='line'><span class="go">  predicate = predicate.Or(p =&gt; p.department.Contains (xxx));</span>
-</span><span class='line'><span class="go">  myDB.employee.Where (predicate);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Reference:
-要使用PredicateBuilder，需要加入參考: LinqKit.dll
-<a href="http://www.albahari.com/nutshell/predicatebuilder.aspx">http://www.albahari.com/nutshell/predicatebuilder.aspx</a> <br/>
-<a href="http://blog.sanc.idv.tw/2010/10/linq.html">http://blog.sanc.idv.tw/2010/10/linq.html</a>
-<a href="http://leaflet-t-h.blogspot.tw/2011/11/linq-predicatebuilder.html">http://leaflet-t-h.blogspot.tw/2011/11/linq-predicatebuilder.html</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/4">&larr; Older</a>
@@ -1114,6 +1100,10 @@ public static void SayGoodnight()
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/11/07/ruby-aes-encrypt-decrypt/">[Ruby] AES 加密解密</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2015/07/11/rails-various-update-methods/">[Rails] 各種update method</a>
@@ -1169,10 +1159,6 @@ public static void SayGoodnight()
     
       <li class="post">
         <a href="/blog/2013/12/14/ruby-is-a-small-note/">[Ruby] 變數</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/12/09/ruby-and/">[Ruby] and與&&的差別</a>
       </li>
     
   </ul>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: aes | Bob 學習筆記]]></title>
+  <link href="http://blog.poyi.tw/blog/categories/aes/atom.xml" rel="self"/>
+  <link href="http://blog.poyi.tw/"/>
+  <updated>2015-11-07T15:00:38+08:00</updated>
+  <id>http://blog.poyi.tw/</id>
+  <author>
+    <name><![CDATA[Bob (PoYi)]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[[Ruby] AES 加密解密]]></title>
+    <link href="http://blog.poyi.tw/blog/2015/11/07/ruby-aes-encrypt-decrypt/"/>
+    <updated>2015-11-07T14:48:06+08:00</updated>
+    <id>http://blog.poyi.tw/blog/2015/11/07/ruby-aes-encrypt-decrypt</id>
+    <content type="html"><![CDATA[<h3>對稱金鑰加密：加解密使用的金鑰是同一把</h3>
+
+<ul>
+<li>DES (Data Encryption Standard)</li>
+<li>AES (Advanced Encryption Standard)</li>
+</ul>
+
+
+<h3>非對稱金鑰加密系統(公開金鑰加密)，加解密不同把key(公鑰私鑰)</h3>
+
+<ul>
+<li>RSA</li>
+</ul>
+
+
+<pre><code class="ruby 加密解密">$key = "自定key" # 可利用rails的sercret key(Rails.application.secrets.secret_key_base)
+$iv  = "自定iv" 
+
+# 加密
+def aes_encrypt(data)
+  cipher = OpenSSL::Cipher::AES128.new(:CBC)
+  cipher.encrypt
+  cipher.key = $key
+  cipher.iv = $iv
+  encrypted = cipher.update(data) + cipher.final
+  encrypted_base64 = Base64.encode64(encrypted)
+  return encrypted_base64
+end
+
+# 解密  
+def aes_decrypt(encrypted_base64)
+  encrypted = Base64.decode64(encrypted_base64)
+  decipher = OpenSSL::Cipher::AES128.new(:CBC)
+  decipher.decrypt
+  decipher.key = $key
+  decipher.iv  = $iv
+  data = decipher.update(encrypted) + decipher.final
+  return data
+end
+</code></pre>
+
+<p>Reference:</p>
+
+<p><a href="http://wemee.blogspot.tw/2015/01/ruby-product-key-ruby.html">http://wemee.blogspot.tw/2015/01/ruby-product-key-ruby.html</a></p>
+
+<p><a href="http://webos-goodies.jp/archives/encryption_in_ruby.html">http://webos-goodies.jp/archives/encryption_in_ruby.html</a></p>
+
+<p><a href="http://blog.ifyouseewendy.com/blog/2014/11/20/encryption-in-ruby/">http://blog.ifyouseewendy.com/blog/2014/11/20/encryption-in-ruby/</a></p>
+]]></content>
+  </entry>
+  
+</feed>
