@@ -4,7 +4,7 @@
   <title><![CDATA[Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2016-01-17T23:40:15+08:00</updated>
+  <updated>2016-01-17T23:41:57+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -35,7 +35,7 @@
 <span class='line-number'>11</span>
 <span class='line-number'>12</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>date <span class="c"># 確認目前時間</span>
-</span><span class='line'><span class="nv">$ </span>dpkg -l <span class="p">|</span> grep ntp
+</span><span class='line'><span class="nv">$ </span>dpkg -l <span class="p">|</span> grep ntp <span class="c"># 檢查是否已安裝</span>
 </span><span class='line'><span class="nv">$ </span>sudo apt-get install ntp
 </span><span class='line'><span class="nv">$ </span>vim /etc/ntp.conf
 </span><span class='line'>  <span class="c"># 加上</span>
@@ -48,6 +48,10 @@
 </span><span class='line'><span class="nv">$ </span>ntpdate time.stdtime.gov.tw
 </span></code></pre></td></tr></table></div></figure>
 
+
+<p>Reference:</p>
+
+<p><a href="http://pineapplelin.pixnet.net/blog/post/25364493-ubuntu%E5%A6%82%E4%BD%95%E8%A8%AD%E5%AE%9Antp%E6%A0%A1%E6%99%82">http://pineapplelin.pixnet.net/blog/post/25364493-ubuntu%E5%A6%82%E4%BD%95%E8%A8%AD%E5%AE%9Antp%E6%A0%A1%E6%99%82</a></p>
 ]]></content>
   </entry>
   
@@ -78,8 +82,8 @@
 <h5>帳號以中華電信為例</h5>
 
 <ul>
-<li><a href="&#109;&#x61;&#105;&#108;&#x74;&#x6f;&#x3a;&#x78;&#120;&#x78;&#120;&#120;&#x78;&#x78;&#120;&#64;&#x68;&#105;&#x6e;&#101;&#116;&#x2e;&#x6e;&#101;&#116;">&#120;&#120;&#x78;&#120;&#120;&#120;&#120;&#120;&#64;&#104;&#x69;&#x6e;&#101;&#116;&#x2e;&#x6e;&#x65;&#x74;</a>        取得動態IP (原有帳號格式)</li>
-<li><a href="&#109;&#97;&#x69;&#108;&#x74;&#111;&#58;&#x78;&#120;&#x78;&#120;&#x78;&#x78;&#120;&#x78;&#x40;&#x69;&#x70;&#x2e;&#x68;&#x69;&#x6e;&#101;&#116;&#46;&#110;&#x65;&#116;">&#x78;&#120;&#x78;&#120;&#120;&#x78;&#120;&#x78;&#x40;&#105;&#112;&#x2e;&#x68;&#x69;&#110;&#x65;&#x74;&#x2e;&#110;&#101;&#x74;</a>     取得固定IP  僅限一台電腦使用</li>
+<li><a href="&#109;&#97;&#105;&#108;&#116;&#x6f;&#58;&#120;&#x78;&#120;&#x78;&#120;&#120;&#120;&#x78;&#64;&#x68;&#105;&#110;&#x65;&#116;&#x2e;&#x6e;&#x65;&#x74;">&#120;&#x78;&#x78;&#x78;&#120;&#120;&#x78;&#120;&#64;&#104;&#x69;&#x6e;&#101;&#x74;&#46;&#110;&#x65;&#116;</a>        取得動態IP (原有帳號格式)</li>
+<li><a href="&#109;&#x61;&#105;&#108;&#x74;&#111;&#58;&#120;&#120;&#120;&#x78;&#120;&#x78;&#x78;&#x78;&#64;&#x69;&#x70;&#x2e;&#104;&#x69;&#x6e;&#101;&#116;&#x2e;&#x6e;&#101;&#x74;">&#x78;&#x78;&#120;&#120;&#120;&#120;&#120;&#x78;&#64;&#x69;&#112;&#46;&#x68;&#x69;&#110;&#101;&#x74;&#x2e;&#110;&#101;&#116;</a>     取得固定IP  僅限一台電腦使用</li>
 </ul>
 
 
