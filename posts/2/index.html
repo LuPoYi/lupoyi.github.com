@@ -9,12 +9,9 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="應該有更方便的用法吧我想，但目前對我來說算好用了:D 執行這行指令1
-ln -s /Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl /usr/local/bin/sublime 執行這行指令1
-2
-3
-4
-$ &hellip;">
+  <meta name="description" content="require vs load 首先require與load都是用來載入指定的檔案
+差別在於使用require只會調用一次，且副檔名可省略，load則相反。 random.rb1
+$a = (rand * 10).floor use_require.rb 產出的兩個值相同(只載入一次random. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -103,6 +100,141 @@ $ &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/03/16/ruby-require-load-include-extend/">[Ruby] Require,load,include,extend</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-16T21:14:00+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2014/03/16/ruby-require-load-include-extend/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>require vs load</h2>
+
+<p>首先require與load都是用來載入指定的檔案
+差別在於使用require只會調用一次，且副檔名可省略，load則相反。</p>
+
+<figure class='code'><figcaption><span>random.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="vg">$a</span> <span class="o">=</span> <span class="p">(</span><span class="nb">rand</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">floor</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>use_require.rb 產出的兩個值相同(只載入一次random.rb)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s2">&quot;./random&quot;</span>
+</span><span class='line'><span class="nb">puts</span> <span class="vg">$a</span>
+</span><span class='line'><span class="nb">require</span> <span class="s2">&quot;./random&quot;</span> <span class="c1"># 此行無效果</span>
+</span><span class='line'><span class="nb">puts</span> <span class="vg">$a</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>use_load.rb 產生的兩個值不一定相同</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">load</span> <span class="s2">&quot;./random.rb&quot;</span>
+</span><span class='line'><span class="nb">puts</span> <span class="vg">$a</span>
+</span><span class='line'><span class="nb">load</span> <span class="s2">&quot;./random.rb&quot;</span>
+</span><span class='line'><span class="nb">puts</span> <span class="vg">$a</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<hr />
+
+<h2>include vs extend</h2>
+
+<p>include: 將目標當作instance來使用；並不直接擁有method，需建立一個實例後才能用
+extend: 相當於把目標的code直接放進來；具有目標的class methods</p>
+
+<figure class='code'><figcaption><span>include_extend.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">Say</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">say_hi</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;Hi!&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">People</span>
+</span><span class='line'>  <span class="kp">include</span> <span class="no">Say</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Person</span>
+</span><span class='line'>  <span class="kp">extend</span> <span class="no">Say</span> <span class="c1"># 具有Say的method，可直接呼叫</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>irb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="m">001</span> &gt; require <span class="s1">&#39;./include_extend.rb&#39;</span>
+</span><span class='line'> <span class="o">=</span>&gt; <span class="nb">true </span>
+</span><span class='line'><span class="m">002</span> &gt; Person.say_hi
+</span><span class='line'>Hi!
+</span><span class='line'> <span class="o">=</span>&gt; nil
+</span><span class='line'><span class="m">003</span> &gt; People.new.say_hi
+</span><span class='line'>Hi!
+</span><span class='line'> <span class="o">=</span>&gt; nil
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Reference:</p>
+
+<p><a href="http://www.slideshare.net/BruceLi2/rubypart2">http://www.slideshare.net/BruceLi2/rubypart2</a></p>
+
+<p><a href="http://cat-son.blogspot.tw/2012/10/2-rubyinclude-extendrequire.html#sthash.QduzPsMe.cFJYqpMb.dpbs">http://cat-son.blogspot.tw/2012/10/2-rubyinclude-extendrequire.html#sthash.QduzPsMe.cFJYqpMb.dpbs</a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -967,97 +1099,6 @@ RVM (Ruby Version Manager):Ruby版本管理工具，便於切換不同版本</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/11/22/apt/">[APT] 進階持續性滲透攻擊 筆記</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-11-22T04:50:00+08:00" pubdate data-updated="true"></time>
-        
-         | <a href="/blog/2013/11/22/apt/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1>Advanced Persistent Threat</h1>
-
-<p> Advanced: 精心策劃的進階攻擊手法，並採用多元手段嘗試入侵。
- Persistent: 進行一段長時間的埋伏並監視網路使用習慣，遵循low and slow、以不被發現為原則。
- 通常攻擊者為有組織、計劃性的團體，嘗試竊取特定目標機密。</p>
-
-<h2>主要攻擊目標</h2>
-
-<ul>
-<li>依組職：政治、軍事、企業</li>
-<li>依國家：中國、美國、印度</li>
-</ul>
-
-
-<h2>常見手法</h2>
-
-<p> <strong>Internet Malware Infection</strong>
--   下載驅動程式
--   Email附件
--   非正式授權軟體
--   DNS中毒</p>
-
-<p><strong>Physical Malware Infection</strong>
--   USB</p>
-
-<p><strong>External Attacks</strong>
--   駭客入侵
--   漏洞攻擊</p>
-
-<h2>APT五種典型的特色：</h2>
-
-<ul>
-<li>高度針對性</li>
-<li>具有潛伏並保持低調的技術能力</li>
-<li>擁有資料情報分析的能力</li>
-<li>擁有多樣工具的多重面向攻擊方式</li>
-<li>資金充裕</li>
-</ul>
-
-
-<p>而成功入侵潛伏以後，會利用內部環境向上取得更高權限的帳號
-也可透過掃描漏洞軟體看是否該組織資安上是否有漏洞</p>
-
-<figure class='code'><figcaption><span>掃描漏洞..</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>Default Password <span class="o">(</span>root<span class="o">)</span> <span class="k">for</span> <span class="s1">&#39;root&#39;</span> Account
-</span><span class='line'>Unpassworded <span class="k">for</span> <span class="s1">&#39;sa&#39;</span> Account
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>駭客攻擊可以想成是流行性感冒，一直都會有新的流感(攻擊手法)，是不可避免到100%，但只要一個組織的資安體制建全、員工都有資安概念，就不容易受害。</p>
-
-<p>Reference:
-IThome「防駭演練與危機處理」研習會</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/3">&larr; Older</a>
@@ -1104,6 +1145,10 @@ IThome「防駭演練與危機處理」研習會</p>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/01/17/ubuntu-setting-ntp-sync-time/">ubuntu設定NTP校正時間</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2016/01/17/ubuntu-setting-pppoe-static-ip/">[ubuntu] 設定 PPPoE 固定IP</a>
@@ -1159,10 +1204,6 @@ IThome「防駭演練與危機處理」研習會</p>
     
       <li class="post">
         <a href="/blog/2013/12/23/ruby-exception-handling/">[Ruby] 例外處理</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/12/18/ruby-functions-for-numbers/">[Ruby] Functions for Numbers</a>
       </li>
     
   </ul>

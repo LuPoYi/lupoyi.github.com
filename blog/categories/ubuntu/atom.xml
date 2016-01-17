@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ubuntu | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/ubuntu/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2016-01-17T16:23:23+08:00</updated>
+  <updated>2016-01-17T23:40:15+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -12,6 +12,70 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[ubuntu設定NTP校正時間]]></title>
+    <link href="http://blog.poyi.tw/blog/2016/01/17/ubuntu-setting-ntp-sync-time/"/>
+    <updated>2016-01-17T23:34:01+08:00</updated>
+    <id>http://blog.poyi.tw/blog/2016/01/17/ubuntu-setting-ntp-sync-time</id>
+    <content type="html"><![CDATA[<h3>校正系統時間</h3>
+
+<p>類似OTP(google authenticator)這種服務當你系統時間不對就完全不能用</p>
+
+<pre><code class="bash">$ date # 確認目前時間
+$ dpkg -l | grep ntp
+$ sudo apt-get install ntp
+$ vim /etc/ntp.conf
+  # 加上
+  server tock.stdtime.gov.tw
+  server watch.stdtime.gov.tw
+  server time.stdtime.gov.tw
+  server clock.stdtime.gov.tw
+  server tick.stdtime.gov.tw
+
+$ ntpdate time.stdtime.gov.tw
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[[ubuntu] 設定 PPPoE 固定IP]]></title>
+    <link href="http://blog.poyi.tw/blog/2016/01/17/ubuntu-setting-pppoe-static-ip/"/>
+    <updated>2016-01-17T16:08:49+08:00</updated>
+    <id>http://blog.poyi.tw/blog/2016/01/17/ubuntu-setting-pppoe-static-ip</id>
+    <content type="html"><![CDATA[<h4>一般設定IP會直接寫在/etc/network/interfaces 看是要static還是dynamic</h4>
+
+<pre><code class="bash /etc/network/interfaces">auto p1p1
+iface p1p1 inet static
+
+address 192.168.1.100
+netmask 255.255.255.0
+gateway 192.168.1.1
+</code></pre>
+
+<h4>而需要使用PPPoE 輸入電信商提供的帳號來登入時</h4>
+
+<h5>帳號以中華電信為例</h5>
+
+<ul>
+<li><a href="&#109;&#97;&#105;&#x6c;&#116;&#111;&#x3a;&#x78;&#120;&#x78;&#120;&#x78;&#120;&#120;&#120;&#x40;&#x68;&#105;&#110;&#x65;&#116;&#x2e;&#110;&#x65;&#x74;">&#120;&#x78;&#x78;&#120;&#x78;&#120;&#x78;&#x78;&#64;&#104;&#x69;&#x6e;&#x65;&#116;&#x2e;&#110;&#x65;&#116;</a>        取得動態IP (原有帳號格式)</li>
+<li><a href="&#109;&#x61;&#x69;&#108;&#116;&#x6f;&#58;&#120;&#x78;&#120;&#120;&#120;&#x78;&#120;&#x78;&#64;&#x69;&#112;&#x2e;&#104;&#x69;&#x6e;&#101;&#116;&#46;&#110;&#101;&#x74;">&#120;&#x78;&#120;&#x78;&#120;&#x78;&#x78;&#x78;&#64;&#x69;&#x70;&#x2e;&#x68;&#x69;&#x6e;&#x65;&#116;&#46;&#x6e;&#x65;&#116;</a>     取得固定IP  僅限一台電腦使用</li>
+</ul>
+
+
+<pre><code class="bash">$ sudo apt-get install pppoeconf
+$ sudo pppoeconf
+</code></pre>
+
+<p>接著照著說明下一步，輸入帳號密碼等等的，全部設定完即可使用</p>
+
+<p>也可以看到/etc/network/interfaces被加了一些設定</p>
+
+<p>Reference:</p>
+
+<p><a href="http://note.drx.tw/2008/08/networkpppoe-adsl.html">http://note.drx.tw/2008/08/networkpppoe-adsl.html</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[[Mac] 三步驟純指令建立Ubuntu的USB隨身碟]]></title>

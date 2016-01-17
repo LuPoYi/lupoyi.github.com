@@ -4,7 +4,7 @@
   <title><![CDATA[Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2016-01-17T16:23:23+08:00</updated>
+  <updated>2016-01-17T23:40:15+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -12,6 +12,44 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[ubuntu設定NTP校正時間]]></title>
+    <link href="http://blog.poyi.tw/blog/2016/01/17/ubuntu-setting-ntp-sync-time/"/>
+    <updated>2016-01-17T23:34:01+08:00</updated>
+    <id>http://blog.poyi.tw/blog/2016/01/17/ubuntu-setting-ntp-sync-time</id>
+    <content type="html"><![CDATA[<h3>校正系統時間</h3>
+
+<p>類似OTP(google authenticator)這種服務當你系統時間不對就完全不能用</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>date <span class="c"># 確認目前時間</span>
+</span><span class='line'><span class="nv">$ </span>dpkg -l <span class="p">|</span> grep ntp
+</span><span class='line'><span class="nv">$ </span>sudo apt-get install ntp
+</span><span class='line'><span class="nv">$ </span>vim /etc/ntp.conf
+</span><span class='line'>  <span class="c"># 加上</span>
+</span><span class='line'>  server tock.stdtime.gov.tw
+</span><span class='line'>  server watch.stdtime.gov.tw
+</span><span class='line'>  server time.stdtime.gov.tw
+</span><span class='line'>  server clock.stdtime.gov.tw
+</span><span class='line'>  server tick.stdtime.gov.tw
+</span><span class='line'>
+</span><span class='line'><span class="nv">$ </span>ntpdate time.stdtime.gov.tw
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[[ubuntu] 設定 PPPoE 固定IP]]></title>
@@ -40,8 +78,8 @@
 <h5>帳號以中華電信為例</h5>
 
 <ul>
-<li><a href="&#109;&#x61;&#x69;&#108;&#x74;&#x6f;&#58;&#120;&#x78;&#120;&#x78;&#120;&#120;&#120;&#x78;&#x40;&#x68;&#x69;&#x6e;&#101;&#116;&#46;&#x6e;&#101;&#x74;">&#x78;&#120;&#120;&#120;&#x78;&#x78;&#x78;&#120;&#64;&#x68;&#105;&#x6e;&#x65;&#116;&#46;&#110;&#x65;&#116;</a>        取得動態IP (原有帳號格式)</li>
-<li><a href="&#109;&#97;&#x69;&#108;&#x74;&#x6f;&#x3a;&#x78;&#x78;&#x78;&#120;&#x78;&#120;&#120;&#x78;&#64;&#105;&#112;&#x2e;&#x68;&#105;&#110;&#101;&#116;&#x2e;&#110;&#101;&#116;">&#120;&#120;&#120;&#120;&#120;&#120;&#120;&#x78;&#x40;&#105;&#x70;&#46;&#x68;&#x69;&#x6e;&#101;&#x74;&#46;&#110;&#101;&#116;</a>     取得固定IP  僅限一台電腦使用</li>
+<li><a href="&#109;&#x61;&#105;&#108;&#x74;&#x6f;&#x3a;&#x78;&#120;&#x78;&#120;&#120;&#x78;&#x78;&#120;&#64;&#x68;&#105;&#x6e;&#101;&#116;&#x2e;&#x6e;&#101;&#116;">&#120;&#120;&#x78;&#120;&#120;&#120;&#120;&#120;&#64;&#104;&#x69;&#x6e;&#101;&#116;&#x2e;&#x6e;&#x65;&#x74;</a>        取得動態IP (原有帳號格式)</li>
+<li><a href="&#109;&#97;&#x69;&#108;&#x74;&#111;&#58;&#x78;&#120;&#x78;&#120;&#x78;&#x78;&#120;&#x78;&#x40;&#x69;&#x70;&#x2e;&#x68;&#x69;&#x6e;&#101;&#116;&#46;&#110;&#x65;&#116;">&#x78;&#120;&#x78;&#120;&#120;&#x78;&#120;&#x78;&#x40;&#105;&#112;&#x2e;&#x68;&#x69;&#110;&#x65;&#x74;&#x2e;&#110;&#101;&#x74;</a>     取得固定IP  僅限一台電腦使用</li>
 </ul>
 
 
@@ -1660,68 +1698,6 @@ RVM (Ruby Version Manager):Ruby版本管理工具，便於切換不同版本</p>
 <p>Reference:
 <a href="http://blog.xdite.net/posts/2012/01/04/how-to-pack-a-gem">http://blog.xdite.net/posts/2012/01/04/how-to-pack-a-gem</a>
 <a href="http://jex.logdown.com/posts/164687-ruby-build-his-own-gem-packages">http://jex.logdown.com/posts/164687-ruby-build-his-own-gem-packages</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[[APT] 進階持續性滲透攻擊 筆記]]></title>
-    <link href="http://blog.poyi.tw/blog/2013/11/22/apt/"/>
-    <updated>2013-11-22T04:50:00+08:00</updated>
-    <id>http://blog.poyi.tw/blog/2013/11/22/apt</id>
-    <content type="html"><![CDATA[<h1>Advanced Persistent Threat</h1>
-
-<p> Advanced: 精心策劃的進階攻擊手法，並採用多元手段嘗試入侵。
- Persistent: 進行一段長時間的埋伏並監視網路使用習慣，遵循low and slow、以不被發現為原則。
- 通常攻擊者為有組織、計劃性的團體，嘗試竊取特定目標機密。</p>
-
-<h2>主要攻擊目標</h2>
-
-<ul>
-<li>依組職：政治、軍事、企業</li>
-<li>依國家：中國、美國、印度</li>
-</ul>
-
-
-<h2>常見手法</h2>
-
-<p> <strong>Internet Malware Infection</strong>
--   下載驅動程式
--   Email附件
--   非正式授權軟體
--   DNS中毒</p>
-
-<p><strong>Physical Malware Infection</strong>
--   USB</p>
-
-<p><strong>External Attacks</strong>
--   駭客入侵
--   漏洞攻擊</p>
-
-<h2>APT五種典型的特色：</h2>
-
-<ul>
-<li>高度針對性</li>
-<li>具有潛伏並保持低調的技術能力</li>
-<li>擁有資料情報分析的能力</li>
-<li>擁有多樣工具的多重面向攻擊方式</li>
-<li>資金充裕</li>
-</ul>
-
-
-<p>而成功入侵潛伏以後，會利用內部環境向上取得更高權限的帳號
-也可透過掃描漏洞軟體看是否該組織資安上是否有漏洞</p>
-
-<figure class='code'><figcaption><span>掃描漏洞..</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>Default Password <span class="o">(</span>root<span class="o">)</span> <span class="k">for</span> <span class="s1">&#39;root&#39;</span> Account
-</span><span class='line'>Unpassworded <span class="k">for</span> <span class="s1">&#39;sa&#39;</span> Account
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>駭客攻擊可以想成是流行性感冒，一直都會有新的流感(攻擊手法)，是不可避免到100%，但只要一個組織的資安體制建全、員工都有資安概念，就不容易受害。</p>
-
-<p>Reference:
-IThome「防駭演練與危機處理」研習會</p>
 ]]></content>
   </entry>
   
