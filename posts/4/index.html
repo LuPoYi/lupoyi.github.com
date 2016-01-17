@@ -9,8 +9,8 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="一般Linq在多種動態條件的組合時會顯得比較麻煩，要額外加很多if else判斷式來達成
-而「PredicateBuilder」可以解決這些麻煩，原理上是將where的條件獨立出來 1
+  <meta name="description" content="最陽春的寫法 用SQL驗證來登入1
+string QueryString = &quot;Data Source=xxxx;Initial Catalog=xxxx;User ID=xxxx;Password=xxxx&quot;; QUERY1
 2
 3
 4
@@ -21,16 +21,7 @@
 9
 10
 11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-static &hellip;">
+12 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -119,6 +110,116 @@ static &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/09/30/aspnet-connect-to-sql-server/">[ASP.NET] Connect to SQL Server</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-30T12:25:00+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2013/09/30/aspnet-connect-to-sql-server/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>最陽春的寫法</p>
+
+<figure class='code'><figcaption><span>用SQL驗證來登入</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="kt">string</span> <span class="n">QueryString</span> <span class="p">=</span> <span class="s">&quot;Data Source=xxxx;Initial Catalog=xxxx;User ID=xxxx;Password=xxxx&quot;</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>QUERY</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="n">SqlConnection</span> <span class="n">conn</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SqlConnection</span><span class="p">(</span><span class="n">QueryString</span><span class="p">);</span>
+</span><span class='line'><span class="n">conn</span><span class="p">.</span><span class="n">Open</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">sqlStr</span> <span class="p">=</span> <span class="s">&quot;SELECT name FROM Employee&quot;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">SqlCommand</span> <span class="n">cmd</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SqlCommand</span><span class="p">(</span><span class="n">sqlStr</span><span class="p">,</span> <span class="n">conn</span><span class="p">);</span>
+</span><span class='line'><span class="n">SqlDataReader</span> <span class="n">dr</span> <span class="p">=</span> <span class="n">cmd</span><span class="p">.</span><span class="n">ExecuteReader</span><span class="p">();</span>
+</span><span class='line'><span class="k">while</span> <span class="p">(</span><span class="n">dr</span><span class="p">.</span><span class="n">Read</span><span class="p">())</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>      <span class="c1">// 將找到的值取出來</span>
+</span><span class='line'>    <span class="kt">string</span> <span class="n">user</span> <span class="p">=</span> <span class="n">dr</span><span class="p">[</span><span class="s">&quot;name&quot;</span><span class="p">].</span><span class="n">ToString</span><span class="p">();</span>
+</span><span class='line'>    <span class="c1">//...</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">conn</span><span class="p">.</span><span class="n">Close</span><span class="p">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>UPDATE INSERT DELETE</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="n">SqlConnection</span> <span class="n">conn</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SqlConnection</span><span class="p">(</span><span class="n">QueryString</span><span class="p">);</span>
+</span><span class='line'><span class="n">conn</span><span class="p">.</span><span class="n">Open</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">sqlStr</span> <span class="p">=</span> <span class="s">&quot;UPDATE Employee SET name = &#39;Bob&#39;&quot;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">SqlCommand</span> <span class="n">cmd</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SqlCommand</span><span class="p">(</span><span class="n">sqlStr</span><span class="p">,</span> <span class="n">conn</span><span class="p">);</span>
+</span><span class='line'><span class="n">cmd</span><span class="p">.</span><span class="n">ExecuteNonQuery</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">conn</span><span class="p">.</span><span class="n">Close</span><span class="p">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>用Parameter</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="n">sqlStr</span> <span class="p">=</span> <span class="s">&quot;SELECT * FROM Employee WHERE action = @Action&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="n">cmd</span><span class="p">.</span><span class="n">Parameters</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="n">SqlParameter</span><span class="p">(</span><span class="s">&quot;@Action&quot;</span><span class="p">,</span> <span class="n">item</span><span class="p">.</span><span class="n">ACTION</span><span class="p">));</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1036,63 +1137,6 @@ System.Diagnostics.Process.Start(psi);
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/09/04/aspnet-print/">[ASP.NET] 列印</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-04T02:46:00+08:00" pubdate data-updated="true"></time>
-        
-         | <a href="/blog/2013/09/04/aspnet-print/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1>列印指定文件</h1>
-
-<pre><code>string filePath = "C:\\test.txt";
-
-// 使用預設印表機
-LocalPrintServer ps = new LocalPrintServer();
-PrintQueue queue = ps.DefaultPrintQueue;
-
-// 指定特定印表機
-PrintServer ps = new PrintServer(@"\\TY-SRV-PRINT01");
-PrintQueue queue = new PrintQueue(ps, "FUJIXEROX");
-
-PrintSystemJobInfo pj = queue.AddJob(filePath);
-Stream myStream = pj.JobStream;
-Byte[] myByteBuffer = System.IO.File.ReadAllBytes(filePath);
-myStream.Write(myByteBuffer, 0, myByteBuffer.Length);
-myStream.Close();
-
-queue.Commit();
-</code></pre>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/5">&larr; Older</a>
@@ -1139,6 +1183,10 @@ queue.Commit();
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/01/17/ubuntu-setting-pppoe-static-ip/">[ubuntu] 設定 PPPoE 固定IP</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2015/11/07/ruby-aes-encrypt-decrypt/">[Ruby] AES 加密解密</a>
@@ -1196,10 +1244,6 @@ queue.Commit();
         <a href="/blog/2013/12/18/ruby-functions-for-numbers/">[Ruby] Functions for Numbers</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2013/12/14/ruby-is-a-small-note/">[Ruby] 變數</a>
-      </li>
-    
   </ul>
 </section>
 
@@ -1213,7 +1257,7 @@ queue.Commit();
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2015 - Bob (PoYi) -
+  Copyright &copy; 2016 - Bob (PoYi) -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

@@ -9,7 +9,16 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="Action helpers Verb Path index groups_path GET /groups show group_path(@group) GET /groups/1 new new_group_path GET /groups/new create groups_path &hellip;">
+  <meta name="description" content="Model之間要關聯時，雙方都要設定 (單複數要注意)1
+2
+3
+4
+5
+6
+7
+8
+class Boss &lt; ActiveRecord::Base has_one :employee has_many :employees
+end class Employee &lt; &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -98,6 +107,136 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/11/20/rails-activerecord/">[Rails] ActiveRecord</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-20T07:39:00+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2013/11/20/rails-activerecord/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><figure class='code'><figcaption><span>Model之間要關聯時，雙方都要設定 (單複數要注意)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Boss</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>  <span class="n">has_one</span> <span class="ss">:employee</span>
+</span><span class='line'>  <span class="n">has_many</span> <span class="ss">:employees</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Employee</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>  <span class="n">belongs_to</span> <span class="ss">:boss</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>常用參數</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Employee</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>    <span class="n">belongs_to</span> <span class="ss">:manager</span><span class="p">,</span> <span class="ss">:class_name</span> <span class="o">=&gt;</span> <span class="s2">&quot;User&quot;</span><span class="p">,</span> <span class="ss">:foreign_key</span> <span class="o">=&gt;</span> <span class="s2">&quot;manager_id&quot;</span> <span class="p">,</span><span class="ss">:order</span> <span class="o">=&gt;</span> <span class="s2">&quot;id desc&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># class_name =&gt; &quot;User&quot; 變更關聯class name</span>
+</span><span class='line'><span class="c1"># :foreign_key =&gt; &quot;manager_id&quot;變更關聯foreign key,預設為class_id</span>
+</span><span class='line'><span class="c1"># :order =&gt; &quot;id desc&quot; 排序</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>資料驗證</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Group</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>  <span class="n">validates</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">presence</span><span class="p">:</span> <span class="kp">true</span> <span class="c1"># 此欄位必填</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">validates</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:length</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:minimum</span> <span class="o">=&gt;</span> <span class="mi">2</span> <span class="p">}</span>
+</span><span class='line'>  <span class="n">validates</span> <span class="ss">:bio</span><span class="p">,</span> <span class="ss">:length</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:maximum</span> <span class="o">=&gt;</span> <span class="mi">500</span> <span class="p">}</span>
+</span><span class='line'>  <span class="n">validates</span> <span class="ss">:password</span><span class="p">,</span> <span class="ss">:length</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:in</span> <span class="o">=&gt;</span> <span class="mi">6</span><span class="o">.</span><span class="n">.</span><span class="mi">20</span> <span class="p">}</span>
+</span><span class='line'>  <span class="n">validates</span> <span class="ss">:registration_number</span><span class="p">,</span> <span class="ss">:length</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:is</span> <span class="o">=&gt;</span> <span class="mi">6</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="cm">=begin</span>
+</span><span class='line'><span class="cm">  others helpler:</span>
+</span><span class='line'><span class="cm">    acceptance</span>
+</span><span class='line'><span class="cm">    validates_associated</span>
+</span><span class='line'><span class="cm">    confirmation</span>
+</span><span class='line'><span class="cm">    exclusion</span>
+</span><span class='line'><span class="cm">    format</span>
+</span><span class='line'><span class="cm">    inclusion</span>
+</span><span class='line'><span class="cm">    length</span>
+</span><span class='line'><span class="cm">    numericality</span>
+</span><span class='line'><span class="cm">    presence</span>
+</span><span class='line'><span class="cm">    uniqueness</span>
+</span><span class='line'><span class="cm">    validates_with</span>
+</span><span class='line'><span class="cm">    validates_each</span>
+</span><span class='line'><span class="cm">=end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Reference:
+<a href="http://guides.rubyonrails.org/v3.2.13/active_record_validations_callbacks.html#validation-helpers">http://guides.rubyonrails.org/v3.2.13/active_record_validations_callbacks.html#validation-helpers</a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -944,116 +1083,6 @@ public static void SayGoodnight()
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/09/30/aspnet-connect-to-sql-server/">[ASP.NET] Connect to SQL Server</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-30T12:25:00+08:00" pubdate data-updated="true"></time>
-        
-         | <a href="/blog/2013/09/30/aspnet-connect-to-sql-server/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>最陽春的寫法</p>
-
-<figure class='code'><figcaption><span>用SQL驗證來登入</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="kt">string</span> <span class="n">QueryString</span> <span class="p">=</span> <span class="s">&quot;Data Source=xxxx;Initial Catalog=xxxx;User ID=xxxx;Password=xxxx&quot;</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>QUERY</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="n">SqlConnection</span> <span class="n">conn</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SqlConnection</span><span class="p">(</span><span class="n">QueryString</span><span class="p">);</span>
-</span><span class='line'><span class="n">conn</span><span class="p">.</span><span class="n">Open</span><span class="p">();</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">sqlStr</span> <span class="p">=</span> <span class="s">&quot;SELECT name FROM Employee&quot;</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">SqlCommand</span> <span class="n">cmd</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SqlCommand</span><span class="p">(</span><span class="n">sqlStr</span><span class="p">,</span> <span class="n">conn</span><span class="p">);</span>
-</span><span class='line'><span class="n">SqlDataReader</span> <span class="n">dr</span> <span class="p">=</span> <span class="n">cmd</span><span class="p">.</span><span class="n">ExecuteReader</span><span class="p">();</span>
-</span><span class='line'><span class="k">while</span> <span class="p">(</span><span class="n">dr</span><span class="p">.</span><span class="n">Read</span><span class="p">())</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>      <span class="c1">// 將找到的值取出來</span>
-</span><span class='line'>    <span class="kt">string</span> <span class="n">user</span> <span class="p">=</span> <span class="n">dr</span><span class="p">[</span><span class="s">&quot;name&quot;</span><span class="p">].</span><span class="n">ToString</span><span class="p">();</span>
-</span><span class='line'>    <span class="c1">//...</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">conn</span><span class="p">.</span><span class="n">Close</span><span class="p">();</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>UPDATE INSERT DELETE</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="n">SqlConnection</span> <span class="n">conn</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SqlConnection</span><span class="p">(</span><span class="n">QueryString</span><span class="p">);</span>
-</span><span class='line'><span class="n">conn</span><span class="p">.</span><span class="n">Open</span><span class="p">();</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">sqlStr</span> <span class="p">=</span> <span class="s">&quot;UPDATE Employee SET name = &#39;Bob&#39;&quot;</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">SqlCommand</span> <span class="n">cmd</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SqlCommand</span><span class="p">(</span><span class="n">sqlStr</span><span class="p">,</span> <span class="n">conn</span><span class="p">);</span>
-</span><span class='line'><span class="n">cmd</span><span class="p">.</span><span class="n">ExecuteNonQuery</span><span class="p">();</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">conn</span><span class="p">.</span><span class="n">Close</span><span class="p">();</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>用Parameter</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="n">sqlStr</span> <span class="p">=</span> <span class="s">&quot;SELECT * FROM Employee WHERE action = @Action&quot;</span><span class="p">;</span>
-</span><span class='line'><span class="n">cmd</span><span class="p">.</span><span class="n">Parameters</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="n">SqlParameter</span><span class="p">(</span><span class="s">&quot;@Action&quot;</span><span class="p">,</span> <span class="n">item</span><span class="p">.</span><span class="n">ACTION</span><span class="p">));</span>
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/4">&larr; Older</a>
@@ -1100,6 +1129,10 @@ public static void SayGoodnight()
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/01/17/ubuntu-setting-pppoe-static-ip/">[ubuntu] 設定 PPPoE 固定IP</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2015/11/07/ruby-aes-encrypt-decrypt/">[Ruby] AES 加密解密</a>
@@ -1157,10 +1190,6 @@ public static void SayGoodnight()
         <a href="/blog/2013/12/18/ruby-functions-for-numbers/">[Ruby] Functions for Numbers</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2013/12/14/ruby-is-a-small-note/">[Ruby] 變數</a>
-      </li>
-    
   </ul>
 </section>
 
@@ -1174,7 +1203,7 @@ public static void SayGoodnight()
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2015 - Bob (PoYi) -
+  Copyright &copy; 2016 - Bob (PoYi) -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

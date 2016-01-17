@@ -4,7 +4,7 @@
   <title><![CDATA[Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2015-11-07T15:00:38+08:00</updated>
+  <updated>2016-01-17T16:23:23+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -12,6 +12,55 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[[ubuntu] 設定 PPPoE 固定IP]]></title>
+    <link href="http://blog.poyi.tw/blog/2016/01/17/ubuntu-setting-pppoe-static-ip/"/>
+    <updated>2016-01-17T16:08:49+08:00</updated>
+    <id>http://blog.poyi.tw/blog/2016/01/17/ubuntu-setting-pppoe-static-ip</id>
+    <content type="html"><![CDATA[<h4>一般設定IP會直接寫在/etc/network/interfaces 看是要static還是dynamic</h4>
+
+<figure class='code'><figcaption><span>/etc/network/interfaces</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>auto p1p1
+</span><span class='line'>iface p1p1 inet static
+</span><span class='line'>
+</span><span class='line'>address 192.168.1.100
+</span><span class='line'>netmask 255.255.255.0
+</span><span class='line'>gateway 192.168.1.1
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>而需要使用PPPoE 輸入電信商提供的帳號來登入時</h4>
+
+<h5>帳號以中華電信為例</h5>
+
+<ul>
+<li><a href="&#109;&#x61;&#x69;&#108;&#x74;&#x6f;&#58;&#120;&#x78;&#120;&#x78;&#120;&#120;&#120;&#x78;&#x40;&#x68;&#x69;&#x6e;&#101;&#116;&#46;&#x6e;&#101;&#x74;">&#x78;&#120;&#120;&#120;&#x78;&#x78;&#x78;&#120;&#64;&#x68;&#105;&#x6e;&#x65;&#116;&#46;&#110;&#x65;&#116;</a>        取得動態IP (原有帳號格式)</li>
+<li><a href="&#109;&#97;&#x69;&#108;&#x74;&#x6f;&#x3a;&#x78;&#x78;&#x78;&#120;&#x78;&#120;&#120;&#x78;&#64;&#105;&#112;&#x2e;&#x68;&#105;&#110;&#101;&#116;&#x2e;&#110;&#101;&#116;">&#120;&#120;&#120;&#120;&#120;&#120;&#120;&#x78;&#x40;&#105;&#x70;&#46;&#x68;&#x69;&#x6e;&#101;&#x74;&#46;&#110;&#101;&#116;</a>     取得固定IP  僅限一台電腦使用</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo apt-get install pppoeconf
+</span><span class='line'><span class="nv">$ </span>sudo pppoeconf
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>接著照著說明下一步，輸入帳號密碼等等的，全部設定完即可使用</p>
+
+<p>也可以看到/etc/network/interfaces被加了一些設定</p>
+
+<p>Reference:</p>
+
+<p><a href="http://note.drx.tw/2008/08/networkpppoe-adsl.html">http://note.drx.tw/2008/08/networkpppoe-adsl.html</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[[Ruby] AES 加密解密]]></title>
@@ -1673,107 +1722,6 @@ RVM (Ruby Version Manager):Ruby版本管理工具，便於切換不同版本</p>
 
 <p>Reference:
 IThome「防駭演練與危機處理」研習會</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[[Rails] ActiveRecord]]></title>
-    <link href="http://blog.poyi.tw/blog/2013/11/20/rails-activerecord/"/>
-    <updated>2013-11-20T07:39:00+08:00</updated>
-    <id>http://blog.poyi.tw/blog/2013/11/20/rails-activerecord</id>
-    <content type="html"><![CDATA[<figure class='code'><figcaption><span>Model之間要關聯時，雙方都要設定 (單複數要注意)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Boss</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
-</span><span class='line'>  <span class="n">has_one</span> <span class="ss">:employee</span>
-</span><span class='line'>  <span class="n">has_many</span> <span class="ss">:employees</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">class</span> <span class="nc">Employee</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
-</span><span class='line'>  <span class="n">belongs_to</span> <span class="ss">:boss</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>常用參數</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Employee</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
-</span><span class='line'>    <span class="n">belongs_to</span> <span class="ss">:manager</span><span class="p">,</span> <span class="ss">:class_name</span> <span class="o">=&gt;</span> <span class="s2">&quot;User&quot;</span><span class="p">,</span> <span class="ss">:foreign_key</span> <span class="o">=&gt;</span> <span class="s2">&quot;manager_id&quot;</span> <span class="p">,</span><span class="ss">:order</span> <span class="o">=&gt;</span> <span class="s2">&quot;id desc&quot;</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># class_name =&gt; &quot;User&quot; 變更關聯class name</span>
-</span><span class='line'><span class="c1"># :foreign_key =&gt; &quot;manager_id&quot;變更關聯foreign key,預設為class_id</span>
-</span><span class='line'><span class="c1"># :order =&gt; &quot;id desc&quot; 排序</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>資料驗證</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Group</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
-</span><span class='line'>  <span class="n">validates</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">presence</span><span class="p">:</span> <span class="kp">true</span> <span class="c1"># 此欄位必填</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">validates</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:length</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:minimum</span> <span class="o">=&gt;</span> <span class="mi">2</span> <span class="p">}</span>
-</span><span class='line'>  <span class="n">validates</span> <span class="ss">:bio</span><span class="p">,</span> <span class="ss">:length</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:maximum</span> <span class="o">=&gt;</span> <span class="mi">500</span> <span class="p">}</span>
-</span><span class='line'>  <span class="n">validates</span> <span class="ss">:password</span><span class="p">,</span> <span class="ss">:length</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:in</span> <span class="o">=&gt;</span> <span class="mi">6</span><span class="o">.</span><span class="n">.</span><span class="mi">20</span> <span class="p">}</span>
-</span><span class='line'>  <span class="n">validates</span> <span class="ss">:registration_number</span><span class="p">,</span> <span class="ss">:length</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:is</span> <span class="o">=&gt;</span> <span class="mi">6</span> <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="cm">=begin</span>
-</span><span class='line'><span class="cm">  others helpler:</span>
-</span><span class='line'><span class="cm">    acceptance</span>
-</span><span class='line'><span class="cm">    validates_associated</span>
-</span><span class='line'><span class="cm">    confirmation</span>
-</span><span class='line'><span class="cm">    exclusion</span>
-</span><span class='line'><span class="cm">    format</span>
-</span><span class='line'><span class="cm">    inclusion</span>
-</span><span class='line'><span class="cm">    length</span>
-</span><span class='line'><span class="cm">    numericality</span>
-</span><span class='line'><span class="cm">    presence</span>
-</span><span class='line'><span class="cm">    uniqueness</span>
-</span><span class='line'><span class="cm">    validates_with</span>
-</span><span class='line'><span class="cm">    validates_each</span>
-</span><span class='line'><span class="cm">=end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Reference:
-<a href="http://guides.rubyonrails.org/v3.2.13/active_record_validations_callbacks.html#validation-helpers">http://guides.rubyonrails.org/v3.2.13/active_record_validations_callbacks.html#validation-helpers</a></p>
 ]]></content>
   </entry>
   
