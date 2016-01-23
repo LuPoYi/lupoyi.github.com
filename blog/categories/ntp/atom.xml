@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ntp | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/ntp/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2016-01-17T23:41:57+08:00</updated>
+  <updated>2016-01-23T17:12:39+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[ubuntu設定NTP校正時間]]></title>
+    <title type="html"><![CDATA[[ubuntu] 設定NTP校正時間]]></title>
     <link href="http://blog.poyi.tw/blog/2016/01/17/ubuntu-setting-ntp-sync-time/"/>
     <updated>2016-01-17T23:34:01+08:00</updated>
     <id>http://blog.poyi.tw/blog/2016/01/17/ubuntu-setting-ntp-sync-time</id>
