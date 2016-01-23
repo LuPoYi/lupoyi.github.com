@@ -20,7 +20,7 @@ function getWeightJson(){
 function getWeightJson(){
   $.ajax({
     async: false,
-    url: "http://poyi.tw/private/weight",
+    url: "http://218.161.51.137/private/weight",
     type: "GET",
     dataType: "json",
     success: function(json) {
