@@ -5,11 +5,27 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: ubuntu - Bob 學習筆記</title>
+  <title>Memo - Bob 學習筆記</title>
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="Category: ubuntu">
+  <meta name="description" content="Memo Ubuntu rails 環境建置 ruby on rails1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+sudo apt-get update
+sudo apt-get install nodejs
+curl -L get.rvm.io | bash -s &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +34,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.poyi.tw/blog/categories/ubuntu/">
+  <link rel="canonical" href="http://blog.poyi.tw/memo/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
    <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
@@ -100,64 +116,128 @@
 <article role="article">
   
   <header>
-    <h1 class="entry-title">Category: Ubuntu</h1>
-    
+    <h1 class="entry-title">Memo</h1>
+    <p class="meta">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-01-24T10:25:00+08:00" pubdate data-updated="true"></time></p>
   </header>
   
-  <div id="blog-archives" class="category">
+  <h2>Ubuntu rails 環境建置</h2>
+
+<figure class='code'><figcaption><span>ruby on rails</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get update
+</span><span class='line'>sudo apt-get install nodejs
+</span><span class='line'>curl -L get.rvm.io <span class="p">|</span> bash -s stable
+</span><span class='line'><span class="nb">source</span> ~/.rvm/scripts/rvm
+</span><span class='line'>rvm requirements
+</span><span class='line'>rvm install 2.3.0
+</span><span class='line'>rvm rubygems current
+</span><span class='line'>
+</span><span class='line'><span class="c"># fix nokogiri error</span>
+</span><span class='line'>sudo apt-get install build-essential patch
+</span><span class='line'>sudo apt-get install ruby-dev zlib1g-dev liblzma-dev
+</span><span class='line'>sudo apt-get install libgmp-dev
+</span><span class='line'>
+</span><span class='line'>gem install rails
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>ngnix passenger</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem install passenger
+</span><span class='line'>rvmsudo passenger-install-nginx-module
+</span><span class='line'>
+</span><span class='line'><span class="c"># fix nginx</span>
+</span><span class='line'>wget -O init-deb.sh https://www.linode.com/docs/assets/660-init-deb.sh
+</span><span class='line'>
+</span><span class='line'>sudo mv init-deb.sh /etc/init.d/nginx
+</span><span class='line'>sudo chmod +x /etc/init.d/nginx
+</span><span class='line'>
+</span><span class='line'>sudo /usr/sbin/update-rc.d -f nginx defaults
+</span><span class='line'>
+</span><span class='line'>sudo service nginx start
+</span><span class='line'>
+</span><span class='line'>vim /opt/nginx/conf/nginx.conf
+</span></code></pre></td></tr></table></div></figure>
+
 
 
 
   
-  <h2>2016</h2>
-
-<article>
-  
-<h1><a href="/blog/2016/01/17/ubuntu-setting-ntp-sync-time/">[ubuntu] 設定NTP校正時間</a></h1>
-<time datetime="2016-01-17T23:34:01+08:00" pubdate><span class='month'>Jan</span> <span class='day'>17</span> <span class='year'>2016</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/ntp/'>ntp</a>, <a class='category' href='/blog/categories/ubuntu/'>ubuntu</a></span>
-</footer>
-
-
-</article>
+    <footer>
+      <p class="meta">
+        
+        
 
 
 
-<article>
-  
-<h1><a href="/blog/2016/01/17/ubuntu-setting-pppoe-static-ip/">[ubuntu] 設定 PPPoE 固定IP</a></h1>
-<time datetime="2016-01-17T16:08:49+08:00" pubdate><span class='month'>Jan</span> <span class='day'>17</span> <span class='year'>2016</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/pppoe/'>pppoe</a>, <a class='category' href='/blog/categories/staticip/'>staticip</a>, <a class='category' href='/blog/categories/ubuntu/'>ubuntu</a></span>
-</footer>
 
 
-</article>
 
 
 
   
-  <h2>2015</h2>
 
-<article>
+
+<time datetime="2016-01-24T10:25:00+08:00" pubdate data-updated="true"></time>
+        
+      </p>
+      
+        <div class="sharing">
   
-<h1><a href="/blog/2015/06/29/mac-build-ubuntu-flash-using-command/">[Mac] 三步驟純指令建立Ubuntu的USB隨身碟</a></h1>
-<time datetime="2015-06-29T23:39:10+08:00" pubdate><span class='month'>Jun</span> <span class='day'>29</span> <span class='year'>2015</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/mac/'>mac</a>, <a class='category' href='/blog/categories/ubuntu/'>ubuntu</a>, <a class='category' href='/blog/categories/usb/'>usb</a></span>
-</footer>
-
-
-</article>
-
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.poyi.tw/memo/index.html" data-via="" data-counturl="http://blog.poyi.tw/memo/index.html" >Tweet</a>
+  
+  
+  
 </div>
 
+      
+    </footer>
   
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -284,7 +364,10 @@
       var disqus_shortname = 'blogpoyitw';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://blog.poyi.tw/memo/index.html';
+        var disqus_url = 'http://blog.poyi.tw/memo/index.html';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
