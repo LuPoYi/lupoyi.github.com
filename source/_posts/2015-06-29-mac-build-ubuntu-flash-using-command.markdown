@@ -6,7 +6,7 @@ comments: true
 categories: [mac, ubuntu, usb]
 ---
 
-```bash 將載好的ubuntu.dmg 轉成 iso
+```bash 將載好的ubuntu.iso 轉成 ubuntu.dmg
 Bob:Downloads $ hdiutil convert -format UDRW -o ubuntu-14.04.2-server-amd64.dmg ubuntu-14.04.2-server-amd64.iso
 正在讀取Driver Descriptor Map（DDM：0）⋯
 正在讀取Ubuntu-Server 14.04.2 LTS amd64 （Apple_ISO：1）⋯

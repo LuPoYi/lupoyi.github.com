@@ -64,5 +64,6 @@ Hi!
 Reference:
 
 http://www.slideshare.net/BruceLi2/rubypart2
+
 http://cat-son.blogspot.tw/2012/10/2-rubyinclude-extendrequire.html#sthash.QduzPsMe.cFJYqpMb.dpbs
 

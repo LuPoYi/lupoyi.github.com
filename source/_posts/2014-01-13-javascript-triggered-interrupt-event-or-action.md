@@ -51,5 +51,7 @@ $("a").click(function(event) {
 
 
 Reference:
+
 http://www.neoease.com/stoppropagation-and-preventdefault-and-return-false/
+
 http://yiyingloveart.blogspot.tw/2013/08/eventpreventdefaultreturn-false.html
