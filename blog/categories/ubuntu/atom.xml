@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ubuntu | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/ubuntu/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2016-03-05T11:45:54+08:00</updated>
+  <updated>2016-03-05T11:53:41+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[[ubuntu] 架設 OpenVpn Server & Client]]></title>
+    <title type="html"><![CDATA[[Ubuntu] 架設 OpenVpn Server & Client]]></title>
     <link href="http://blog.poyi.tw/blog/2016/03/05/ubuntu-openvpn-server-client/"/>
     <updated>2016-03-05T11:42:49+08:00</updated>
     <id>http://blog.poyi.tw/blog/2016/03/05/ubuntu-openvpn-server-client</id>
@@ -53,7 +53,7 @@ push "dhcp-option DNS 8.8.8.8"
 vim /etc/sysctl.conf
 </code></pre>
 
-<pre><code class="bash /etc/sysctl.con"># 拿掉註解
+<pre><code class="bash /etc/sysctl.conf"># 拿掉註解
 net.ipv4.ip_forward=1
 </code></pre>
 
@@ -64,36 +64,51 @@ ufw allow 1194/udp
 vim /etc/default/ufw
 </code></pre>
 
-<pre><code class="bash /etc/default/ufw"># 將DROP改成ACCEPT
+<pre><code class="bash vim /etc/default/ufw"># 將DROP改成ACCEPT
 DEFAULT_FORWARD_POLICY="ACCEPT"
 </code></pre>
 
 <pre><code>vim /etc/ufw/before.rules
 </code></pre>
 
-<pre><code class="bash /etc/ufw/before.rules 加入OPENVPN RULES">#
-# rules.before
-#
-# Rules that should be run before the ufw command line added rules. Custom
-# rules should be added to one of these chains:
-#   ufw-before-input
-#   ufw-before-output
-#   ufw-before-forward
-#
+<p>&#8220;`bash vim /etc/ufw/before.rules 加入OPENVPN RULES(11~18行)
+#</p>
 
-# START OPENVPN RULES
-# NAT table rules
-*nat
-:POSTROUTING ACCEPT [0:0]
-# Allow traffic from OpenVPN client to eth0
--A POSTROUTING -s 10.8.0.0/8 -o eth0 -j MASQUERADE
-COMMIT
-# END OPENVPN RULES
-</code></pre>
+<h1>rules.before</h1>
 
-<pre><code>ufw enable
+<p>#</p>
+
+<h1>Rules that should be run before the ufw command line added rules. Custom</h1>
+
+<h1>rules should be added to one of these chains:</h1>
+
+<h1>ufw-before-input</h1>
+
+<h1>ufw-before-output</h1>
+
+<h1>ufw-before-forward</h1>
+
+<p>#</p>
+
+<h1>START OPENVPN RULES</h1>
+
+<h1>NAT table rules</h1>
+
+<p>*nat
+:POSTROUTING ACCEPT [0:0]</p>
+
+<h1>Allow traffic from OpenVPN client to eth0</h1>
+
+<p>-A POSTROUTING -s 10.8.0.0/8 -o eth0 -j MASQUERADE
+COMMIT</p>
+
+<h1>END OPENVPN RULES</h1>
+
+<pre><code></code></pre>
+
+<p>ufw enable
 ufw status
-</code></pre>
+&#8220;`</p>
 
 <h3>Generate Certificate Authority</h3>
 
@@ -102,7 +117,7 @@ mkdir /etc/openvpn/easy-rsa/keys
 vim /etc/openvpn/easy-rsa/vars
 </code></pre>
 
-<pre><code>export KEY_COUNTRY=“TW”
+<pre><code class="bash vim /etc/openvpn/easy-rsa/vars">export KEY_COUNTRY=“TW”
 export KEY_PROVINCE=“Taiwan”
 export KEY_CITY=“Taipei”
 export KEY_ORG="My Company Name"
@@ -121,26 +136,28 @@ cd /etc/openvpn/easy-rsa
 
 <h3>Generate Server-side Key</h3>
 
-<pre><code class="bash /etc/openvpn/easy-rsa">./build-key-server server
+<pre><code>./build-key-server server
 cp /etc/openvpn/easy-rsa/keys/{server.crt,server.key,ca.crt} /etc/openvpn
 </code></pre>
 
+<p>啟動Server</p>
+
 <pre><code>service openvpn start
 service openvpn status
+# service openvpn stop
 </code></pre>
 
 <h3>Generate Client-side Key</h3>
 
-<pre><code class="bash /etc/openvpn/easy-rsa">./build-key bob01
+<pre><code>./build-key bob01
 mkdir /etc/openvpn/bob01
 cp /etc/openvpn/easy-rsa/keys/bob01.crt,bob01.key /etc/openvpn/bob01/
 cp /etc/openvpn/easy-rsa/ca.crt /etc/openvpn/bob01/
-
 cp /usr/share/doc/openvpn/examples/sample-config-files/client.conf  /etc/openvpn/bob01/bob01.ovpn
 vim /etc/openvpn/bob01/bob01.ovpn
 </code></pre>
 
-<pre><code class="bash /etc/openvpn/bob01/bob01.ovpn">remote MY_SERVER_IP 1194
+<pre><code class="bash vim /etc/openvpn/bob01/bob01.ovpn">remote MY_SERVER_IP 1194
 ca ca.crt
 cert bob01.crt
 key bob01.key
@@ -151,7 +168,7 @@ key bob01.key
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[[ubuntu] 設定NTP校正時間]]></title>
+    <title type="html"><![CDATA[[Ubuntu] 設定NTP校正時間]]></title>
     <link href="http://blog.poyi.tw/blog/2016/01/17/ubuntu-setting-ntp-sync-time/"/>
     <updated>2016-01-17T23:34:01+08:00</updated>
     <id>http://blog.poyi.tw/blog/2016/01/17/ubuntu-setting-ntp-sync-time</id>
@@ -180,7 +197,7 @@ $ ntpdate time.stdtime.gov.tw
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[[ubuntu] 設定 PPPoE 固定IP]]></title>
+    <title type="html"><![CDATA[[Ubuntu] 設定 PPPoE 固定IP]]></title>
     <link href="http://blog.poyi.tw/blog/2016/01/17/ubuntu-setting-pppoe-static-ip/"/>
     <updated>2016-01-17T16:08:49+08:00</updated>
     <id>http://blog.poyi.tw/blog/2016/01/17/ubuntu-setting-pppoe-static-ip</id>
@@ -199,8 +216,8 @@ gateway 192.168.1.1
 <h5>帳號以中華電信為例</h5>
 
 <ul>
-<li><a href="&#109;&#97;&#x69;&#108;&#116;&#x6f;&#58;&#x78;&#x78;&#120;&#x78;&#120;&#x78;&#120;&#120;&#x40;&#104;&#105;&#110;&#x65;&#116;&#46;&#110;&#101;&#116;">&#120;&#x78;&#120;&#120;&#x78;&#120;&#120;&#x78;&#x40;&#104;&#105;&#110;&#x65;&#x74;&#46;&#x6e;&#x65;&#116;</a>        取得動態IP (原有帳號格式)</li>
-<li><a href="&#109;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#120;&#x78;&#120;&#x78;&#x78;&#120;&#x78;&#120;&#x40;&#x69;&#112;&#x2e;&#104;&#x69;&#x6e;&#101;&#x74;&#x2e;&#x6e;&#x65;&#x74;">&#x78;&#120;&#120;&#x78;&#x78;&#x78;&#x78;&#x78;&#64;&#105;&#x70;&#x2e;&#104;&#105;&#x6e;&#x65;&#116;&#x2e;&#110;&#x65;&#x74;</a>     取得固定IP  僅限一台電腦使用</li>
+<li><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#x3a;&#120;&#x78;&#120;&#120;&#x78;&#x78;&#120;&#x78;&#x40;&#x68;&#x69;&#x6e;&#101;&#116;&#x2e;&#x6e;&#101;&#116;">&#120;&#120;&#120;&#x78;&#120;&#x78;&#120;&#x78;&#x40;&#104;&#x69;&#x6e;&#x65;&#x74;&#46;&#110;&#101;&#x74;</a>        取得動態IP (原有帳號格式)</li>
+<li><a href="&#x6d;&#97;&#105;&#x6c;&#x74;&#111;&#58;&#x78;&#120;&#x78;&#120;&#120;&#120;&#120;&#120;&#64;&#105;&#112;&#x2e;&#104;&#x69;&#110;&#101;&#x74;&#x2e;&#x6e;&#101;&#116;">&#x78;&#120;&#x78;&#x78;&#120;&#120;&#120;&#x78;&#64;&#105;&#112;&#46;&#104;&#105;&#110;&#101;&#x74;&#46;&#110;&#x65;&#116;</a>     取得固定IP  僅限一台電腦使用</li>
 </ul>
 
 

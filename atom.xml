@@ -4,7 +4,7 @@
   <title><![CDATA[Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2016-03-05T11:45:54+08:00</updated>
+  <updated>2016-03-05T11:53:41+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[[ubuntu] 架設 OpenVpn Server & Client]]></title>
+    <title type="html"><![CDATA[[Ubuntu] 架設 OpenVpn Server & Client]]></title>
     <link href="http://blog.poyi.tw/blog/2016/03/05/ubuntu-openvpn-server-client/"/>
     <updated>2016-03-05T11:42:49+08:00</updated>
     <id>http://blog.poyi.tw/blog/2016/03/05/ubuntu-openvpn-server-client</id>
@@ -84,7 +84,7 @@
 
 
 
-<figure class='code'><figcaption><span>/etc/sysctl.con</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>/etc/sysctl.conf</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># 拿掉註解</span>
 </span><span class='line'>net.ipv4.ip_forward<span class="o">=</span>1
@@ -93,7 +93,7 @@
 
 <h3>Uncomplicated Firewall</h3>
 
-<figure class='code'><figcaption><span>/etc/sysctl.con</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>/etc/sysctl.conf</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>ufw allow ssh
@@ -104,7 +104,7 @@
 
 
 
-<figure class='code'><figcaption><span>/etc/default/ufw</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>vim</span><a href='http://blog.poyi.tw/etc/default/ufw'>link</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># 將DROP改成ACCEPT</span>
 </span><span class='line'><span class="nv">DEFAULT_FORWARD_POLICY</span><span class="o">=</span><span class="s2">&quot;ACCEPT&quot;</span>
@@ -113,14 +113,14 @@
 
 
 
-<figure class='code'><figcaption><span>/etc/default/ufw</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>vim</span><a href='http://blog.poyi.tw/etc/default/ufw'>link</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>vim /etc/ufw/before.rules
 </span></code></pre></td></tr></table></div></figure>
 
 
 
 
-<figure class='code'><figcaption><span>/etc/ufw/before.rules 加入OPENVPN RULES</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>vim</span><a href='http://blog.poyi.tw/etc/ufw/before.rules'>加入OPENVPN RULES(11~18行)</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -161,7 +161,7 @@
 
 
 
-<figure class='code'><figcaption><span>/etc/ufw/before.rules 加入OPENVPN RULES</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>vim</span><a href='http://blog.poyi.tw/etc/ufw/before.rules'>加入OPENVPN RULES(11~18行)</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>ufw <span class="nb">enable</span>
 </span><span class='line'>ufw status
@@ -170,7 +170,7 @@
 
 <h3>Generate Certificate Authority</h3>
 
-<figure class='code'><figcaption><span>/etc/ufw/before.rules 加入OPENVPN RULES</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>vim</span><a href='http://blog.poyi.tw/etc/ufw/before.rules'>加入OPENVPN RULES(11~18行)</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>cp -r /usr/share/easy-rsa/ /etc/openvpn
@@ -181,7 +181,7 @@
 
 
 
-<figure class='code'><figcaption><span>/etc/ufw/before.rules 加入OPENVPN RULES</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>vim</span><a href='http://blog.poyi.tw/etc/openvpn/easy-rsa/vars'>link</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -202,7 +202,7 @@
 
 
 
-<figure class='code'><figcaption><span>/etc/ufw/before.rules 加入OPENVPN RULES</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>vim</span><a href='http://blog.poyi.tw/etc/openvpn/easy-rsa/vars'>link</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -217,36 +217,36 @@
 
 <h3>Generate Server-side Key</h3>
 
-<figure class='code'><figcaption><span>/etc/openvpn/easy-rsa</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>vim</span><a href='http://blog.poyi.tw/etc/openvpn/easy-rsa/vars'>link</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>./build-key-server server
 </span><span class='line'>cp /etc/openvpn/easy-rsa/keys/<span class="o">{</span>server.crt,server.key,ca.crt<span class="o">}</span> /etc/openvpn
 </span></code></pre></td></tr></table></div></figure>
 
 
+<p>啟動Server</p>
 
-
-<figure class='code'><figcaption><span>/etc/openvpn/easy-rsa</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>vim</span><a href='http://blog.poyi.tw/etc/openvpn/easy-rsa/vars'>link</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
+<span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>service openvpn start
 </span><span class='line'>service openvpn status
+</span><span class='line'><span class="c"># service openvpn stop</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
 <h3>Generate Client-side Key</h3>
 
-<figure class='code'><figcaption><span>/etc/openvpn/easy-rsa</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>vim</span><a href='http://blog.poyi.tw/etc/openvpn/easy-rsa/vars'>link</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-<span class='line-number'>7</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>./build-key bob01
 </span><span class='line'>mkdir /etc/openvpn/bob01
 </span><span class='line'>cp /etc/openvpn/easy-rsa/keys/bob01.crt,bob01.key /etc/openvpn/bob01/
 </span><span class='line'>cp /etc/openvpn/easy-rsa/ca.crt /etc/openvpn/bob01/
-</span><span class='line'>
 </span><span class='line'>cp /usr/share/doc/openvpn/examples/sample-config-files/client.conf  /etc/openvpn/bob01/bob01.ovpn
 </span><span class='line'>vim /etc/openvpn/bob01/bob01.ovpn
 </span></code></pre></td></tr></table></div></figure>
@@ -254,7 +254,7 @@
 
 
 
-<figure class='code'><figcaption><span>/etc/openvpn/bob01/bob01.ovpn</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>vim</span><a href='http://blog.poyi.tw/etc/openvpn/bob01/bob01.ovpn'>link</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -270,7 +270,7 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[[ubuntu] 設定NTP校正時間]]></title>
+    <title type="html"><![CDATA[[Ubuntu] 設定NTP校正時間]]></title>
     <link href="http://blog.poyi.tw/blog/2016/01/17/ubuntu-setting-ntp-sync-time/"/>
     <updated>2016-01-17T23:34:01+08:00</updated>
     <id>http://blog.poyi.tw/blog/2016/01/17/ubuntu-setting-ntp-sync-time</id>
@@ -312,7 +312,7 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[[ubuntu] 設定 PPPoE 固定IP]]></title>
+    <title type="html"><![CDATA[[Ubuntu] 設定 PPPoE 固定IP]]></title>
     <link href="http://blog.poyi.tw/blog/2016/01/17/ubuntu-setting-pppoe-static-ip/"/>
     <updated>2016-01-17T16:08:49+08:00</updated>
     <id>http://blog.poyi.tw/blog/2016/01/17/ubuntu-setting-pppoe-static-ip</id>
@@ -338,8 +338,8 @@
 <h5>帳號以中華電信為例</h5>
 
 <ul>
-<li><a href="&#x6d;&#97;&#105;&#x6c;&#x74;&#x6f;&#58;&#120;&#x78;&#x78;&#x78;&#x78;&#x78;&#x78;&#120;&#64;&#x68;&#x69;&#110;&#101;&#116;&#x2e;&#x6e;&#x65;&#116;">&#120;&#x78;&#120;&#x78;&#120;&#120;&#120;&#x78;&#x40;&#x68;&#105;&#110;&#x65;&#x74;&#46;&#x6e;&#101;&#x74;</a>        取得動態IP (原有帳號格式)</li>
-<li><a href="&#109;&#97;&#x69;&#108;&#x74;&#x6f;&#58;&#x78;&#x78;&#x78;&#x78;&#120;&#x78;&#x78;&#x78;&#x40;&#105;&#112;&#46;&#104;&#x69;&#x6e;&#x65;&#x74;&#x2e;&#x6e;&#101;&#x74;">&#120;&#x78;&#120;&#120;&#x78;&#120;&#120;&#120;&#x40;&#105;&#x70;&#46;&#x68;&#105;&#110;&#101;&#x74;&#x2e;&#x6e;&#x65;&#x74;</a>     取得固定IP  僅限一台電腦使用</li>
+<li><a href="&#109;&#x61;&#x69;&#108;&#116;&#111;&#x3a;&#120;&#x78;&#120;&#120;&#120;&#x78;&#120;&#x78;&#x40;&#104;&#105;&#x6e;&#x65;&#116;&#x2e;&#x6e;&#x65;&#116;">&#120;&#120;&#120;&#120;&#120;&#120;&#120;&#x78;&#x40;&#104;&#x69;&#x6e;&#x65;&#116;&#x2e;&#x6e;&#101;&#x74;</a>        取得動態IP (原有帳號格式)</li>
+<li><a href="&#109;&#97;&#105;&#x6c;&#116;&#x6f;&#x3a;&#120;&#x78;&#120;&#x78;&#120;&#x78;&#x78;&#120;&#x40;&#x69;&#112;&#46;&#x68;&#105;&#x6e;&#x65;&#x74;&#x2e;&#110;&#x65;&#116;">&#x78;&#x78;&#x78;&#120;&#120;&#120;&#x78;&#120;&#x40;&#105;&#112;&#46;&#x68;&#x69;&#x6e;&#101;&#116;&#x2e;&#x6e;&#x65;&#116;</a>     取得固定IP  僅限一台電腦使用</li>
 </ul>
 
 
