@@ -355,6 +355,90 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2014/05/06/ruby-txt-file/">[Ruby] 匯出txt檔</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-06T22:00:59+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2014/05/06/ruby-txt-file/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>需要在正式環境上撈一些大量特定資料下來，又不想dump整份database的話，用ORM來把資料匯出成txt就很方便了</h3>
+
+<figure class='code'><figcaption><span>寫入txt</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">all_users_mobile</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">&#39;mobile like ?&#39;</span><span class="p">,</span> <span class="s1">&#39;+8869%&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="ss">:mobile</span><span class="p">)</span><span class="o">.</span><span class="n">uniq</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># 建立txt並給予寫入權限</span>
+</span><span class='line'><span class="n">file</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;mobile_tw.txt&#39;</span> <span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">all_users_mobile</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">mobile</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">file</span><span class="o">.</span><span class="n">puts</span> <span class="n">mobile</span> <span class="c1"># 一行一筆mobile</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># 記得要關掉</span>
+</span><span class='line'><span class="n">file</span><span class="o">.</span><span class="n">close</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>寫入txt</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># 讀取txt</span>
+</span><span class='line'><span class="n">file</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;mobile_tw.txt&#39;</span> <span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="mi">100</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">file</span><span class="o">.</span><span class="n">readline</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Reference:</p>
+
+<p><a href="http://ruby-doc.org/core-2.1.4/File.html">http://ruby-doc.org/core-2.1.4/File.html</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2014/05/06/ruby-csv-file/">[Ruby] 匯出批次csv檔</a></h1>
     
     
@@ -1190,139 +1274,6 @@ RVM (Ruby Version Manager):Ruby版本管理工具，便於切換不同版本</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/12/09/ruby-and/">[Ruby] And與&&的差別</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-12-09T03:01:00+08:00" pubdate data-updated="true"></time>
-        
-         | <a href="/blog/2013/12/09/ruby-and/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>在Ruby中的邏輯運算有兩組，[!,&amp;&amp;,||]及[not,and,or]</p>
-
-<ul>
-<li>[!,&amp;&amp;,||]
-
-<ul>
-<li>higher precedence</li>
-</ul>
-</li>
-<li>[=,%=,~=,/=]
-
-<ul>
-<li>between this two</li>
-</ul>
-</li>
-<li>[not,and,or]
-
-<ul>
-<li>lower precedence
-
-<ul>
-<li>優先權：&amp;&amp;　→　||　→　and　＝　or 。</li>
-<li>&amp;&amp; 或 || 會將符號前後方都認定為boolean(true,false)</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-
-<figure class='code'><figcaption><span>&& 與 and 的比較</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="kp">true</span> <span class="o">&amp;&amp;</span> <span class="kp">false</span>
-</span><span class='line'> <span class="o">=&gt;</span> <span class="kp">false</span>
-</span><span class='line'><span class="o">&gt;</span> <span class="n">a</span>
-</span><span class='line'> <span class="o">=&gt;</span> <span class="kp">false</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="kp">true</span> <span class="ow">and</span> <span class="kp">false</span>
-</span><span class='line'> <span class="o">=&gt;</span> <span class="kp">false</span>
-</span><span class='line'><span class="o">&gt;</span> <span class="n">a</span>
-</span><span class='line'> <span class="o">=&gt;</span> <span class="kp">true</span>  <span class="c1">#</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<figure class='code'><figcaption><span>|| 與 or 的比較</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="kp">false</span> <span class="o">||</span> <span class="kp">true</span>
-</span><span class='line'> <span class="o">=&gt;</span> <span class="kp">true</span>
-</span><span class='line'><span class="o">&gt;</span> <span class="n">a</span>
-</span><span class='line'> <span class="o">=&gt;</span> <span class="kp">true</span>
-</span><span class='line'><span class="o">&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="kp">false</span> <span class="ow">or</span> <span class="kp">true</span>
-</span><span class='line'> <span class="o">=&gt;</span> <span class="kp">true</span>
-</span><span class='line'><span class="o">&gt;</span> <span class="n">a</span>
-</span><span class='line'> <span class="o">=&gt;</span> <span class="kp">false</span>  <span class="c1">#</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>總結，布林運算用[!,&&,||]，流程控制用[not,and,or]</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># boolean expression</span>
-</span><span class='line'><span class="k">if</span> <span class="n">some_condition</span> <span class="o">&amp;&amp;</span> <span class="n">some_other_condition</span>
-</span><span class='line'>  <span class="n">do_something</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># control flow</span>
-</span><span class='line'><span class="n">document</span><span class="o">.</span><span class="n">saved?</span> <span class="ow">or</span> <span class="n">document</span><span class="o">.</span><span class="n">save!</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Reference:</p>
-
-<p><a href="http://phrogz.net/ProgrammingRuby/language.html#table%5F18.4">Ruby operators 優先順序</a></p>
-
-<p><a href="http://blog.jeffean.net/wiki/ruby.html">http://blog.jeffean.net/wiki/ruby.html</a></p>
-
-<p><a href="http://stackoverflow.com/questions/1426826/difference-between-and-and-in-ruby">http://stackoverflow.com/questions/1426826/difference-between-and-and-in-ruby</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/3">&larr; Older</a>
@@ -1416,6 +1367,10 @@ RVM (Ruby Version Manager):Ruby版本管理工具，便於切換不同版本</p>
       </li>
     
       <li class="post">
+        <a href="/blog/2014/05/06/ruby-txt-file/">[Ruby] 匯出txt檔</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/05/06/ruby-csv-file/">[Ruby] 匯出批次csv檔</a>
       </li>
     
@@ -1425,10 +1380,6 @@ RVM (Ruby Version Manager):Ruby版本管理工具，便於切換不同版本</p>
     
       <li class="post">
         <a href="/blog/2014/01/19/mac-directly-in-the-terminal-to-open-sublime/">[Mac] 直接在終端機開啟sublime</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/01/17/rails-mac-os-environment-build/">[Mac] Ruby on Rails 基本環境建置</a>
       </li>
     
   </ul>

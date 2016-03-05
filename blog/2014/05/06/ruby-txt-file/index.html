@@ -5,13 +5,22 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>[ASP.NET] 列印 - Bob 學習筆記</title>
+  <title>[Ruby] 匯出txt檔 - Bob 學習筆記</title>
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="列印指定文件 string filePath = "C:\\test.txt"; // 使用預設印表機
-LocalPrintServer ps = new LocalPrintServer();
-PrintQueue queue = ps.DefaultPrintQueue; // 指定特定印表機 &hellip;">
+  <meta name="description" content="需要在正式環境上撈一些大量特定資料下來，又不想dump整份database的話，用ORM來把資料匯出成txt就很方便了 寫入txt1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+all_users_mobile = User.where(&#39;mobile like ?&#39;, &#39 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -20,7 +29,7 @@ PrintQueue queue = ps.DefaultPrintQueue; // 指定特定印表機 &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.poyi.tw/blog/2013/09/04/aspnet-print/">
+  <link rel="canonical" href="http://blog.poyi.tw/blog/2014/05/06/ruby-txt-file/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
    <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
@@ -103,7 +112,7 @@ PrintQueue queue = ps.DefaultPrintQueue; // 指定特定印表機 &hellip;">
   
   <header>
     
-      <h1 class="entry-title">[ASP.NET] 列印</h1>
+      <h1 class="entry-title">[Ruby] 匯出txt檔</h1>
     
     
       <p class="meta">
@@ -119,7 +128,7 @@ PrintQueue queue = ps.DefaultPrintQueue; // 指定特定印表機 &hellip;">
   
 
 
-<time datetime="2013-09-04T02:46:00+08:00" pubdate data-updated="true"></time>
+<time datetime="2014-05-06T22:00:59+08:00" pubdate data-updated="true"></time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -128,26 +137,53 @@ PrintQueue queue = ps.DefaultPrintQueue; // 指定特定印表機 &hellip;">
   </header>
 
 
-<div class="entry-content"><h1>列印指定文件</h1>
+<div class="entry-content"><h3>需要在正式環境上撈一些大量特定資料下來，又不想dump整份database的話，用ORM來把資料匯出成txt就很方便了</h3>
 
-<pre><code>string filePath = "C:\\test.txt";
+<figure class='code'><figcaption><span>寫入txt</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">all_users_mobile</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">&#39;mobile like ?&#39;</span><span class="p">,</span> <span class="s1">&#39;+8869%&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="ss">:mobile</span><span class="p">)</span><span class="o">.</span><span class="n">uniq</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># 建立txt並給予寫入權限</span>
+</span><span class='line'><span class="n">file</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;mobile_tw.txt&#39;</span> <span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">all_users_mobile</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">mobile</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">file</span><span class="o">.</span><span class="n">puts</span> <span class="n">mobile</span> <span class="c1"># 一行一筆mobile</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># 記得要關掉</span>
+</span><span class='line'><span class="n">file</span><span class="o">.</span><span class="n">close</span>
+</span></code></pre></td></tr></table></div></figure>
 
-// 使用預設印表機
-LocalPrintServer ps = new LocalPrintServer();
-PrintQueue queue = ps.DefaultPrintQueue;
 
-// 指定特定印表機
-PrintServer ps = new PrintServer(@"\\TY-SRV-PRINT01");
-PrintQueue queue = new PrintQueue(ps, "FUJIXEROX");
 
-PrintSystemJobInfo pj = queue.AddJob(filePath);
-Stream myStream = pj.JobStream;
-Byte[] myByteBuffer = System.IO.File.ReadAllBytes(filePath);
-myStream.Write(myByteBuffer, 0, myByteBuffer.Length);
-myStream.Close();
 
-queue.Commit();
-</code></pre>
+<figure class='code'><figcaption><span>寫入txt</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># 讀取txt</span>
+</span><span class='line'><span class="n">file</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;mobile_tw.txt&#39;</span> <span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="mi">100</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">file</span><span class="o">.</span><span class="n">readline</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Reference:</p>
+
+<p><a href="http://ruby-doc.org/core-2.1.4/File.html">http://ruby-doc.org/core-2.1.4/File.html</a></p>
 </div>
 
 
@@ -170,12 +206,12 @@ queue.Commit();
   
 
 
-<time datetime="2013-09-04T02:46:00+08:00" pubdate data-updated="true"></time>
+<time datetime="2014-05-06T22:00:59+08:00" pubdate data-updated="true"></time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/asp-dot-net/'>asp.net</a>
+    <a class='category' href='/blog/categories/file/'>file</a>, <a class='category' href='/blog/categories/rails/'>rails</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>
   
 </span>
 
@@ -184,7 +220,7 @@ queue.Commit();
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.poyi.tw/blog/2013/09/04/aspnet-print/" data-via="" data-counturl="http://blog.poyi.tw/blog/2013/09/04/aspnet-print/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.poyi.tw/blog/2014/05/06/ruby-txt-file/" data-via="" data-counturl="http://blog.poyi.tw/blog/2014/05/06/ruby-txt-file/" >Tweet</a>
   
   
   
@@ -193,10 +229,10 @@ queue.Commit();
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/09/04/network-attacks/" title="Previous Post: [ASP.NET] 資安基本概念">&laquo; [ASP.NET] 資安基本概念</a>
+        <a class="basic-alignment left" href="/blog/2014/05/06/ruby-csv-file/" title="Previous Post: [Ruby] 匯出批次csv檔">&laquo; [Ruby] 匯出批次csv檔</a>
       
       
-        <a class="basic-alignment right" href="/blog/2013/09/04/aspnet-implementation/" title="Next Post: [ASP.NET] 呼叫執行檔">[ASP.NET] 呼叫執行檔 &raquo;</a>
+        <a class="basic-alignment right" href="/blog/2015/03/31/ruby-basic-1/" title="Next Post: [Ruby] 教學 - 基本使用介紹">[Ruby] 教學 - 基本使用介紹 &raquo;</a>
       
     </p>
   </footer>
@@ -334,8 +370,8 @@ queue.Commit();
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://blog.poyi.tw/blog/2013/09/04/aspnet-print/';
-        var disqus_url = 'http://blog.poyi.tw/blog/2013/09/04/aspnet-print/';
+        var disqus_identifier = 'http://blog.poyi.tw/blog/2014/05/06/ruby-txt-file/';
+        var disqus_url = 'http://blog.poyi.tw/blog/2014/05/06/ruby-txt-file/';
         var disqus_script = 'embed.js';
       
     (function () {

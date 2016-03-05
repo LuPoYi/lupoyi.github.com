@@ -9,9 +9,7 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="add to gemfile.rb and remember to bundle install1
-gem &#39;bootstrap-sass&#39; 新增一個app/assets/stylesheets/styles.css.scss並將bootstrap import1
-@import &hellip;">
+  <meta name="description" content="在Ruby中的邏輯運算有兩組，[!,&amp;&amp;,||]及[not,and,or] [!,&amp;&amp;,||] higher precedence [=,%=,~=,/=] between this two [not,and,or] lower precedence 優先權：& &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -100,6 +98,139 @@ gem &#39;bootstrap-sass&#39; 新增一個app/assets/stylesheets/styles.css.scss�
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/12/09/ruby-and/">[Ruby] And與&&的差別</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-09T03:01:00+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2013/12/09/ruby-and/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>在Ruby中的邏輯運算有兩組，[!,&amp;&amp;,||]及[not,and,or]</p>
+
+<ul>
+<li>[!,&amp;&amp;,||]
+
+<ul>
+<li>higher precedence</li>
+</ul>
+</li>
+<li>[=,%=,~=,/=]
+
+<ul>
+<li>between this two</li>
+</ul>
+</li>
+<li>[not,and,or]
+
+<ul>
+<li>lower precedence
+
+<ul>
+<li>優先權：&amp;&amp;　→　||　→　and　＝　or 。</li>
+<li>&amp;&amp; 或 || 會將符號前後方都認定為boolean(true,false)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<figure class='code'><figcaption><span>&& 與 and 的比較</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="kp">true</span> <span class="o">&amp;&amp;</span> <span class="kp">false</span>
+</span><span class='line'> <span class="o">=&gt;</span> <span class="kp">false</span>
+</span><span class='line'><span class="o">&gt;</span> <span class="n">a</span>
+</span><span class='line'> <span class="o">=&gt;</span> <span class="kp">false</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="kp">true</span> <span class="ow">and</span> <span class="kp">false</span>
+</span><span class='line'> <span class="o">=&gt;</span> <span class="kp">false</span>
+</span><span class='line'><span class="o">&gt;</span> <span class="n">a</span>
+</span><span class='line'> <span class="o">=&gt;</span> <span class="kp">true</span>  <span class="c1">#</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><figcaption><span>|| 與 or 的比較</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="kp">false</span> <span class="o">||</span> <span class="kp">true</span>
+</span><span class='line'> <span class="o">=&gt;</span> <span class="kp">true</span>
+</span><span class='line'><span class="o">&gt;</span> <span class="n">a</span>
+</span><span class='line'> <span class="o">=&gt;</span> <span class="kp">true</span>
+</span><span class='line'><span class="o">&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="kp">false</span> <span class="ow">or</span> <span class="kp">true</span>
+</span><span class='line'> <span class="o">=&gt;</span> <span class="kp">true</span>
+</span><span class='line'><span class="o">&gt;</span> <span class="n">a</span>
+</span><span class='line'> <span class="o">=&gt;</span> <span class="kp">false</span>  <span class="c1">#</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>總結，布林運算用[!,&&,||]，流程控制用[not,and,or]</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># boolean expression</span>
+</span><span class='line'><span class="k">if</span> <span class="n">some_condition</span> <span class="o">&amp;&amp;</span> <span class="n">some_other_condition</span>
+</span><span class='line'>  <span class="n">do_something</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># control flow</span>
+</span><span class='line'><span class="n">document</span><span class="o">.</span><span class="n">saved?</span> <span class="ow">or</span> <span class="n">document</span><span class="o">.</span><span class="n">save!</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Reference:</p>
+
+<p><a href="http://phrogz.net/ProgrammingRuby/language.html#table%5F18.4">Ruby operators 優先順序</a></p>
+
+<p><a href="http://blog.jeffean.net/wiki/ruby.html">http://blog.jeffean.net/wiki/ruby.html</a></p>
+
+<p><a href="http://stackoverflow.com/questions/1426826/difference-between-and-and-in-ruby">http://stackoverflow.com/questions/1426826/difference-between-and-and-in-ruby</a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -955,56 +1086,6 @@ HT Hyper-threading 可將核心分成兩個序列在處理 cpu數<em>核心數</
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/10/14/vmware-vcenter-80-port-is-already-in-use/">[VMware] VCenter 80 Port 已被使用</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-10-14T13:50:00+08:00" pubdate data-updated="true"></time>
-        
-         | <a href="/blog/2013/10/14/vmware-vcenter-80-port-is-already-in-use/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>在嘗試安裝vCenter時，中途出現了「VMware VirtualCenter HTTP Port: 80」</p>
-
-<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/147088/Dh30xvaKQpiGNxLRUEAh_2013-10-14%20%E4%B8%8B%E5%8D%88%2002-30-11.jpg" alt="2013-10-14 下午 02-30-11.jpg" /></p>
-
-<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/147088/BSI6GB26R6GYxsu7JrMh_181188866_x.jpg" alt="181188866_x.jpg" /></p>
-
-<p>原因是vCenter自動安裝時會把SQL Server及.NET Framework相關的元件裝上，導致IIS佔用了80Port。</p>
-
-<p>解法之一就是直接在Roles裡把IIS移掉就行了(想在vCenter上使用IIS就要另求解了)</p>
-
-<p><br>
-Reference:
-<a href="http://blog.xuite.net/cadmus.lin/yo/43386562-%E3%80%90%E7%B3%BB%E3%80%91%E5%A6%82%E4%BD%95%E6%9F%A5%E8%A9%A2%E5%93%AA%E5%80%8B%E7%A8%8B%E5%BC%8F%E4%BD%94%E7%94%A8%E4%BA%86%E6%8C%87%E5%AE%9APort">http://blog.xuite.net/cadmus.lin/yo/43386562-%E3%80%90%E7%B3%BB%E3%80%91%E5%A6%82%E4%BD%95%E6%9F%A5%E8%A9%A2%E5%93%AA%E5%80%8B%E7%A8%8B%E5%BC%8F%E4%BD%94%E7%94%A8%E4%BA%86%E6%8C%87%E5%AE%9APort</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/4">&larr; Older</a>
@@ -1098,6 +1179,10 @@ Reference:
       </li>
     
       <li class="post">
+        <a href="/blog/2014/05/06/ruby-txt-file/">[Ruby] 匯出txt檔</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/05/06/ruby-csv-file/">[Ruby] 匯出批次csv檔</a>
       </li>
     
@@ -1107,10 +1192,6 @@ Reference:
     
       <li class="post">
         <a href="/blog/2014/01/19/mac-directly-in-the-terminal-to-open-sublime/">[Mac] 直接在終端機開啟sublime</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/01/17/rails-mac-os-environment-build/">[Mac] Ruby on Rails 基本環境建置</a>
       </li>
     
   </ul>

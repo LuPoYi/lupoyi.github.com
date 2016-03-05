@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: file | Bob 學習筆記]]></title>
+  <link href="http://blog.poyi.tw/blog/categories/file/atom.xml" rel="self"/>
+  <link href="http://blog.poyi.tw/"/>
+  <updated>2016-03-05T22:17:06+08:00</updated>
+  <id>http://blog.poyi.tw/</id>
+  <author>
+    <name><![CDATA[Bob (PoYi)]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[[Ruby] 匯出txt檔]]></title>
+    <link href="http://blog.poyi.tw/blog/2014/05/06/ruby-txt-file/"/>
+    <updated>2014-05-06T22:00:59+08:00</updated>
+    <id>http://blog.poyi.tw/blog/2014/05/06/ruby-txt-file</id>
+    <content type="html"><![CDATA[<h3>需要在正式環境上撈一些大量特定資料下來，又不想dump整份database的話，用ORM來把資料匯出成txt就很方便了</h3>
+
+<pre><code class="ruby 寫入txt">all_users_mobile = User.where('mobile like ?', '+8869%').select(:mobile).uniq
+
+# 建立txt並給予寫入權限
+file = File.open('mobile_tw.txt' , 'w')
+
+all_users_mobile.each do |mobile|
+  file.puts mobile # 一行一筆mobile
+end
+
+# 記得要關掉
+file.close
+</code></pre>
+
+<pre><code class="ruby 寫入txt"># 讀取txt
+file = File.open('mobile_tw.txt' , 'r')
+
+100.times do
+  file.readline
+end
+</code></pre>
+
+<p>Reference:</p>
+
+<p><a href="http://ruby-doc.org/core-2.1.4/File.html">http://ruby-doc.org/core-2.1.4/File.html</a></p>
+]]></content>
+  </entry>
+  
+</feed>
