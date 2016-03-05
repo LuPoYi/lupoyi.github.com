@@ -4,7 +4,7 @@
   <title><![CDATA[Category: bitcoin | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/bitcoin/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2016-03-05T12:13:21+08:00</updated>
+  <updated>2016-03-05T13:34:50+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -12,6 +12,66 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[[Bitcoin] 使用vanitygen自定比特幣位址並匯入錢包]]></title>
+    <link href="http://blog.poyi.tw/blog/2016/03/05/generate-your-own-bitcoin-address/"/>
+    <updated>2016-03-05T13:32:29+08:00</updated>
+    <id>http://blog.poyi.tw/blog/2016/03/05/generate-your-own-bitcoin-address</id>
+    <content type="html"><![CDATA[<h3>使用vanitygen客製比特幣位址</h3>
+
+<pre><code class="bash">sudo apt-get install build-essential libssl-dev libpcre3-dev
+git clone https://github.com/samr7/vanitygen.git
+cd vanitygen
+make
+</code></pre>
+
+<h3>隨機產生Address</h3>
+
+<pre><code class="bash ">$ ./vanitygen 1Bob
+  Difficulty: 77178
+  Pattern: 1Bob
+  Address: 1Bobnp85Ns6JUDaMntc672ZjfsWSzrUnZH
+  Privkey: 5JUj7dqQGcunHLqTNmnJsx6JEnSmNrhgGmzNb7udJgd6Q6p2Us8
+</code></pre>
+
+<h3>將 Privkey 匯入Bitcoind錢包</h3>
+
+<p>大部分錢包軟體都會提供匯入Privkey的功能，但我這邊使用Bitcoind</p>
+
+<pre><code class="bash"># 先確認此Address狀態
+$ bitcoin-cli validateaddress 1Bobnp85Ns6JUDaMntc672ZjfsWSzrUnZH
+{
+  "isvalid": true,
+  "address": "1Bobnp85Ns6JUDaMntc672ZjfsWSzrUnZH",
+  "scriptPubKey": "76a91476816ee640da13a0d821d79a01892d8598288bb488ac",
+  "ismine": false,
+  "iswatchonly": false,
+  "isscript": false
+}
+# "ismine": false =&gt; 代表此address還不是自己的
+</code></pre>
+
+<pre><code class="bash "># bitcoin-cli importprivkey &lt;Privkey&gt; [label] [rescan=true]
+# label 是指你要放入哪個account，預設都會有一個””空字串的account
+# rescan 填true的話，會去掃以前到現在所有的transaction確定此address是否有被使用過(但會跑很久)；如果只是新address的話這邊填false就行了
+$ bitcoin-cli importprivkey 5JUj7dqQGcunHLqTNmnJsx6JEnSmNrhgGmzNb7udJgd6Q6p2Us8 “” false
+</code></pre>
+
+<pre><code class="bash">$ bitcoin-cli validateaddress 1Bobnp85Ns6JUDaMntc672ZjfsWSzrUnZH
+{
+  "isvalid": true,
+  "address": "1Bobnp85Ns6JUDaMntc672ZjfsWSzrUnZH",
+  "scriptPubKey": "76a91476816ee640da13a0d821d79a01892d8598288bb488ac",
+  "ismine": true,
+  "iswatchonly": false,
+  "isscript": false,
+  "iscompressed": true,
+  "account": ""
+} #   "ismine": true =&gt; 現在此Address就是屬於你的
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[資料被綁架軟體加密，要求贖金用比特幣支付]]></title>

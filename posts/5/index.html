@@ -9,10 +9,8 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="日期運算其實還蠻常用到的，但好像變化不多 // 利用TimeSpan 日期相減
-TimeSpan ts = DateTime1 - DateTime2;
-int differenceInDays = ts.Days; // 加上指定月數、天數、時間
-DateTime DateTime3 = &hellip;">
+  <meta name="description" content="透過AD網域來存取帳號資料 查詢資料 string QueryString = "LDAP://網域";
+DirectoryEntry de = new DirectoryEntry(QueryString,adminAccount,adminPassword); &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -101,6 +99,104 @@ DateTime DateTime3 = &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/09/12/aspnet-access-to-ad-domain/">[ASP.NET] 存取AD網域</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-12T01:27:00+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2013/09/12/aspnet-access-to-ad-domain/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>透過AD網域來存取帳號資料</h2>
+
+<h2>查詢資料</h2>
+
+<pre><code>string QueryString = "LDAP://網域";
+DirectoryEntry de = new DirectoryEntry(QueryString,adminAccount,adminPassword);
+DirectorySearcher ds = new DirectorySearcher(de);
+SearchResultCollection Results = null;
+
+// 設定查詢條件：依姓名及工號查詢
+ds.Filter = @"(&amp;(samaccountname=" + employeeName + ")(Description=" + employeeNo + "))";
+// 將查詢結果放入Results
+Results = ds.FindAll();
+
+foreach (SearchResult result in Results)
+{
+    if (result.Properties["description"].Count &gt; 0)
+    {
+        // 透過AD裡的屬性「description」，取得工號
+        string resultNo = result.Properties["description"][0].ToString();
+        Response.Write(resultNo);
+        Response.Write("&lt;br&gt;");
+    }
+}
+ds.Dispose(); // 釋放資源
+de.Dispose();
+</code></pre>
+
+<h2>修改指定帳號的屬性值</h2>
+
+<pre><code>string QueryString = "LDAP://"+ userLDAP;
+DirectoryEntry de = new DirectoryEntry(QueryString, adminAccount,adminPassword);
+
+de.Properties["TelephoneNumber"].Value = 123;     
+
+// 停用此帳號：userAccountControl = 514 
+de.Properties["userAccountControl"].Value = 514;
+
+// 重設密碼
+de.Invoke("SetPassword", newPassword);
+
+de.CommitChanges();
+de.Close();
+</code></pre>
+
+<h2>刪除帳號</h2>
+
+<pre><code>string QueryString = LDAP://" + userLDAP;
+DirectoryEntry user = new DirectoryEntry(QueryString, adminAccount, adminPassword);
+// 找上一層
+DirectoryEntry ou = user.Parent;
+// 再回去刪它
+ou.Children.Remove(user);
+ou.CommitChanges();
+</code></pre>
+
+<p>基本屬性KEY跟VALUE可以在AD裡面找到
+<img src="http://user-image.logdown.io/user/2740/blog/2734/post/138560/iH5dxsHMS6SoXINR2EX2_2013-9-15%20%E4%B8%8B%E5%8D%88%2001-58-35.jpg" alt="2013-9-15 下午 01-58-35.jpg" /></p>
+
+<p>Reference:
+<a href="http://www.dotblogs.com.tw/yc421206/archive/2010/02/07/13510.aspx">http://www.dotblogs.com.tw/yc421206/archive/2010/02/07/13510.aspx</a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -709,63 +805,6 @@ var Query =
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/07/28/sql-syntax/">[SQL] 常用語法</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-07-28T06:41:00+08:00" pubdate data-updated="true"></time>
-        
-         | <a href="/blog/2013/07/28/sql-syntax/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>不一定是常用…而是記不太起來，每次都要查…</p>
-
-<p>DBCC CHECKIDENT ( <em>tablename</em>, RESEED, new_reseed_value ) 強制重設table的識別值</p>
-
-<pre><code>DBCC CHECKIDENT(tablename,  RESEED, 0)  // 歸零識別值
-</code></pre>
-
-<p>SQL驗證
-Data Source=<strong><em>;Initial catalog=</em></strong>;User ID=<strong><em>;Password=</em></strong></p>
-
-<p>Windows驗證
-Data Source=<strong><em>;Initial Catalog=</em></strong>;integrated security=sspi</p>
-
-<p>union:上下重直合併</p>
-
-<p>萬用字元
-%
-_:代表一個字元
-〔〕:指定字元範圍；[0-9]、[A-D]、[ABCD]
-〔^〕:排除字元範圍:[^ABC]</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/6">&larr; Older</a>
@@ -813,6 +852,10 @@ _:代表一個字元
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/03/05/generate-your-own-bitcoin-address/">[Bitcoin] 使用vanitygen自定比特幣位址並匯入錢包</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2016/03/05/ubuntu-openvpn-server-client/">[Ubuntu] 架設 OpenVpn Server & Client</a>
@@ -868,10 +911,6 @@ _:代表一個字元
     
       <li class="post">
         <a href="/blog/2014/01/17/rails-mac-os-environment-build/">[Mac] Ruby on Rails 基本環境建置</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/01/13/javascript-triggered-interrupt-event-or-action/">[JavaScript] 中斷事件或動作的觸發</a>
       </li>
     
   </ul>

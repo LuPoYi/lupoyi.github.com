@@ -9,9 +9,9 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="當我們要安裝別人寫好的Library、API時，通常會 Gemfile1
-gem &#39;google-translate&#39; 或是 Terminal1
-$ gem install google-translate 打包gem 而當我們要打包自己的gem，自用或供他人使用，該怎麼做？ &hellip;">
+  <meta name="description" content="add to gemfile.rb and remember to bundle install1
+gem &#39;bootstrap-sass&#39; 新增一個app/assets/stylesheets/styles.css.scss並將bootstrap import1
+@import &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -100,6 +100,63 @@ $ gem install google-translate 打包gem 而當我們要打包自己的gem，自
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/12/07/rails-bootstrap-for-rails/">[Rails] Bootstrap for Rails</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-07T06:46:00+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2013/12/07/rails-bootstrap-for-rails/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><figure class='code'><figcaption><span>add to gemfile.rb and remember to bundle install</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem <span class="s1">&#39;bootstrap-sass&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>新增一個app/assets/stylesheets/styles.css.scss並將bootstrap import</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>@import <span class="s1">&#39;bootstrap&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>app/assets/javascripts/application.js 加入bootstrap</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>//<span class="o">=</span> require bootstrap
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>這樣就可以用了yaya</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -948,147 +1005,6 @@ Reference:
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/10/07/ruby/">[Rails] 基本概念（待補）</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-10-07T05:30:00+08:00" pubdate data-updated="true"></time>
-        
-         | <a href="/blog/2013/10/07/ruby/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><figure class='code'><figcaption><span>config/database.yml</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="ss">development</span><span class="p">:</span> <span class="c1"># 開發用</span>
-</span><span class='line'>  <span class="ss">adapter</span><span class="p">:</span> <span class="n">sqlite3</span>
-</span><span class='line'>  <span class="ss">database</span><span class="p">:</span> <span class="n">db</span><span class="o">/</span><span class="n">development</span><span class="o">.</span><span class="n">sqlite3</span>
-</span><span class='line'>  <span class="ss">pool</span><span class="p">:</span> <span class="mi">5</span>
-</span><span class='line'>  <span class="ss">timeout</span><span class="p">:</span> <span class="mi">5000</span>
-</span><span class='line'><span class="nb">test</span><span class="p">:</span> <span class="c1"># 測試用</span>
-</span><span class='line'>  <span class="ss">adapter</span><span class="p">:</span> <span class="n">sqlite3</span>
-</span><span class='line'>  <span class="ss">database</span><span class="p">:</span> <span class="n">db</span><span class="o">/</span><span class="n">development</span><span class="o">.</span><span class="n">sqlite3</span>
-</span><span class='line'>  <span class="ss">pool</span><span class="p">:</span> <span class="mi">5</span>
-</span><span class='line'>  <span class="ss">timeout</span><span class="p">:</span> <span class="mi">5000</span>
-</span><span class='line'><span class="ss">production</span><span class="p">:</span> <span class="c1"># 上線用</span>
-</span><span class='line'>  <span class="ss">adapter</span><span class="p">:</span> <span class="n">sqlite3</span>
-</span><span class='line'>  <span class="ss">database</span><span class="p">:</span> <span class="n">db</span><span class="o">/</span><span class="n">development</span><span class="o">.</span><span class="n">sqlite3</span>
-</span><span class='line'>  <span class="ss">pool</span><span class="p">:</span> <span class="mi">5</span>
-</span><span class='line'>  <span class="ss">timeout</span><span class="p">:</span> <span class="mi">5000</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>config/routes.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">get</span> <span class="s2">&quot;welcome&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;welcome#index&quot;</span>
-</span><span class='line'><span class="c1"># 代表http://localhost:3000/welcome 會對應到 welcome Controller的index Action。 </span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="n">resources</span> <span class="ss">:events</span>
-</span><span class='line'><span class="c1"># 會自動生成四個四個命名路由(named routes)，搭配四個HTTP動詞，對應到七個Actions，如下：</span>
-</span><span class='line'><span class="n">get</span>    <span class="s1">&#39;/events&#39;</span>          <span class="o">=&gt;</span> <span class="s2">&quot;events#index&quot;</span><span class="p">,</span>   <span class="ss">:as</span> <span class="o">=&gt;</span> <span class="s2">&quot;events&quot;</span>
-</span><span class='line'><span class="n">post</span>   <span class="s1">&#39;/events&#39;</span>          <span class="o">=&gt;</span> <span class="s2">&quot;events#create&quot;</span><span class="p">,</span>  <span class="ss">:as</span> <span class="o">=&gt;</span> <span class="s2">&quot;events&quot;</span>
-</span><span class='line'><span class="n">get</span>    <span class="s1">&#39;/events/:id&#39;</span>      <span class="o">=&gt;</span> <span class="s2">&quot;events#show&quot;</span><span class="p">,</span>    <span class="ss">:as</span> <span class="o">=&gt;</span> <span class="s2">&quot;event&quot;</span>
-</span><span class='line'><span class="n">put</span>    <span class="s1">&#39;/events/:id&#39;</span>      <span class="o">=&gt;</span> <span class="s2">&quot;events#update&quot;</span><span class="p">,</span>  <span class="ss">:as</span> <span class="o">=&gt;</span> <span class="s2">&quot;event&quot;</span>
-</span><span class='line'><span class="n">delete</span> <span class="s1">&#39;/events/:id&#39;</span>      <span class="o">=&gt;</span> <span class="s2">&quot;events#destroy&quot;</span><span class="p">,</span> <span class="ss">:as</span> <span class="o">=&gt;</span> <span class="s2">&quot;event&quot;</span>
-</span><span class='line'><span class="n">get</span>    <span class="s1">&#39;/events/new&#39;</span>      <span class="o">=&gt;</span> <span class="s2">&quot;events#new&quot;</span><span class="p">,</span>     <span class="ss">:as</span> <span class="o">=&gt;</span> <span class="s2">&quot;new_event&quot;</span>
-</span><span class='line'><span class="n">get</span>    <span class="s1">&#39;/events/:id/edit&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;events#edit&quot;</span><span class="p">,</span>    <span class="ss">:as</span> <span class="o">=&gt;</span> <span class="s2">&quot;edit_event&quot;</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># get 是純讀取資料，對資料不會有任何影響，所以get資料可以回上一頁、refresh都ok；post則反之。</span>
-</span><span class='line'><span class="c1"># HTML只有get、post，而Rails在post加上隱藏參數_method=PUT、_method=DELETE，就多了put、delete能用了。</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>＜％　vs ＜％＝</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># &lt;% 執行但不輸出</span>
-</span><span class='line'><span class="c1"># &lt;%= 輸出值</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="sx">% @people.each </span><span class="k">do</span> <span class="o">|</span><span class="nb">p</span><span class="o">|</span> <span class="sx">%&gt;</span>
-</span><span class='line'><span class="sx"> &lt;%= p.name %&gt;</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sx">% end </span><span class="o">%&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">render</span> <span class="err">回傳使用的樣版</span><span class="p">(</span><span class="err">資料不會遺失</span><span class="p">)</span>
-</span><span class='line'><span class="n">redirect_to</span> <span class="err">重新導向</span><span class="n">action</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Reference:
-<a href="http://ihower.tw/rails3/index.html">http://ihower.tw/rails3/index.html</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/4">&larr; Older</a>
@@ -1136,6 +1052,10 @@ Reference:
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/03/05/generate-your-own-bitcoin-address/">[Bitcoin] 使用vanitygen自定比特幣位址並匯入錢包</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2016/03/05/ubuntu-openvpn-server-client/">[Ubuntu] 架設 OpenVpn Server & Client</a>
@@ -1191,10 +1111,6 @@ Reference:
     
       <li class="post">
         <a href="/blog/2014/01/17/rails-mac-os-environment-build/">[Mac] Ruby on Rails 基本環境建置</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/01/13/javascript-triggered-interrupt-event-or-action/">[JavaScript] 中斷事件或動作的觸發</a>
       </li>
     
   </ul>

@@ -9,7 +9,22 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="Delegate 是 C# 的特殊型別，用來定義方法（method/function）的 signature，delegate 的實體（instance）可以存放一或多個符合該 signature 的方法。這樣講也許還是鴨子聽雷，不如我們實際來感受一下吧！ &hellip;">
+  <meta name="description" content="config/database.yml1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+development: # 開發用 adapter: sqlite3 database: db/development.sqlite3 pool: 5 timeout: 5000 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -98,6 +113,147 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/10/07/ruby/">[Rails] 基本概念（待補）</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-07T05:30:00+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2013/10/07/ruby/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><figure class='code'><figcaption><span>config/database.yml</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="ss">development</span><span class="p">:</span> <span class="c1"># 開發用</span>
+</span><span class='line'>  <span class="ss">adapter</span><span class="p">:</span> <span class="n">sqlite3</span>
+</span><span class='line'>  <span class="ss">database</span><span class="p">:</span> <span class="n">db</span><span class="o">/</span><span class="n">development</span><span class="o">.</span><span class="n">sqlite3</span>
+</span><span class='line'>  <span class="ss">pool</span><span class="p">:</span> <span class="mi">5</span>
+</span><span class='line'>  <span class="ss">timeout</span><span class="p">:</span> <span class="mi">5000</span>
+</span><span class='line'><span class="nb">test</span><span class="p">:</span> <span class="c1"># 測試用</span>
+</span><span class='line'>  <span class="ss">adapter</span><span class="p">:</span> <span class="n">sqlite3</span>
+</span><span class='line'>  <span class="ss">database</span><span class="p">:</span> <span class="n">db</span><span class="o">/</span><span class="n">development</span><span class="o">.</span><span class="n">sqlite3</span>
+</span><span class='line'>  <span class="ss">pool</span><span class="p">:</span> <span class="mi">5</span>
+</span><span class='line'>  <span class="ss">timeout</span><span class="p">:</span> <span class="mi">5000</span>
+</span><span class='line'><span class="ss">production</span><span class="p">:</span> <span class="c1"># 上線用</span>
+</span><span class='line'>  <span class="ss">adapter</span><span class="p">:</span> <span class="n">sqlite3</span>
+</span><span class='line'>  <span class="ss">database</span><span class="p">:</span> <span class="n">db</span><span class="o">/</span><span class="n">development</span><span class="o">.</span><span class="n">sqlite3</span>
+</span><span class='line'>  <span class="ss">pool</span><span class="p">:</span> <span class="mi">5</span>
+</span><span class='line'>  <span class="ss">timeout</span><span class="p">:</span> <span class="mi">5000</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>config/routes.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">get</span> <span class="s2">&quot;welcome&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;welcome#index&quot;</span>
+</span><span class='line'><span class="c1"># 代表http://localhost:3000/welcome 會對應到 welcome Controller的index Action。 </span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="n">resources</span> <span class="ss">:events</span>
+</span><span class='line'><span class="c1"># 會自動生成四個四個命名路由(named routes)，搭配四個HTTP動詞，對應到七個Actions，如下：</span>
+</span><span class='line'><span class="n">get</span>    <span class="s1">&#39;/events&#39;</span>          <span class="o">=&gt;</span> <span class="s2">&quot;events#index&quot;</span><span class="p">,</span>   <span class="ss">:as</span> <span class="o">=&gt;</span> <span class="s2">&quot;events&quot;</span>
+</span><span class='line'><span class="n">post</span>   <span class="s1">&#39;/events&#39;</span>          <span class="o">=&gt;</span> <span class="s2">&quot;events#create&quot;</span><span class="p">,</span>  <span class="ss">:as</span> <span class="o">=&gt;</span> <span class="s2">&quot;events&quot;</span>
+</span><span class='line'><span class="n">get</span>    <span class="s1">&#39;/events/:id&#39;</span>      <span class="o">=&gt;</span> <span class="s2">&quot;events#show&quot;</span><span class="p">,</span>    <span class="ss">:as</span> <span class="o">=&gt;</span> <span class="s2">&quot;event&quot;</span>
+</span><span class='line'><span class="n">put</span>    <span class="s1">&#39;/events/:id&#39;</span>      <span class="o">=&gt;</span> <span class="s2">&quot;events#update&quot;</span><span class="p">,</span>  <span class="ss">:as</span> <span class="o">=&gt;</span> <span class="s2">&quot;event&quot;</span>
+</span><span class='line'><span class="n">delete</span> <span class="s1">&#39;/events/:id&#39;</span>      <span class="o">=&gt;</span> <span class="s2">&quot;events#destroy&quot;</span><span class="p">,</span> <span class="ss">:as</span> <span class="o">=&gt;</span> <span class="s2">&quot;event&quot;</span>
+</span><span class='line'><span class="n">get</span>    <span class="s1">&#39;/events/new&#39;</span>      <span class="o">=&gt;</span> <span class="s2">&quot;events#new&quot;</span><span class="p">,</span>     <span class="ss">:as</span> <span class="o">=&gt;</span> <span class="s2">&quot;new_event&quot;</span>
+</span><span class='line'><span class="n">get</span>    <span class="s1">&#39;/events/:id/edit&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;events#edit&quot;</span><span class="p">,</span>    <span class="ss">:as</span> <span class="o">=&gt;</span> <span class="s2">&quot;edit_event&quot;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># get 是純讀取資料，對資料不會有任何影響，所以get資料可以回上一頁、refresh都ok；post則反之。</span>
+</span><span class='line'><span class="c1"># HTML只有get、post，而Rails在post加上隱藏參數_method=PUT、_method=DELETE，就多了put、delete能用了。</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>＜％　vs ＜％＝</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># &lt;% 執行但不輸出</span>
+</span><span class='line'><span class="c1"># &lt;%= 輸出值</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="sx">% @people.each </span><span class="k">do</span> <span class="o">|</span><span class="nb">p</span><span class="o">|</span> <span class="sx">%&gt;</span>
+</span><span class='line'><span class="sx"> &lt;%= p.name %&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sx">% end </span><span class="o">%&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">render</span> <span class="err">回傳使用的樣版</span><span class="p">(</span><span class="err">資料不會遺失</span><span class="p">)</span>
+</span><span class='line'><span class="n">redirect_to</span> <span class="err">重新導向</span><span class="n">action</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Reference:
+<a href="http://ihower.tw/rails3/index.html">http://ihower.tw/rails3/index.html</a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1094,104 +1250,6 @@ getdate()   取得系統目前時間
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/09/12/aspnet-access-to-ad-domain/">[ASP.NET] 存取AD網域</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-12T01:27:00+08:00" pubdate data-updated="true"></time>
-        
-         | <a href="/blog/2013/09/12/aspnet-access-to-ad-domain/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>透過AD網域來存取帳號資料</h2>
-
-<h2>查詢資料</h2>
-
-<pre><code>string QueryString = "LDAP://網域";
-DirectoryEntry de = new DirectoryEntry(QueryString,adminAccount,adminPassword);
-DirectorySearcher ds = new DirectorySearcher(de);
-SearchResultCollection Results = null;
-
-// 設定查詢條件：依姓名及工號查詢
-ds.Filter = @"(&amp;(samaccountname=" + employeeName + ")(Description=" + employeeNo + "))";
-// 將查詢結果放入Results
-Results = ds.FindAll();
-
-foreach (SearchResult result in Results)
-{
-    if (result.Properties["description"].Count &gt; 0)
-    {
-        // 透過AD裡的屬性「description」，取得工號
-        string resultNo = result.Properties["description"][0].ToString();
-        Response.Write(resultNo);
-        Response.Write("&lt;br&gt;");
-    }
-}
-ds.Dispose(); // 釋放資源
-de.Dispose();
-</code></pre>
-
-<h2>修改指定帳號的屬性值</h2>
-
-<pre><code>string QueryString = "LDAP://"+ userLDAP;
-DirectoryEntry de = new DirectoryEntry(QueryString, adminAccount,adminPassword);
-
-de.Properties["TelephoneNumber"].Value = 123;     
-
-// 停用此帳號：userAccountControl = 514 
-de.Properties["userAccountControl"].Value = 514;
-
-// 重設密碼
-de.Invoke("SetPassword", newPassword);
-
-de.CommitChanges();
-de.Close();
-</code></pre>
-
-<h2>刪除帳號</h2>
-
-<pre><code>string QueryString = LDAP://" + userLDAP;
-DirectoryEntry user = new DirectoryEntry(QueryString, adminAccount, adminPassword);
-// 找上一層
-DirectoryEntry ou = user.Parent;
-// 再回去刪它
-ou.Children.Remove(user);
-ou.CommitChanges();
-</code></pre>
-
-<p>基本屬性KEY跟VALUE可以在AD裡面找到
-<img src="http://user-image.logdown.io/user/2740/blog/2734/post/138560/iH5dxsHMS6SoXINR2EX2_2013-9-15%20%E4%B8%8B%E5%8D%88%2001-58-35.jpg" alt="2013-9-15 下午 01-58-35.jpg" /></p>
-
-<p>Reference:
-<a href="http://www.dotblogs.com.tw/yc421206/archive/2010/02/07/13510.aspx">http://www.dotblogs.com.tw/yc421206/archive/2010/02/07/13510.aspx</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/5">&larr; Older</a>
@@ -1239,6 +1297,10 @@ ou.CommitChanges();
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/03/05/generate-your-own-bitcoin-address/">[Bitcoin] 使用vanitygen自定比特幣位址並匯入錢包</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2016/03/05/ubuntu-openvpn-server-client/">[Ubuntu] 架設 OpenVpn Server & Client</a>
@@ -1294,10 +1356,6 @@ ou.CommitChanges();
     
       <li class="post">
         <a href="/blog/2014/01/17/rails-mac-os-environment-build/">[Mac] Ruby on Rails 基本環境建置</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/01/13/javascript-triggered-interrupt-event-or-action/">[JavaScript] 中斷事件或動作的觸發</a>
       </li>
     
   </ul>

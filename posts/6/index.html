@@ -9,8 +9,8 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="台灣人常出現的Email issue X : We need to cost down on this project. (&ldquo;cost down&rdquo; is not a word)
-X : Please feel free to contact with me. (&ldquo &hellip;">
+  <meta name="description" content="不一定是常用…而是記不太起來，每次都要查… DBCC CHECKIDENT ( tablename, RESEED, new_reseed_value ) 強制重設table的識別值 DBCC CHECKIDENT(tablename, RESEED, 0) // 歸零識別值 SQL驗證
+Data &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -99,6 +99,63 @@ X : Please feel free to contact with me. (&ldquo &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/07/28/sql-syntax/">[SQL] 常用語法</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-28T06:41:00+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2013/07/28/sql-syntax/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>不一定是常用…而是記不太起來，每次都要查…</p>
+
+<p>DBCC CHECKIDENT ( <em>tablename</em>, RESEED, new_reseed_value ) 強制重設table的識別值</p>
+
+<pre><code>DBCC CHECKIDENT(tablename,  RESEED, 0)  // 歸零識別值
+</code></pre>
+
+<p>SQL驗證
+Data Source=<strong><em>;Initial catalog=</em></strong>;User ID=<strong><em>;Password=</em></strong></p>
+
+<p>Windows驗證
+Data Source=<strong><em>;Initial Catalog=</em></strong>;integrated security=sspi</p>
+
+<p>union:上下重直合併</p>
+
+<p>萬用字元
+%
+_:代表一個字元
+〔〕:指定字元範圍；[0-9]、[A-D]、[ABCD]
+〔^〕:排除字元範圍:[^ABC]</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -810,6 +867,10 @@ GridView.DataBind();</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/03/05/generate-your-own-bitcoin-address/">[Bitcoin] 使用vanitygen自定比特幣位址並匯入錢包</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2016/03/05/ubuntu-openvpn-server-client/">[Ubuntu] 架設 OpenVpn Server & Client</a>
       </li>
     
@@ -863,10 +924,6 @@ GridView.DataBind();</p>
     
       <li class="post">
         <a href="/blog/2014/01/17/rails-mac-os-environment-build/">[Mac] Ruby on Rails 基本環境建置</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/01/13/javascript-triggered-interrupt-event-or-action/">[JavaScript] 中斷事件或動作的觸發</a>
       </li>
     
   </ul>
