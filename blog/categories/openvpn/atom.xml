@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: openvpn | Bob 學習筆記]]></title>
+  <link href="http://blog.poyi.tw/blog/categories/openvpn/atom.xml" rel="self"/>
+  <link href="http://blog.poyi.tw/"/>
+  <updated>2016-03-05T11:44:45+08:00</updated>
+  <id>http://blog.poyi.tw/</id>
+  <author>
+    <name><![CDATA[Bob (PoYi)]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[[ubuntu] 架設 OpenVpn Server & Client]]></title>
+    <link href="http://blog.poyi.tw/blog/2016/03/05/ubuntu-openvpn-server-client/"/>
+    <updated>2016-03-05T11:42:49+08:00</updated>
+    <id>http://blog.poyi.tw/blog/2016/03/05/ubuntu-openvpn-server-client</id>
+    <content type="html"><![CDATA[<h2>OpenVpn</h2>
+
+<pre><code>apt-get update
+apt-get install openvpn easy-rsa
+</code></pre>
+
+<pre><code>gunzip -c /usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz &gt; /etc/openvpn/server.conf
+vim /etc/openvpn/server.conf
+</code></pre>
+
+<pre><code class="bash /etc/openvpn/server.conf"># dh dh1024.pem
+dh2048.pem
+
+ca ca.crt
+cert server.crt
+key server.key
+
+# 拿掉註解
+push "redirect-gateway def1 bypass-dhcp"
+user nobody
+group nogroup
+# 補上8.8.8.8
+push "dhcp-option DNS 8.8.8.8"
+;push "dhcp-option DNS 208.67.222.222"
+;push "dhcp-option DNS 208.67.220.220"
+
+#其他基本上維持預設即可
+</code></pre>
+
+<h3>Packet Forwarding</h3>
+
+<pre><code>echo 1 &gt; /proc/sys/net/ipv4/ip_forward
+vim /etc/sysctl.conf
+</code></pre>
+
+<pre><code class="bash /etc/sysctl.con"># 拿掉註解
+net.ipv4.ip_forward=1
+</code></pre>
+
+<h3>Uncomplicated Firewall</h3>
+
+<pre><code>ufw allow ssh
+ufw allow 1194/udp
+vim /etc/default/ufw
+</code></pre>
+
+<pre><code class="bash /etc/default/ufw"># 將DROP改成ACCEPT
+DEFAULT_FORWARD_POLICY="ACCEPT"
+</code></pre>
+
+<pre><code>vim /etc/ufw/before.rules
+</code></pre>
+
+<pre><code class="bash /etc/ufw/before.rules 加入OPENVPN RULES">#
+# rules.before
+#
+# Rules that should be run before the ufw command line added rules. Custom
+# rules should be added to one of these chains:
+#   ufw-before-input
+#   ufw-before-output
+#   ufw-before-forward
+#
+
+# START OPENVPN RULES
+# NAT table rules
+*nat
+:POSTROUTING ACCEPT [0:0]
+# Allow traffic from OpenVPN client to eth0
+-A POSTROUTING -s 10.8.0.0/8 -o eth0 -j MASQUERADE
+COMMIT
+# END OPENVPN RULES
+</code></pre>
+
+<pre><code>ufw enable
+ufw status
+</code></pre>
+
+<h3>Generate Certificate Authority</h3>
+
+<pre><code>cp -r /usr/share/easy-rsa/ /etc/openvpn
+mkdir /etc/openvpn/easy-rsa/keys
+vim /etc/openvpn/easy-rsa/vars
+</code></pre>
+
+<pre><code>export KEY_COUNTRY=“TW”
+export KEY_PROVINCE=“Taiwan”
+export KEY_CITY=“Taipei”
+export KEY_ORG="My Company Name"
+export KEY_EMAIL="sammy@example.com"
+export KEY_OU="MYOrganizationalUnit"
+
+export KEY_NAME=“server”
+</code></pre>
+
+<pre><code>openssl dhparam -out /etc/openvpn/dh2048.pem 2048
+cd /etc/openvpn/easy-rsa
+. ./vars
+./clean-all
+./build-ca
+</code></pre>
+
+<h3>Generate Server-side Key</h3>
+
+<pre><code class="bash /etc/openvpn/easy-rsa">./build-key-server server
+cp /etc/openvpn/easy-rsa/keys/{server.crt,server.key,ca.crt} /etc/openvpn
+</code></pre>
+
+<pre><code>service openvpn start
+service openvpn status
+</code></pre>
+
+<h3>Generate Client-side Key</h3>
+
+<pre><code class="bash /etc/openvpn/easy-rsa">./build-key bob01
+mkdir /etc/openvpn/bob01
+cp /etc/openvpn/easy-rsa/keys/bob01.crt,bob01.key /etc/openvpn/bob01/
+cp /etc/openvpn/easy-rsa/ca.crt /etc/openvpn/bob01/
+
+cp /usr/share/doc/openvpn/examples/sample-config-files/client.conf  /etc/openvpn/bob01/bob01.ovpn
+vim /etc/openvpn/bob01/bob01.ovpn
+</code></pre>
+
+<pre><code class="bash /etc/openvpn/bob01/bob01.ovpn">remote MY_SERVER_IP 1194
+ca ca.crt
+cert bob01.crt
+key bob01.key
+</code></pre>
+
+<p>最後在client端把/etc/openvpn/bob01/抓下來，用bob01.ovpn啟動即可</p>
+]]></content>
+  </entry>
+  
+</feed>

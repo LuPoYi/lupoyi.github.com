@@ -9,9 +9,10 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="執行指定檔案(or .exe) Client端 Process p = new Process();
-p.StartInfo.FileName = "@"C:\Users\PoYi\Desktop\test.txt"";
-p.Start(); Server端 System.Diagnostics. &hellip;">
+  <meta name="description" content="日期運算其實還蠻常用到的，但好像變化不多 // 利用TimeSpan 日期相減
+TimeSpan ts = DateTime1 - DateTime2;
+int differenceInDays = ts.Days; // 加上指定月數、天數、時間
+DateTime DateTime3 = &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -100,6 +101,63 @@ p.Start(); Server端 System.Diagnostics. &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/09/05/aspnet-date/">[ASP.NET] 日期處理</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-05T09:07:00+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2013/09/05/aspnet-date/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1>日期運算其實還蠻常用到的，但好像變化不多</h1>
+
+<pre><code>// 利用TimeSpan 日期相減
+TimeSpan ts = DateTime1 - DateTime2;
+int differenceInDays = ts.Days;
+
+// 加上指定月數、天數、時間
+DateTime DateTime3 = DateTime1.AddDays(50);
+DateTime DateTime4 = DateTime1.AddMonths(12);
+
+// 顯示特定格式
+TextBox1.Text = DateTime4.ToString("dddd"); // 星期二
+TextBox1.Text = DateTime4.ToString("MMMM"); // 七月
+TextBox1.Text = DateTime4.ToString("MMMM",CultureInfo.CreateSpecificCulture("en-US"))); // July
+TextBox1.Text = DateTime4.ToString("yyyy-MM-dd HH:mm:ss");
+</code></pre>
+
+<p>Reference:
+<a href="http://www.dotblogs.com.tw/hung-chin/archive/2012/10/15/77503.aspx">http://www.dotblogs.com.tw/hung-chin/archive/2012/10/15/77503.aspx</a>
+<a href="http://gogo1119.pixnet.net/blog/post/28140411-%5Bc%23%5D-datetime-tostring%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%99%95%E7%90%86">http://gogo1119.pixnet.net/blog/post/28140411-%5Bc%23%5D-datetime-tostring%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%99%95%E7%90%86</a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -708,74 +766,6 @@ _:代表一個字元
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/07/22/common-e-mail-errors/">[English] Common E-mail Errors</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-07-22T13:54:00+08:00" pubdate data-updated="true"></time>
-        
-         | <a href="/blog/2013/07/22/common-e-mail-errors/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>台灣人常出現的Email issue</p>
-
-<p>X : We need to cost down on this project. (&ldquo;cost down&rdquo; is not a word)<br>
-X : Please feel free to contact with me. (&ldquo;with&rdquo; is unnecessary)<br>
-X : If you have any question, please let me know. (&ldquo;questions&rdquo;)</p>
-
-<p>&ndash;</p>
-
-<p>Subject Lines:</p>
-
-<p>Subject Lines aren&rsquo;t sentences, so don&rsquo;t use period(.)</p>
-
-<p>Greeting:</p>
-
-<p>X: Dear Miss Lu, (Ms. is correct, because we don&rsquo;t know she is married or not)<br>
-X: Dear Client,<br>
-X: Dear both,<br>
-X: Dear CEO Bob Lu, (Don&rsquo;t use title)<br>
-X: Dear Boss Huang,<br>
-X: Dears,<br></p>
-
-<p>The Body:</p>
-
-<p>These are usually separated by paragraphs<br>
-Don&rsquo;t overusing exclamation mark(!)</p>
-
-<p>Closings:</p>
-
-<p>X: Best Regards, (&ldquo;regards&rdquo; is correct)<br>
-X: See you~~~<br>
-X: Tks,<br></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/6">&larr; Older</a>
@@ -823,6 +813,10 @@ X: Tks,<br></p>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/03/05/ubuntu-openvpn-server-client/">[ubuntu] 架設 OpenVpn Server & Client</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2016/01/17/ubuntu-setting-ntp-sync-time/">[ubuntu] 設定NTP校正時間</a>
@@ -878,10 +872,6 @@ X: Tks,<br></p>
     
       <li class="post">
         <a href="/blog/2014/01/13/javascript-triggered-interrupt-event-or-action/">[JavaScript] 中斷事件或動作的觸發</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/12/23/ruby-exception-handling/">[Ruby] 例外處理</a>
       </li>
     
   </ul>

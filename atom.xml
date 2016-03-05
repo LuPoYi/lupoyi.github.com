@@ -4,7 +4,7 @@
   <title><![CDATA[Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2016-01-24T17:46:19+08:00</updated>
+  <updated>2016-03-05T11:44:45+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -12,6 +12,262 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[[ubuntu] 架設 OpenVpn Server & Client]]></title>
+    <link href="http://blog.poyi.tw/blog/2016/03/05/ubuntu-openvpn-server-client/"/>
+    <updated>2016-03-05T11:42:49+08:00</updated>
+    <id>http://blog.poyi.tw/blog/2016/03/05/ubuntu-openvpn-server-client</id>
+    <content type="html"><![CDATA[<h2>OpenVpn</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>apt-get update
+</span><span class='line'>apt-get install openvpn easy-rsa</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>gunzip -c /usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz &gt; /etc/openvpn/server.conf
+</span><span class='line'>vim /etc/openvpn/server.conf</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>/etc/openvpn/server.conf</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># dh dh1024.pem</span>
+</span><span class='line'>dh2048.pem
+</span><span class='line'>
+</span><span class='line'>ca ca.crt
+</span><span class='line'>cert server.crt
+</span><span class='line'>key server.key
+</span><span class='line'>
+</span><span class='line'><span class="c"># 拿掉註解</span>
+</span><span class='line'>push <span class="s2">&quot;redirect-gateway def1 bypass-dhcp&quot;</span>
+</span><span class='line'>user nobody
+</span><span class='line'>group nogroup
+</span><span class='line'><span class="c"># 補上8.8.8.8</span>
+</span><span class='line'>push <span class="s2">&quot;dhcp-option DNS 8.8.8.8&quot;</span>
+</span><span class='line'><span class="p">;</span>push <span class="s2">&quot;dhcp-option DNS 208.67.222.222&quot;</span>
+</span><span class='line'><span class="p">;</span>push <span class="s2">&quot;dhcp-option DNS 208.67.220.220&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">#其他基本上維持預設即可</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Packet Forwarding</h3>
+
+<figure class='code'><figcaption><span>/etc/openvpn/server.conf</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">echo </span><span class="m">1</span> &gt; /proc/sys/net/ipv4/ip_forward
+</span><span class='line'>vim /etc/sysctl.conf
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>/etc/sysctl.con</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># 拿掉註解</span>
+</span><span class='line'>net.ipv4.ip_forward<span class="o">=</span>1
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Uncomplicated Firewall</h3>
+
+<figure class='code'><figcaption><span>/etc/sysctl.con</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ufw allow ssh
+</span><span class='line'>ufw allow 1194/udp
+</span><span class='line'>vim /etc/default/ufw
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>/etc/default/ufw</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># 將DROP改成ACCEPT</span>
+</span><span class='line'><span class="nv">DEFAULT_FORWARD_POLICY</span><span class="o">=</span><span class="s2">&quot;ACCEPT&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>/etc/default/ufw</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>vim /etc/ufw/before.rules
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>/etc/ufw/before.rules 加入OPENVPN RULES</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">#</span>
+</span><span class='line'><span class="c"># rules.before</span>
+</span><span class='line'><span class="c">#</span>
+</span><span class='line'><span class="c"># Rules that should be run before the ufw command line added rules. Custom</span>
+</span><span class='line'><span class="c"># rules should be added to one of these chains:</span>
+</span><span class='line'><span class="c">#   ufw-before-input</span>
+</span><span class='line'><span class="c">#   ufw-before-output</span>
+</span><span class='line'><span class="c">#   ufw-before-forward</span>
+</span><span class='line'><span class="c">#</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># START OPENVPN RULES</span>
+</span><span class='line'><span class="c"># NAT table rules</span>
+</span><span class='line'>*nat
+</span><span class='line'>:POSTROUTING ACCEPT <span class="o">[</span>0:0<span class="o">]</span>
+</span><span class='line'><span class="c"># Allow traffic from OpenVPN client to eth0</span>
+</span><span class='line'>-A POSTROUTING -s 10.8.0.0/8 -o eth0 -j MASQUERADE
+</span><span class='line'>COMMIT
+</span><span class='line'><span class="c"># END OPENVPN RULES</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>/etc/ufw/before.rules 加入OPENVPN RULES</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ufw <span class="nb">enable</span>
+</span><span class='line'>ufw status
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Generate Certificate Authority</h3>
+
+<figure class='code'><figcaption><span>/etc/ufw/before.rules 加入OPENVPN RULES</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>cp -r /usr/share/easy-rsa/ /etc/openvpn
+</span><span class='line'>mkdir /etc/openvpn/easy-rsa/keys
+</span><span class='line'>vim /etc/openvpn/easy-rsa/vars
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>/etc/ufw/before.rules 加入OPENVPN RULES</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">KEY_COUNTRY</span><span class="o">=</span>“TW”
+</span><span class='line'><span class="nb">export </span><span class="nv">KEY_PROVINCE</span><span class="o">=</span>“Taiwan”
+</span><span class='line'><span class="nb">export </span><span class="nv">KEY_CITY</span><span class="o">=</span>“Taipei”
+</span><span class='line'><span class="nb">export </span><span class="nv">KEY_ORG</span><span class="o">=</span><span class="s2">&quot;My Company Name&quot;</span>
+</span><span class='line'><span class="nb">export </span><span class="nv">KEY_EMAIL</span><span class="o">=</span><span class="s2">&quot;sammy@example.com&quot;</span>
+</span><span class='line'><span class="nb">export </span><span class="nv">KEY_OU</span><span class="o">=</span><span class="s2">&quot;MYOrganizationalUnit&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">export </span><span class="nv">KEY_NAME</span><span class="o">=</span>“server”
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>/etc/ufw/before.rules 加入OPENVPN RULES</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>openssl dhparam -out /etc/openvpn/dh2048.pem 2048
+</span><span class='line'><span class="nb">cd</span> /etc/openvpn/easy-rsa
+</span><span class='line'>. ./vars
+</span><span class='line'>./clean-all
+</span><span class='line'>./build-ca
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Generate Server-side Key</h3>
+
+<figure class='code'><figcaption><span>/etc/openvpn/easy-rsa</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>./build-key-server server
+</span><span class='line'>cp /etc/openvpn/easy-rsa/keys/<span class="o">{</span>server.crt,server.key,ca.crt<span class="o">}</span> /etc/openvpn
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>/etc/openvpn/easy-rsa</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>service openvpn start
+</span><span class='line'>service openvpn status
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Generate Client-side Key</h3>
+
+<figure class='code'><figcaption><span>/etc/openvpn/easy-rsa</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>./build-key bob01
+</span><span class='line'>mkdir /etc/openvpn/bob01
+</span><span class='line'>cp /etc/openvpn/easy-rsa/keys/bob01.crt,bob01.key /etc/openvpn/bob01/
+</span><span class='line'>cp /etc/openvpn/easy-rsa/ca.crt /etc/openvpn/bob01/
+</span><span class='line'>
+</span><span class='line'>cp /usr/share/doc/openvpn/examples/sample-config-files/client.conf  /etc/openvpn/bob01/bob01.ovpn
+</span><span class='line'>vim /etc/openvpn/bob01/bob01.ovpn
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>/etc/openvpn/bob01/bob01.ovpn</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>remote MY_SERVER_IP 1194
+</span><span class='line'>ca ca.crt
+</span><span class='line'>cert bob01.crt
+</span><span class='line'>key bob01.key
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>最後在client端把/etc/openvpn/bob01/抓下來，用bob01.ovpn啟動即可</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[[ubuntu] 設定NTP校正時間]]></title>
@@ -82,8 +338,8 @@
 <h5>帳號以中華電信為例</h5>
 
 <ul>
-<li><a href="&#x6d;&#x61;&#x69;&#x6c;&#116;&#111;&#58;&#120;&#x78;&#120;&#120;&#x78;&#x78;&#x78;&#x78;&#64;&#104;&#x69;&#x6e;&#x65;&#116;&#46;&#x6e;&#x65;&#116;">&#x78;&#x78;&#120;&#120;&#120;&#x78;&#120;&#x78;&#64;&#x68;&#x69;&#x6e;&#x65;&#x74;&#46;&#110;&#x65;&#x74;</a>        取得動態IP (原有帳號格式)</li>
-<li><a href="&#x6d;&#97;&#105;&#108;&#x74;&#x6f;&#x3a;&#120;&#120;&#x78;&#x78;&#x78;&#x78;&#120;&#120;&#x40;&#x69;&#112;&#x2e;&#x68;&#x69;&#x6e;&#101;&#x74;&#46;&#x6e;&#101;&#116;">&#x78;&#120;&#x78;&#x78;&#120;&#x78;&#x78;&#x78;&#x40;&#105;&#x70;&#x2e;&#x68;&#x69;&#110;&#x65;&#x74;&#46;&#110;&#101;&#116;</a>     取得固定IP  僅限一台電腦使用</li>
+<li><a href="&#109;&#97;&#x69;&#x6c;&#116;&#111;&#x3a;&#x78;&#x78;&#x78;&#x78;&#120;&#120;&#x78;&#120;&#64;&#x68;&#x69;&#110;&#101;&#116;&#x2e;&#x6e;&#101;&#116;">&#x78;&#x78;&#120;&#120;&#120;&#x78;&#120;&#120;&#64;&#x68;&#105;&#110;&#101;&#116;&#46;&#110;&#x65;&#116;</a>        取得動態IP (原有帳號格式)</li>
+<li><a href="&#109;&#x61;&#105;&#x6c;&#116;&#x6f;&#x3a;&#x78;&#x78;&#120;&#120;&#x78;&#120;&#x78;&#120;&#64;&#x69;&#112;&#x2e;&#x68;&#105;&#x6e;&#x65;&#x74;&#46;&#x6e;&#x65;&#116;">&#x78;&#120;&#120;&#120;&#x78;&#120;&#x78;&#120;&#x40;&#105;&#x70;&#46;&#x68;&#x69;&#110;&#x65;&#116;&#46;&#110;&#101;&#x74;</a>     取得固定IP  僅限一台電腦使用</li>
 </ul>
 
 
@@ -1632,76 +1888,6 @@ RVM (Ruby Version Manager):Ruby版本管理工具，便於切換不同版本</p>
 
 
 <p>這樣就可以用了yaya</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[[Rails] 打包Gem套件]]></title>
-    <link href="http://blog.poyi.tw/blog/2013/12/02/rails-gem/"/>
-    <updated>2013-12-02T12:27:00+08:00</updated>
-    <id>http://blog.poyi.tw/blog/2013/12/02/rails-gem</id>
-    <content type="html"><![CDATA[<p>當我們要安裝別人寫好的Library、API時，通常會</p>
-
-<figure class='code'><figcaption><span>Gemfile</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gem</span> <span class="s1">&#39;google-translate&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>或是</p>
-
-<figure class='code'><figcaption><span>Terminal</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>gem install google-translate
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h1>打包gem</h1>
-
-<p>而當我們要打包自己的gem，自用或供他人使用，該怎麼做？</p>
-
-<figure class='code'><figcaption><span>用bundle 生成gem結構</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>bundle gem bob_test_plugin
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>建立gem</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem build bob_test_plugin.gemspec
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>此時會生成 bob_test_plugin-0.0.1.gem</p>
-
-<figure class='code'><figcaption><span>安裝gem</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo gem install bob_test_plugin-0.0.1.gem
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>在rails c下測試gem</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>irb&gt;require <span class="s1">&#39;bob_test_plugin&#39;</span>
-</span><span class='line'><span class="o">=</span>&gt; <span class="nb">true</span>
-</span><span class='line'>irb&gt;BobTestPlugin.name
-</span><span class='line'><span class="o">=</span>&gt; <span class="s2">&quot;BobTestPlugin&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h1>發佈在 RubyGems.org</h1>
-
-<p><a href="http://rubygems.org/sign_up">申請RubyGems帳號</a></p>
-
-<figure class='code'><figcaption><span>發佈</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>gem push bob_test_plugin-0.0.1.gem
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Reference:
-<a href="http://blog.xdite.net/posts/2012/01/04/how-to-pack-a-gem">http://blog.xdite.net/posts/2012/01/04/how-to-pack-a-gem</a>
-<a href="http://jex.logdown.com/posts/164687-ruby-build-his-own-gem-packages">http://jex.logdown.com/posts/164687-ruby-build-his-own-gem-packages</a></p>
 ]]></content>
   </entry>
   

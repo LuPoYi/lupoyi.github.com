@@ -9,7 +9,9 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="Advanced Persistent Threat Advanced: 精心策劃的進階攻擊手法，並採用多元手段嘗試入侵。 Persistent: 進行一段長時間的埋伏並監視網路使用習慣，遵循low and slow、以不被發現為原則。 通常攻擊者為有組織、計劃性的團體，嘗試竊取特定目標機密。 &hellip;">
+  <meta name="description" content="當我們要安裝別人寫好的Library、API時，通常會 Gemfile1
+gem &#39;google-translate&#39; 或是 Terminal1
+$ gem install google-translate 打包gem 而當我們要打包自己的gem，自用或供他人使用，該怎麼做？ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -98,6 +100,105 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/12/02/rails-gem/">[Rails] 打包Gem套件</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-02T12:27:00+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2013/12/02/rails-gem/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>當我們要安裝別人寫好的Library、API時，通常會</p>
+
+<figure class='code'><figcaption><span>Gemfile</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gem</span> <span class="s1">&#39;google-translate&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>或是</p>
+
+<figure class='code'><figcaption><span>Terminal</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>gem install google-translate
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>打包gem</h1>
+
+<p>而當我們要打包自己的gem，自用或供他人使用，該怎麼做？</p>
+
+<figure class='code'><figcaption><span>用bundle 生成gem結構</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>bundle gem bob_test_plugin
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>建立gem</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem build bob_test_plugin.gemspec
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>此時會生成 bob_test_plugin-0.0.1.gem</p>
+
+<figure class='code'><figcaption><span>安裝gem</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo gem install bob_test_plugin-0.0.1.gem
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>在rails c下測試gem</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>irb&gt;require <span class="s1">&#39;bob_test_plugin&#39;</span>
+</span><span class='line'><span class="o">=</span>&gt; <span class="nb">true</span>
+</span><span class='line'>irb&gt;BobTestPlugin.name
+</span><span class='line'><span class="o">=</span>&gt; <span class="s2">&quot;BobTestPlugin&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>發佈在 RubyGems.org</h1>
+
+<p><a href="http://rubygems.org/sign_up">申請RubyGems帳號</a></p>
+
+<figure class='code'><figcaption><span>發佈</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>gem push bob_test_plugin-0.0.1.gem
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Reference:
+<a href="http://blog.xdite.net/posts/2012/01/04/how-to-pack-a-gem">http://blog.xdite.net/posts/2012/01/04/how-to-pack-a-gem</a>
+<a href="http://jex.logdown.com/posts/164687-ruby-build-his-own-gem-packages">http://jex.logdown.com/posts/164687-ruby-build-his-own-gem-packages</a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -988,97 +1089,6 @@ Reference:
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/10/04/c-delegate-delegate/">[C#] Delegate 委派</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-10-04T14:22:00+08:00" pubdate data-updated="true"></time>
-        
-         | <a href="/blog/2013/10/04/c-delegate-delegate/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>Delegate 是 C# 的特殊型別，用來定義方法（method/function）的 signature，delegate 的實體（instance）可以存放一或多個符合該 signature 的方法。這樣講也許還是鴨子聽雷，不如我們實際來感受一下吧！</h2>
-
-<p>delegate實例獨立於它所封裝的方法的類
-這邊在個multicst delegate的例子
-using System;</p>
-
-<p>class MulticastTester
-{
-    delegate void Greeting();</p>
-
-<pre><code>public static void Main()
-{
-    Greeting myGreeting = new Greeting(SayThankYou);
-    Console.WriteLine("My single greeting:");
-    myGreeting();
-
-    Greeting yourGreeting = new Greeting(SayGoodMorning);        
-    Console.WriteLine("\nYour single greeting:");
-    yourGreeting();
-
-    Greeting ourGreeting = myGreeting + yourGreeting;
-    Console.WriteLine("\nOur multicast greeting:");
-    ourGreeting();
-
-    ourGreeting += new Greeting(SayGoodnight);
-    Console.WriteLine("\nMulticast greeting which includes Goodnight:");
-    ourGreeting();
-
-    ourGreeting = ourGreeting - yourGreeting;
-    Console.WriteLine("\nMulticast greeting without your greeting:");
-    ourGreeting();
-
-    ourGreeting -= myGreeting;
-    Console.WriteLine("\nSingle greeting without your greeting and my greeting:");
-    ourGreeting();
-}
-
-public static void SayThankYou()
-{
-    Console.WriteLine("Thank you!");
-}
-
-public static void SayGoodMorning()
-{
-    Console.WriteLine("Good morning!");
-}
-
-public static void SayGoodnight()
-{
-    Console.WriteLine("Goodnight");
-}
-</code></pre>
-
-<p>}</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/4">&larr; Older</a>
@@ -1126,6 +1136,10 @@ public static void SayGoodnight()
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/03/05/ubuntu-openvpn-server-client/">[ubuntu] 架設 OpenVpn Server & Client</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2016/01/17/ubuntu-setting-ntp-sync-time/">[ubuntu] 設定NTP校正時間</a>
@@ -1181,10 +1195,6 @@ public static void SayGoodnight()
     
       <li class="post">
         <a href="/blog/2014/01/13/javascript-triggered-interrupt-event-or-action/">[JavaScript] 中斷事件或動作的觸發</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/12/23/ruby-exception-handling/">[Ruby] 例外處理</a>
       </li>
     
   </ul>

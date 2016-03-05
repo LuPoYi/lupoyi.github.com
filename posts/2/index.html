@@ -9,9 +9,10 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="require vs load 首先require與load都是用來載入指定的檔案
-差別在於使用require只會調用一次，且副檔名可省略，load則相反。 random.rb1
-$a = (rand * 10).floor use_require.rb 產出的兩個值相同(只載入一次random. &hellip;">
+  <meta name="description" content="讀取或寫入csv在ruby都蠻方便的，只是編碼或格式要稍微注意一下 匯出csv 1
+2
+header = [&#39;name&#39;,&#39;money&#39;,&#39;age&#39;]
+body = [&#39;ruby&#39;,&#39;1000&#39;,&#39;18&#39 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -100,6 +101,137 @@ $a = (rand * 10).floor use_require.rb 產出的兩個值相同(只載入一次ra
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/05/06/ruby-csv-file/">[Ruby] 匯出批次csv檔</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-06T21:14:00+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2014/05/06/ruby-csv-file/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>讀取或寫入csv在ruby都蠻方便的，只是編碼或格式要稍微注意一下</p>
+
+<h2>匯出csv</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">header</span> <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span><span class="s1">&#39;money&#39;</span><span class="p">,</span><span class="s1">&#39;age&#39;</span><span class="o">]</span>
+</span><span class='line'><span class="n">body</span> <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;ruby&#39;</span><span class="p">,</span><span class="s1">&#39;1000&#39;</span><span class="p">,</span><span class="s1">&#39;18&#39;</span><span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>export_to_csv_string 匯出csv的string格式再利用send_data下載</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">head</span> <span class="o">=</span> <span class="s1">&#39;EF BB BF&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">{</span><span class="o">|</span><span class="n">a</span><span class="o">|</span><span class="n">a</span><span class="o">.</span><span class="n">hex</span><span class="o">.</span><span class="n">chr</span><span class="p">}</span><span class="o">.</span><span class="n">join</span><span class="p">()</span> <span class="c1"># 加入BOM，解決excel中文亂碼</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">csv_string</span> <span class="o">=</span> <span class="no">CSV</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">csv</span> <span class="o">=</span> <span class="n">head</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">csv</span><span class="o">|</span>
+</span><span class='line'>    <span class="n">csv</span> <span class="o">&lt;&lt;</span> <span class="n">header</span>
+</span><span class='line'>    <span class="n">csv</span> <span class="o">&lt;&lt;</span> <span class="n">body</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># &gt; csv_string.encoding 執行這句會發現預設編碼為ACSII</span>
+</span><span class='line'>  <span class="n">csv_string</span><span class="o">.</span><span class="n">force_encoding</span><span class="p">(</span><span class="s1">&#39;big5&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="c1"># BOM也可以這樣加 csv_string = &quot;\xEF\xBB\xBF#{csv_string}&quot;  </span>
+</span><span class='line'>  <span class="c1"># 若不需要調整格式就直接下載</span>
+</span><span class='line'>  <span class="n">send_data</span> <span class="n">csv_string</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>export_to_csv 直接匯出檔案</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'> <span class="nb">require</span> <span class="s1">&#39;csv&#39;</span>
+</span><span class='line'> <span class="no">CSV</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;export.csv&quot;</span><span class="p">,</span><span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">csv</span><span class="o">|</span>
+</span><span class='line'>   <span class="n">csv</span> <span class="o">&lt;&lt;</span> <span class="n">header</span>
+</span><span class='line'>   <span class="n">csv</span> <span class="o">&lt;&lt;</span> <span class="n">body</span>
+</span><span class='line'> <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>半形轉全形</h2>
+
+<p>在某些情況會需要轉出全形字元，照理說不用才對，<del>可能是因為合作對方的系統太爛</del>
+其實也不太確定怎解，我單純用硬幹的方式</p>
+
+<figure class='code'><figcaption><span>convert_to_wide_word 大小寫英文數字轉全形字元</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">convert_to_wide_word</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">text</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/[a-v]/</span><span class="p">){</span><span class="o">|</span><span class="n">a</span><span class="o">|</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">ord</span> <span class="o">+</span> <span class="mi">41608</span><span class="p">)</span><span class="o">.</span><span class="n">chr</span><span class="p">(</span><span class="s1">&#39;big5&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)}</span>
+</span><span class='line'>    <span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/[w-z]/</span><span class="p">){</span><span class="o">|</span><span class="n">a</span><span class="o">|</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">ord</span> <span class="o">+</span> <span class="mi">41673</span><span class="p">)</span><span class="o">.</span><span class="n">chr</span><span class="p">(</span><span class="s1">&#39;big5&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)}</span>
+</span><span class='line'>    <span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/[A-Z]/</span><span class="p">){</span><span class="o">|</span><span class="n">a</span><span class="o">|</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">ord</span> <span class="o">+</span> <span class="mi">41614</span><span class="p">)</span><span class="o">.</span><span class="n">chr</span><span class="p">(</span><span class="s1">&#39;big5&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)}</span>
+</span><span class='line'>    <span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/[0-9]/</span><span class="p">){</span><span class="o">|</span><span class="n">a</span><span class="o">|</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">ord</span> <span class="o">+</span> <span class="mi">41599</span><span class="p">)</span><span class="o">.</span><span class="n">chr</span><span class="p">(</span><span class="s1">&#39;big5&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)}</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">convert_to_wide_word</span><span class="p">(</span><span class="s2">&quot;0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;</span><span class="p">)</span>
+</span><span class='line'> <span class="o">=&gt;</span> <span class="s2">&quot;０１２３４５６７８９ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚＡＢＣＤＥＦＧＨＩＪＫＬ</span>
+</span><span class='line'><span class="s2"> ＭＮＯＰＱＲＳＴＵＶＷＸＹＺ&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>匯出匯入csv也可以試試FasterCSV這個gem</p>
+
+<p>Reference:</p>
+
+<p><a href="http://www.sitepoint.com/guide-ruby-csv-library-part/">http://www.sitepoint.com/guide-ruby-csv-library-part/</a></p>
+
+<p><a href="http://blog.inheart.tw/2013/09/rubyraisl-csv-excel.html">http://blog.inheart.tw/2013/09/rubyraisl-csv-excel.html</a></p>
+
+<p><a href="http://salayhin.wordpress.com/2014/05/10/export-csv-file-from-rails-console/">http://salayhin.wordpress.com/2014/05/10/export-csv-file-from-rails-console/</a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1000,105 +1132,6 @@ RVM (Ruby Version Manager):Ruby版本管理工具，便於切換不同版本</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/12/02/rails-gem/">[Rails] 打包Gem套件</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-12-02T12:27:00+08:00" pubdate data-updated="true"></time>
-        
-         | <a href="/blog/2013/12/02/rails-gem/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>當我們要安裝別人寫好的Library、API時，通常會</p>
-
-<figure class='code'><figcaption><span>Gemfile</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gem</span> <span class="s1">&#39;google-translate&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>或是</p>
-
-<figure class='code'><figcaption><span>Terminal</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>gem install google-translate
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h1>打包gem</h1>
-
-<p>而當我們要打包自己的gem，自用或供他人使用，該怎麼做？</p>
-
-<figure class='code'><figcaption><span>用bundle 生成gem結構</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>bundle gem bob_test_plugin
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>建立gem</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem build bob_test_plugin.gemspec
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>此時會生成 bob_test_plugin-0.0.1.gem</p>
-
-<figure class='code'><figcaption><span>安裝gem</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo gem install bob_test_plugin-0.0.1.gem
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>在rails c下測試gem</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>irb&gt;require <span class="s1">&#39;bob_test_plugin&#39;</span>
-</span><span class='line'><span class="o">=</span>&gt; <span class="nb">true</span>
-</span><span class='line'>irb&gt;BobTestPlugin.name
-</span><span class='line'><span class="o">=</span>&gt; <span class="s2">&quot;BobTestPlugin&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h1>發佈在 RubyGems.org</h1>
-
-<p><a href="http://rubygems.org/sign_up">申請RubyGems帳號</a></p>
-
-<figure class='code'><figcaption><span>發佈</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>gem push bob_test_plugin-0.0.1.gem
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Reference:
-<a href="http://blog.xdite.net/posts/2012/01/04/how-to-pack-a-gem">http://blog.xdite.net/posts/2012/01/04/how-to-pack-a-gem</a>
-<a href="http://jex.logdown.com/posts/164687-ruby-build-his-own-gem-packages">http://jex.logdown.com/posts/164687-ruby-build-his-own-gem-packages</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/3">&larr; Older</a>
@@ -1146,6 +1179,10 @@ RVM (Ruby Version Manager):Ruby版本管理工具，便於切換不同版本</p>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/03/05/ubuntu-openvpn-server-client/">[ubuntu] 架設 OpenVpn Server & Client</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2016/01/17/ubuntu-setting-ntp-sync-time/">[ubuntu] 設定NTP校正時間</a>
@@ -1201,10 +1238,6 @@ RVM (Ruby Version Manager):Ruby版本管理工具，便於切換不同版本</p>
     
       <li class="post">
         <a href="/blog/2014/01/13/javascript-triggered-interrupt-event-or-action/">[JavaScript] 中斷事件或動作的觸發</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/12/23/ruby-exception-handling/">[Ruby] 例外處理</a>
       </li>
     
   </ul>

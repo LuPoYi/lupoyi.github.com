@@ -1,0 +1,598 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>[ubuntu] 架設 OpenVpn Server & Client - Bob 學習筆記</title>
+  <meta name="author" content="Bob (PoYi)">
+
+  
+  <meta name="description" content="OpenVpn 1
+2
+apt-get update
+apt-get install openvpn easy-rsa 1
+2
+gunzip -c /usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz &gt; / &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blog.poyi.tw/blog/2016/03/05/ubuntu-openvpn-server-client/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+   <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/libs/jquery.min.js" type="text/javascript"></script>
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+
+  <link href="/atom.xml" rel="alternate" title="Bob 學習筆記" type="application/atom+xml">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Source+Code+Pro:200,300,400,500,600,700,900' rel='stylesheet' type='text/css'>
+
+
+	<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-43769917-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+  <style>html{background: url(/images/background.png) no-repeat center center fixed;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;}</style>
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">[Ubuntu] 架設 OpenVpn Server & Client</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-03-05T11:42:49+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h2>OpenVpn</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>apt-get update
+</span><span class='line'>apt-get install openvpn easy-rsa</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>gunzip -c /usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz &gt; /etc/openvpn/server.conf
+</span><span class='line'>vim /etc/openvpn/server.conf</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>/etc/openvpn/server.conf</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># dh dh1024.pem</span>
+</span><span class='line'>dh2048.pem
+</span><span class='line'>
+</span><span class='line'>ca ca.crt
+</span><span class='line'>cert server.crt
+</span><span class='line'>key server.key
+</span><span class='line'>
+</span><span class='line'><span class="c"># 拿掉註解</span>
+</span><span class='line'>push <span class="s2">&quot;redirect-gateway def1 bypass-dhcp&quot;</span>
+</span><span class='line'>user nobody
+</span><span class='line'>group nogroup
+</span><span class='line'><span class="c"># 補上8.8.8.8</span>
+</span><span class='line'>push <span class="s2">&quot;dhcp-option DNS 8.8.8.8&quot;</span>
+</span><span class='line'><span class="p">;</span>push <span class="s2">&quot;dhcp-option DNS 208.67.222.222&quot;</span>
+</span><span class='line'><span class="p">;</span>push <span class="s2">&quot;dhcp-option DNS 208.67.220.220&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">#其他基本上維持預設即可</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Packet Forwarding</h3>
+
+<figure class='code'><figcaption><span>/etc/openvpn/server.conf</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">echo </span><span class="m">1</span> &gt; /proc/sys/net/ipv4/ip_forward
+</span><span class='line'>vim /etc/sysctl.conf
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>/etc/sysctl.con</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># 拿掉註解</span>
+</span><span class='line'>net.ipv4.ip_forward<span class="o">=</span>1
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Uncomplicated Firewall</h3>
+
+<figure class='code'><figcaption><span>/etc/sysctl.con</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ufw allow ssh
+</span><span class='line'>ufw allow 1194/udp
+</span><span class='line'>vim /etc/default/ufw
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>/etc/default/ufw</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># 將DROP改成ACCEPT</span>
+</span><span class='line'><span class="nv">DEFAULT_FORWARD_POLICY</span><span class="o">=</span><span class="s2">&quot;ACCEPT&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>/etc/default/ufw</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>vim /etc/ufw/before.rules
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>/etc/ufw/before.rules 加入OPENVPN RULES</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">#</span>
+</span><span class='line'><span class="c"># rules.before</span>
+</span><span class='line'><span class="c">#</span>
+</span><span class='line'><span class="c"># Rules that should be run before the ufw command line added rules. Custom</span>
+</span><span class='line'><span class="c"># rules should be added to one of these chains:</span>
+</span><span class='line'><span class="c">#   ufw-before-input</span>
+</span><span class='line'><span class="c">#   ufw-before-output</span>
+</span><span class='line'><span class="c">#   ufw-before-forward</span>
+</span><span class='line'><span class="c">#</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># START OPENVPN RULES</span>
+</span><span class='line'><span class="c"># NAT table rules</span>
+</span><span class='line'>*nat
+</span><span class='line'>:POSTROUTING ACCEPT <span class="o">[</span>0:0<span class="o">]</span>
+</span><span class='line'><span class="c"># Allow traffic from OpenVPN client to eth0</span>
+</span><span class='line'>-A POSTROUTING -s 10.8.0.0/8 -o eth0 -j MASQUERADE
+</span><span class='line'>COMMIT
+</span><span class='line'><span class="c"># END OPENVPN RULES</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>/etc/ufw/before.rules 加入OPENVPN RULES</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ufw <span class="nb">enable</span>
+</span><span class='line'>ufw status
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Generate Certificate Authority</h3>
+
+<figure class='code'><figcaption><span>/etc/ufw/before.rules 加入OPENVPN RULES</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>cp -r /usr/share/easy-rsa/ /etc/openvpn
+</span><span class='line'>mkdir /etc/openvpn/easy-rsa/keys
+</span><span class='line'>vim /etc/openvpn/easy-rsa/vars
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>/etc/ufw/before.rules 加入OPENVPN RULES</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">KEY_COUNTRY</span><span class="o">=</span>“TW”
+</span><span class='line'><span class="nb">export </span><span class="nv">KEY_PROVINCE</span><span class="o">=</span>“Taiwan”
+</span><span class='line'><span class="nb">export </span><span class="nv">KEY_CITY</span><span class="o">=</span>“Taipei”
+</span><span class='line'><span class="nb">export </span><span class="nv">KEY_ORG</span><span class="o">=</span><span class="s2">&quot;My Company Name&quot;</span>
+</span><span class='line'><span class="nb">export </span><span class="nv">KEY_EMAIL</span><span class="o">=</span><span class="s2">&quot;sammy@example.com&quot;</span>
+</span><span class='line'><span class="nb">export </span><span class="nv">KEY_OU</span><span class="o">=</span><span class="s2">&quot;MYOrganizationalUnit&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">export </span><span class="nv">KEY_NAME</span><span class="o">=</span>“server”
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>/etc/ufw/before.rules 加入OPENVPN RULES</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>openssl dhparam -out /etc/openvpn/dh2048.pem 2048
+</span><span class='line'><span class="nb">cd</span> /etc/openvpn/easy-rsa
+</span><span class='line'>. ./vars
+</span><span class='line'>./clean-all
+</span><span class='line'>./build-ca
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Generate Server-side Key</h3>
+
+<figure class='code'><figcaption><span>/etc/openvpn/easy-rsa</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>./build-key-server server
+</span><span class='line'>cp /etc/openvpn/easy-rsa/keys/<span class="o">{</span>server.crt,server.key,ca.crt<span class="o">}</span> /etc/openvpn
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>/etc/openvpn/easy-rsa</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>service openvpn start
+</span><span class='line'>service openvpn status
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Generate Client-side Key</h3>
+
+<figure class='code'><figcaption><span>/etc/openvpn/easy-rsa</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>./build-key bob01
+</span><span class='line'>mkdir /etc/openvpn/bob01
+</span><span class='line'>cp /etc/openvpn/easy-rsa/keys/bob01.crt,bob01.key /etc/openvpn/bob01/
+</span><span class='line'>cp /etc/openvpn/easy-rsa/ca.crt /etc/openvpn/bob01/
+</span><span class='line'>
+</span><span class='line'>cp /usr/share/doc/openvpn/examples/sample-config-files/client.conf  /etc/openvpn/bob01/bob01.ovpn
+</span><span class='line'>vim /etc/openvpn/bob01/bob01.ovpn
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>/etc/openvpn/bob01/bob01.ovpn</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>remote MY_SERVER_IP 1194
+</span><span class='line'>ca ca.crt
+</span><span class='line'>cert bob01.crt
+</span><span class='line'>key bob01.key
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>最後在client端把/etc/openvpn/bob01/抓下來，用bob01.ovpn啟動即可</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Bob (PoYi)</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-03-05T11:42:49+08:00" pubdate data-updated="true"></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/openvpn/'>openvpn</a>, <a class='category' href='/blog/categories/ubuntu/'>ubuntu</a>, <a class='category' href='/blog/categories/vpn/'>vpn</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.poyi.tw/blog/2016/03/05/ubuntu-openvpn-server-client/" data-via="" data-counturl="http://blog.poyi.tw/blog/2016/03/05/ubuntu-openvpn-server-client/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2016/01/17/ubuntu-setting-ntp-sync-time/" title="Previous Post: [ubuntu] 設定NTP校正時間">&laquo; [ubuntu] 設定NTP校正時間</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section id="titles">
+  <a id="logo" href="http://blog.poyi.tw" title="Bob 學習筆記"></a>
+  <h1 id="site_title"><a href="http://blog.poyi.tw" title="Bob 學習筆記">Bob 學習筆記</a></h1>
+  <h3 id="site_subtitle">Loser of the year</h3>
+</section>
+
+<section id="menu">
+  <ul>
+    <li><i class="fa fa-home fa-lg"></i><a href="http://blog.poyi.tw"> Home </a></li>
+    <li><i class="fa fa-calendar fa-lg"></i><a href="http://blog.poyi.tw/blog/archives/"> Archives </a></li>
+    <li><i class="fa fa-calendar fa-lg"></i><a href="http://blog.poyi.tw/memo"> Memo </a></li>
+    <li><i class="fa fa-user fa-lg"></i><a href="http://blog.poyi.tw/about"> About </a></li>
+    <li><i class="fa fa-users fa-lg"></i><a href="http://blog.poyi.tw/friends"> Friends </a></li>
+    <li><i class="fa fa-magic fa-lg"></i><a href="http://blog.poyi.tw/others"> Others </a></li>
+  </ul>
+</section>
+
+<section id="social">
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/03/05/ubuntu-openvpn-server-client/">[ubuntu] 架設 OpenVpn Server & Client</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/01/17/ubuntu-setting-ntp-sync-time/">[ubuntu] 設定NTP校正時間</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/01/17/ubuntu-setting-pppoe-static-ip/">[ubuntu] 設定 PPPoE 固定IP</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/07/ruby-aes-encrypt-decrypt/">[Ruby] AES 加密解密</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/07/11/rails-various-update-methods/">[Rails] 各種update method</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/06/29/mac-build-ubuntu-flash-using-command/">[Mac] 三步驟純指令建立Ubuntu的USB隨身碟</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/06/12/rails-ajax-render-error-in-json/">[Rails] AJAX render errors in json</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/04/18/all-your-important-files-are-encrypted/">資料被綁架軟體加密，要求贖金用比特幣支付</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/04/12/ruby-basic-2/">[Ruby] 教學 - 基本使用介紹2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/03/31/ruby-basic-1/">[Ruby] 教學 - 基本使用介紹</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/05/06/ruby-csv-file/">[Ruby] 匯出批次csv檔</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/03/16/ruby-require-load-include-extend/">[Ruby] require,load,include,extend</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/19/mac-directly-in-the-terminal-to-open-sublime/">[Mac] 直接在終端機開啟sublime</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/17/rails-mac-os-environment-build/">[Mac] Ruby on Rails 基本環境建置</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/13/javascript-triggered-interrupt-event-or-action/">[JavaScript] 中斷事件或動作的觸發</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2016 - Bob (PoYi) -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'blogpoyitw';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://blog.poyi.tw/blog/2016/03/05/ubuntu-openvpn-server-client/';
+        var disqus_url = 'http://blog.poyi.tw/blog/2016/03/05/ubuntu-openvpn-server-client/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
