@@ -4,7 +4,7 @@
   <title><![CDATA[Category: openvpn | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/openvpn/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2016-03-05T11:59:36+08:00</updated>
+  <updated>2016-03-05T12:03:04+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -64,14 +64,14 @@ ufw allow 1194/udp
 vim /etc/default/ufw
 </code></pre>
 
-<pre><code class="bash vim /etc/default/ufw"># 將DROP改成ACCEPT
+<pre><code class="bash /etc/default/ufw"># 將DROP改成ACCEPT
 DEFAULT_FORWARD_POLICY="ACCEPT"
 </code></pre>
 
 <pre><code>vim /etc/ufw/before.rules
 </code></pre>
 
-<p>&#8220;`bash vim /etc/ufw/before.rules 加入OPENVPN RULES(11~18行)
+<p>&#8220;`bash /etc/ufw/before.rules 加入OPENVPN RULES(11~18行)
 #</p>
 
 <h1>rules.before</h1>
@@ -117,7 +117,7 @@ mkdir /etc/openvpn/easy-rsa/keys
 vim /etc/openvpn/easy-rsa/vars
 </code></pre>
 
-<pre><code class="bash vim /etc/openvpn/easy-rsa/vars">export KEY_COUNTRY=“TW”
+<pre><code class="bash /etc/openvpn/easy-rsa/vars">export KEY_COUNTRY=“TW”
 export KEY_PROVINCE=“Taiwan”
 export KEY_CITY=“Taipei”
 export KEY_ORG="My Company Name"
@@ -157,7 +157,7 @@ cp /usr/share/doc/openvpn/examples/sample-config-files/client.conf  /etc/openvpn
 vim /etc/openvpn/bob01/bob01.ovpn
 </code></pre>
 
-<pre><code class="bash vim /etc/openvpn/bob01/bob01.ovpn">remote MY_SERVER_IP 1194
+<pre><code class="bash /etc/openvpn/bob01/bob01.ovpn">remote MY_SERVER_IP 1194
 ca ca.crt
 cert bob01.crt
 key bob01.key
