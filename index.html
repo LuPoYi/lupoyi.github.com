@@ -9,13 +9,12 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="使用vanitygen客製比特幣位址 1
+  <meta name="description" content="使用vanitygen客製比特幣位址 安裝vanitygen 1
 2
 3
 4
 sudo apt-get install build-essential libssl-dev libpcre3-dev
-git clone https://github.com/samr7/vanitygen.git
-cd vanitygen &hellip;">
+git clone https://github.com/samr7/vanitygen.git &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -135,7 +134,9 @@ cd vanitygen &hellip;">
   </header>
 
 
-  <div class="entry-content"><h3>使用vanitygen客製比特幣位址</h3>
+  <div class="entry-content"><h2>使用vanitygen客製比特幣位址</h2>
+
+<h3>安裝vanitygen</h3>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -148,18 +149,52 @@ cd vanitygen &hellip;">
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h3>隨機產生Address</h3>
+<h3>Bitcoin Address 必須使用 1開頭</h3>
+
+<ul>
+<li>Base58 避免使用數字0和字母大寫O以及字母大寫I和字母小寫l</li>
+<li>要使用該Address的話，記得備份好Privkey避免公開，擁有Privkey即等於擁有此Address發送權</li>
+</ul>
+
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>./vanitygen 1Bob
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># 指定開頭</span>
+</span><span class='line'><span class="nv">$ </span>./vanitygen 1Bob
 </span><span class='line'>  Difficulty: 77178
 </span><span class='line'>  Pattern: 1Bob
 </span><span class='line'>  Address: 1Bobnp85Ns6JUDaMntc672ZjfsWSzrUnZH
-</span><span class='line'>  Privkey: 5JUj7dqQGcunHLqTNmnJsx6JEnSmNrhgGmzNb7udJgd6Q6p2Us8
+</span><span class='line'>  Privkey: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+</span><span class='line'>
+</span><span class='line'><span class="c"># 忽略大小寫</span>
+</span><span class='line'><span class="nv">$ </span>./vanitygen -i 1boba
+</span><span class='line'>  Difficulty: 1100434
+</span><span class='line'>  Pattern: 1boba
+</span><span class='line'>  Address: 1BoBAeQ6vEw2wCitEvRAXuSfRJfwuVGt1L
+</span><span class='line'>  Privkey: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+</span><span class='line'>
+</span><span class='line'><span class="c"># 指定結尾</span>
+</span><span class='line'><span class="nv">$ </span>./vanitygen -r bob<span class="err">$</span>
+</span><span class='line'>Pattern: bob<span class="err">$</span>
+</span><span class='line'>Address: 14a6Pw84woyKjysT6Uc9gJF2M8prwYtbob
+</span><span class='line'>Privkey: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -198,10 +233,12 @@ cd vanitygen &hellip;">
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
+<span class='line-number'>5</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># bitcoin-cli importprivkey &lt;Privkey&gt; [label] [rescan=true]</span>
 </span><span class='line'><span class="c"># label 是指你要放入哪個account，預設都會有一個””空字串的account</span>
-</span><span class='line'><span class="c"># rescan 填true的話，會去掃以前到現在所有的transaction確定此address是否有被使用過(但會跑很久)；如果只是新address的話這邊填false就行了</span>
-</span><span class='line'><span class="nv">$ </span>bitcoin-cli importprivkey 5JUj7dqQGcunHLqTNmnJsx6JEnSmNrhgGmzNb7udJgd6Q6p2Us8 “” <span class="nb">false</span>
+</span><span class='line'><span class="c"># rescan 填true的話，會去掃以前到現在所有的transaction確定此address是否有被使用過(但會跑很久)</span>
+</span><span class='line'><span class="c">#        如果只是新address的話這邊填false就行了</span>
+</span><span class='line'><span class="nv">$ </span>bitcoin-cli importprivkey XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX “” <span class="nb">false</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -231,6 +268,12 @@ cd vanitygen &hellip;">
 </span><span class='line'><span class="o">}</span> #   <span class="s2">&quot;ismine&quot;</span>: <span class="nb">true</span> <span class="o">=</span>&gt; 現在此Address就是屬於你的
 </span></code></pre></td></tr></table></div></figure>
 
+
+<p>Reference:</p>
+
+<p><a href="https://en.bitcoin.it/wiki/Vanitygen">https://en.bitcoin.it/wiki/Vanitygen</a></p>
+
+<p><a href="http://8btc.com/article-1930-1.html">http://8btc.com/article-1930-1.html</a></p>
 </div>
   
   
@@ -648,8 +691,8 @@ cd vanitygen &hellip;">
 <h5>帳號以中華電信為例</h5>
 
 <ul>
-<li><a href="&#109;&#x61;&#x69;&#108;&#x74;&#x6f;&#58;&#120;&#120;&#120;&#120;&#x78;&#120;&#120;&#x78;&#x40;&#x68;&#x69;&#x6e;&#101;&#x74;&#x2e;&#x6e;&#101;&#116;">&#x78;&#120;&#x78;&#x78;&#120;&#x78;&#x78;&#x78;&#64;&#x68;&#105;&#x6e;&#101;&#x74;&#x2e;&#110;&#x65;&#116;</a>        取得動態IP (原有帳號格式)</li>
-<li><a href="&#109;&#x61;&#x69;&#x6c;&#116;&#x6f;&#58;&#120;&#120;&#x78;&#120;&#120;&#x78;&#x78;&#120;&#x40;&#105;&#112;&#46;&#104;&#x69;&#110;&#x65;&#116;&#x2e;&#x6e;&#x65;&#116;">&#x78;&#120;&#120;&#x78;&#x78;&#x78;&#120;&#120;&#64;&#105;&#112;&#46;&#104;&#105;&#110;&#x65;&#116;&#46;&#110;&#101;&#116;</a>     取得固定IP  僅限一台電腦使用</li>
+<li><a href="&#x6d;&#x61;&#105;&#x6c;&#116;&#x6f;&#x3a;&#x78;&#x78;&#x78;&#120;&#x78;&#x78;&#120;&#120;&#64;&#x68;&#x69;&#110;&#x65;&#116;&#x2e;&#110;&#x65;&#116;">&#x78;&#120;&#120;&#120;&#x78;&#120;&#x78;&#120;&#64;&#104;&#105;&#x6e;&#101;&#116;&#46;&#x6e;&#101;&#x74;</a>        取得動態IP (原有帳號格式)</li>
+<li><a href="&#109;&#97;&#x69;&#108;&#116;&#x6f;&#58;&#x78;&#x78;&#120;&#x78;&#120;&#120;&#120;&#x78;&#64;&#105;&#112;&#46;&#104;&#105;&#110;&#101;&#x74;&#x2e;&#110;&#x65;&#116;">&#x78;&#x78;&#x78;&#120;&#120;&#x78;&#120;&#120;&#64;&#x69;&#x70;&#x2e;&#x68;&#105;&#110;&#x65;&#116;&#x2e;&#x6e;&#x65;&#x74;</a>     取得固定IP  僅限一台電腦使用</li>
 </ul>
 
 
