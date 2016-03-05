@@ -136,18 +136,20 @@ gunzip -c /usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz &gt
 
   <div class="entry-content"><h2>OpenVpn</h2>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>apt-get update
-</span><span class='line'>apt-get install openvpn easy-rsa</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>apt-get update
+</span><span class='line'>apt-get install openvpn easy-rsa
+</span></code></pre></td></tr></table></div></figure>
 
 
 
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>gunzip -c /usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz &gt; /etc/openvpn/server.conf
-</span><span class='line'>vim /etc/openvpn/server.conf</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>gunzip -c /usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz &gt; /etc/openvpn/server.conf
+</span><span class='line'>vim /etc/openvpn/server.conf
+</span></code></pre></td></tr></table></div></figure>
 
 
 
@@ -191,7 +193,7 @@ gunzip -c /usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz &gt
 
 <h3>Packet Forwarding</h3>
 
-<figure class='code'><figcaption><span>/etc/openvpn/server.conf</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">echo </span><span class="m">1</span> &gt; /proc/sys/net/ipv4/ip_forward
 </span><span class='line'>vim /etc/sysctl.conf
@@ -209,7 +211,7 @@ gunzip -c /usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz &gt
 
 <h3>Uncomplicated Firewall</h3>
 
-<figure class='code'><figcaption><span>/etc/sysctl.conf</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>ufw allow ssh
@@ -229,7 +231,7 @@ gunzip -c /usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz &gt
 
 
 
-<figure class='code'><figcaption><span>/etc/default/ufw</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>vim /etc/ufw/before.rules
 </span></code></pre></td></tr></table></div></figure>
 
@@ -277,7 +279,7 @@ gunzip -c /usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz &gt
 
 
 
-<figure class='code'><figcaption><span>/etc/ufw/before.rules 加入OPENVPN RULES(11~18行)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>ufw <span class="nb">enable</span>
 </span><span class='line'>ufw status
@@ -286,7 +288,7 @@ gunzip -c /usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz &gt
 
 <h3>Generate Certificate Authority</h3>
 
-<figure class='code'><figcaption><span>/etc/ufw/before.rules 加入OPENVPN RULES(11~18行)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>cp -r /usr/share/easy-rsa/ /etc/openvpn
@@ -318,7 +320,7 @@ gunzip -c /usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz &gt
 
 
 
-<figure class='code'><figcaption><span>/etc/openvpn/easy-rsa/vars</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -333,7 +335,7 @@ gunzip -c /usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz &gt
 
 <h3>Generate Server-side Key</h3>
 
-<figure class='code'><figcaption><span>/etc/openvpn/easy-rsa/vars</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>./build-key-server server
 </span><span class='line'>cp /etc/openvpn/easy-rsa/keys/<span class="o">{</span>server.crt,server.key,ca.crt<span class="o">}</span> /etc/openvpn
@@ -342,7 +344,7 @@ gunzip -c /usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz &gt
 
 <p>啟動Server</p>
 
-<figure class='code'><figcaption><span>/etc/openvpn/easy-rsa/vars</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>service openvpn start
@@ -353,7 +355,7 @@ gunzip -c /usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz &gt
 
 <h3>Generate Client-side Key</h3>
 
-<figure class='code'><figcaption><span>/etc/openvpn/easy-rsa/vars</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -512,8 +514,8 @@ gunzip -c /usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz &gt
 <h5>帳號以中華電信為例</h5>
 
 <ul>
-<li><a href="&#109;&#x61;&#105;&#x6c;&#116;&#111;&#58;&#x78;&#x78;&#120;&#x78;&#120;&#120;&#x78;&#120;&#64;&#x68;&#105;&#110;&#x65;&#116;&#x2e;&#110;&#x65;&#x74;">&#x78;&#x78;&#x78;&#120;&#120;&#x78;&#x78;&#x78;&#64;&#104;&#x69;&#110;&#101;&#116;&#x2e;&#110;&#101;&#x74;</a>        取得動態IP (原有帳號格式)</li>
-<li><a href="&#109;&#x61;&#x69;&#108;&#x74;&#111;&#x3a;&#120;&#120;&#120;&#120;&#x78;&#120;&#120;&#x78;&#x40;&#105;&#x70;&#x2e;&#x68;&#105;&#x6e;&#x65;&#x74;&#x2e;&#x6e;&#101;&#116;">&#120;&#120;&#x78;&#120;&#x78;&#120;&#x78;&#120;&#64;&#105;&#x70;&#x2e;&#104;&#x69;&#110;&#101;&#x74;&#x2e;&#110;&#101;&#116;</a>     取得固定IP  僅限一台電腦使用</li>
+<li><a href="&#x6d;&#x61;&#105;&#108;&#116;&#111;&#x3a;&#120;&#120;&#x78;&#x78;&#120;&#120;&#120;&#x78;&#x40;&#104;&#x69;&#110;&#101;&#116;&#x2e;&#110;&#x65;&#x74;">&#x78;&#120;&#x78;&#120;&#120;&#120;&#x78;&#x78;&#64;&#x68;&#x69;&#110;&#x65;&#116;&#46;&#110;&#x65;&#x74;</a>        取得動態IP (原有帳號格式)</li>
+<li><a href="&#109;&#x61;&#105;&#x6c;&#116;&#x6f;&#x3a;&#120;&#x78;&#x78;&#120;&#x78;&#120;&#x78;&#x78;&#64;&#105;&#x70;&#46;&#x68;&#x69;&#x6e;&#x65;&#116;&#x2e;&#110;&#101;&#116;">&#120;&#x78;&#x78;&#x78;&#x78;&#x78;&#120;&#x78;&#x40;&#105;&#x70;&#46;&#x68;&#x69;&#x6e;&#x65;&#116;&#46;&#x6e;&#101;&#116;</a>     取得固定IP  僅限一台電腦使用</li>
 </ul>
 
 
