@@ -211,8 +211,10 @@ gunzip -c /usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz &gt
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
+<span class='line-number'>4</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>ufw allow ssh
 </span><span class='line'>ufw allow 1194/udp
+</span><span class='line'>ufw allow <span class="m">80</span> <span class="c"># 開外連進來所需要的port</span>
 </span><span class='line'>vim /etc/default/ufw
 </span></code></pre></td></tr></table></div></figure>
 
