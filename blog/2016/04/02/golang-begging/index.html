@@ -1,0 +1,492 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>[Golang] Golang 101 入門筆記 - Bob 學習筆記</title>
+  <meta name="author" content="Bob (PoYi)">
+
+  
+  <meta name="description" content="Hello Go hello.go1
+2
+3
+4
+5
+6
+7
+package main import &quot;fmt&quot; func main() { fmt.Println(&quot;hello, go!&quot;)
+} 1
+2
+$ go run hello.go
+Hello Go &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blog.poyi.tw/blog/2016/04/02/golang-begging/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+   <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/libs/jquery.min.js" type="text/javascript"></script>
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  
+
+  <link href="/atom.xml" rel="alternate" title="Bob 學習筆記" type="application/atom+xml">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Source+Code+Pro:200,300,400,500,600,700,900' rel='stylesheet' type='text/css'>
+
+
+	<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-43769917-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+  <style>html{background: url(/images/background.png) no-repeat center center fixed;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;}</style>
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+</hgroup>
+
+</header>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">[Golang] Golang 101 入門筆記</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-04-02T20:59:38+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h2>Hello Go</h2>
+
+<figure class='code'><figcaption><span>hello.go</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="kn">package</span> <span class="nx">main</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;hello, go!&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>go run hello.go
+</span><span class='line'>Hello Go!
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>基本結構、定義變數</h2>
+
+<h3>常數</h3>
+
+<figure class='code'><figcaption><span>常數 const identifier [type] = value</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="kd">const</span> <span class="nx">Pi</span> <span class="p">=</span> <span class="mf">3.14159</span>
+</span><span class='line'><span class="kd">const</span> <span class="nx">Monday</span><span class="p">,</span> <span class="nx">Tuesday</span><span class="p">,</span> <span class="nx">Wednesday</span><span class="p">,</span> <span class="nx">Thursday</span><span class="p">,</span> <span class="nx">Friday</span><span class="p">,</span> <span class="nx">Saturday</span> <span class="p">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span>
+</span><span class='line'><span class="kd">const</span> <span class="p">(</span>
+</span><span class='line'>  <span class="nx">Unknown</span> <span class="p">=</span> <span class="mi">0</span>
+</span><span class='line'>  <span class="nx">Female</span> <span class="p">=</span> <span class="mi">1</span>
+</span><span class='line'>  <span class="nx">Male</span> <span class="p">=</span> <span class="mi">2</span>
+</span><span class='line'><span class="p">)</span>
+</span><span class='line'><span class="c1">// &quot;iota&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>變數</h3>
+
+<figure class='code'><figcaption><span>變數 var identifier type / var identifier [type] = value</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="kd">var</span> <span class="nx">a</span> <span class="kt">int</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">b</span> <span class="kt">bool</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">str</span> <span class="kt">string</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="nx">a</span> <span class="kt">int</span> <span class="p">=</span> <span class="mi">15</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">i</span> <span class="p">=</span> <span class="mi">5</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">b</span> <span class="kt">bool</span> <span class="p">=</span> <span class="kc">false</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">str</span> <span class="kt">string</span> <span class="p">=</span> <span class="s">&quot;Hello Go!&quot;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// := 初始化並給值(local限定)</span>
+</span><span class='line'><span class="nx">i</span> <span class="o">:=</span> <span class="mi">1</span>
+</span><span class='line'><span class="nx">s</span> <span class="o">:=</span> <span class="s">&quot;hi&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>類型轉換</h3>
+
+<ul>
+<li>int : int8, int16, int32, int64</li>
+<li>uint : uint8, uint16, uint32, uint64</li>
+<li>float: float32, float64</li>
+<li>不同類型之間做計算都需要經過類型轉換</li>
+</ul>
+
+
+<figure class='code'><figcaption><span>類型轉換 valueOfTypeB = typeB(valueOfTypeA)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="kd">var</span> <span class="nx">a</span> <span class="kt">int</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">b</span> <span class="kt">int32</span>
+</span><span class='line'><span class="nx">a</span> <span class="p">=</span> <span class="mi">15</span>
+</span><span class='line'><span class="nx">b</span> <span class="p">=</span> <span class="nx">a</span> <span class="o">+</span> <span class="mi">6</span> <span class="c1">// cannot use a + 6 (type int) as type int32 in assignment</span>
+</span><span class='line'><span class="nx">b</span> <span class="p">=</span> <span class="nb">int32</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="o">+</span> <span class="mi">6</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>指針</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="o">......</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>判斷式、迴圈</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="o">......</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Function</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="o">......</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>其他備忘</h2>
+
+<ul>
+<li>不同類型之間做計算都需要經過類型轉換</li>
+<li>import library或是變數卻沒使用的話會跳錯</li>
+<li>駝峰式命名</li>
+</ul>
+
+
+<p>Reference:</p>
+
+<p><a href="https://github.com/Unknwon/the-way-to-go_ZH_CN/blob/master/eBook/directory.md">https://github.com/Unknwon/the-way-to-go_ZH_CN/blob/master/eBook/directory.md</a></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Bob (PoYi)</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-04-02T20:59:38+08:00" pubdate data-updated="true"></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/basic/'>basic</a>, <a class='category' href='/blog/categories/beginning/'>beginning</a>, <a class='category' href='/blog/categories/go/'>go</a>, <a class='category' href='/blog/categories/golang/'>golang</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.poyi.tw/blog/2016/04/02/golang-begging/" data-via="" data-counturl="http://blog.poyi.tw/blog/2016/04/02/golang-begging/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2016/03/05/generate-your-own-bitcoin-address/" title="Previous Post: [Bitcoin] 客製比特幣位址並匯入錢包">&laquo; [Bitcoin] 客製比特幣位址並匯入錢包</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section id="titles">
+  <a id="logo" href="http://blog.poyi.tw" title="Bob 學習筆記"></a>
+  <h1 id="site_title"><a href="http://blog.poyi.tw" title="Bob 學習筆記">Bob 學習筆記</a></h1>
+  <h3 id="site_subtitle">Loser of the year</h3>
+</section>
+
+<section id="menu">
+  <ul>
+    <li><i class="fa fa-home fa-lg"></i><a href="http://blog.poyi.tw"> Home </a></li>
+    <li><i class="fa fa-calendar fa-lg"></i><a href="http://blog.poyi.tw/blog/archives/"> Archives </a></li>
+    <li><i class="fa fa-calendar fa-lg"></i><a href="http://blog.poyi.tw/memo"> Memo </a></li>
+    <li><i class="fa fa-user fa-lg"></i><a href="http://blog.poyi.tw/about"> About </a></li>
+    <li><i class="fa fa-users fa-lg"></i><a href="http://blog.poyi.tw/friends"> Friends </a></li>
+    <li><i class="fa fa-magic fa-lg"></i><a href="http://blog.poyi.tw/others"> Others </a></li>
+  </ul>
+</section>
+
+<section id="social">
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/04/02/golang-begging/">[Golang] Golang 101 入門筆記</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/03/05/generate-your-own-bitcoin-address/">[Bitcoin] 客製比特幣位址並匯入錢包</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/03/05/ubuntu-openvpn-server-client/">[Ubuntu] 架設 OpenVpn Server & Client</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/01/17/ubuntu-setting-ntp-sync-time/">[Ubuntu] 設定NTP校正時間</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/01/17/ubuntu-setting-pppoe-static-ip/">[Ubuntu] 設定 PPPoE 固定IP</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/07/ruby-aes-encrypt-decrypt/">[Ruby] AES 加密解密</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/07/11/rails-various-update-methods/">[Rails] 各種update method</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/06/29/mac-build-ubuntu-flash-using-command/">[Mac] 三步驟純指令建立Ubuntu的USB隨身碟</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/06/12/rails-ajax-render-error-in-json/">[Rails] AJAX render errors in json</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/04/18/all-your-important-files-are-encrypted/">資料被綁架軟體加密，要求贖金用比特幣支付</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/04/12/ruby-basic-2/">[Ruby] 教學 - 基本使用介紹2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/03/31/ruby-basic-1/">[Ruby] 教學 - 基本使用介紹</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/05/06/ruby-txt-file/">[Ruby] 匯出txt檔</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/05/06/ruby-csv-file/">[Ruby] 匯出批次csv檔</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/03/16/ruby-require-load-include-extend/">[Ruby] require,load,include,extend</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2016 - Bob (PoYi) -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'blogpoyitw';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://blog.poyi.tw/blog/2016/04/02/golang-begging/';
+        var disqus_url = 'http://blog.poyi.tw/blog/2016/04/02/golang-begging/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: openvpn | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/openvpn/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2016-03-06T16:40:17+08:00</updated>
+  <updated>2016-04-02T21:09:11+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -98,9 +98,9 @@ DEFAULT_FORWARD_POLICY="ACCEPT"
 <p>*nat
 :POSTROUTING ACCEPT [0:0]</p>
 
-<h1>Allow traffic from OpenVPN client to eth0</h1>
+<h1>Allow traffic from OpenVPN client to ppp0</h1>
 
-<p>-A POSTROUTING -s 10.8.0.0/8 -o eth0 -j MASQUERADE
+<p>-A POSTROUTING -s 10.8.0.0/8 -o ppp0 -j MASQUERADE
 COMMIT</p>
 
 <h1>END OPENVPN RULES</h1>

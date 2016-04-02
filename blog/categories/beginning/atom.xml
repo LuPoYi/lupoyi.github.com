@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: beginning | Bob 學習筆記]]></title>
+  <link href="http://blog.poyi.tw/blog/categories/beginning/atom.xml" rel="self"/>
+  <link href="http://blog.poyi.tw/"/>
+  <updated>2016-04-02T21:09:11+08:00</updated>
+  <id>http://blog.poyi.tw/</id>
+  <author>
+    <name><![CDATA[Bob (PoYi)]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[[Golang] Golang 101 入門筆記]]></title>
+    <link href="http://blog.poyi.tw/blog/2016/04/02/golang-begging/"/>
+    <updated>2016-04-02T20:59:38+08:00</updated>
+    <id>http://blog.poyi.tw/blog/2016/04/02/golang-begging</id>
+    <content type="html"><![CDATA[<h2>Hello Go</h2>
+
+<pre><code class="go hello.go">package main
+
+import "fmt"
+
+func main() {
+    fmt.Println("hello, go!")
+}
+</code></pre>
+
+<pre><code class="bash">$ go run hello.go
+Hello Go!
+</code></pre>
+
+<h2>基本結構、定義變數</h2>
+
+<h3>常數</h3>
+
+<p><code>go 常數 const identifier [type] = value
+const Pi = 3.14159
+const Monday, Tuesday, Wednesday, Thursday, Friday, Saturday = 1, 2, 3, 4, 5, 6
+const (
+  Unknown = 0
+  Female = 1
+  Male = 2
+)
+// "iota"
+</code></p>
+
+<h3>變數</h3>
+
+<p>&#8220;`go 變數 var identifier type / var identifier [type] = value
+var a int
+var b bool
+var str string</p>
+
+<p>var a int = 15
+var i = 5
+var b bool = false
+var str string = &ldquo;Hello Go!&rdquo;</p>
+
+<p>// := 初始化並給值(local限定)
+i := 1
+s := &ldquo;hi&rdquo;
+&#8220;`</p>
+
+<h3>類型轉換</h3>
+
+<ul>
+<li>int : int8, int16, int32, int64</li>
+<li>uint : uint8, uint16, uint32, uint64</li>
+<li>float: float32, float64</li>
+<li>不同類型之間做計算都需要經過類型轉換</li>
+</ul>
+
+
+<p><code>go 類型轉換 valueOfTypeB = typeB(valueOfTypeA)
+var a int
+var b int32
+a = 15
+b = a + 6 // cannot use a + 6 (type int) as type int32 in assignment
+b = int32(a) + 6
+</code></p>
+
+<h3>指針</h3>
+
+<pre><code class="go">......
+</code></pre>
+
+<h2>判斷式、迴圈</h2>
+
+<pre><code class="go">......
+</code></pre>
+
+<h2>Function</h2>
+
+<pre><code class="go">......
+</code></pre>
+
+<h2>其他備忘</h2>
+
+<ul>
+<li>不同類型之間做計算都需要經過類型轉換</li>
+<li>import library或是變數卻沒使用的話會跳錯</li>
+<li>駝峰式命名</li>
+</ul>
+
+
+<p>Reference:</p>
+
+<p><a href="https://github.com/Unknwon/the-way-to-go_ZH_CN/blob/master/eBook/directory.md">https://github.com/Unknwon/the-way-to-go_ZH_CN/blob/master/eBook/directory.md</a></p>
+]]></content>
+  </entry>
+  
+</feed>

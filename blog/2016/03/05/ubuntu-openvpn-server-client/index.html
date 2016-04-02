@@ -269,8 +269,8 @@ gunzip -c /usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz &gt
 </span><span class='line'><span class="c"># NAT table rules</span>
 </span><span class='line'>*nat
 </span><span class='line'>:POSTROUTING ACCEPT <span class="o">[</span>0:0<span class="o">]</span>
-</span><span class='line'><span class="c"># Allow traffic from OpenVPN client to eth0</span>
-</span><span class='line'>-A POSTROUTING -s 10.8.0.0/8 -o eth0 -j MASQUERADE
+</span><span class='line'><span class="c"># Allow traffic from OpenVPN client to ppp0</span>
+</span><span class='line'>-A POSTROUTING -s 10.8.0.0/8 -o ppp0 -j MASQUERADE
 </span><span class='line'>COMMIT
 </span><span class='line'><span class="c"># END OPENVPN RULES</span>
 </span></code></pre></td></tr></table></div></figure>
@@ -484,6 +484,10 @@ gunzip -c /usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz &gt
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/04/02/golang-begging/">[Golang] Golang 101 入門筆記</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2016/03/05/generate-your-own-bitcoin-address/">[Bitcoin] 客製比特幣位址並匯入錢包</a>
       </li>
     
@@ -537,10 +541,6 @@ gunzip -c /usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz &gt
     
       <li class="post">
         <a href="/blog/2014/03/16/ruby-require-load-include-extend/">[Ruby] require,load,include,extend</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/01/19/mac-directly-in-the-terminal-to-open-sublime/">[Mac] 直接在終端機開啟sublime</a>
       </li>
     
   </ul>

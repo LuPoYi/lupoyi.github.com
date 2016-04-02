@@ -4,7 +4,7 @@
   <title><![CDATA[Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2016-03-06T16:40:17+08:00</updated>
+  <updated>2016-04-02T21:09:11+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -12,6 +12,150 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[[Golang] Golang 101 入門筆記]]></title>
+    <link href="http://blog.poyi.tw/blog/2016/04/02/golang-begging/"/>
+    <updated>2016-04-02T20:59:38+08:00</updated>
+    <id>http://blog.poyi.tw/blog/2016/04/02/golang-begging</id>
+    <content type="html"><![CDATA[<h2>Hello Go</h2>
+
+<figure class='code'><figcaption><span>hello.go</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="kn">package</span> <span class="nx">main</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;hello, go!&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>go run hello.go
+</span><span class='line'>Hello Go!
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>基本結構、定義變數</h2>
+
+<h3>常數</h3>
+
+<figure class='code'><figcaption><span>常數 const identifier [type] = value</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="kd">const</span> <span class="nx">Pi</span> <span class="p">=</span> <span class="mf">3.14159</span>
+</span><span class='line'><span class="kd">const</span> <span class="nx">Monday</span><span class="p">,</span> <span class="nx">Tuesday</span><span class="p">,</span> <span class="nx">Wednesday</span><span class="p">,</span> <span class="nx">Thursday</span><span class="p">,</span> <span class="nx">Friday</span><span class="p">,</span> <span class="nx">Saturday</span> <span class="p">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span>
+</span><span class='line'><span class="kd">const</span> <span class="p">(</span>
+</span><span class='line'>  <span class="nx">Unknown</span> <span class="p">=</span> <span class="mi">0</span>
+</span><span class='line'>  <span class="nx">Female</span> <span class="p">=</span> <span class="mi">1</span>
+</span><span class='line'>  <span class="nx">Male</span> <span class="p">=</span> <span class="mi">2</span>
+</span><span class='line'><span class="p">)</span>
+</span><span class='line'><span class="c1">// &quot;iota&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>變數</h3>
+
+<figure class='code'><figcaption><span>變數 var identifier type / var identifier [type] = value</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="kd">var</span> <span class="nx">a</span> <span class="kt">int</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">b</span> <span class="kt">bool</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">str</span> <span class="kt">string</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="nx">a</span> <span class="kt">int</span> <span class="p">=</span> <span class="mi">15</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">i</span> <span class="p">=</span> <span class="mi">5</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">b</span> <span class="kt">bool</span> <span class="p">=</span> <span class="kc">false</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">str</span> <span class="kt">string</span> <span class="p">=</span> <span class="s">&quot;Hello Go!&quot;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// := 初始化並給值(local限定)</span>
+</span><span class='line'><span class="nx">i</span> <span class="o">:=</span> <span class="mi">1</span>
+</span><span class='line'><span class="nx">s</span> <span class="o">:=</span> <span class="s">&quot;hi&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>類型轉換</h3>
+
+<ul>
+<li>int : int8, int16, int32, int64</li>
+<li>uint : uint8, uint16, uint32, uint64</li>
+<li>float: float32, float64</li>
+<li>不同類型之間做計算都需要經過類型轉換</li>
+</ul>
+
+
+<figure class='code'><figcaption><span>類型轉換 valueOfTypeB = typeB(valueOfTypeA)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="kd">var</span> <span class="nx">a</span> <span class="kt">int</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">b</span> <span class="kt">int32</span>
+</span><span class='line'><span class="nx">a</span> <span class="p">=</span> <span class="mi">15</span>
+</span><span class='line'><span class="nx">b</span> <span class="p">=</span> <span class="nx">a</span> <span class="o">+</span> <span class="mi">6</span> <span class="c1">// cannot use a + 6 (type int) as type int32 in assignment</span>
+</span><span class='line'><span class="nx">b</span> <span class="p">=</span> <span class="nb">int32</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="o">+</span> <span class="mi">6</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>指針</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="o">......</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>判斷式、迴圈</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="o">......</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Function</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="o">......</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>其他備忘</h2>
+
+<ul>
+<li>不同類型之間做計算都需要經過類型轉換</li>
+<li>import library或是變數卻沒使用的話會跳錯</li>
+<li>駝峰式命名</li>
+</ul>
+
+
+<p>Reference:</p>
+
+<p><a href="https://github.com/Unknwon/the-way-to-go_ZH_CN/blob/master/eBook/directory.md">https://github.com/Unknwon/the-way-to-go_ZH_CN/blob/master/eBook/directory.md</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[[Bitcoin] 客製比特幣位址並匯入錢包]]></title>
@@ -306,8 +450,8 @@
 </span><span class='line'><span class="c"># NAT table rules</span>
 </span><span class='line'>*nat
 </span><span class='line'>:POSTROUTING ACCEPT <span class="o">[</span>0:0<span class="o">]</span>
-</span><span class='line'><span class="c"># Allow traffic from OpenVPN client to eth0</span>
-</span><span class='line'>-A POSTROUTING -s 10.8.0.0/8 -o eth0 -j MASQUERADE
+</span><span class='line'><span class="c"># Allow traffic from OpenVPN client to ppp0</span>
+</span><span class='line'>-A POSTROUTING -s 10.8.0.0/8 -o ppp0 -j MASQUERADE
 </span><span class='line'>COMMIT
 </span><span class='line'><span class="c"># END OPENVPN RULES</span>
 </span></code></pre></td></tr></table></div></figure>
@@ -492,8 +636,8 @@
 <h5>帳號以中華電信為例</h5>
 
 <ul>
-<li><a href="&#109;&#97;&#x69;&#108;&#x74;&#x6f;&#x3a;&#x78;&#120;&#x78;&#x78;&#120;&#x78;&#x78;&#x78;&#64;&#104;&#105;&#x6e;&#101;&#x74;&#x2e;&#110;&#101;&#x74;">&#x78;&#120;&#120;&#120;&#x78;&#120;&#120;&#x78;&#64;&#104;&#105;&#x6e;&#x65;&#x74;&#x2e;&#110;&#101;&#x74;</a>        取得動態IP (原有帳號格式)</li>
-<li><a href="&#109;&#x61;&#x69;&#108;&#x74;&#x6f;&#x3a;&#x78;&#x78;&#120;&#x78;&#x78;&#x78;&#x78;&#120;&#64;&#x69;&#x70;&#46;&#x68;&#105;&#110;&#x65;&#x74;&#x2e;&#110;&#101;&#x74;">&#120;&#x78;&#120;&#120;&#120;&#x78;&#x78;&#120;&#x40;&#105;&#x70;&#46;&#x68;&#x69;&#x6e;&#101;&#116;&#x2e;&#110;&#x65;&#116;</a>     取得固定IP  僅限一台電腦使用</li>
+<li><a href="&#109;&#97;&#105;&#108;&#116;&#x6f;&#58;&#x78;&#120;&#x78;&#120;&#x78;&#x78;&#120;&#120;&#64;&#104;&#x69;&#x6e;&#x65;&#x74;&#46;&#110;&#x65;&#x74;">&#x78;&#x78;&#120;&#120;&#x78;&#x78;&#120;&#x78;&#x40;&#104;&#105;&#110;&#101;&#x74;&#x2e;&#x6e;&#x65;&#116;</a>        取得動態IP (原有帳號格式)</li>
+<li><a href="&#109;&#x61;&#105;&#108;&#x74;&#x6f;&#x3a;&#x78;&#120;&#120;&#x78;&#x78;&#x78;&#x78;&#x78;&#64;&#x69;&#112;&#x2e;&#x68;&#x69;&#110;&#x65;&#x74;&#x2e;&#x6e;&#101;&#116;">&#120;&#x78;&#120;&#x78;&#120;&#120;&#x78;&#120;&#x40;&#x69;&#x70;&#x2e;&#x68;&#105;&#110;&#101;&#x74;&#x2e;&#110;&#101;&#x74;</a>     取得固定IP  僅限一台電腦使用</li>
 </ul>
 
 
@@ -1917,54 +2061,6 @@ RVM (Ruby Version Manager):Ruby版本管理工具，便於切換不同版本</p>
 
 
 <p>Reference: <a href="http://www.tutorialspoint.com/ruby/ruby_builtin_functions.htm">http://www.tutorialspoint.com/ruby/ruby_builtin_functions.htm</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[[Ruby] 變數]]></title>
-    <link href="http://blog.poyi.tw/blog/2013/12/14/ruby-is-a-small-note/"/>
-    <updated>2013-12-14T13:19:00+08:00</updated>
-    <id>http://blog.poyi.tw/blog/2013/12/14/ruby-is-a-small-note</id>
-    <content type="html"><![CDATA[<p>Ruby 有一個重要特性 <strong>Convention Over Configuration</strong></p>
-
-<p>希望去做到一個約定成俗的習慣/慣例，省去過多的設定，讓程式更為簡潔。(ex:route maping)</p>
-
-<p>Ruby命名也有一定的慣例</p>
-
-<ul>
-<li>$name:全域變數</li>
-<li>@name:實例變數，作用域僅限定於 self 指示的物件</li>
-<li>name:區域變數(小寫字母或底線開頭；初始化前並沒有 nil 值)</li>
-<li>Name:常數(大寫開頭；重覆定義時會出現警告)</li>
-</ul>
-
-
-<figure class='code'><figcaption><span>全域變數 vs 實例變數 vs 區域變數</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ruby</span><span class="o">&gt;</span> <span class="vg">$foo</span>
-</span><span class='line'>  <span class="o">=&gt;</span> <span class="kp">nil</span>
-</span><span class='line'><span class="n">ruby</span><span class="o">&gt;</span> <span class="vi">@foo</span>
-</span><span class='line'>  <span class="o">=&gt;</span> <span class="kp">nil</span>
-</span><span class='line'><span class="n">ruby</span><span class="o">&gt;</span> <span class="n">foo</span>
-</span><span class='line'><span class="ss">ERR</span><span class="p">:</span> <span class="p">(</span><span class="nb">eval</span><span class="p">):</span><span class="mi">1</span><span class="p">:</span> <span class="n">undefined</span> <span class="n">local</span> <span class="n">variable</span> <span class="ow">or</span> <span class="nb">method</span> <span class="sb">`foo&#39; for main(Object)</span>
-</span><span class='line'><span class="sb">ruby&gt; Foo = 2</span>
-</span><span class='line'><span class="sb"> =&gt; 2</span>
-</span><span class='line'><span class="sb">ruby&gt; Foo = 3</span>
-</span><span class='line'><span class="sb">  =&gt; warning: alread initialized constant Foo</span>
-</span><span class='line'><span class="sb">  =&gt; 3</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
 ]]></content>
   </entry>
   

@@ -9,7 +9,22 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="在嘗試安裝vCenter時，中途出現了「VMware VirtualCenter HTTP Port: 80」 原因是vCenter自動安裝時會把SQL Server及.NET Framework相關的元件裝上，導致IIS佔用了80Port。 解法之一就是直接在Roles裡把IIS移掉就行了( &hellip;">
+  <meta name="description" content=".erb的註解 1
+2
+3
+4
+5
+&lt;% #註解可寫在井號後面 %&gt; &lt;% if false %&gt;
+或寫在這
+&lt;% end %&gt; .rb的註解 1
+2
+3
+4
+5
+6
+7
+# 一般只用單行註解 =begin 多行註解比較少見
+=end 檢查自己寫了多少code &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -98,6 +113,88 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/10/16/rails-tips/">[Rails] 小技巧</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-16T15:33:00+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2013/10/16/rails-tips/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>.erb的註解</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;% #註解可寫在井號後面 %&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;% if false %&gt;
+</span><span class='line'>或寫在這
+</span><span class='line'>&lt;% end %&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>.rb的註解</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># 一般只用單行註解
+</span><span class='line'>
+</span><span class='line'>=begin
+</span><span class='line'>  多行註解比較少見
+</span><span class='line'>=end
+</span><span class='line'>
+</span><span class='line'></span></code></pre></td></tr></table></div></figure>
+
+
+<h2>檢查自己寫了多少code</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ bundle exec rake stats</span></code></pre></td></tr></table></div></figure>
+
+
+<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/147937/9dPiFwgmRd61Oaf5xz2Z_2013-10-17%20%E4%B8%8B%E5%8D%88%2010-38-13.jpg" alt="2013-10-17 下午 10-38-13.jpg" /></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ rake routes</span></code></pre></td></tr></table></div></figure>
+
+
+<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/147937/gXa3Ts8RrqxlUGr0Ducw_2013-11-1%20%E4%B8%8B%E5%8D%88%2002-58-54.jpg" alt="2013-11-1 下午 02-58-54.jpg" /></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1149,72 +1246,6 @@ PadRight：字串向左靠齊，將指定字元填滿右邊。</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/09/15/jquery/">[jQuery] 入門</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-15T09:20:00+08:00" pubdate data-updated="true"></time>
-        
-         | <a href="/blog/2013/09/15/jquery/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>jQuery 是一套 JavaScript 的 Library，目的是簡化dom的操作，也可以說是簡化HTML與JavaScript之間的操作</p>
-
-<p>基本規則：jQuery物件.方法( ).方法( )</p>
-
-<p>具名函數</p>
-
-<pre><code>var person = new Object();
-person.Name = "Bob";
-person.Speak = say;
-
-function say(msg) {
-    alert(this.Name + ": " + msg);
-}
-person.Speak("Fuck You Jex");
-</code></pre>
-
-<p>不具名函數</p>
-
-<pre><code>var person = new Object();
-person.Name = "Bob";
-person.Speak = function (msg) { alert(this.Name + ": " + msg); }
-
-person.Speak("Fuck You Jex");
-</code></pre>
-
-<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/139105/UhKVDZTaTaWvACtSs3ix_2013-9-15%20%E4%B8%8B%E5%8D%88%2005-26-04.jpg" alt="2013-9-15 下午 05-26-04.jpg" /></p>
-
-<p>Reference:
-<a href="http://msdn.microsoft.com/zh-tw/asp.net/dd452439.aspx">http://msdn.microsoft.com/zh-tw/asp.net/dd452439.aspx</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/5">&larr; Older</a>
@@ -1262,6 +1293,10 @@ person.Speak("Fuck You Jex");
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/04/02/golang-begging/">[Golang] Golang 101 入門筆記</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2016/03/05/generate-your-own-bitcoin-address/">[Bitcoin] 客製比特幣位址並匯入錢包</a>
@@ -1317,10 +1352,6 @@ person.Speak("Fuck You Jex");
     
       <li class="post">
         <a href="/blog/2014/03/16/ruby-require-load-include-extend/">[Ruby] require,load,include,extend</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/01/19/mac-directly-in-the-terminal-to-open-sublime/">[Mac] 直接在終端機開啟sublime</a>
       </li>
     
   </ul>
