@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[ubuntu] 設定NTP校正時間"
+title: "[Ubuntu] 設定NTP校正時間"
 date: 2016-01-17 23:34:01 +0800
 comments: true
 categories: [ubuntu, ntp]

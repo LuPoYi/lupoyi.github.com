@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[ubuntu] 設定 PPPoE 固定IP"
+title: "[Ubuntu] 設定 PPPoE 固定IP"
 date: 2016-01-17 16:08:49 +0800
 comments: true
 categories: [ubuntu, PPPoE, StaticIP]

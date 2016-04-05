@@ -44,3 +44,8 @@ sudo service nginx start
 vim /opt/nginx/conf/nginx.conf
 ```
 
+## Web 開發筆記
+
+* 前端任何值皆不可信任，後端都要再判斷一次
+* form當中有name的tag才能傳到後端
+
