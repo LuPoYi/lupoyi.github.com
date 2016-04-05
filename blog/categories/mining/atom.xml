@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: mining | Bob 學習筆記]]></title>
+  <link href="http://blog.poyi.tw/blog/categories/mining/atom.xml" rel="self"/>
+  <link href="http://blog.poyi.tw/"/>
+  <updated>2016-04-05T16:31:44+08:00</updated>
+  <id>http://blog.poyi.tw/</id>
+  <author>
+    <name><![CDATA[Bob (PoYi)]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[[Ethereum] 如何使用Windows來挖礦]]></title>
+    <link href="http://blog.poyi.tw/blog/2016/04/05/how-to-mine-ethereum-on-windows/"/>
+    <updated>2016-04-05T15:48:43+08:00</updated>
+    <id>http://blog.poyi.tw/blog/2016/04/05/how-to-mine-ethereum-on-windows</id>
+    <content type="html"><![CDATA[<h2>1. 安裝geth</h2>
+
+<p><a href="https://github.com/ethereum/go-ethereum/releases">下載geth</a></p>
+
+<p>解壓縮後不用執行放在C:\</p>
+
+<p>建立錢包並設定密碼</p>
+
+<pre><code class="bash C:\">geth account new
+</code></pre>
+
+<p>同步所有交易
+<code>bash C:\
+geth --rpc
+</code>
+// 第一次似乎可以用geth &ndash;rpc &ndash;fast來快速sync完整node(沒試過)</p>
+
+<h2>2. 安裝mining軟體(最下面的即可)</h2>
+
+<p><a href="https://build.ethdev.com/builds/Windows%20C%2B%2B%20develop%20branch/">下載mining軟體</a>
+照一般安裝流程</p>
+
+<p>安裝好後可以測設備的算力，正常來說是GPU比較快(AMD > nVidia)
+<code>bash C:\Program Files\Ethereum (版號)\Release
+ethminer -G -M # GPU
+ethminer -M    # CPU
+</code></p>
+
+<h2>3. 挖礦</h2>
+
+<p>挖礦前blockchain要先sync過，也就是&#8221;geth &ndash;rpc&#8221;</p>
+
+<p>看需要自己挖還是加入別人礦池</p>
+
+<h3>自己挖</h3>
+
+<pre><code class="bash C:\Program Files\Ethereum (版號)\Release">ethminer -G # GPU
+</code></pre>
+
+<h3>加入礦池</h3>
+
+<p>需按照<a href="http://cryptomining-blog.com/7529-ethereum-mining-is-getting-way-too-centralized/">各大礦池</a>的教學操作，這邊使用nanopool(另外還有dwarfpool/ethpool&hellip;)</p>
+
+<pre><code class="bash C:\Program Files\Ethereum (版號)\Release">// ethminer.exe http://asia1.nanopool.org:8888/YOUR_WALLET_ADDRESS -G
+ethminer.exe http://asia1.nanopool.org:8888/0xb2944f316e14887bce4b5fae1c66ac78ba7c9123 -G
+</code></pre>
+
+<p>也可以加上worker跟mail(會通知你的worker是否關閉)
+<code>bash C:\Program Files\Ethereum (版號)\Release
+ethminer.exe http://asia1.nanopool.org:8888/YOUR_WALLET_ADDRESS/YOUR_WORKER_NAME/YOUR_EMAIL -G
+</code></p>
+
+<h2>4. 看成果(礦池)</h2>
+
+<p>可依照nanopool提供的api查看目前情況</p>
+
+<p><a href="http://asia1.nanopool.org/api/balance/0xb2944f316e14887bce4b5fae1c66ac78ba7c9123">http://asia1.nanopool.org/api/balance/0xb2944f316e14887bce4b5fae1c66ac78ba7c9123</a>
+<a href="http://asia1.nanopool.org/account/0xb2944f316e14887bce4b5fae1c66ac78ba7c9123/bob">http://asia1.nanopool.org/account/0xb2944f316e14887bce4b5fae1c66ac78ba7c9123/bob</a></p>
+
+<p>nanopool一天會結算四次，最少要有0.1 Eth才會發transaction到你的wallet</p>
+
+<pre><code class="bash C:\">geth attach
+&gt; eth.coinbase
+"0xb2944f316e14887bce4b5fae1c66ac78ba7c9123"
+&gt; eth.acccounts
+["0xb2944f316e14887bce4b5fae1c66ac78ba7c9123"]
+&gt; eth.getBalance(eth.coinbase)
+0
+</code></pre>
+
+<p>記得要sync到最新才能拿到正確資訊</p>
+
+<p>可以到<a href="https://www.etherchain.org/">Etherchain</a>看一下Recent blocks是不是已經sync到最新的block</p>
+
+<p>Reference:
+<a href="https://www.cryptocompare.com/mining/guides/how-to-mine-ethereum/">https://www.cryptocompare.com/mining/guides/how-to-mine-ethereum/</a></p>
+]]></content>
+  </entry>
+  
+</feed>

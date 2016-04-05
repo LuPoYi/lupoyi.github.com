@@ -9,8 +9,18 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="Ruby 有一個重要特性 Convention Over Configuration 希望去做到一個約定成俗的習慣/慣例，省去過多的設定，讓程式更為簡潔。(ex:route maping) Ruby命名也有一定的慣例 $name:全域變數
-@name:實例變數，作用域僅限定於 self 指示的物件 &hellip;">
+  <meta name="description" content="Math1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+&gt; 2 ** 3 # 次方 =&gt; 8 =begin Addition (+) Subtraction (-) Multiplication (*) Division (/) Exponentiation (**) Modulo &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -99,6 +109,123 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/12/18/ruby-functions-for-numbers/">[Ruby] Functions for Numbers</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-18T03:40:00+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2013/12/18/ruby-functions-for-numbers/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><figure class='code'><figcaption><span>Math</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;</span> <span class="mi">2</span> <span class="o">**</span> <span class="mi">3</span> <span class="c1"># 次方</span>
+</span><span class='line'> <span class="o">=&gt;</span> <span class="mi">8</span>
+</span><span class='line'>
+</span><span class='line'> <span class="o">=</span><span class="k">begin</span>
+</span><span class='line'>  <span class="no">Addition</span> <span class="p">(</span><span class="o">+</span><span class="p">)</span>
+</span><span class='line'>  <span class="no">Subtraction</span> <span class="p">(</span><span class="o">-</span><span class="p">)</span>
+</span><span class='line'>  <span class="no">Multiplication</span> <span class="p">(</span><span class="o">*</span><span class="p">)</span>
+</span><span class='line'>  <span class="no">Division</span> <span class="p">(</span><span class="sr">/)</span>
+</span><span class='line'><span class="sr">  Exponentiation (**)</span>
+</span><span class='line'><span class="sr">  Modulo (%)</span>
+</span><span class='line'><span class="sr"> =end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>常用的</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;</span> <span class="mi">9</span><span class="o">.</span><span class="mi">9</span><span class="o">.</span><span class="n">integer?</span>
+</span><span class='line'> <span class="o">=&gt;</span> <span class="kp">false</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&gt;</span> <span class="o">-</span><span class="mi">5</span><span class="o">.</span><span class="n">abs</span>
+</span><span class='line'> <span class="o">=&gt;</span> <span class="mi">5</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&gt;</span> <span class="mi">5</span><span class="o">.</span><span class="mi">6</span><span class="o">.</span><span class="n">round</span> <span class="c1"># 取最近的整數/四捨五入</span>
+</span><span class='line'> <span class="o">=&gt;</span> <span class="mi">6</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&gt;</span> <span class="mi">9</span><span class="o">.</span><span class="mi">9</span><span class="o">.</span><span class="n">floor</span>    <span class="c1"># 取整數/無條件捨去</span>
+</span><span class='line'> <span class="o">=&gt;</span> <span class="mi">9</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&gt;</span> <span class="mi">2312</span><span class="o">.</span><span class="mi">22</span><span class="o">.</span><span class="n">ceil</span>   <span class="c1"># 取整數/無條件進位</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="mi">2313</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&gt;</span> <span class="mi">2</span><span class="o">.</span><span class="n">next</span>
+</span><span class='line'> <span class="o">=&gt;</span> <span class="mi">3</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>二元運算</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">n</span> <span class="o">&amp;</span> <span class="n">num</span>
+</span><span class='line'><span class="n">n</span> <span class="o">|</span> <span class="n">num</span>
+</span><span class='line'><span class="n">n</span> <span class="o">^</span> <span class="n">num</span> <span class="p">(</span><span class="no">XOR</span><span class="p">)</span>
+</span><span class='line'><span class="n">n</span> <span class="o">&lt;&lt;</span> <span class="n">num</span> <span class="p">(</span><span class="err">向左位移</span><span class="p">)</span>
+</span><span class='line'><span class="n">n</span> <span class="o">&gt;&gt;</span> <span class="n">num</span> <span class="p">(</span><span class="err">向右位移</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Reference: <a href="http://www.tutorialspoint.com/ruby/ruby_builtin_functions.htm">http://www.tutorialspoint.com/ruby/ruby_builtin_functions.htm</a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1027,61 +1154,6 @@ IThome「防駭演練與危機處理」研習會</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/10/25/vmware-vcenter-cluster-exercises/">[VMware] VCenter Cluster 練習筆記</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-10-25T08:11:00+08:00" pubdate data-updated="true"></time>
-        
-         | <a href="/blog/2013/10/25/vmware-vcenter-cluster-exercises/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/154247/91YcA52rS8Owm0IT1612_SHL-TEST.COM.jpg" alt="SHL-TEST.COM.jpg" /></p>
-
-<p>vSphere ESXi: 整個虛擬化平台，算是一個作業系統
-vSphere Client: 操作VM用的軟體(遠端連線到ESXi)
-vCenter: 可統一管理，支援ADD 容錯</p>
-
-<p>&ndash;VLAN 45(橘底)
-- 準備兩台電腦，灌上vSphere ESXi，設定名稱、IP、VLAN
-- 分別灌上不同OS，其中一台用來架AD網域，並將每個OS加入網域
-- 找一台安裝vCenter，安裝後直接連入這台就可直接操作其他OS</p>
-
-<p>Cluster</p>
-
-<p>註記：
-HT Hyper-threading 可將核心分成兩個序列在處理 cpu數<em>核心數</em>(2)(HT)=邏輯核心
-硬碟分區格式 GPT VS MBR：MBR上限為2T(超過2T以上的空間無法分配出來)</p>
-
-<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/154247/MiZIdkkTlW47nQrleONw_2013-10-27%20%E4%B8%8B%E5%8D%88%2006-32-23.jpg" alt="2013-10-27 下午 06-32-23.jpg" /></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/4">&larr; Older</a>
@@ -1129,6 +1201,10 @@ HT Hyper-threading 可將核心分成兩個序列在處理 cpu數<em>核心數</
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/04/05/how-to-mine-ethereum-on-windows/">[Ethereum] 如何使用Windows來挖礦</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2016/04/02/golang-begging/">[Golang] Golang 101 入門筆記</a>
@@ -1184,10 +1260,6 @@ HT Hyper-threading 可將核心分成兩個序列在處理 cpu數<em>核心數</
     
       <li class="post">
         <a href="/blog/2014/05/06/ruby-csv-file/">[Ruby] 匯出批次csv檔</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/03/16/ruby-require-load-include-extend/">[Ruby] require,load,include,extend</a>
       </li>
     
   </ul>

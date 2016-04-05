@@ -9,18 +9,9 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="Hello Go hello.go1
-2
-3
-4
-5
-6
-7
-package main import &quot;fmt&quot; func main() { fmt.Println(&quot;hello, go!&quot;)
-} 1
-2
-$ go run hello.go
-Hello Go &hellip;">
+  <meta name="description" content="1. 安裝geth 下載geth 解壓縮後不用執行放在C:\ 建立錢包並設定密碼 C:\1
+geth account new 同步所有交易 C:\1
+geth --rpc // 第一次似乎可以用geth &ndash;rpc &ndash;fast來快速sync完整node(沒試過) 2. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -109,6 +100,142 @@ Hello Go &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2016/04/05/how-to-mine-ethereum-on-windows/">[Ethereum] 如何使用Windows來挖礦</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-04-05T15:48:43+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2016/04/05/how-to-mine-ethereum-on-windows/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>1. 安裝geth</h2>
+
+<p><a href="https://github.com/ethereum/go-ethereum/releases">下載geth</a></p>
+
+<p>解壓縮後不用執行放在C:\</p>
+
+<p>建立錢包並設定密碼</p>
+
+<figure class='code'><figcaption><span>C:\</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>geth account new
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>同步所有交易</p>
+
+<figure class='code'><figcaption><span>C:\</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>geth --rpc
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>// 第一次似乎可以用geth &ndash;rpc &ndash;fast來快速sync完整node(沒試過)</p>
+
+<h2>2. 安裝mining軟體(最下面的即可)</h2>
+
+<p><a href="https://build.ethdev.com/builds/Windows%20C%2B%2B%20develop%20branch/">下載mining軟體</a>
+照一般安裝流程</p>
+
+<p>安裝好後可以測設備的算力，正常來說是GPU比較快(AMD > nVidia)</p>
+
+<figure class='code'><figcaption><span>C:\Program Files\Ethereum (版號)\Release</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ethminer -G -M <span class="c"># GPU</span>
+</span><span class='line'>ethminer -M    <span class="c"># CPU</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>3. 挖礦</h2>
+
+<p>挖礦前blockchain要先sync過，也就是&#8221;geth &ndash;rpc&#8221;</p>
+
+<p>看需要自己挖還是加入別人礦池</p>
+
+<h3>自己挖</h3>
+
+<figure class='code'><figcaption><span>C:\Program Files\Ethereum (版號)\Release</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ethminer -G <span class="c"># GPU</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>加入礦池</h3>
+
+<p>需按照<a href="http://cryptomining-blog.com/7529-ethereum-mining-is-getting-way-too-centralized/">各大礦池</a>的教學操作，這邊使用nanopool(另外還有dwarfpool/ethpool&hellip;)</p>
+
+<figure class='code'><figcaption><span>C:\Program Files\Ethereum (版號)\Release</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>// ethminer.exe http://asia1.nanopool.org:8888/YOUR_WALLET_ADDRESS -G
+</span><span class='line'>ethminer.exe http://asia1.nanopool.org:8888/0xb2944f316e14887bce4b5fae1c66ac78ba7c9123 -G
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>也可以加上worker跟mail(會通知你的worker是否關閉)</p>
+
+<figure class='code'><figcaption><span>C:\Program Files\Ethereum (版號)\Release</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ethminer.exe http://asia1.nanopool.org:8888/YOUR_WALLET_ADDRESS/YOUR_WORKER_NAME/YOUR_EMAIL -G
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>4. 看成果(礦池)</h2>
+
+<p>可依照nanopool提供的api查看目前情況</p>
+
+<p><a href="http://asia1.nanopool.org/api/balance/0xb2944f316e14887bce4b5fae1c66ac78ba7c9123">http://asia1.nanopool.org/api/balance/0xb2944f316e14887bce4b5fae1c66ac78ba7c9123</a>
+<a href="http://asia1.nanopool.org/account/0xb2944f316e14887bce4b5fae1c66ac78ba7c9123/bob">http://asia1.nanopool.org/account/0xb2944f316e14887bce4b5fae1c66ac78ba7c9123/bob</a></p>
+
+<p>nanopool一天會結算四次，最少要有0.1 Eth才會發transaction到你的wallet</p>
+
+<figure class='code'><figcaption><span>C:\</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>geth attach
+</span><span class='line'>&gt; eth.coinbase
+</span><span class='line'><span class="s2">&quot;0xb2944f316e14887bce4b5fae1c66ac78ba7c9123&quot;</span>
+</span><span class='line'>&gt; eth.acccounts
+</span><span class='line'><span class="o">[</span><span class="s2">&quot;0xb2944f316e14887bce4b5fae1c66ac78ba7c9123&quot;</span><span class="o">]</span>
+</span><span class='line'>&gt; eth.getBalance<span class="o">(</span>eth.coinbase<span class="o">)</span>
+</span><span class='line'>0
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>記得要sync到最新才能拿到正確資訊</p>
+
+<p>可以到<a href="https://www.etherchain.org/">Etherchain</a>看一下Recent blocks是不是已經sync到最新的block</p>
+
+<p>Reference:
+<a href="https://www.cryptocompare.com/mining/guides/how-to-mine-ethereum/">https://www.cryptocompare.com/mining/guides/how-to-mine-ethereum/</a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -253,9 +380,7 @@ Hello Go &hellip;">
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
-<span class='line-number'>9</span>
 </pre></td><td class='code'><pre><code class='go'><span class='line'><span class="c1">// 若有一個變數為abc，則 &amp;abc 可取得 abc 的記憶體位置</span>
-</span><span class='line'>
 </span><span class='line'>  <span class="kd">var</span> <span class="nx">i1</span> <span class="p">=</span> <span class="mi">5</span>
 </span><span class='line'>  <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;An integer: %d, its location in memory: %p\n&quot;</span><span class="p">,</span> <span class="nx">i1</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">i1</span><span class="p">)</span>
 </span><span class='line'>
@@ -972,8 +1097,8 @@ Hello Go &hellip;">
 <h5>帳號以中華電信為例</h5>
 
 <ul>
-<li><a href="&#109;&#97;&#105;&#x6c;&#116;&#111;&#x3a;&#x78;&#x78;&#x78;&#x78;&#120;&#120;&#120;&#120;&#64;&#104;&#x69;&#x6e;&#x65;&#116;&#46;&#x6e;&#x65;&#116;">&#x78;&#120;&#x78;&#120;&#120;&#120;&#x78;&#120;&#64;&#104;&#x69;&#x6e;&#x65;&#116;&#46;&#110;&#x65;&#x74;</a>        取得動態IP (原有帳號格式)</li>
-<li><a href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#58;&#120;&#x78;&#120;&#x78;&#x78;&#120;&#x78;&#x78;&#x40;&#x69;&#112;&#x2e;&#104;&#105;&#110;&#101;&#x74;&#x2e;&#110;&#x65;&#x74;">&#120;&#x78;&#120;&#x78;&#120;&#120;&#120;&#120;&#x40;&#105;&#112;&#46;&#104;&#105;&#x6e;&#101;&#x74;&#x2e;&#110;&#101;&#x74;</a>     取得固定IP  僅限一台電腦使用</li>
+<li><a href="&#x6d;&#97;&#105;&#108;&#x74;&#111;&#58;&#x78;&#x78;&#x78;&#120;&#x78;&#120;&#120;&#x78;&#x40;&#x68;&#105;&#110;&#101;&#116;&#46;&#x6e;&#x65;&#116;">&#120;&#x78;&#120;&#x78;&#x78;&#120;&#120;&#120;&#64;&#104;&#x69;&#110;&#x65;&#116;&#x2e;&#110;&#101;&#116;</a>        取得動態IP (原有帳號格式)</li>
+<li><a href="&#109;&#x61;&#x69;&#108;&#116;&#111;&#58;&#120;&#120;&#120;&#x78;&#120;&#x78;&#x78;&#x78;&#x40;&#105;&#x70;&#x2e;&#x68;&#x69;&#110;&#x65;&#116;&#46;&#110;&#101;&#116;">&#120;&#x78;&#120;&#x78;&#120;&#120;&#x78;&#120;&#64;&#x69;&#x70;&#46;&#104;&#105;&#110;&#x65;&#116;&#46;&#110;&#101;&#x74;</a>     取得固定IP  僅限一台電腦使用</li>
 </ul>
 
 
@@ -1416,77 +1541,6 @@ Hello Go &hellip;">
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/04/18/all-your-important-files-are-encrypted/">資料被綁架軟體加密，要求贖金用比特幣支付</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2015-04-18T00:13:56+08:00" pubdate data-updated="true"></time>
-        
-         | <a href="/blog/2015/04/18/all-your-important-files-are-encrypted/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><strong>這篇單純紀錄一下被綁架後頁面的流程。</strong></p>
-
-<p>最近遇到幾間公司發現這種事，突然所有檔案被綁架軟體加密無法開啟，而桌面多了一份文字檔，裡面附上特殊網址及比特幣錢包位址…。(當然，這只是其中一款綁架軟體的方式)</p>
-
-<p><img src="/images/poyi/bitcoin1.png" title="image" alt="images"></p>
-
-<p>輸入它給的錢包地址登入後，就可以看到所要求的贖金或相關資料了</p>
-
-<p>應該會有類似以下的字眼 (這邊贖金要求你付2.5顆比特幣)</p>
-
-<p><strong>All your important files are encrypted. <br>At the moment, the cost of private key for decrypting your file is 2.5 BTC</strong></p>
-
-<p>而為了證明你付完贖金真的幫你解密，它還幫你解密其中一個的檔案讓你下載看看是否沒問題(如下圖下方的xlsx檔)… <del>不得不說還蠻貼心的…</del></p>
-
-<p><img src="/images/poyi/bitcoin2.jpg" title="image" alt="images"></p>
-
-<p>而聽說沒付指定的贖金，對方不但不解密還會提高贖金</p>
-
-<p>所以如果資料沒備份又找不到解法，也許就甘願一點付錢吧…</p>
-
-<p>算是這年頭支付太過方便的缺點吧</p>
-
-<p><img src="/images/poyi/bitcoin3.png" title="image" alt="images"></p>
-
-<p>而另外它也提供如何購買比特幣相關資訊…<del>貼心再+1…</del></p>
-
-<p>目前在台灣是可以直接去全家買會比較方便，這邊就請自行google :D</p>
-
-<p><br>
-Reference:</p>
-
-<p><a href="http://buzzorange.com/techorange/2015/01/19/how-my-mom-got-hacked/">http://buzzorange.com/techorange/2015/01/19/how-my-mom-got-hacked/</a></p>
-
-<p><a href="http://www.epochtimes.com/b5/15/4/9/n4407355.htm">http://www.epochtimes.com/b5/15/4/9/n4407355.htm</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -1532,6 +1586,10 @@ Reference:</p>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/04/05/how-to-mine-ethereum-on-windows/">[Ethereum] 如何使用Windows來挖礦</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2016/04/02/golang-begging/">[Golang] Golang 101 入門筆記</a>
@@ -1587,10 +1645,6 @@ Reference:</p>
     
       <li class="post">
         <a href="/blog/2014/05/06/ruby-csv-file/">[Ruby] 匯出批次csv檔</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/03/16/ruby-require-load-include-extend/">[Ruby] require,load,include,extend</a>
       </li>
     
   </ul>

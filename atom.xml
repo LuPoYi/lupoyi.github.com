@@ -4,7 +4,7 @@
   <title><![CDATA[Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2016-04-05T15:33:10+08:00</updated>
+  <updated>2016-04-05T16:31:44+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -12,6 +12,113 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[[Ethereum] 如何使用Windows來挖礦]]></title>
+    <link href="http://blog.poyi.tw/blog/2016/04/05/how-to-mine-ethereum-on-windows/"/>
+    <updated>2016-04-05T15:48:43+08:00</updated>
+    <id>http://blog.poyi.tw/blog/2016/04/05/how-to-mine-ethereum-on-windows</id>
+    <content type="html"><![CDATA[<h2>1. 安裝geth</h2>
+
+<p><a href="https://github.com/ethereum/go-ethereum/releases">下載geth</a></p>
+
+<p>解壓縮後不用執行放在C:\</p>
+
+<p>建立錢包並設定密碼</p>
+
+<figure class='code'><figcaption><span>C:\</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>geth account new
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>同步所有交易</p>
+
+<figure class='code'><figcaption><span>C:\</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>geth --rpc
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>// 第一次似乎可以用geth &ndash;rpc &ndash;fast來快速sync完整node(沒試過)</p>
+
+<h2>2. 安裝mining軟體(最下面的即可)</h2>
+
+<p><a href="https://build.ethdev.com/builds/Windows%20C%2B%2B%20develop%20branch/">下載mining軟體</a>
+照一般安裝流程</p>
+
+<p>安裝好後可以測設備的算力，正常來說是GPU比較快(AMD > nVidia)</p>
+
+<figure class='code'><figcaption><span>C:\Program Files\Ethereum (版號)\Release</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ethminer -G -M <span class="c"># GPU</span>
+</span><span class='line'>ethminer -M    <span class="c"># CPU</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>3. 挖礦</h2>
+
+<p>挖礦前blockchain要先sync過，也就是&#8221;geth &ndash;rpc&#8221;</p>
+
+<p>看需要自己挖還是加入別人礦池</p>
+
+<h3>自己挖</h3>
+
+<figure class='code'><figcaption><span>C:\Program Files\Ethereum (版號)\Release</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ethminer -G <span class="c"># GPU</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>加入礦池</h3>
+
+<p>需按照<a href="http://cryptomining-blog.com/7529-ethereum-mining-is-getting-way-too-centralized/">各大礦池</a>的教學操作，這邊使用nanopool(另外還有dwarfpool/ethpool&hellip;)</p>
+
+<figure class='code'><figcaption><span>C:\Program Files\Ethereum (版號)\Release</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>// ethminer.exe http://asia1.nanopool.org:8888/YOUR_WALLET_ADDRESS -G
+</span><span class='line'>ethminer.exe http://asia1.nanopool.org:8888/0xb2944f316e14887bce4b5fae1c66ac78ba7c9123 -G
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>也可以加上worker跟mail(會通知你的worker是否關閉)</p>
+
+<figure class='code'><figcaption><span>C:\Program Files\Ethereum (版號)\Release</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ethminer.exe http://asia1.nanopool.org:8888/YOUR_WALLET_ADDRESS/YOUR_WORKER_NAME/YOUR_EMAIL -G
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>4. 看成果(礦池)</h2>
+
+<p>可依照nanopool提供的api查看目前情況</p>
+
+<p><a href="http://asia1.nanopool.org/api/balance/0xb2944f316e14887bce4b5fae1c66ac78ba7c9123">http://asia1.nanopool.org/api/balance/0xb2944f316e14887bce4b5fae1c66ac78ba7c9123</a>
+<a href="http://asia1.nanopool.org/account/0xb2944f316e14887bce4b5fae1c66ac78ba7c9123/bob">http://asia1.nanopool.org/account/0xb2944f316e14887bce4b5fae1c66ac78ba7c9123/bob</a></p>
+
+<p>nanopool一天會結算四次，最少要有0.1 Eth才會發transaction到你的wallet</p>
+
+<figure class='code'><figcaption><span>C:\</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>geth attach
+</span><span class='line'>&gt; eth.coinbase
+</span><span class='line'><span class="s2">&quot;0xb2944f316e14887bce4b5fae1c66ac78ba7c9123&quot;</span>
+</span><span class='line'>&gt; eth.acccounts
+</span><span class='line'><span class="o">[</span><span class="s2">&quot;0xb2944f316e14887bce4b5fae1c66ac78ba7c9123&quot;</span><span class="o">]</span>
+</span><span class='line'>&gt; eth.getBalance<span class="o">(</span>eth.coinbase<span class="o">)</span>
+</span><span class='line'>0
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>記得要sync到最新才能拿到正確資訊</p>
+
+<p>可以到<a href="https://www.etherchain.org/">Etherchain</a>看一下Recent blocks是不是已經sync到最新的block</p>
+
+<p>Reference:
+<a href="https://www.cryptocompare.com/mining/guides/how-to-mine-ethereum/">https://www.cryptocompare.com/mining/guides/how-to-mine-ethereum/</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[[Golang] Golang 101 入門筆記]]></title>
@@ -131,9 +238,7 @@
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
-<span class='line-number'>9</span>
 </pre></td><td class='code'><pre><code class='go'><span class='line'><span class="c1">// 若有一個變數為abc，則 &amp;abc 可取得 abc 的記憶體位置</span>
-</span><span class='line'>
 </span><span class='line'>  <span class="kd">var</span> <span class="nx">i1</span> <span class="p">=</span> <span class="mi">5</span>
 </span><span class='line'>  <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;An integer: %d, its location in memory: %p\n&quot;</span><span class="p">,</span> <span class="nx">i1</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">i1</span><span class="p">)</span>
 </span><span class='line'>
@@ -734,8 +839,8 @@
 <h5>帳號以中華電信為例</h5>
 
 <ul>
-<li><a href="&#109;&#97;&#105;&#x6c;&#116;&#111;&#x3a;&#x78;&#x78;&#x78;&#x78;&#120;&#120;&#120;&#120;&#64;&#104;&#x69;&#x6e;&#x65;&#116;&#46;&#x6e;&#x65;&#116;">&#x78;&#120;&#x78;&#120;&#120;&#120;&#x78;&#120;&#64;&#104;&#x69;&#x6e;&#x65;&#116;&#46;&#110;&#x65;&#x74;</a>        取得動態IP (原有帳號格式)</li>
-<li><a href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#58;&#120;&#x78;&#120;&#x78;&#x78;&#120;&#x78;&#x78;&#x40;&#x69;&#112;&#x2e;&#104;&#105;&#110;&#101;&#x74;&#x2e;&#110;&#x65;&#x74;">&#120;&#x78;&#120;&#x78;&#120;&#120;&#120;&#120;&#x40;&#105;&#112;&#46;&#104;&#105;&#x6e;&#101;&#x74;&#x2e;&#110;&#101;&#x74;</a>     取得固定IP  僅限一台電腦使用</li>
+<li><a href="&#x6d;&#97;&#105;&#108;&#x74;&#111;&#58;&#x78;&#x78;&#x78;&#120;&#x78;&#120;&#120;&#x78;&#x40;&#x68;&#105;&#110;&#101;&#116;&#46;&#x6e;&#x65;&#116;">&#120;&#x78;&#120;&#x78;&#x78;&#120;&#120;&#120;&#64;&#104;&#x69;&#110;&#x65;&#116;&#x2e;&#110;&#101;&#116;</a>        取得動態IP (原有帳號格式)</li>
+<li><a href="&#109;&#x61;&#x69;&#108;&#116;&#111;&#58;&#120;&#120;&#120;&#x78;&#120;&#x78;&#x78;&#x78;&#x40;&#105;&#x70;&#x2e;&#x68;&#x69;&#110;&#x65;&#116;&#46;&#110;&#101;&#116;">&#120;&#x78;&#120;&#x78;&#120;&#120;&#x78;&#120;&#64;&#x69;&#x70;&#46;&#104;&#105;&#110;&#x65;&#116;&#46;&#110;&#101;&#x74;</a>     取得固定IP  僅限一台電腦使用</li>
 </ul>
 
 
@@ -2071,94 +2176,6 @@ RVM (Ruby Version Manager):Ruby版本管理工具，便於切換不同版本</p>
 
 <p>Reference:
 <a href="http://blog.tonycube.com/2011/07/ruby8.html">http://blog.tonycube.com/2011/07/ruby8.html</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[[Ruby] Functions for Numbers]]></title>
-    <link href="http://blog.poyi.tw/blog/2013/12/18/ruby-functions-for-numbers/"/>
-    <updated>2013-12-18T03:40:00+08:00</updated>
-    <id>http://blog.poyi.tw/blog/2013/12/18/ruby-functions-for-numbers</id>
-    <content type="html"><![CDATA[<figure class='code'><figcaption><span>Math</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;</span> <span class="mi">2</span> <span class="o">**</span> <span class="mi">3</span> <span class="c1"># 次方</span>
-</span><span class='line'> <span class="o">=&gt;</span> <span class="mi">8</span>
-</span><span class='line'>
-</span><span class='line'> <span class="o">=</span><span class="k">begin</span>
-</span><span class='line'>  <span class="no">Addition</span> <span class="p">(</span><span class="o">+</span><span class="p">)</span>
-</span><span class='line'>  <span class="no">Subtraction</span> <span class="p">(</span><span class="o">-</span><span class="p">)</span>
-</span><span class='line'>  <span class="no">Multiplication</span> <span class="p">(</span><span class="o">*</span><span class="p">)</span>
-</span><span class='line'>  <span class="no">Division</span> <span class="p">(</span><span class="sr">/)</span>
-</span><span class='line'><span class="sr">  Exponentiation (**)</span>
-</span><span class='line'><span class="sr">  Modulo (%)</span>
-</span><span class='line'><span class="sr"> =end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>常用的</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;</span> <span class="mi">9</span><span class="o">.</span><span class="mi">9</span><span class="o">.</span><span class="n">integer?</span>
-</span><span class='line'> <span class="o">=&gt;</span> <span class="kp">false</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&gt;</span> <span class="o">-</span><span class="mi">5</span><span class="o">.</span><span class="n">abs</span>
-</span><span class='line'> <span class="o">=&gt;</span> <span class="mi">5</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&gt;</span> <span class="mi">5</span><span class="o">.</span><span class="mi">6</span><span class="o">.</span><span class="n">round</span> <span class="c1"># 取最近的整數/四捨五入</span>
-</span><span class='line'> <span class="o">=&gt;</span> <span class="mi">6</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&gt;</span> <span class="mi">9</span><span class="o">.</span><span class="mi">9</span><span class="o">.</span><span class="n">floor</span>    <span class="c1"># 取整數/無條件捨去</span>
-</span><span class='line'> <span class="o">=&gt;</span> <span class="mi">9</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&gt;</span> <span class="mi">2312</span><span class="o">.</span><span class="mi">22</span><span class="o">.</span><span class="n">ceil</span>   <span class="c1"># 取整數/無條件進位</span>
-</span><span class='line'><span class="o">=&gt;</span> <span class="mi">2313</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&gt;</span> <span class="mi">2</span><span class="o">.</span><span class="n">next</span>
-</span><span class='line'> <span class="o">=&gt;</span> <span class="mi">3</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>二元運算</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">n</span> <span class="o">&amp;</span> <span class="n">num</span>
-</span><span class='line'><span class="n">n</span> <span class="o">|</span> <span class="n">num</span>
-</span><span class='line'><span class="n">n</span> <span class="o">^</span> <span class="n">num</span> <span class="p">(</span><span class="no">XOR</span><span class="p">)</span>
-</span><span class='line'><span class="n">n</span> <span class="o">&lt;&lt;</span> <span class="n">num</span> <span class="p">(</span><span class="err">向左位移</span><span class="p">)</span>
-</span><span class='line'><span class="n">n</span> <span class="o">&gt;&gt;</span> <span class="n">num</span> <span class="p">(</span><span class="err">向右位移</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Reference: <a href="http://www.tutorialspoint.com/ruby/ruby_builtin_functions.htm">http://www.tutorialspoint.com/ruby/ruby_builtin_functions.htm</a></p>
 ]]></content>
   </entry>
   
