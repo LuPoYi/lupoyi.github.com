@@ -4,7 +4,7 @@
   <title><![CDATA[Category: beginning | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/beginning/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2016-04-05T14:44:55+08:00</updated>
+  <updated>2016-04-05T15:09:51+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -128,7 +128,26 @@ b = int32(a) + 6
 
 <h2>Function</h2>
 
-<pre><code class="go">......
+<pre><code class="go">func say() {
+  println("Hi~")
+}
+
+// min, max = MinMax(44, 33)
+func MinMax(a int, b int) (min int, max int) {
+  if a &lt; b {
+      min = a
+      max = b
+  } else { // a = b or a &lt; b
+      min = b
+      max = a
+  }
+  return
+}
+
+
+func Min(a ...int) int {
+
+}
 </code></pre>
 
 <h2>其他備忘</h2>
