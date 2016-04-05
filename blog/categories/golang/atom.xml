@@ -4,7 +4,7 @@
   <title><![CDATA[Category: golang | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/golang/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2016-04-02T21:09:11+08:00</updated>
+  <updated>2016-04-05T14:44:55+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -85,13 +85,46 @@ b = int32(a) + 6
 
 <h3>指針</h3>
 
-<pre><code class="go">......
+<p>var intP *int
+&#8220;`go
+// 若有一個變數為abc，則 &amp;abc 可取得 abc 的記憶體位置</p>
+
+<p>  var i1 = 5
+  fmt.Printf(&ldquo;An integer: %d, its location in memory: %p\n&rdquo;, i1, &amp;i1)</p>
+
+<p>// 要直接定義pointer的話，使用 <em>abc
+  var intP </em>int
+  intP = &amp;i1
+  fmt.Printf(&ldquo;The value at memory location %p is %d\n&rdquo;, intP, *intP)</p>
+
+<pre><code>
+## 判斷式、迴圈
 </code></pre>
 
-<h2>判斷式、迴圈</h2>
+<p>if abc > 5 {</p>
 
-<pre><code class="go">......
-</code></pre>
+<p>} else if abc &lt; -5  {</p>
+
+<p>} else {</p>
+
+<p>}</p>
+
+<p>switch abc {
+  case 1:
+    &hellip;&hellip;
+  case 2:
+    &hellip;&hellip;
+  default:
+    &hellip;&hellip;
+}</p>
+
+<p>for i := 0; i &lt; 5; i++ {</p>
+
+<p>}</p>
+
+<p>// break 中斷並跳出迴圈或判斷式
+// continue 略過當次剩餘的code，直接跳至迴圈下一run
+&#8220;`</p>
 
 <h2>Function</h2>
 
