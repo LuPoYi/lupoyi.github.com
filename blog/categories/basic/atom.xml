@@ -4,7 +4,7 @@
   <title><![CDATA[Category: basic | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/basic/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2016-04-05T16:36:07+08:00</updated>
+  <updated>2016-04-05T16:45:43+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -18,7 +18,7 @@
     <link href="http://blog.poyi.tw/blog/2016/04/02/golang-begging/"/>
     <updated>2016-04-02T20:59:38+08:00</updated>
     <id>http://blog.poyi.tw/blog/2016/04/02/golang-begging</id>
-    <content type="html"><![CDATA[<h2>Hello Go</h2>
+    <content type="html"><![CDATA[<h2>Hello Go!</h2>
 
 <pre><code class="go hello.go">package main
 
