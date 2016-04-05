@@ -150,9 +150,9 @@ geth --rpc // 第一次似乎可以用geth &ndash;rpc &ndash;fast來快速sync�
 
 <p>// 第一次似乎可以用geth &ndash;rpc &ndash;fast來快速sync完整node(沒試過)</p>
 
-<h2>2. 安裝mining軟體(最下面的即可)</h2>
+<h2>2. 安裝mining軟體</h2>
 
-<p><a href="https://build.ethdev.com/builds/Windows%20C%2B%2B%20develop%20branch/">下載mining軟體</a>
+<p><a href="https://build.ethdev.com/builds/Windows%20C%2B%2B%20develop%20branch/">下載mining軟體</a>(載最下面的即可)
 照一般安裝流程</p>
 
 <p>安裝好後可以測設備的算力，正常來說是GPU比較快(AMD > nVidia)</p>
@@ -168,7 +168,7 @@ geth --rpc // 第一次似乎可以用geth &ndash;rpc &ndash;fast來快速sync�
 
 <p>挖礦前blockchain要先sync過，也就是&#8221;geth &ndash;rpc&#8221;</p>
 
-<p>看需要自己挖還是加入別人礦池</p>
+<p>看是要自己挖還是加入別人礦池</p>
 
 <h3>自己挖</h3>
 
@@ -179,7 +179,9 @@ geth --rpc // 第一次似乎可以用geth &ndash;rpc &ndash;fast來快速sync�
 
 <h3>加入礦池</h3>
 
-<p>需按照<a href="http://cryptomining-blog.com/7529-ethereum-mining-is-getting-way-too-centralized/">各大礦池</a>的教學操作，這邊使用nanopool(另外還有dwarfpool/ethpool&hellip;)</p>
+<p>需按照<a href="http://cryptomining-blog.com/7529-ethereum-mining-is-getting-way-too-centralized/">各大礦池</a>的教學操作</p>
+
+<p>我這邊使用nanopool(另外還有dwarfpool/ethpool&hellip;)</p>
 
 <figure class='code'><figcaption><span>C:\Program Files\Ethereum (版號)\Release</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -199,10 +201,12 @@ geth --rpc // 第一次似乎可以用geth &ndash;rpc &ndash;fast來快速sync�
 
 <p>可依照nanopool提供的api查看目前情況</p>
 
-<p><a href="http://asia1.nanopool.org/api/balance/0xb2944f316e14887bce4b5fae1c66ac78ba7c9123">http://asia1.nanopool.org/api/balance/0xb2944f316e14887bce4b5fae1c66ac78ba7c9123</a>
-<a href="http://asia1.nanopool.org/account/0xb2944f316e14887bce4b5fae1c66ac78ba7c9123/bob">http://asia1.nanopool.org/account/0xb2944f316e14887bce4b5fae1c66ac78ba7c9123/bob</a></p>
+<p><a href="http://eth.nanopool.org/api/balance/0xb2944f316e14887bce4b5fae1c66ac78ba7c9123">http://eth.nanopool.org/api/balance/0xb2944f316e14887bce4b5fae1c66ac78ba7c9123</a>
+<a href="http://eth.nanopool.org/account/0xb2944f316e14887bce4b5fae1c66ac78ba7c9123/bob">http://eth.nanopool.org/account/0xb2944f316e14887bce4b5fae1c66ac78ba7c9123/bob</a></p>
 
 <p>nanopool一天會結算四次，最少要有0.1 Eth才會發transaction到你的wallet</p>
+
+<p>用本機下geth指令查你的錢包資訊</p>
 
 <figure class='code'><figcaption><span>C:\</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -225,8 +229,11 @@ geth --rpc // 第一次似乎可以用geth &ndash;rpc &ndash;fast來快速sync�
 
 <p>可以到<a href="https://www.etherchain.org/">Etherchain</a>看一下Recent blocks是不是已經sync到最新的block</p>
 
-<p>Reference:
-<a href="https://www.cryptocompare.com/mining/guides/how-to-mine-ethereum/">https://www.cryptocompare.com/mining/guides/how-to-mine-ethereum/</a></p>
+<p>Reference:</p>
+
+<p><a href="https://www.cryptocompare.com/mining/guides/how-to-mine-ethereum/">https://www.cryptocompare.com/mining/guides/how-to-mine-ethereum/</a></p>
+
+<p><a href="http://nanopool.org">http://nanopool.org</a></p>
 </div>
 
 
