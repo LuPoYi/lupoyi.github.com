@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ethereum | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/ethereum/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2016-04-05T17:37:05+08:00</updated>
+  <updated>2016-04-10T11:09:44+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -22,9 +22,11 @@
 
 <p><a href="https://github.com/ethereum/go-ethereum/releases">下載geth</a></p>
 
-<p>解壓縮後不用執行放在C:\</p>
+<p>解壓縮後不用執行放在C:\ (我放在E:\不過沒差)</p>
 
 <p>建立錢包並設定密碼</p>
+
+<p>以下指令都需要開command line(cmd)</p>
 
 <pre><code class="bash C:\">geth account new
 </code></pre>
@@ -95,6 +97,26 @@ ethminer.exe http://asia1.nanopool.org:8888/YOUR_WALLET_ADDRESS/YOUR_WORKER_NAME
 <p>記得要sync到最新才能拿到正確資訊</p>
 
 <p>可以到<a href="https://www.etherchain.org/">Etherchain</a>看一下Recent blocks是不是已經sync到最新的block</p>
+
+<h2>包成.bat</h2>
+
+<p>包成.bat放桌面，或是拿來排程執行都ok</p>
+
+<pre><code class="bat ethereum_mining.bat">echo on
+E:
+cd "Program Files\Ethereum 0.9.41\Release"
+ethminer -F asia1.nanopool.org:8888/0xb2944f316e14887bce4b5fae1c66ac78ba7c9123/bob/maydaybob2000@gmail.com -G
+</code></pre>
+
+<pre><code class="bat ethereum_sync.bat">echo on
+E:
+geth --rpc
+</code></pre>
+
+<pre><code class="bat ethereum_console.bat">echo on
+E:
+geth attach
+</code></pre>
 
 <p>Reference:</p>
 

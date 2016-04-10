@@ -9,9 +9,9 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="1. 安裝geth 下載geth 解壓縮後不用執行放在C:\ 建立錢包並設定密碼 C:\1
+  <meta name="description" content="1. 安裝geth 下載geth 解壓縮後不用執行放在C:\ (我放在E:\不過沒差) 建立錢包並設定密碼 以下指令都需要開command line(cmd) C:\1
 geth account new 同步所有交易 C:\1
-geth --rpc // 第一次似乎可以用geth &ndash;rpc &ndash;fast來快速sync完整node(沒試過) 2. &hellip;">
+geth --rpc // 第一次似乎可以用geth &ndash; &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -132,9 +132,11 @@ geth --rpc // 第一次似乎可以用geth &ndash;rpc &ndash;fast來快速sync�
 
 <p><a href="https://github.com/ethereum/go-ethereum/releases">下載geth</a></p>
 
-<p>解壓縮後不用執行放在C:\</p>
+<p>解壓縮後不用執行放在C:\ (我放在E:\不過沒差)</p>
 
 <p>建立錢包並設定密碼</p>
+
+<p>以下指令都需要開command line(cmd)</p>
 
 <figure class='code'><figcaption><span>C:\</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>geth account new
@@ -228,6 +230,43 @@ geth --rpc // 第一次似乎可以用geth &ndash;rpc &ndash;fast來快速sync�
 <p>記得要sync到最新才能拿到正確資訊</p>
 
 <p>可以到<a href="https://www.etherchain.org/">Etherchain</a>看一下Recent blocks是不是已經sync到最新的block</p>
+
+<h2>包成.bat</h2>
+
+<p>包成.bat放桌面，或是拿來排程執行都ok</p>
+
+<figure class='code'><figcaption><span>ethereum_mining.bat</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bat'><span class='line'><span class="k">echo</span> <span class="k">on</span>
+</span><span class='line'>E:
+</span><span class='line'><span class="k">cd</span> <span class="s2">&quot;Program Files\Ethereum 0.9.41\Release&quot;</span>
+</span><span class='line'>ethminer -F asia<span class="m">1</span>.nanopool.org:8888<span class="n">/0xb2944f316e14887bce4b5fae1c66ac78ba7c9123/bob/maydaybob2000@gmail.com</span> -G
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>ethereum_sync.bat</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bat'><span class='line'><span class="k">echo</span> <span class="k">on</span>
+</span><span class='line'>E:
+</span><span class='line'>geth --rpc
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>ethereum_console.bat</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bat'><span class='line'><span class="k">echo</span> <span class="k">on</span>
+</span><span class='line'>E:
+</span><span class='line'>geth attach
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>Reference:</p>
 
