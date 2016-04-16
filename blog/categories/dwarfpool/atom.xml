@@ -4,7 +4,7 @@
   <title><![CDATA[Category: dwarfpool | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/dwarfpool/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2016-04-10T11:09:44+08:00</updated>
+  <updated>2016-04-16T15:53:18+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -79,7 +79,8 @@ ethminer.exe http://asia1.nanopool.org:8888/YOUR_WALLET_ADDRESS/YOUR_WORKER_NAME
 <p>可依照nanopool提供的api查看目前情況</p>
 
 <p><a href="http://eth.nanopool.org/api/balance/0xb2944f316e14887bce4b5fae1c66ac78ba7c9123">http://eth.nanopool.org/api/balance/0xb2944f316e14887bce4b5fae1c66ac78ba7c9123</a>
-<a href="http://eth.nanopool.org/account/0xb2944f316e14887bce4b5fae1c66ac78ba7c9123/bob">http://eth.nanopool.org/account/0xb2944f316e14887bce4b5fae1c66ac78ba7c9123/bob</a></p>
+<a href="http://eth.nanopool.org/account/0xb2944f316e14887bce4b5fae1c66ac78ba7c9123/bob">http://eth.nanopool.org/account/0xb2944f316e14887bce4b5fae1c66ac78ba7c9123/bob</a>
+<a href="https://www.etherchain.org/account/0xb2944f316e14887bce4b5fae1c66ac78ba7c9123">https://www.etherchain.org/account/0xb2944f316e14887bce4b5fae1c66ac78ba7c9123</a></p>
 
 <p>nanopool一天會結算四次，最少要有0.1 Eth才會發transaction到你的wallet</p>
 
