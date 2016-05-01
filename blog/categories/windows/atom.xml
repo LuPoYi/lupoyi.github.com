@@ -4,7 +4,7 @@
   <title><![CDATA[Category: windows | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/windows/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2016-04-16T15:53:18+08:00</updated>
+  <updated>2016-05-02T01:46:18+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -61,7 +61,7 @@ ethminer -M    # CPU
 
 <h3>加入礦池</h3>
 
-<p>需按照<a href="http://cryptomining-blog.com/7529-ethereum-mining-is-getting-way-too-centralized/">各大礦池</a>的教學操作</p>
+<p>需按照<a href="http://cryptomining-blog.com/7529-ethereum-mining-is-getting-way-too-centralized/">各大礦池</a>的教學操作，基本上都不需要註冊，直接使用礦池提供的url+你的錢包地址來挖就行了</p>
 
 <p>我這邊使用nanopool(另外還有dwarfpool/ethpool&hellip;)</p>
 
