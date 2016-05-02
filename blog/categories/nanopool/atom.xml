@@ -4,7 +4,7 @@
   <title><![CDATA[Category: nanopool | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/nanopool/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2016-05-02T15:41:46+08:00</updated>
+  <updated>2016-05-02T15:43:01+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -113,7 +113,7 @@ ethminer -F asia1.nanopool.org:8888/0xb2944f316e14887bce4b5fae1c66ac78ba7c9123/b
 
 <p><a href="http://blog.poyi.tw/images/poyi/ethereum_mining.jpg" target="_blank"><img src="http://blog.poyi.tw/images/poyi/ethereum_mining.jpg" title="image" alt="images"></a></p>
 
-<p><br><br></p>
+<p><br></p>
 
 <pre><code class="bat ethereum_sync.bat">echo on
 E:
@@ -124,7 +124,7 @@ geth --rpc
 
 <p><a href="http://blog.poyi.tw/images/poyi/ethereum_sync.jpg" target="_blank"><img src="http://blog.poyi.tw/images/poyi/ethereum_sync.jpg" title="image" alt="images"></a></p>
 
-<p><br><br></p>
+<p><br></p>
 
 <pre><code class="bat ethereum_console.bat">echo on
 E:

@@ -4,7 +4,7 @@
   <title><![CDATA[Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2016-05-02T15:41:46+08:00</updated>
+  <updated>2016-05-02T15:43:01+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -141,7 +141,7 @@
 
 <p><a href="http://blog.poyi.tw/images/poyi/ethereum_mining.jpg" target="_blank"><img src="http://blog.poyi.tw/images/poyi/ethereum_mining.jpg" title="image" alt="images"></a></p>
 
-<p><br><br></p>
+<p><br></p>
 
 <figure class='code'><figcaption><span>ethereum_sync.bat</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -156,7 +156,7 @@
 
 <p><a href="http://blog.poyi.tw/images/poyi/ethereum_sync.jpg" target="_blank"><img src="http://blog.poyi.tw/images/poyi/ethereum_sync.jpg" title="image" alt="images"></a></p>
 
-<p><br><br></p>
+<p><br></p>
 
 <figure class='code'><figcaption><span>ethereum_console.bat</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -898,8 +898,8 @@
 <h5>帳號以中華電信為例</h5>
 
 <ul>
-<li><a href="&#109;&#97;&#x69;&#x6c;&#116;&#x6f;&#x3a;&#x78;&#120;&#120;&#x78;&#x78;&#x78;&#120;&#x78;&#x40;&#104;&#x69;&#x6e;&#x65;&#x74;&#x2e;&#x6e;&#x65;&#x74;">&#x78;&#x78;&#120;&#x78;&#120;&#x78;&#x78;&#120;&#64;&#x68;&#105;&#x6e;&#101;&#x74;&#46;&#110;&#x65;&#x74;</a>        取得動態IP (原有帳號格式)</li>
-<li><a href="&#x6d;&#x61;&#x69;&#108;&#x74;&#111;&#x3a;&#120;&#x78;&#120;&#x78;&#x78;&#120;&#x78;&#120;&#64;&#105;&#112;&#x2e;&#x68;&#105;&#110;&#101;&#116;&#x2e;&#110;&#101;&#x74;">&#120;&#x78;&#x78;&#x78;&#120;&#120;&#120;&#x78;&#64;&#x69;&#x70;&#46;&#104;&#105;&#x6e;&#101;&#x74;&#x2e;&#110;&#x65;&#x74;</a>     取得固定IP  僅限一台電腦使用</li>
+<li><a href="&#109;&#97;&#105;&#108;&#x74;&#x6f;&#58;&#x78;&#x78;&#120;&#x78;&#x78;&#120;&#120;&#120;&#64;&#x68;&#105;&#x6e;&#x65;&#116;&#x2e;&#110;&#x65;&#x74;">&#x78;&#x78;&#120;&#x78;&#x78;&#x78;&#x78;&#120;&#x40;&#104;&#x69;&#110;&#101;&#x74;&#x2e;&#x6e;&#101;&#116;</a>        取得動態IP (原有帳號格式)</li>
+<li><a href="&#x6d;&#97;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#120;&#120;&#120;&#120;&#x78;&#x78;&#120;&#x78;&#64;&#x69;&#112;&#x2e;&#104;&#105;&#x6e;&#101;&#116;&#x2e;&#x6e;&#x65;&#x74;">&#120;&#x78;&#x78;&#x78;&#x78;&#120;&#120;&#x78;&#64;&#x69;&#x70;&#46;&#x68;&#105;&#x6e;&#x65;&#116;&#46;&#x6e;&#x65;&#x74;</a>     取得固定IP  僅限一台電腦使用</li>
 </ul>
 
 
