@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ethereum | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/ethereum/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2016-05-02T15:39:36+08:00</updated>
+  <updated>2016-05-02T15:41:46+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -109,30 +109,31 @@ cd "Program Files\Ethereum 0.9.41\Release"
 ethminer -F asia1.nanopool.org:8888/0xb2944f316e14887bce4b5fae1c66ac78ba7c9123/bob/maydaybob2000@gmail.com -G
 </code></pre>
 
-<p>使用GPU來挖，所以會吃顯卡效能
-<a href="http://blog.poyi.tw/images/poyi/ethereum_mining.jpg" target="_blank"><img src="http://blog.poyi.tw/images/poyi/ethereum_mining.jpg" title="image" alt="images"></a></p>
+<p>使用GPU來挖，所以會吃顯卡效能</p>
 
-<hr>
+<p><a href="http://blog.poyi.tw/images/poyi/ethereum_mining.jpg" target="_blank"><img src="http://blog.poyi.tw/images/poyi/ethereum_mining.jpg" title="image" alt="images"></a></p>
 
+<p><br><br></p>
 
 <pre><code class="bat ethereum_sync.bat">echo on
 E:
 geth --rpc
 </code></pre>
 
-<p>sync會吃網路流量，圖中最下面的 #1401468 就是指我這台目前sync到這個block
-<a href="http://blog.poyi.tw/images/poyi/ethereum_sync.jpg" target="_blank"><img src="http://blog.poyi.tw/images/poyi/ethereum_sync.jpg" title="image" alt="images"></a></p>
+<p>sync會吃網路流量，圖中最下面的 #1401468 就是指我這台目前sync到這個block</p>
 
-<hr>
+<p><a href="http://blog.poyi.tw/images/poyi/ethereum_sync.jpg" target="_blank"><img src="http://blog.poyi.tw/images/poyi/ethereum_sync.jpg" title="image" alt="images"></a></p>
 
+<p><br><br></p>
 
 <pre><code class="bat ethereum_console.bat">echo on
 E:
 geth attach
 </code></pre>
 
-<p>使用console前記得打開sync
-<a href="http://blog.poyi.tw/images/poyi/ethereum_console.jpg" target="_blank"><img src="http://blog.poyi.tw/images/poyi/ethereum_console.jpg" title="image" alt="images"></a></p>
+<p>使用console前記得打開sync</p>
+
+<p><a href="http://blog.poyi.tw/images/poyi/ethereum_console.jpg" target="_blank"><img src="http://blog.poyi.tw/images/poyi/ethereum_console.jpg" title="image" alt="images"></a></p>
 
 <p>Reference:</p>
 
