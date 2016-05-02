@@ -4,7 +4,7 @@
   <title><![CDATA[Category: dwarfpool | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/dwarfpool/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2016-05-02T01:46:18+08:00</updated>
+  <updated>2016-05-02T15:39:36+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -99,9 +99,9 @@ ethminer.exe http://asia1.nanopool.org:8888/YOUR_WALLET_ADDRESS/YOUR_WORKER_NAME
 
 <p>可以到<a href="https://www.etherchain.org/">Etherchain</a>看一下Recent blocks是不是已經sync到最新的block</p>
 
-<h2>包成.bat</h2>
+<h2>把指令包成.bat批次檔</h2>
 
-<p>包成.bat放桌面，或是拿來排程執行都ok</p>
+<p>因為需要分別開mining, sync以及console三個cmd並執行不同指令，所以我把指令包成.bat放桌面，或是拿來排程執行都ok</p>
 
 <pre><code class="bat ethereum_mining.bat">echo on
 E:
@@ -109,15 +109,30 @@ cd "Program Files\Ethereum 0.9.41\Release"
 ethminer -F asia1.nanopool.org:8888/0xb2944f316e14887bce4b5fae1c66ac78ba7c9123/bob/maydaybob2000@gmail.com -G
 </code></pre>
 
+<p>使用GPU來挖，所以會吃顯卡效能
+<a href="http://blog.poyi.tw/images/poyi/ethereum_mining.jpg" target="_blank"><img src="http://blog.poyi.tw/images/poyi/ethereum_mining.jpg" title="image" alt="images"></a></p>
+
+<hr>
+
+
 <pre><code class="bat ethereum_sync.bat">echo on
 E:
 geth --rpc
 </code></pre>
 
+<p>sync會吃網路流量，圖中最下面的 #1401468 就是指我這台目前sync到這個block
+<a href="http://blog.poyi.tw/images/poyi/ethereum_sync.jpg" target="_blank"><img src="http://blog.poyi.tw/images/poyi/ethereum_sync.jpg" title="image" alt="images"></a></p>
+
+<hr>
+
+
 <pre><code class="bat ethereum_console.bat">echo on
 E:
 geth attach
 </code></pre>
+
+<p>使用console前記得打開sync
+<a href="http://blog.poyi.tw/images/poyi/ethereum_console.jpg" target="_blank"><img src="http://blog.poyi.tw/images/poyi/ethereum_console.jpg" title="image" alt="images"></a></p>
 
 <p>Reference:</p>
 

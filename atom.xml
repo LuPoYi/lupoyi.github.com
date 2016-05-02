@@ -4,7 +4,7 @@
   <title><![CDATA[Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2016-05-02T01:46:18+08:00</updated>
+  <updated>2016-05-02T15:39:36+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -122,9 +122,9 @@
 
 <p>可以到<a href="https://www.etherchain.org/">Etherchain</a>看一下Recent blocks是不是已經sync到最新的block</p>
 
-<h2>包成.bat</h2>
+<h2>把指令包成.bat批次檔</h2>
 
-<p>包成.bat放桌面，或是拿來排程執行都ok</p>
+<p>因為需要分別開mining, sync以及console三個cmd並執行不同指令，所以我把指令包成.bat放桌面，或是拿來排程執行都ok</p>
 
 <figure class='code'><figcaption><span>ethereum_mining.bat</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -135,6 +135,12 @@
 </span><span class='line'><span class="k">cd</span> <span class="s2">&quot;Program Files\Ethereum 0.9.41\Release&quot;</span>
 </span><span class='line'>ethminer -F asia<span class="m">1</span>.nanopool.org:8888<span class="n">/0xb2944f316e14887bce4b5fae1c66ac78ba7c9123/bob/maydaybob2000@gmail.com</span> -G
 </span></code></pre></td></tr></table></div></figure>
+
+
+<p>使用GPU來挖，所以會吃顯卡效能
+<a href="http://blog.poyi.tw/images/poyi/ethereum_mining.jpg" target="_blank"><img src="http://blog.poyi.tw/images/poyi/ethereum_mining.jpg" title="image" alt="images"></a></p>
+
+<hr>
 
 
 
@@ -148,6 +154,12 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
+<p>sync會吃網路流量，圖中最下面的 #1401468 就是指我這台目前sync到這個block
+<a href="http://blog.poyi.tw/images/poyi/ethereum_sync.jpg" target="_blank"><img src="http://blog.poyi.tw/images/poyi/ethereum_sync.jpg" title="image" alt="images"></a></p>
+
+<hr>
+
+
 
 
 <figure class='code'><figcaption><span>ethereum_console.bat</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -158,6 +170,9 @@
 </span><span class='line'>geth attach
 </span></code></pre></td></tr></table></div></figure>
 
+
+<p>使用console前記得打開sync
+<a href="http://blog.poyi.tw/images/poyi/ethereum_console.jpg" target="_blank"><img src="http://blog.poyi.tw/images/poyi/ethereum_console.jpg" title="image" alt="images"></a></p>
 
 <p>Reference:</p>
 
@@ -886,8 +901,8 @@
 <h5>帳號以中華電信為例</h5>
 
 <ul>
-<li><a href="&#x6d;&#97;&#105;&#x6c;&#x74;&#x6f;&#58;&#x78;&#120;&#x78;&#120;&#x78;&#x78;&#x78;&#x78;&#64;&#x68;&#x69;&#x6e;&#x65;&#x74;&#x2e;&#110;&#x65;&#x74;">&#120;&#120;&#120;&#120;&#x78;&#120;&#x78;&#x78;&#x40;&#104;&#105;&#110;&#x65;&#x74;&#46;&#110;&#x65;&#x74;</a>        取得動態IP (原有帳號格式)</li>
-<li><a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#111;&#58;&#x78;&#120;&#x78;&#x78;&#x78;&#120;&#x78;&#120;&#x40;&#105;&#x70;&#x2e;&#x68;&#105;&#110;&#101;&#x74;&#46;&#x6e;&#101;&#116;">&#x78;&#120;&#120;&#120;&#120;&#x78;&#120;&#120;&#x40;&#105;&#x70;&#x2e;&#104;&#105;&#x6e;&#101;&#116;&#x2e;&#x6e;&#101;&#116;</a>     取得固定IP  僅限一台電腦使用</li>
+<li><a href="&#x6d;&#97;&#105;&#x6c;&#x74;&#x6f;&#x3a;&#120;&#120;&#x78;&#x78;&#x78;&#120;&#x78;&#x78;&#x40;&#x68;&#x69;&#110;&#101;&#116;&#x2e;&#110;&#101;&#116;">&#x78;&#120;&#x78;&#120;&#x78;&#120;&#x78;&#120;&#x40;&#x68;&#x69;&#110;&#101;&#x74;&#46;&#x6e;&#x65;&#x74;</a>        取得動態IP (原有帳號格式)</li>
+<li><a href="&#x6d;&#97;&#x69;&#108;&#116;&#111;&#58;&#120;&#x78;&#x78;&#120;&#x78;&#x78;&#x78;&#120;&#x40;&#x69;&#x70;&#x2e;&#x68;&#x69;&#110;&#101;&#x74;&#46;&#110;&#101;&#116;">&#x78;&#x78;&#120;&#x78;&#120;&#x78;&#x78;&#120;&#x40;&#105;&#112;&#46;&#x68;&#105;&#110;&#x65;&#116;&#46;&#110;&#x65;&#x74;</a>     取得固定IP  僅限一台電腦使用</li>
 </ul>
 
 
