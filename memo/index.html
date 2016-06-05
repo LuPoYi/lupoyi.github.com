@@ -9,7 +9,7 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="Memo Ubuntu rails 環境建置 ruby on rails1
+  <meta name="description" content="Memo 查詢容量 du檢視檔案資料夾/df檢視整體磁區1
 2
 3
 4
@@ -17,15 +17,10 @@
 6
 7
 8
-9
-10
-11
-12
-13
-14
-sudo apt-get update
-sudo apt-get install nodejs
-curl -L get.rvm.io | bash -s &hellip;">
+// 目錄下各檔案資料夾的所佔空間
+$ du -smh * // 列出佔用空間前 5 名
+$ du -s /var/* | sort -rn | head -5 // 依磁區
+$ df -h 查詢系統資訊 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -132,9 +127,9 @@ curl -L get.rvm.io | bash -s &hellip;">
 <time datetime="2016-01-24T10:25:00+08:00" pubdate data-updated="true"></time></p>
   </header>
   
-  <h2>Ubuntu rails 環境建置</h2>
+  <h2>查詢容量</h2>
 
-<figure class='code'><figcaption><span>ruby on rails</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>du檢視檔案資料夾/df檢視整體磁區</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -142,61 +137,105 @@ curl -L get.rvm.io | bash -s &hellip;">
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get update
-</span><span class='line'>sudo apt-get install nodejs
-</span><span class='line'>curl -L get.rvm.io <span class="p">|</span> bash -s stable
-</span><span class='line'><span class="nb">source</span> ~/.rvm/scripts/rvm
-</span><span class='line'>rvm requirements
-</span><span class='line'>rvm install 2.3.0
-</span><span class='line'>rvm rubygems current
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>// 目錄下各檔案資料夾的所佔空間
+</span><span class='line'><span class="nv">$ </span>du -smh *
 </span><span class='line'>
-</span><span class='line'><span class="c"># fix nokogiri error</span>
-</span><span class='line'>sudo apt-get install build-essential patch
-</span><span class='line'>sudo apt-get install ruby-dev zlib1g-dev liblzma-dev
-</span><span class='line'>sudo apt-get install libgmp-dev
+</span><span class='line'>// 列出佔用空間前 <span class="m">5</span> 名
+</span><span class='line'><span class="nv">$ </span>du -s /var/* <span class="p">|</span> sort -rn <span class="p">|</span> head -5
 </span><span class='line'>
-</span><span class='line'>gem install rails
+</span><span class='line'>// 依磁區
+</span><span class='line'><span class="nv">$ </span>df -h
 </span></code></pre></td></tr></table></div></figure>
 
 
+<h2>查詢系統資訊</h2>
+
+<figure class='code'><figcaption><span>linux</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>// 記憶體用量
+</span><span class='line'><span class="nv">$ </span>free -m
+</span><span class='line'><span class="nv">$ </span>cat /proc/meminfo
+</span><span class='line'>
+</span><span class='line'>// 硬體規格
+</span><span class='line'><span class="nv">$ </span>sudo lshw
+</span></code></pre></td></tr></table></div></figure>
 
 
-<figure class='code'><figcaption><span>ngnix passenger</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<h2>壓縮/解壓縮</h2>
+
+<figure class='code'><figcaption><span>tar</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem install passenger
-</span><span class='line'>rvmsudo passenger-install-nginx-module
-</span><span class='line'>
-</span><span class='line'><span class="c"># fix nginx</span>
-</span><span class='line'>wget -O init-deb.sh https://www.linode.com/docs/assets/660-init-deb.sh
-</span><span class='line'>
-</span><span class='line'>sudo mv init-deb.sh /etc/init.d/nginx
-</span><span class='line'>sudo chmod +x /etc/init.d/nginx
-</span><span class='line'>
-</span><span class='line'>sudo /usr/sbin/update-rc.d -f nginx defaults
-</span><span class='line'>
-</span><span class='line'>sudo service nginx start
-</span><span class='line'>
-</span><span class='line'>vim /opt/nginx/conf/nginx.conf
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>tar -czvf FileName.tar.gz DirName
+</span><span class='line'><span class="nv">$ </span>tar -xzvf FileName.tar.gz
+</span><span class='line'>  c 壓縮
+</span><span class='line'>  x 解壓縮
+</span><span class='line'>  z 使用gzip
+</span><span class='line'>  v 過程中顯示檔案
+</span><span class='line'>  f 指定檔名
 </span></code></pre></td></tr></table></div></figure>
 
+
+<h2>mysql dump/load</h2>
+
+<figure class='code'><figcaption><span>mysql</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="sb">```</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="c">## Ubuntu rails 環境建置</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>bash ruby on rails
+sudo apt-get update
+sudo apt-get install nodejs
+curl -L get.rvm.io | bash -s stable
+source ~/.rvm/scripts/rvm
+rvm requirements
+rvm install 2.3.0
+rvm rubygems current</p>
+
+<h1>fix nokogiri error</h1>
+
+<p>sudo apt-get install build-essential patch
+sudo apt-get install ruby-dev zlib1g-dev liblzma-dev
+sudo apt-get install libgmp-dev</p>
+
+<p>gem install rails</p>
+
+<figure class='code'><figcaption><span>mysql</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>bash ngnix passenger
+gem install passenger
+rvmsudo passenger-install-nginx-module</p>
+
+<h1>fix nginx</h1>
+
+<p>wget -O init-deb.sh <a href="https://www.linode.com/docs/assets/660-init-deb.sh">https://www.linode.com/docs/assets/660-init-deb.sh</a></p>
+
+<p>sudo mv init-deb.sh /etc/init.d/nginx
+sudo chmod +x /etc/init.d/nginx</p>
+
+<p>sudo /usr/sbin/update-rc.d -f nginx defaults</p>
+
+<p>sudo service nginx start</p>
+
+<p>vim /opt/nginx/conf/nginx.conf
+&#8220;`</p>
 
 <h2>Web 開發筆記</h2>
 
