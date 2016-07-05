@@ -7,6 +7,53 @@ sharing: true
 footer: true
 ---
 
+## 查詢容量
+
+```bash du檢視檔案資料夾/df檢視整體磁區
+// 目錄下各檔案資料夾的所佔空間
+$ du -smh *
+
+// 列出佔用空間前 5 名
+$ du -s /var/* | sort -rn | head -5
+
+// 依磁區
+$ df -h
+```
+
+## 查詢系統資訊
+
+```bash linux
+// 記憶體用量
+$ free -h
+$ cat /proc/meminfo
+
+// 硬體規格
+$ sudo lshw
+```
+
+## 壓縮/解壓縮
+
+```bash tar
+$ tar -czvf FileName.tar.gz DirName
+$ tar -xzvf FileName.tar.gz
+  c 壓縮
+  x 解壓縮
+  z 使用gzip 
+  v 過程中顯示檔案
+  f 指定檔名
+```
+
+## mysql dump/load
+
+```bash mysql
+// dump
+mysqldump -u root -p mydb > mydb20160202.sql
+
+// load
+mysql -u root -p mydb < mydb20160202.sql
+```
+
+
 ## Ubuntu rails 環境建置
 
 ```bash ruby on rails
@@ -42,6 +89,46 @@ sudo /usr/sbin/update-rc.d -f nginx defaults
 sudo service nginx start
 
 vim /opt/nginx/conf/nginx.conf
+```
+
+## user
+
+```bash
+$ passwd
+```
+
+## shutdown
+
+```bash shutdown
+
+$ sudo shutdown -h now
+$ sudo reboot
+
+```
+
+## network
+
+```
+$ sudo vim /etc/network/interfaces
+$ sudo /etc/init.d/networking restart
+
+```
+
+## Linux List The Open Ports And The Process That Owns Them
+
+```
+$ sudo lsof -i
+$ sudo netstat -lptu
+$ sudo netstat -tulpn
+```
+
+## Git
+ 
+```
+$ git remote -v
+$ git remote add origin <url>
+$ git remote rm origin
+$ git branch --set-upstream-to=origin/master master
 ```
 
 ## Web 開發筆記

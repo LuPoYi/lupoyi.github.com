@@ -9,9 +9,11 @@ categories: [Ethereum, mining, windows, nanopool, dwarfpool]
 ## 1. 安裝geth
 [下載geth](https://github.com/ethereum/go-ethereum/releases)
 
-解壓縮後不用執行放在C:\
+解壓縮後不用執行放在C:\ (我放在E:\不過沒差)
 
 建立錢包並設定密碼
+
+以下指令都需要開command line(cmd)
 
 ```bash C:\
 geth account new
@@ -24,9 +26,9 @@ geth --rpc
 // 第一次似乎可以用geth --rpc --fast來快速sync完整node(沒試過)
 
 
-## 2. 安裝mining軟體(最下面的即可)
+## 2. 安裝mining軟體
 
-[下載mining軟體](https://build.ethdev.com/builds/Windows%20C%2B%2B%20develop%20branch/)
+[下載mining軟體](https://build.ethdev.com/builds/Windows%20C%2B%2B%20develop%20branch/)(載最下面的即可)
 照一般安裝流程
 
 安裝好後可以測設備的算力，正常來說是GPU比較快(AMD > nVidia)
@@ -39,7 +41,7 @@ ethminer -M    # CPU
 
 挖礦前blockchain要先sync過，也就是"geth --rpc"
 
-看需要自己挖還是加入別人礦池
+看是要自己挖還是加入別人礦池
 
 ### 自己挖
 
@@ -49,7 +51,9 @@ ethminer -G # GPU
 
 ### 加入礦池
 
-需按照[各大礦池](http://cryptomining-blog.com/7529-ethereum-mining-is-getting-way-too-centralized/)的教學操作，這邊使用nanopool(另外還有dwarfpool/ethpool...)
+需按照[各大礦池](http://cryptomining-blog.com/7529-ethereum-mining-is-getting-way-too-centralized/)的教學操作，基本上都不需要註冊，直接使用礦池提供的url+你的錢包地址來挖就行了
+
+我這邊使用nanopool(另外還有dwarfpool/ethpool...)
 
 ```bash C:\Program Files\Ethereum (版號)\Release
 // ethminer.exe http://asia1.nanopool.org:8888/YOUR_WALLET_ADDRESS -G
@@ -65,10 +69,13 @@ ethminer.exe http://asia1.nanopool.org:8888/YOUR_WALLET_ADDRESS/YOUR_WORKER_NAME
 
 可依照nanopool提供的api查看目前情況
 
-http://asia1.nanopool.org/api/balance/0xb2944f316e14887bce4b5fae1c66ac78ba7c9123 
-http://asia1.nanopool.org/account/0xb2944f316e14887bce4b5fae1c66ac78ba7c9123/bob
+http://eth.nanopool.org/api/balance/0xb2944f316e14887bce4b5fae1c66ac78ba7c9123 
+http://eth.nanopool.org/account/0xb2944f316e14887bce4b5fae1c66ac78ba7c9123/bob
+https://www.etherchain.org/account/0xb2944f316e14887bce4b5fae1c66ac78ba7c9123
 
 nanopool一天會結算四次，最少要有0.1 Eth才會發transaction到你的wallet
+
+用本機下geth指令查你的錢包資訊
 
 ```bash C:\
 geth attach
@@ -84,8 +91,47 @@ geth attach
 
 可以到[Etherchain](https://www.etherchain.org/)看一下Recent blocks是不是已經sync到最新的block
 
+## 把指令包成.bat批次檔
+
+因為需要分別開mining, sync以及console三個cmd並執行不同指令，所以我把指令包成.bat放桌面，或是拿來排程執行都ok
+
+```bat ethereum_mining.bat
+echo on
+E:
+cd "Program Files\Ethereum 0.9.41\Release"
+ethminer -F asia1.nanopool.org:8888/0xb2944f316e14887bce4b5fae1c66ac78ba7c9123/bob/maydaybob2000@gmail.com -G
+```
+
+使用GPU來挖，所以會吃顯卡效能
+
+<a href="/images/poyi/ethereum_mining.jpg" target="_blank"><img src="/images/poyi/ethereum_mining.jpg" title="image" alt="images"></a>
+
+<br>
+
+```bat ethereum_sync.bat
+echo on
+E:
+geth --rpc
+```
+sync會吃網路流量，圖中最下面的 #1401468 就是指我這台目前sync到這個block
+
+<a href="/images/poyi/ethereum_sync.jpg" target="_blank"><img src="/images/poyi/ethereum_sync.jpg" title="image" alt="images"></a>
+
+<br>
+
+```bat ethereum_console.bat
+echo on
+E:
+geth attach
+```
+
+使用console前記得打開sync
+
+<a href="/images/poyi/ethereum_console.jpg" target="_blank"><img src="/images/poyi/ethereum_console.jpg" title="image" alt="images"></a>
 
 
 Reference:
+
 https://www.cryptocompare.com/mining/guides/how-to-mine-ethereum/
 
+http://nanopool.org

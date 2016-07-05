@@ -5,7 +5,7 @@ date: 2016-04-02 20:59:38 +0800
 comments: true
 categories: [Go, Golang, basic, beginning]
 ---
-## Hello Go
+## Hello Go!
 ```go hello.go
 package main
 
