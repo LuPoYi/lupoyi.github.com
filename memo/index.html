@@ -265,12 +265,28 @@ $ df -h 查詢系統資訊 &hellip;">
 </span></code></pre></td></tr></table></div></figure>
 
 
+<h2>user</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>passwd
+</span></code></pre></td></tr></table></div></figure>
+
+
 <h2>shutdown</h2>
 
 <figure class='code'><figcaption><span>shutdown</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo shutdown -h now
 </span><span class='line'><span class="nv">$ </span>sudo reboot
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>network</h2>
+
+<figure class='code'><figcaption><span>shutdown</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo vim /etc/network/interfaces
+</span><span class='line'><span class="nv">$ </span>sudo /etc/init.d/networking restart
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -285,11 +301,27 @@ $ df -h 查詢系統資訊 &hellip;">
 </span></code></pre></td></tr></table></div></figure>
 
 
+<h2>Git</h2>
+
+<figure class='code'><figcaption><span>shutdown</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>git remote -v
+</span><span class='line'><span class="nv">$ </span>git remote add origin &lt;url&gt;
+</span><span class='line'><span class="nv">$ </span>git remote rm origin
+</span><span class='line'><span class="nv">$ </span>git branch --set-upstream-to<span class="o">=</span>origin/master master
+</span></code></pre></td></tr></table></div></figure>
+
+
 <h2>Web 開發筆記</h2>
 
 <ul>
 <li>前端任何值皆不可信任，後端都要再判斷一次</li>
 <li>form當中有name的tag才能傳到後端</li>
+<li>Filter Input</li>
+<li>Escape Output</li>
+<li>One Time Token</li>
 </ul>
 
 
