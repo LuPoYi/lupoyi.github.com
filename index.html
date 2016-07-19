@@ -9,9 +9,15 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="1. 安裝geth 下載geth 解壓縮後不用執行放在C:\ (我放在E:\不過沒差) 建立錢包並設定密碼 以下指令都需要開command line(cmd) C:\1
-geth account new 同步所有交易 C:\1
-geth --rpc // 第一次似乎可以用geth &ndash; &hellip;">
+  <meta name="description" content="自簽SSL單純只是讓資料傳送時加密，避免使用明文傳輸資料而被直接監聽到封包 要上Production的話還是必須找SSL服務來簽 openssl1
+2
+3
+4
+5
+6
+# 我習慣在nginx把ssl裝在opt/nginx底下
+mkdir /opt/nginx/ssl
+sudo openssl &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -100,6 +106,116 @@ geth --rpc // 第一次似乎可以用geth &ndash; &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2016/07/14/ssl-certificate-nginx-ubuntu-config/">[Ubuntu] 自行簽署的SSL憑證及Nginx設定</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-07-14T20:00:55+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2016/07/14/ssl-certificate-nginx-ubuntu-config/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>自簽SSL單純只是讓資料傳送時加密，避免使用明文傳輸資料而被直接監聽到封包</p>
+
+<p>要上Production的話還是必須找SSL服務來簽</p>
+
+<figure class='code'><figcaption><span>openssl</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># 我習慣在nginx把ssl裝在opt/nginx底下</span>
+</span><span class='line'>mkdir /opt/nginx/ssl
+</span><span class='line'>sudo openssl req -x509 -nodes -days <span class="m">365</span> -newkey rsa:2048 -keyout /opt/nginx/ssl/nginx.key -out /opt/nginx/ssl/nginx.crt
+</span><span class='line'><span class="c"># 填寫基本資料</span>
+</span><span class='line'><span class="c"># Common Name 填 Domain Name 或 IP</span>
+</span><span class='line'><span class="c"># 建立金鑰nginx.key及憑證nginx.crt</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>nginx.conf</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>server <span class="o">{</span>
+</span><span class='line'>  listen <span class="m">80</span> default_server<span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c"># 將所有HTTP requests轉至HTTPS</span>
+</span><span class='line'>  <span class="k">return</span> <span class="m">301</span> https://<span class="nv">$host$request_uri</span><span class="p">;</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>server <span class="o">{</span>
+</span><span class='line'>  listen <span class="m">443</span> ssl default_server<span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  ssl_certificate /opt/nginx/ssl/nginx.crt<span class="p">;</span>
+</span><span class='line'>  ssl_certificate_key /opt/nginx/ssl/nginx.key<span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c"># 其他ssl參數設定</span>
+</span><span class='line'>  ...
+</span><span class='line'>
+</span><span class='line'>  server_name default_server<span class="p">;</span>
+</span><span class='line'>  root /home/path/rails/public<span class="p">;</span>   <span class="c"># &lt;--- rails路徑</span>
+</span><span class='line'>  rails_env production<span class="p">;</span>
+</span><span class='line'>  passenger_enabled on<span class="p">;</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>SSL設定最佳解可以參考 <a href="https://mozilla.github.io/server-side-tls/ssl-config-generator/">https://mozilla.github.io/server-side-tls/ssl-config-generator/</a></p>
+
+<p>Reference:</p>
+
+<p><a href="https://blog.gtwang.org/linux/nginx-create-and-install-ssl-certificate-on-ubuntu-linux/">https://blog.gtwang.org/linux/nginx-create-and-install-ssl-certificate-on-ubuntu-linux/</a></p>
+
+<p><a href="https://mozilla.github.io/server-side-tls/ssl-config-generator/">https://mozilla.github.io/server-side-tls/ssl-config-generator/</a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1156,8 +1272,8 @@ geth --rpc // 第一次似乎可以用geth &ndash; &hellip;">
 <h5>帳號以中華電信為例</h5>
 
 <ul>
-<li><a href="&#109;&#97;&#x69;&#x6c;&#116;&#111;&#58;&#120;&#120;&#x78;&#x78;&#x78;&#120;&#120;&#120;&#64;&#104;&#x69;&#110;&#x65;&#116;&#46;&#x6e;&#x65;&#x74;">&#x78;&#120;&#x78;&#120;&#x78;&#x78;&#120;&#x78;&#x40;&#104;&#x69;&#x6e;&#101;&#116;&#x2e;&#110;&#x65;&#x74;</a>        取得動態IP (原有帳號格式)</li>
-<li><a href="&#109;&#97;&#x69;&#108;&#116;&#111;&#58;&#x78;&#x78;&#120;&#120;&#120;&#x78;&#x78;&#120;&#x40;&#105;&#x70;&#46;&#104;&#105;&#x6e;&#101;&#116;&#46;&#x6e;&#101;&#116;">&#x78;&#x78;&#x78;&#x78;&#x78;&#120;&#x78;&#120;&#x40;&#x69;&#x70;&#46;&#x68;&#105;&#110;&#101;&#x74;&#46;&#x6e;&#x65;&#116;</a>     取得固定IP  僅限一台電腦使用</li>
+<li><a href="&#x6d;&#97;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#120;&#120;&#120;&#x78;&#x78;&#120;&#x78;&#120;&#x40;&#x68;&#x69;&#x6e;&#101;&#116;&#46;&#110;&#101;&#x74;">&#x78;&#120;&#x78;&#x78;&#x78;&#120;&#120;&#x78;&#x40;&#x68;&#x69;&#110;&#101;&#x74;&#46;&#x6e;&#101;&#116;</a>        取得動態IP (原有帳號格式)</li>
+<li><a href="&#x6d;&#x61;&#105;&#108;&#x74;&#111;&#x3a;&#x78;&#120;&#x78;&#x78;&#x78;&#x78;&#120;&#x78;&#64;&#x69;&#112;&#46;&#x68;&#x69;&#x6e;&#x65;&#116;&#x2e;&#x6e;&#x65;&#116;">&#120;&#x78;&#120;&#120;&#x78;&#120;&#120;&#120;&#64;&#105;&#x70;&#x2e;&#x68;&#105;&#110;&#101;&#116;&#x2e;&#x6e;&#x65;&#x74;</a>     取得固定IP  僅限一台電腦使用</li>
 </ul>
 
 
@@ -1505,101 +1621,6 @@ geth --rpc // 第一次似乎可以用geth &ndash; &hellip;">
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/06/12/rails-ajax-render-error-in-json/">[Rails] AJAX Render Errors in Json</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2015-06-12T19:02:48+08:00" pubdate data-updated="true"></time>
-        
-         | <a href="/blog/2015/06/12/rails-ajax-render-error-in-json/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><figure class='code'><figcaption><span>new.html.erb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
-</span><span class='line'>  <span class="nx">url</span><span class="o">:</span> <span class="nx">URL</span><span class="p">,</span>
-</span><span class='line'>  <span class="nx">async</span><span class="o">:</span><span class="kc">false</span><span class="p">,</span>
-</span><span class='line'>  <span class="nx">data</span><span class="o">:</span><span class="p">{</span>
-</span><span class='line'>    <span class="nx">amount</span><span class="o">:</span> <span class="mi">100</span><span class="p">,</span>
-</span><span class='line'>  <span class="p">},</span>
-</span><span class='line'>  <span class="nx">dataType</span><span class="o">:</span><span class="s1">&#39;json&#39;</span><span class="p">,</span>
-</span><span class='line'>  <span class="nx">method</span><span class="o">:</span><span class="s1">&#39;post&#39;</span><span class="p">,</span>
-</span><span class='line'>  <span class="nx">success</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
-</span><span class='line'>    <span class="c1">// do success things</span>
-</span><span class='line'>  <span class="p">},</span>
-</span><span class='line'>  <span class="nx">error</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">xhr</span><span class="p">){</span>
-</span><span class='line'>    <span class="kd">var</span> <span class="nx">errors</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">parseJSON</span><span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">responseText</span><span class="p">).</span><span class="nx">errors</span>
-</span><span class='line'>    <span class="nx">alert</span><span class="p">(</span><span class="nx">errors</span><span class="p">);</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>orders_controller.rb </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">create</span>
-</span><span class='line'>  <span class="k">if</span> <span class="n">amount</span> <span class="o">&lt;</span> <span class="mi">100</span>
-</span><span class='line'>    <span class="n">render</span> <span class="ss">:json</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:errors</span> <span class="o">=&gt;</span> <span class="s2">&quot;金額不足&quot;</span> <span class="p">},</span> <span class="ss">:status</span> <span class="o">=&gt;</span> <span class="mi">422</span>
-</span><span class='line'>    <span class="k">return</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>當錯誤回傳時，使用422(Unprocessable Entity)來做error handling</p>
-
-<p>Reference:</p>
-
-<p><a href="http://travisjeffery.com/b/2012/04/rendering-errors-in-json-with-rails/">http://travisjeffery.com/b/2012/04/rendering-errors-in-json-with-rails/</a>
-<a href="http://stackoverflow.com/questions/16133923/400-vs-422-response-to-post-of-data">http://stackoverflow.com/questions/16133923/400-vs-422-response-to-post-of-data</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -1645,6 +1666,10 @@ geth --rpc // 第一次似乎可以用geth &ndash; &hellip;">
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/07/14/ssl-certificate-nginx-ubuntu-config/">[Ubuntu] 自行簽署的SSL憑證及Nginx設定</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2016/04/05/how-to-mine-ethereum-on-windows/">[Ethereum] 如何使用Windows來挖礦</a>
@@ -1700,10 +1725,6 @@ geth --rpc // 第一次似乎可以用geth &ndash; &hellip;">
     
       <li class="post">
         <a href="/blog/2014/05/06/ruby-txt-file/">[Ruby] 匯出txt檔</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/05/06/ruby-csv-file/">[Ruby] 匯出批次csv檔</a>
       </li>
     
   </ul>

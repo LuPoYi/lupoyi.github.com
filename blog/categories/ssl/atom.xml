@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: ssl | Bob 學習筆記]]></title>
+  <link href="http://blog.poyi.tw/blog/categories/ssl/atom.xml" rel="self"/>
+  <link href="http://blog.poyi.tw/"/>
+  <updated>2016-07-19T18:58:54+08:00</updated>
+  <id>http://blog.poyi.tw/</id>
+  <author>
+    <name><![CDATA[Bob (PoYi)]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[[Ubuntu] 自行簽署的SSL憑證及Nginx設定]]></title>
+    <link href="http://blog.poyi.tw/blog/2016/07/14/ssl-certificate-nginx-ubuntu-config/"/>
+    <updated>2016-07-14T20:00:55+08:00</updated>
+    <id>http://blog.poyi.tw/blog/2016/07/14/ssl-certificate-nginx-ubuntu-config</id>
+    <content type="html"><![CDATA[<p>自簽SSL單純只是讓資料傳送時加密，避免使用明文傳輸資料而被直接監聽到封包</p>
+
+<p>要上Production的話還是必須找SSL服務來簽</p>
+
+<pre><code class="bash openssl"># 我習慣在nginx把ssl裝在opt/nginx底下
+mkdir /opt/nginx/ssl
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /opt/nginx/ssl/nginx.key -out /opt/nginx/ssl/nginx.crt
+# 填寫基本資料
+# Common Name 填 Domain Name 或 IP
+# 建立金鑰nginx.key及憑證nginx.crt
+</code></pre>
+
+<pre><code class="bash nginx.conf">server {
+  listen 80 default_server;
+
+  # 將所有HTTP requests轉至HTTPS
+  return 301 https://$host$request_uri;
+}
+
+server {
+  listen 443 ssl default_server;
+
+  ssl_certificate /opt/nginx/ssl/nginx.crt;
+  ssl_certificate_key /opt/nginx/ssl/nginx.key;
+
+  # 其他ssl參數設定
+  ...
+
+  server_name default_server;
+  root /home/path/rails/public;   # &lt;--- rails路徑
+  rails_env production;
+  passenger_enabled on;
+}
+</code></pre>
+
+<p>SSL設定最佳解可以參考 <a href="https://mozilla.github.io/server-side-tls/ssl-config-generator/">https://mozilla.github.io/server-side-tls/ssl-config-generator/</a></p>
+
+<p>Reference:</p>
+
+<p><a href="https://blog.gtwang.org/linux/nginx-create-and-install-ssl-certificate-on-ubuntu-linux/">https://blog.gtwang.org/linux/nginx-create-and-install-ssl-certificate-on-ubuntu-linux/</a></p>
+
+<p><a href="https://mozilla.github.io/server-side-tls/ssl-config-generator/">https://mozilla.github.io/server-side-tls/ssl-config-generator/</a></p>
+]]></content>
+  </entry>
+  
+</feed>

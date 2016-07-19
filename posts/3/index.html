@@ -9,18 +9,16 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="Math1
+  <meta name="description" content="好像各語言都大同小異，try..catch..finally語法轉換一下就差不多了 例外處理 begin..end當中的rescue1
 2
 3
 4
 5
 6
 7
-8
-9
-10
-11
-&gt; 2 ** 3 # 次方 =&gt; 8 =begin Addition (+) Subtraction (-) Multiplication (*) Division (/) Exponentiation (**) Modulo &hellip;">
+begin # 有機會發生例外的code
+rescue # 發現例外後要執行的code
+ensure # 無論是否例外都會執行的code &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -109,6 +107,110 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/12/23/ruby-exception-handling/">[Ruby] 例外處理</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-23T15:57:00+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2013/12/23/ruby-exception-handling/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>好像各語言都大同小異，try..catch..finally語法轉換一下就差不多了</p>
+
+<h1>例外處理</h1>
+
+<figure class='code'><figcaption><span>begin..end當中的rescue</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">begin</span>
+</span><span class='line'>  <span class="c1"># 有機會發生例外的code</span>
+</span><span class='line'><span class="k">rescue</span>
+</span><span class='line'>  <span class="c1"># 發現例外後要執行的code</span>
+</span><span class='line'><span class="k">ensure</span>
+</span><span class='line'>  <span class="c1"># 無論是否例外都會執行的code</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>而當例外發生時，如果沒有指定變數，Ruby會將錯誤資訊存放至$!及$@</p>
+
+<ul>
+<li>$! (例外物件)
+
+<ul>
+<li>.class</li>
+<li>.message</li>
+<li>.backtrace (等同於$@)</li>
+</ul>
+</li>
+<li>$@ (例外的位置資訊)</li>
+</ul>
+
+
+<figure class='code'><figcaption><span>example</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">begin</span>
+</span><span class='line'>  <span class="n">abc</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">0</span>
+</span><span class='line'><span class="k">rescue</span> <span class="o">=&gt;</span> <span class="n">ex</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;Except class:  </span><span class="si">#{</span><span class="n">ex</span><span class="o">.</span><span class="n">class</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="s2">&quot;Except message: </span><span class="si">#{</span><span class="n">ex</span><span class="o">.</span><span class="n">message</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'><span class="k">ensure</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s1">&#39;Always print&#39;</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Except</span> <span class="ss">class</span><span class="p">:</span>  <span class="no">ZeroDivisionError</span>
+</span><span class='line'><span class="no">Except</span> <span class="ss">message</span><span class="p">:</span> <span class="n">divided</span> <span class="n">by</span> <span class="mi">0</span>
+</span><span class='line'><span class="no">Always</span> <span class="nb">print</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="kp">nil</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Reference:
+<a href="http://blog.tonycube.com/2011/07/ruby8.html">http://blog.tonycube.com/2011/07/ruby8.html</a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -999,161 +1101,6 @@ IThome「防駭演練與危機處理」研習會</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/10/30/rails-crud/">[Rails] CRUD 備忘</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-10-30T01:07:00+08:00" pubdate data-updated="true"></time>
-        
-         | <a href="/blog/2013/10/30/rails-crud/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><figure class='code'><figcaption><span>index</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sx">%= link_to &#39;list&#39;, teams_path %&gt; # GET</span>
-</span><span class='line'>
-</span><span class='line'><span class="sx">def index</span>
-</span><span class='line'><span class="sx"> @teams =</span> <span class="no">Team</span><span class="o">.</span><span class="n">all</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>show</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sx">%= link_to &#39;show&#39;, team_path(team) %&gt; # GET</span>
-</span><span class='line'>
-</span><span class='line'><span class="sx">def show</span>
-</span><span class='line'><span class="sx"> @team =</span> <span class="no">Team</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">)</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>new</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sx">%= link_to &#39;new Team&#39;, new_team_path %&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sx">def new</span>
-</span><span class='line'><span class="sx"> @team =</span> <span class="no">Team</span><span class="o">.</span><span class="n">new</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<figure class='code'><figcaption><span>create</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sx">%= form_for @team, :url =</span><span class="o">&gt;</span> <span class="n">teams_path</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span> <span class="sx">%&gt; #In a form, the default request method is POST</span>
-</span><span class='line'><span class="sx">&lt;%= t.text_field :name %&gt;</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sx">%= t.text_field :year %&gt;</span>
-</span><span class='line'><span class="sx">&lt;%=</span> <span class="n">t</span><span class="o">.</span><span class="n">submit</span> <span class="s2">&quot;Create&quot;</span> <span class="sx">%&gt;</span>
-</span><span class='line'><span class="sx">&lt;% end %&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">create</span>
-</span><span class='line'>  <span class="no">Team</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">)</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>edit</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sx">%= link_to &#39;edit&#39;, edit_team_path(team) %&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sx">def edit</span>
-</span><span class='line'><span class="sx"> @team =</span> <span class="no">Team</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">)</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>update</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sx">%= form_for @team, :url =</span><span class="o">&gt;</span> <span class="n">teams_path</span><span class="p">(</span><span class="vi">@team</span><span class="p">),</span><span class="ss">:method</span> <span class="o">=&gt;</span> <span class="ss">:put</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span> <span class="sx">%&gt; </span>
-</span><span class='line'><span class="sx">&lt;%= t.text_field :name %&gt;</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sx">%= t.text_field :year %&gt;</span>
-</span><span class='line'><span class="sx">&lt;%=</span> <span class="n">t</span><span class="o">.</span><span class="n">submit</span> <span class="s2">&quot;Create&quot;</span> <span class="sx">%&gt;</span>
-</span><span class='line'><span class="sx">&lt;% end %&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">update</span>
-</span><span class='line'>  <span class="vi">@team</span><span class="o">.</span><span class="n">update_attributes</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:team</span><span class="o">]</span><span class="p">)</span> <span class="c1">#...</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>destroy</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sx">%= link_to @team, team_path(@team), :method =</span><span class="o">&gt;</span> <span class="ss">:delete</span> <span class="o">%&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">destroy</span>
-</span><span class='line'>  <span class="no">Team</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">].</span><span class="n">destroy</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/4">&larr; Older</a>
@@ -1201,6 +1148,10 @@ IThome「防駭演練與危機處理」研習會</p>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/07/14/ssl-certificate-nginx-ubuntu-config/">[Ubuntu] 自行簽署的SSL憑證及Nginx設定</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2016/04/05/how-to-mine-ethereum-on-windows/">[Ethereum] 如何使用Windows來挖礦</a>
@@ -1256,10 +1207,6 @@ IThome「防駭演練與危機處理」研習會</p>
     
       <li class="post">
         <a href="/blog/2014/05/06/ruby-txt-file/">[Ruby] 匯出txt檔</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/05/06/ruby-csv-file/">[Ruby] 匯出批次csv檔</a>
       </li>
     
   </ul>
