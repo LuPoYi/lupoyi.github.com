@@ -4,7 +4,7 @@
   <title><![CDATA[Category: https | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/https/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2016-07-25T18:54:44+08:00</updated>
+  <updated>2016-07-26T12:57:16+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -51,6 +51,9 @@ server {
   rails_env production;
   passenger_enabled on;
 }
+</code></pre>
+
+<pre><code class="bash 產dhparam -out">sudo openssl dhparam -out /opt/nginx/ssl/dhparam.pem 2048
 </code></pre>
 
 <p>SSL設定最佳解可以參考 <a href="https://mozilla.github.io/server-side-tls/ssl-config-generator/">https://mozilla.github.io/server-side-tls/ssl-config-generator/</a></p>
