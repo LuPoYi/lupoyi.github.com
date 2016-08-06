@@ -4,7 +4,7 @@
   <title><![CDATA[Category: aes | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/aes/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2016-07-31T17:10:48+08:00</updated>
+  <updated>2016-08-06T21:17:11+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -36,7 +36,7 @@
 <pre><code class="ruby 加密解密">$key = "自定key" # 可利用rails的sercret key(Rails.application.secrets.secret_key_base)
 $iv  = "自定iv" 
 
-# 加密
+# AES 加密
 def aes_encrypt(data)
   cipher = OpenSSL::Cipher::AES128.new(:CBC)
   cipher.encrypt

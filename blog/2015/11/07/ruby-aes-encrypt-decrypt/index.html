@@ -179,7 +179,7 @@ AES (Advanced Encryption Standard) 非對稱金鑰加密系統(公開金鑰加�
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="vg">$key</span> <span class="o">=</span> <span class="s2">&quot;自定key&quot;</span> <span class="c1"># 可利用rails的sercret key(Rails.application.secrets.secret_key_base)</span>
 </span><span class='line'><span class="vg">$iv</span>  <span class="o">=</span> <span class="s2">&quot;自定iv&quot;</span>
 </span><span class='line'>
-</span><span class='line'><span class="c1"># 加密</span>
+</span><span class='line'><span class="c1"># AES 加密</span>
 </span><span class='line'><span class="k">def</span> <span class="nf">aes_encrypt</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </span><span class='line'>  <span class="n">cipher</span> <span class="o">=</span> <span class="no">OpenSSL</span><span class="o">::</span><span class="no">Cipher</span><span class="o">::</span><span class="no">AES128</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:CBC</span><span class="p">)</span>
 </span><span class='line'>  <span class="n">cipher</span><span class="o">.</span><span class="n">encrypt</span>
