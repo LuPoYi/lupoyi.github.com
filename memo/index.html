@@ -167,11 +167,18 @@ $ df -h 查詢系統資訊 &hellip;">
 <span class='line-number'>15</span>
 <span class='line-number'>16</span>
 <span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>// 記憶體用量
 </span><span class='line'><span class="nv">$ </span>free -h
 </span><span class='line'>
 </span><span class='line'>// 硬體規格
 </span><span class='line'><span class="nv">$ </span>cat /proc/cpuinfo
+</span><span class='line'><span class="nv">$ </span>cat /proc/cpuinfo <span class="p">|</span> grep processor <span class="p">|</span> wc -l
+</span><span class='line'>
 </span><span class='line'><span class="nv">$ </span>cat /proc/meminfo
 </span><span class='line'><span class="nv">$ </span>sudo lshw
 </span><span class='line'><span class="nv">$ </span>ls /sys/class/net
@@ -183,7 +190,10 @@ $ df -h 查詢系統資訊 &hellip;">
 </span><span class='line'><span class="nv">$ </span>date
 </span><span class='line'><span class="nv">$ </span>cal
 </span><span class='line'><span class="nv">$ </span>uptime
+</span><span class='line'>
+</span><span class='line'>// os版本資訊
 </span><span class='line'><span class="nv">$ </span>uname -a
+</span><span class='line'><span class="nv">$ </span>lsb_release -a
 </span></code></pre></td></tr></table></div></figure>
 
 
