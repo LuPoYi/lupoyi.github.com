@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ubuntu | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/ubuntu/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2016-08-25T22:42:00+08:00</updated>
+  <updated>2016-08-27T16:57:11+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -12,6 +12,156 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[[Ubuntu] Linux 基本的安全設定]]></title>
+    <link href="http://blog.poyi.tw/blog/2016/08/25/linux-some-common-security-setting/"/>
+    <updated>2016-08-25T20:54:54+08:00</updated>
+    <id>http://blog.poyi.tw/blog/2016/08/25/linux-some-common-security-setting</id>
+    <content type="html"><![CDATA[<h2>列幾個基本款常見的一些設定</h2>
+
+<h2>fail2ban</h2>
+
+<pre><code class="bash fail2ban基本設定">$ sudo apt-get install fail2ban
+
+# 保留原始conf檔，把設定都寫在.local
+$ sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local 
+$ vim /etc/fail2ban/jail.local 
+# 將enabled改成true
+  [DEFAULT]
+    ignoreip = 127.0.0.1/8
+    bantime  = 600
+    findtime = 600
+    maxretry = 5
+    backend  = auto
+    enabled = true
+
+# 啟動
+$ sudo service fail2ban start
+
+# 看目前狀態，目前有一個被ban
+$ sudo fail2ban-client status
+Status
+|- Number of jail:      1
+`- Jail list:   sshd
+
+# detail
+$ sudo fail2ban-client status sshd
+Status for the jail: sshd
+|- Filter
+|  |- Currently failed: 1
+|  |- Total failed:     6
+|  `- File list:        /var/log/auth.log
+`- Actions
+   |- Currently banned: 1
+   |- Total banned:     1
+   `- Banned IP list:   111.248.10.10
+</code></pre>
+
+<h2>ssh port更換到別的port</h2>
+
+<pre><code class="bash ssh port更換到別的port">$ sudo vim /etc/ssh/sshd_config
+Port 1968
+$ sudo service sshd restart
+</code></pre>
+
+<h2>設定iptables</h2>
+
+<h4>用來過濾該網路封包是否能進出server，預設都是開啟的，若是沒有外部防火牆的話還蠻危險的</h4>
+
+<pre><code>### clear tables
+iptables --flush
+iptables --delete-chain
+iptables --table mangle --flush
+iptables --table mangle --delete-chain
+
+### default policies
+iptables --policy INPUT   DROP
+iptables --policy OUTPUT  DROP
+iptables --policy FORWARD DROP
+
+### loopback
+iptables --append INPUT  --in-interface lo --jump ACCEPT
+iptables --append OUTPUT --out-interface lo --jump ACCEPT
+
+### existing connections
+iptables --append INPUT  --match conntrack --ctstate ESTABLISHED,RELATED --jump ACCEPT
+iptables --append OUTPUT --match conntrack --ctstate ESTABLISHED,RELATED --jump ACCEPT
+
+### trashlog chain
+iptables --new-chain trashlog
+iptables --append trashlog --jump LOG --log-level notice --log-prefix "trashlog: "
+iptables --append trashlog --jump DROP
+
+### INPUT
+iptables --append INPUT  --protocol tcp --dport 22 --match conntrack --ctstate NEW --jump ACCEPT
+iptables --append INPUT  --protocol tcp --dport 80 --match conntrack --ctstate NEW --jump ACCEPT
+iptables --append INPUT  --protocol tcp --dport 443 --match conntrack --ctstate NEW --jump ACCEPT
+
+### OUTPUT
+iptables --append OUTPUT --jump ACCEPT
+
+...
+
+
+# 其他客製化設定可參考
+# https://gist.github.com/virtualstaticvoid/1024546
+</code></pre>
+
+<h2>Logrotate.conf</h2>
+
+<h4>OS層的log大多紀錄在/var/log/底下，而預設開啟logrotate</h4>
+
+<h4>調整/etc/logrotate.conf的自動rotate，把時間拉長或是不使用rotate</h4>
+
+<ul>
+<li>syslog 系統日誌</li>
+<li>dpkg.log 軟體安裝及更新紀錄</li>
+<li>auth.log 身份確認相關紀錄(使用sudo)</li>
+</ul>
+
+
+<pre><code class="bash /etc/logrotate.conf"># (略)
+</code></pre>
+
+<pre><code class="bash /etc/logrotate.d"># (略)
+</code></pre>
+
+<pre><code class="bash wtmp user登入次數及使用時間紀錄">$ last
+$ last -f /var/log/wtmp
+bob      pts/1        1.1.1.1   Tue Aug 23 13:22   still logged in
+bob      pts/1        1.1.1.1   Sun Aug 14 06:34 - 06:45  (00:10)
+bob      pts/0        1.1.1.1   Sun Aug 14 05:44 - 08:45  (03:00)
+bob      pts/0        1.1.1.1   Sat Aug  6 13:14 - 05:44 (7+16:29)
+</code></pre>
+
+<pre><code class="bash wtmp user登入失敗紀錄">$ sudo lastb
+$ last -f /var/log/btmp
+bob      pts/1        1.1.1.1   Tue Aug 23 13:22   still logged in
+bob      pts/1        1.1.1.1   Sun Aug 14 06:34 - 06:45  (00:10)
+bob      pts/0        1.1.1.1   Sun Aug 14 05:44 - 08:45  (03:00)
+bob      pts/0        1.1.1.1   Sat Aug  6 13:14 - 05:44 (7+16:29)
+</code></pre>
+
+<h2>關閉root ssh登入</h2>
+
+<pre><code class="bash /etc/ssh/sshd_config"># Authentication:
+LoginGraceTime 120
+PermitRootLogin prohibit-password 
+# 新版本ssh root登入預設不能使用密碼登入，僅可用key(有設定的話)
+# 也可以直接改成 PermitRootLogin no 直接擋掉
+StrictModes yes
+</code></pre>
+
+<p>Reference:</p>
+
+<p><a href="https://blog.camel2243.com/2016/02/29/ubuntu-fail2ban-%E9%98%B2%E6%AD%A2-ssh-%E6%9A%B4%E5%8A%9B%E5%98%97%E8%A9%A6%E5%AF%86%E7%A2%BC/">https://blog.camel2243.com/2016/02/29/ubuntu-fail2ban-%E9%98%B2%E6%AD%A2-ssh-%E6%9A%B4%E5%8A%9B%E5%98%97%E8%A9%A6%E5%AF%86%E7%A2%BC/</a></p>
+
+<p><a href="http://www.vixual.net/blog/archives/252">http://www.vixual.net/blog/archives/252</a></p>
+
+<p><a href="http://yuanann.pixnet.net/blog/post/16610463-linux-%3Assh-%E6%9B%B4%E6%94%B9%E9%A0%90%E8%A8%ADport%E7%9A%84%E6%96%B9%E6%B3%95">http://yuanann.pixnet.net/blog/post/16610463-linux-%3Assh-%E6%9B%B4%E6%94%B9%E9%A0%90%E8%A8%ADport%E7%9A%84%E6%96%B9%E6%B3%95</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[[Ubuntu] 自行簽署的SSL憑證及Nginx設定]]></title>
@@ -272,8 +422,8 @@ gateway 192.168.1.1
 <h5>帳號以中華電信為例</h5>
 
 <ul>
-<li><a href="&#109;&#97;&#x69;&#x6c;&#x74;&#111;&#x3a;&#x78;&#x78;&#120;&#120;&#120;&#120;&#120;&#120;&#x40;&#x68;&#105;&#x6e;&#x65;&#116;&#46;&#110;&#101;&#116;">&#120;&#120;&#x78;&#120;&#120;&#x78;&#120;&#120;&#x40;&#x68;&#x69;&#x6e;&#101;&#116;&#46;&#110;&#101;&#116;</a>        取得動態IP (原有帳號格式)</li>
-<li><a href="&#109;&#x61;&#105;&#108;&#116;&#111;&#x3a;&#x78;&#120;&#x78;&#120;&#120;&#x78;&#120;&#x78;&#x40;&#105;&#x70;&#46;&#104;&#x69;&#x6e;&#101;&#116;&#46;&#110;&#x65;&#116;">&#x78;&#x78;&#x78;&#x78;&#120;&#x78;&#x78;&#120;&#64;&#105;&#112;&#46;&#x68;&#105;&#x6e;&#x65;&#116;&#46;&#110;&#101;&#x74;</a>     取得固定IP  僅限一台電腦使用</li>
+<li><a href="&#x6d;&#x61;&#x69;&#108;&#116;&#111;&#58;&#120;&#x78;&#x78;&#120;&#x78;&#120;&#x78;&#x78;&#x40;&#104;&#x69;&#x6e;&#x65;&#x74;&#x2e;&#x6e;&#x65;&#x74;">&#x78;&#120;&#x78;&#120;&#120;&#120;&#x78;&#x78;&#x40;&#x68;&#105;&#x6e;&#101;&#116;&#x2e;&#x6e;&#101;&#116;</a>        取得動態IP (原有帳號格式)</li>
+<li><a href="&#x6d;&#97;&#105;&#108;&#116;&#x6f;&#x3a;&#x78;&#120;&#x78;&#120;&#120;&#120;&#120;&#120;&#64;&#105;&#x70;&#46;&#104;&#105;&#110;&#x65;&#116;&#x2e;&#x6e;&#x65;&#116;">&#120;&#x78;&#x78;&#120;&#x78;&#x78;&#120;&#x78;&#64;&#105;&#x70;&#46;&#x68;&#x69;&#110;&#x65;&#x74;&#x2e;&#x6e;&#101;&#116;</a>     取得固定IP  僅限一台電腦使用</li>
 </ul>
 
 
@@ -288,54 +438,6 @@ $ sudo pppoeconf
 <p>Reference:</p>
 
 <p><a href="http://note.drx.tw/2008/08/networkpppoe-adsl.html">http://note.drx.tw/2008/08/networkpppoe-adsl.html</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[[Mac] 三步驟純指令建立Ubuntu的USB隨身碟]]></title>
-    <link href="http://blog.poyi.tw/blog/2015/06/29/mac-build-ubuntu-flash-using-command/"/>
-    <updated>2015-06-29T23:39:10+08:00</updated>
-    <id>http://blog.poyi.tw/blog/2015/06/29/mac-build-ubuntu-flash-using-command</id>
-    <content type="html"><![CDATA[<pre><code class="bash 將載好的ubuntu.iso 轉成 ubuntu.dmg">Bob:Downloads $ hdiutil convert -format UDRW -o ubuntu-14.04.2-server-amd64.dmg ubuntu-14.04.2-server-amd64.iso
-正在讀取Driver Descriptor Map（DDM：0）⋯
-正在讀取Ubuntu-Server 14.04.2 LTS amd64 （Apple_ISO：1）⋯
-正在讀取Apple（Apple_partition_map：2）⋯
-正在讀取Ubuntu-Server 14.04.2 LTS amd64 （Apple_ISO：3）⋯
-..............
-正在讀取EFI（Apple_HFS：4）⋯
-...............
-正在讀取Ubuntu-Server 14.04.2 LTS amd64 （Apple_ISO：5）⋯
-..............................................................................
-經過時間： 7.977s
-速度：74.6Mbyte/秒
-節省：0.0%
-</code></pre>
-
-<pre><code class="bash 找到你的usb隨身碟後卸載它">Bob:Downloads $ diskutil list
-/dev/disk0
-  ...
-/dev/disk1
-  ...
-/dev/disk2
-   #:                       TYPE NAME                    SIZE       IDENTIFIER
-   0:     FDisk_partition_scheme                        *8.1 GB     disk2
-   1:             Windows_FAT_32 ADATA UFD               8.1 GB     disk2s1
-Bob:Downloads $ diskutil unmountDisk /dev/disk2
-Unmount of all volumes on disk2 was successful
-</code></pre>
-
-<pre><code class="bash dd 把資料寫入隨身碟">Bob:Downloads $ sudo dd if=ubuntu-14.04.2-server-amd64.dmg of=/dev/rdisk2 bs=1m
-Password:
-595+0 records in
-595+0 records out
-623902720 bytes transferred in 43.058655 secs (14489601 bytes/sec)
-</code></pre>
-
-<p>執行完會跳「電腦讀不到您放入的磁碟。」，代表就成功了！</p>
-
-<p>Reference:</p>
-
-<p><a href="http://blog.itist.tw/2015/01/burning-linux-iso-image-to-usb-disk-on-osx.html">http://blog.itist.tw/2015/01/burning-linux-iso-image-to-usb-disk-on-osx.html</a></p>
 ]]></content>
   </entry>
   

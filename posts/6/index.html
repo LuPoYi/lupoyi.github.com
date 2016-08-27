@@ -9,14 +9,8 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="git1
-2
-3
-4
-5
-6
-apt-get install git-core git config --global user.name &quot;name&quot;
-git config --global user.email &quot;email&quot; git config -- &hellip;">
+  <meta name="description" content="HTML 5 基本樣式 &lt;!DOCTYPE html&gt;
+&lt;html&gt; &lt;head&gt; &lt;meta charset="UTF-8"&gt; &lt;title&gt;HTML 5&lt;/title&gt; &lt;/head&gt; &lt;body&gt &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -105,6 +99,78 @@ git config --global user.email &quot;email&quot; git config -- &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/08/29/html5/">[HTML5] 入門</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-29T13:17:00+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2013/08/29/html5/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1>HTML 5 基本樣式</h1>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;HTML 5&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+  &lt;p&gt;Hello World!&lt;p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h1>視訊播放</h1>
+
+<p>瀏覽器會依type特性來決定要顯示哪一個影片檔，也可以依照不同尺寸來設定觀看的的解析度。
+video標籤可用的屬性:Preload(不自動下載視訊)、Loop(重複播放)、autoplay(開啟後自動播放)、width、height&hellip;</p>
+
+<pre><code>    &lt;video controls autoplay&gt;
+      &lt;source src="Simple Plan.720p.webm" type="video/webm" media="screen and (min-width: 500px)"&gt;
+      &lt;source src="Simple Plan.360p.webm" type="video/webm"&gt;
+      &lt;source src="Simple Plan.mp4" type="video/mp4"&gt;
+      &lt;source src="Simple Plan.ogg" type="video/ogg"&gt;
+      Sorry...Your browser is crap...
+    &lt;/video&gt;
+</code></pre>
+
+<p>目前查到的資料：
+IE、Safari 只支援mp4
+Opera 支援webm ogg
+FireFox 支援webm ogg (mp4部分支援)
+Chrome 全都支援</p>
+
+<p><a href="http://www.w3schools.com/html/html5_video.asp">http://www.w3schools.com/html/html5_video.asp</a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -721,138 +787,6 @@ GridView.DataBind();</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/02/15/linux-getting-started-with-hyper-basic-instructions/">[Linux] 超入門的基本指令</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-02-15T06:24:00+08:00" pubdate data-updated="true"></time>
-        
-         | <a href="/blog/2013/02/15/linux-getting-started-with-hyper-basic-instructions/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>之前在非洲服役時，曾想過用Linux取代Windows (當地經濟因素等等的&hellip;)
-也嘗試用Wine來執行一些常用的Windows軟體，大致上也都沒問題，只可惜當地政府的課程始終沒有開始&hellip;</p>
-
-<p>對Linux不是完全陌生，但指令倒是全忘了&hellip;
-為了往後開發上不會綁手綁腳，還是必須把基本功打好，從零開始</p>
-
-<figure class='code'><figcaption><span>系統資訊</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span><span class="nb">echo </span>hello word
-</span><span class='line'><span class="nv">$ </span>date
-</span><span class='line'><span class="nv">$ </span>arch    // x86_64
-</span><span class='line'><span class="nv">$ </span>uname –a // list system
-</span><span class='line'><span class="nv">$ </span>who
-</span><span class='line'><span class="nv">$ </span>w // show online user
-</span><span class='line'><span class="nv">$ </span>top // show system status
-</span><span class='line'><span class="nv">$ </span>cal <span class="m">2015</span> // calendar
-</span><span class='line'><span class="nv">$ </span>cal <span class="m">9</span> <span class="m">1752</span> // *
-</span><span class='line'><span class="nv">$ </span>bc –l // calculator
-</span><span class='line'><span class="nv">$ </span><span class="nb">echo </span>77/50 <span class="p">|</span> bc –l
-</span><span class='line'><span class="nv">$ </span><span class="nb">history</span> // list <span class="nb">command history</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>網路</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>ifconfig
-</span><span class='line'><span class="nv">$ </span>nslookup
-</span><span class='line'><span class="nv">$ </span>ping
-</span><span class='line'><span class="nv">$ </span>traceroute
-</span><span class='line'><span class="nv">$ </span>wget // download
-</span><span class='line'><span class="nv">$ </span>ssh 帳號@主機   // 用SSH連線
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>chmod 調整檔案權限</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>chmod <span class="o">[</span>權限角色<span class="o">]</span> <span class="o">[</span>權限動作<span class="o">]</span> <span class="o">[</span>存取權限<span class="o">]</span> 檔案/目錄
-</span><span class='line'>chmod <span class="o">[</span>ugoa<span class="o">]</span> <span class="o">[</span>+-<span class="o">=]</span> <span class="o">[</span>rwxX<span class="o">]</span> test.txt
-</span><span class='line'><span class="nv">$ </span>chmod ugo+r test.txt
-</span><span class='line'>權限角色: u<span class="o">(</span>user/owner<span class="o">)</span>、g<span class="o">(</span>group<span class="o">)</span>、o<span class="o">(</span>other<span class="o">)</span>、a<span class="o">(</span>all<span class="o">)</span>
-</span><span class='line'>權限動作: +<span class="o">(</span>增加權限<span class="o">)</span>、-<span class="o">(</span>取消權限<span class="o">)</span>、<span class="o">=(</span>直接設定權限<span class="o">)</span>
-</span><span class='line'>存取權限: r<span class="o">(</span><span class="nb">read</span><span class="o">)</span>、w<span class="o">(</span>write<span class="o">)</span>、x<span class="o">(</span>execute<span class="o">)</span>、X<span class="o">(</span>execute<span class="p">&amp;</span>目錄or已被執行過<span class="o">)</span>
-</span><span class='line'>
-</span><span class='line'>也可用數字來調整權限
-</span><span class='line'>chmod <span class="o">[</span>u<span class="o">(</span>int<span class="o">)][</span>g<span class="o">(</span>int<span class="o">)][</span>o<span class="o">(</span>int<span class="o">)]</span> 檔案/目錄
-</span><span class='line'><span class="nv">$ </span>chmod <span class="m">777</span> test.txt
-</span><span class='line'>// <span class="nv">r</span><span class="o">=</span>4，w<span class="o">=</span>2，x<span class="o">=</span><span class="m">1</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>grep</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>...
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>tail</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>...
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Reference:
-<a href="http://www.pcnet.idv.tw/pcnet/linux/linux_command.htm">http://www.pcnet.idv.tw/pcnet/linux/linux_command.htm</a>
-<a href="http://tnrc.ncku.edu.tw/course/93/fedora_core2/page8/p8.htm">http://tnrc.ncku.edu.tw/course/93/fedora_core2/page8/p8.htm</a>
-<a href="http://jdev.tw/blog/3599/linux-terminal-commands-and-shortcuts">http://jdev.tw/blog/3599/linux-terminal-commands-and-shortcuts</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/7">&larr; Older</a>
@@ -899,6 +833,10 @@ GridView.DataBind();</p>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/08/25/linux-some-common-security-setting/">[Ubuntu] Linux 基本的安全設定</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2016/07/14/ssl-certificate-nginx-ubuntu-config/">[Ubuntu] 自行簽署的SSL憑證及Nginx設定</a>
@@ -954,10 +892,6 @@ GridView.DataBind();</p>
     
       <li class="post">
         <a href="/blog/2015/03/31/ruby-basic-1/">[Ruby] 教學 - 基本使用介紹</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/05/06/ruby-txt-file/">[Ruby] 匯出txt檔</a>
       </li>
     
   </ul>

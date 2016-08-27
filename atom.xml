@@ -4,7 +4,7 @@
   <title><![CDATA[Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2016-08-25T22:42:00+08:00</updated>
+  <updated>2016-08-27T16:57:11+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -12,6 +12,264 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[[Ubuntu] Linux 基本的安全設定]]></title>
+    <link href="http://blog.poyi.tw/blog/2016/08/25/linux-some-common-security-setting/"/>
+    <updated>2016-08-25T20:54:54+08:00</updated>
+    <id>http://blog.poyi.tw/blog/2016/08/25/linux-some-common-security-setting</id>
+    <content type="html"><![CDATA[<h2>列幾個基本款常見的一些設定</h2>
+
+<h2>fail2ban</h2>
+
+<figure class='code'><figcaption><span>fail2ban基本設定</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo apt-get install fail2ban
+</span><span class='line'>
+</span><span class='line'><span class="c"># 保留原始conf檔，把設定都寫在.local</span>
+</span><span class='line'><span class="nv">$ </span>sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+</span><span class='line'><span class="nv">$ </span>vim /etc/fail2ban/jail.local
+</span><span class='line'><span class="c"># 將enabled改成true</span>
+</span><span class='line'>  <span class="o">[</span>DEFAULT<span class="o">]</span>
+</span><span class='line'>    <span class="nv">ignoreip</span> <span class="o">=</span> 127.0.0.1/8
+</span><span class='line'>    <span class="nv">bantime</span>  <span class="o">=</span> 600
+</span><span class='line'>    <span class="nv">findtime</span> <span class="o">=</span> 600
+</span><span class='line'>    <span class="nv">maxretry</span> <span class="o">=</span> 5
+</span><span class='line'>    <span class="nv">backend</span>  <span class="o">=</span> auto
+</span><span class='line'>    <span class="nv">enabled</span> <span class="o">=</span> <span class="nb">true</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># 啟動</span>
+</span><span class='line'><span class="nv">$ </span>sudo service fail2ban start
+</span><span class='line'>
+</span><span class='line'><span class="c"># 看目前狀態，目前有一個被ban</span>
+</span><span class='line'><span class="nv">$ </span>sudo fail2ban-client status
+</span><span class='line'>Status
+</span><span class='line'><span class="p">|</span>- Number of jail:      1
+</span><span class='line'><span class="sb">`</span>- Jail list:   sshd
+</span><span class='line'>
+</span><span class='line'><span class="c"># detail</span>
+</span><span class='line'><span class="nv">$ </span>sudo fail2ban-client status sshd
+</span><span class='line'>Status <span class="k">for</span> the jail: sshd
+</span><span class='line'><span class="p">|</span>- Filter
+</span><span class='line'><span class="p">|</span>  <span class="p">|</span>- Currently failed: 1
+</span><span class='line'><span class="p">|</span>  <span class="p">|</span>- Total failed:     6
+</span><span class='line'><span class="p">|</span>  <span class="sb">`</span>- File list:        /var/log/auth.log
+</span><span class='line'><span class="sb">`</span>- Actions
+</span><span class='line'>   <span class="p">|</span>- Currently banned: 1
+</span><span class='line'>   <span class="p">|</span>- Total banned:     1
+</span><span class='line'>   <span class="sb">`</span>- Banned IP list:   111.248.10.10
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>ssh port更換到別的port</h2>
+
+<figure class='code'><figcaption><span>ssh port更換到別的port</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo vim /etc/ssh/sshd_config
+</span><span class='line'>Port 1968
+</span><span class='line'><span class="nv">$ </span>sudo service sshd restart
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>設定iptables</h2>
+
+<h4>用來過濾該網路封包是否能進出server，預設都是開啟的，若是沒有外部防火牆的話還蠻危險的</h4>
+
+<figure class='code'><figcaption><span>ssh port更換到別的port</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">### clear tables</span>
+</span><span class='line'>iptables --flush
+</span><span class='line'>iptables --delete-chain
+</span><span class='line'>iptables --table mangle --flush
+</span><span class='line'>iptables --table mangle --delete-chain
+</span><span class='line'>
+</span><span class='line'><span class="c">### default policies</span>
+</span><span class='line'>iptables --policy INPUT   DROP
+</span><span class='line'>iptables --policy OUTPUT  DROP
+</span><span class='line'>iptables --policy FORWARD DROP
+</span><span class='line'>
+</span><span class='line'><span class="c">### loopback</span>
+</span><span class='line'>iptables --append INPUT  --in-interface lo --jump ACCEPT
+</span><span class='line'>iptables --append OUTPUT --out-interface lo --jump ACCEPT
+</span><span class='line'>
+</span><span class='line'><span class="c">### existing connections</span>
+</span><span class='line'>iptables --append INPUT  --match conntrack --ctstate ESTABLISHED,RELATED --jump ACCEPT
+</span><span class='line'>iptables --append OUTPUT --match conntrack --ctstate ESTABLISHED,RELATED --jump ACCEPT
+</span><span class='line'>
+</span><span class='line'><span class="c">### trashlog chain</span>
+</span><span class='line'>iptables --new-chain trashlog
+</span><span class='line'>iptables --append trashlog --jump LOG --log-level notice --log-prefix <span class="s2">&quot;trashlog: &quot;</span>
+</span><span class='line'>iptables --append trashlog --jump DROP
+</span><span class='line'>
+</span><span class='line'><span class="c">### INPUT</span>
+</span><span class='line'>iptables --append INPUT  --protocol tcp --dport <span class="m">22</span> --match conntrack --ctstate NEW --jump ACCEPT
+</span><span class='line'>iptables --append INPUT  --protocol tcp --dport <span class="m">80</span> --match conntrack --ctstate NEW --jump ACCEPT
+</span><span class='line'>iptables --append INPUT  --protocol tcp --dport <span class="m">443</span> --match conntrack --ctstate NEW --jump ACCEPT
+</span><span class='line'>
+</span><span class='line'><span class="c">### OUTPUT</span>
+</span><span class='line'>iptables --append OUTPUT --jump ACCEPT
+</span><span class='line'>
+</span><span class='line'>...
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="c"># 其他客製化設定可參考</span>
+</span><span class='line'><span class="c"># https://gist.github.com/virtualstaticvoid/1024546</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Logrotate.conf</h2>
+
+<h4>OS層的log大多紀錄在/var/log/底下，而預設開啟logrotate</h4>
+
+<h4>調整/etc/logrotate.conf的自動rotate，把時間拉長或是不使用rotate</h4>
+
+<ul>
+<li>syslog 系統日誌</li>
+<li>dpkg.log 軟體安裝及更新紀錄</li>
+<li>auth.log 身份確認相關紀錄(使用sudo)</li>
+</ul>
+
+
+<figure class='code'><figcaption><span>/etc/logrotate.conf</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># (略)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>/etc/logrotate.d</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># (略)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>wtmp user登入次數及使用時間紀錄</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>last
+</span><span class='line'><span class="nv">$ </span>last -f /var/log/wtmp
+</span><span class='line'>bob      pts/1        1.1.1.1   Tue Aug <span class="m">23</span> 13:22   still logged in
+</span><span class='line'>bob      pts/1        1.1.1.1   Sun Aug <span class="m">14</span> 06:34 - 06:45  <span class="o">(</span>00:10<span class="o">)</span>
+</span><span class='line'>bob      pts/0        1.1.1.1   Sun Aug <span class="m">14</span> 05:44 - 08:45  <span class="o">(</span>03:00<span class="o">)</span>
+</span><span class='line'>bob      pts/0        1.1.1.1   Sat Aug  <span class="m">6</span> 13:14 - 05:44 <span class="o">(</span>7+16:29<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>wtmp user登入失敗紀錄</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo lastb
+</span><span class='line'><span class="nv">$ </span>last -f /var/log/btmp
+</span><span class='line'>bob      pts/1        1.1.1.1   Tue Aug <span class="m">23</span> 13:22   still logged in
+</span><span class='line'>bob      pts/1        1.1.1.1   Sun Aug <span class="m">14</span> 06:34 - 06:45  <span class="o">(</span>00:10<span class="o">)</span>
+</span><span class='line'>bob      pts/0        1.1.1.1   Sun Aug <span class="m">14</span> 05:44 - 08:45  <span class="o">(</span>03:00<span class="o">)</span>
+</span><span class='line'>bob      pts/0        1.1.1.1   Sat Aug  <span class="m">6</span> 13:14 - 05:44 <span class="o">(</span>7+16:29<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>關閉root ssh登入</h2>
+
+<figure class='code'><figcaption><span>/etc/ssh/sshd_config</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># Authentication:</span>
+</span><span class='line'>LoginGraceTime 120
+</span><span class='line'>PermitRootLogin prohibit-password
+</span><span class='line'><span class="c"># 新版本ssh root登入預設不能使用密碼登入，僅可用key(有設定的話)</span>
+</span><span class='line'><span class="c"># 也可以直接改成 PermitRootLogin no 直接擋掉</span>
+</span><span class='line'>StrictModes yes
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Reference:</p>
+
+<p><a href="https://blog.camel2243.com/2016/02/29/ubuntu-fail2ban-%E9%98%B2%E6%AD%A2-ssh-%E6%9A%B4%E5%8A%9B%E5%98%97%E8%A9%A6%E5%AF%86%E7%A2%BC/">https://blog.camel2243.com/2016/02/29/ubuntu-fail2ban-%E9%98%B2%E6%AD%A2-ssh-%E6%9A%B4%E5%8A%9B%E5%98%97%E8%A9%A6%E5%AF%86%E7%A2%BC/</a></p>
+
+<p><a href="http://www.vixual.net/blog/archives/252">http://www.vixual.net/blog/archives/252</a></p>
+
+<p><a href="http://yuanann.pixnet.net/blog/post/16610463-linux-%3Assh-%E6%9B%B4%E6%94%B9%E9%A0%90%E8%A8%ADport%E7%9A%84%E6%96%B9%E6%B3%95">http://yuanann.pixnet.net/blog/post/16610463-linux-%3Assh-%E6%9B%B4%E6%94%B9%E9%A0%90%E8%A8%ADport%E7%9A%84%E6%96%B9%E6%B3%95</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[[Ubuntu] 自行簽署的SSL憑證及Nginx設定]]></title>
@@ -988,8 +1246,8 @@
 <h5>帳號以中華電信為例</h5>
 
 <ul>
-<li><a href="&#109;&#97;&#x69;&#108;&#x74;&#x6f;&#58;&#120;&#x78;&#x78;&#x78;&#x78;&#120;&#120;&#120;&#64;&#104;&#105;&#x6e;&#x65;&#x74;&#46;&#110;&#x65;&#116;">&#x78;&#x78;&#120;&#x78;&#120;&#120;&#x78;&#x78;&#x40;&#104;&#105;&#110;&#101;&#x74;&#46;&#110;&#101;&#x74;</a>        取得動態IP (原有帳號格式)</li>
-<li><a href="&#109;&#x61;&#x69;&#x6c;&#x74;&#111;&#58;&#120;&#x78;&#120;&#120;&#120;&#120;&#120;&#120;&#64;&#x69;&#112;&#x2e;&#x68;&#x69;&#110;&#x65;&#116;&#x2e;&#x6e;&#x65;&#x74;">&#x78;&#x78;&#120;&#120;&#120;&#120;&#x78;&#x78;&#64;&#x69;&#112;&#x2e;&#x68;&#105;&#x6e;&#x65;&#116;&#x2e;&#x6e;&#101;&#116;</a>     取得固定IP  僅限一台電腦使用</li>
+<li><a href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#111;&#x3a;&#120;&#120;&#120;&#120;&#120;&#120;&#120;&#x78;&#x40;&#x68;&#105;&#x6e;&#x65;&#116;&#x2e;&#x6e;&#x65;&#116;">&#x78;&#120;&#x78;&#x78;&#x78;&#x78;&#120;&#120;&#64;&#x68;&#x69;&#x6e;&#x65;&#x74;&#x2e;&#x6e;&#x65;&#x74;</a>        取得動態IP (原有帳號格式)</li>
+<li><a href="&#109;&#97;&#105;&#x6c;&#x74;&#111;&#58;&#x78;&#120;&#120;&#120;&#x78;&#120;&#x78;&#x78;&#x40;&#105;&#112;&#x2e;&#104;&#105;&#x6e;&#101;&#116;&#46;&#x6e;&#x65;&#x74;">&#120;&#x78;&#120;&#120;&#x78;&#120;&#x78;&#120;&#64;&#105;&#x70;&#46;&#104;&#x69;&#110;&#101;&#116;&#x2e;&#110;&#101;&#116;</a>     取得固定IP  僅限一台電腦使用</li>
 </ul>
 
 
@@ -2170,86 +2428,6 @@ RVM (Ruby Version Manager):Ruby版本管理工具，便於切換不同版本</p>
 
 <p><a href="http://www.computersnyou.com/2025/2013/06/install-command-line-tools-in-osx-10-9-mavericks-how-to/">http://www.computersnyou.com/2025/2013/06/install-command-line-tools-in-osx-10-9-mavericks-how-to/</a>
 <a href="http://www.slideshare.net/marsz330/ruby-on-rails-for-mac">http://www.slideshare.net/marsz330/ruby-on-rails-for-mac</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[[JavaScript] 中斷事件或動作的觸發]]></title>
-    <link href="http://blog.poyi.tw/blog/2014/01/13/javascript-triggered-interrupt-event-or-action/"/>
-    <updated>2014-01-13T14:00:00+08:00</updated>
-    <id>http://blog.poyi.tw/blog/2014/01/13/javascript-triggered-interrupt-event-or-action</id>
-    <content type="html"><![CDATA[<h1>bubble up 冒泡</h1>
-
-<p>當底層的元件被觸發時，會將所屬的父元件會連帶被觸發 - 多層觸發
-而要處理這問題通常會用到 stopPropagation() 或 preventDefault()</p>
-
-<h2>stopPropagation()</h2>
-
-<p>停止向上層bubble up，但仍然會觸發browser
-看例子比較快 <a href="http://jsfiddle.net/dA6R3/1/">http://jsfiddle.net/dA6R3/1/</a></p>
-
-<figure class='code'><figcaption><span>加入event.stopPropagation(); 當點擊下去時，就不會向上觸發其他動作</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;p&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;a&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
-</span><span class='line'><span class="nt">&lt;/div&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;script&gt;</span>
-</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.p&quot;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">){</span>
-</span><span class='line'>    <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;p 外&quot;</span><span class="p">);</span>
-</span><span class='line'><span class="p">});</span>
-</span><span class='line'>
-</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.a&quot;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">){</span>
-</span><span class='line'>    <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;a 內&quot;</span><span class="p">);</span>
-</span><span class='line'>    <span class="nx">event</span><span class="p">.</span><span class="nx">stopPropagation</span><span class="p">();</span>
-</span><span class='line'><span class="p">});</span>
-</span><span class='line'><span class="nt">&lt;/script&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>preventDefault()</h2>
-
-<p>會將預設的動作停掉不讓它執行，不會觸發browser
-看例子比較快 <a href="http://jsfiddle.net/88dcF/1/">http://jsfiddle.net/88dcF/1/</a></p>
-
-<figure class='code'><figcaption><span>加入event.preventDefault(); 當點擊下去時，就不會執行預設動作(連到GOOGLE)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://www.google.com&quot;</span><span class="nt">&gt;</span>go to google<span class="nt">&lt;/a&gt;</span>
-</span><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;check&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;script&gt;</span>
-</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
-</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;&lt;div&gt;&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;Ya&quot;</span><span class="p">).</span><span class="nx">appendTo</span><span class="p">(</span><span class="s2">&quot;#check&quot;</span><span class="p">);</span>
-</span><span class='line'><span class="p">});</span>
-</span><span class='line'><span class="nt">&lt;/script&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Reference:</p>
-
-<p><a href="http://www.neoease.com/stoppropagation-and-preventdefault-and-return-false/">http://www.neoease.com/stoppropagation-and-preventdefault-and-return-false/</a></p>
-
-<p><a href="http://yiyingloveart.blogspot.tw/2013/08/eventpreventdefaultreturn-false.html">http://yiyingloveart.blogspot.tw/2013/08/eventpreventdefaultreturn-false.html</a></p>
 ]]></content>
   </entry>
   

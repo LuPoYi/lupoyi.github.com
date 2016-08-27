@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://blog.poyi.tw/blog/2016/08/25/linux-some-common-security-setting/</loc>
+    <lastmod>2016-08-25T20:54:54+08:00</lastmod>
+  </url>
+  <url>
     <loc>http://blog.poyi.tw/blog/2016/07/14/ssl-certificate-nginx-ubuntu-config/</loc>
     <lastmod>2016-07-14T20:00:55+08:00</lastmod>
   </url>
@@ -452,6 +456,33 @@
   </url>
   <url>
     <loc>http://blog.poyi.tw/blog/categories/nginx/</loc>
+  </url>
+  <url>
+    <loc>http://blog.poyi.tw/blog/categories/linux/</loc>
+  </url>
+  <url>
+    <loc>http://blog.poyi.tw/blog/categories/security/</loc>
+  </url>
+  <url>
+    <loc>http://blog.poyi.tw/blog/categories/fail2ban/</loc>
+  </url>
+  <url>
+    <loc>http://blog.poyi.tw/posts/2/</loc>
+  </url>
+  <url>
+    <loc>http://blog.poyi.tw/posts/3/</loc>
+  </url>
+  <url>
+    <loc>http://blog.poyi.tw/posts/4/</loc>
+  </url>
+  <url>
+    <loc>http://blog.poyi.tw/posts/5/</loc>
+  </url>
+  <url>
+    <loc>http://blog.poyi.tw/posts/6/</loc>
+  </url>
+  <url>
+    <loc>http://blog.poyi.tw/posts/7/</loc>
   </url>
   <url>
     <loc>http://blog.poyi.tw/about/weight/index.html</loc>
