@@ -587,7 +587,9 @@ $ sudo apt-get &hellip;">
 <p>同步所有交易</p>
 
 <figure class='code'><figcaption><span>C:\</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>geth --rpc
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># --cache=看你想分配多少RAM來sync。預設只有16MB</span>
+</span><span class='line'>geth --rpc --cache<span class="o">=</span>8192
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -699,7 +701,7 @@ $ sudo apt-get &hellip;">
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='bat'><span class='line'><span class="k">echo</span> <span class="k">on</span>
 </span><span class='line'>E:
-</span><span class='line'>geth --rpc
+</span><span class='line'>geth --rpc --cache<span class="o">=</span><span class="m">8192</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -1594,8 +1596,8 @@ $ sudo apt-get &hellip;">
 <h5>帳號以中華電信為例</h5>
 
 <ul>
-<li><a href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#111;&#x3a;&#120;&#120;&#120;&#120;&#120;&#120;&#120;&#x78;&#x40;&#x68;&#105;&#x6e;&#x65;&#116;&#x2e;&#x6e;&#x65;&#116;">&#x78;&#120;&#x78;&#x78;&#x78;&#x78;&#120;&#120;&#64;&#x68;&#x69;&#x6e;&#x65;&#x74;&#x2e;&#x6e;&#x65;&#x74;</a>        取得動態IP (原有帳號格式)</li>
-<li><a href="&#109;&#97;&#105;&#x6c;&#x74;&#111;&#58;&#x78;&#120;&#120;&#120;&#x78;&#120;&#x78;&#x78;&#x40;&#105;&#112;&#x2e;&#104;&#105;&#x6e;&#101;&#116;&#46;&#x6e;&#x65;&#x74;">&#120;&#x78;&#120;&#120;&#x78;&#120;&#x78;&#120;&#64;&#105;&#x70;&#46;&#104;&#x69;&#110;&#101;&#116;&#x2e;&#110;&#101;&#116;</a>     取得固定IP  僅限一台電腦使用</li>
+<li><a href="&#109;&#97;&#x69;&#x6c;&#x74;&#111;&#58;&#120;&#120;&#120;&#120;&#x78;&#x78;&#120;&#x78;&#x40;&#x68;&#105;&#x6e;&#101;&#116;&#x2e;&#110;&#x65;&#116;">&#x78;&#x78;&#120;&#x78;&#x78;&#120;&#x78;&#x78;&#64;&#104;&#x69;&#110;&#101;&#x74;&#46;&#110;&#x65;&#116;</a>        取得動態IP (原有帳號格式)</li>
+<li><a href="&#x6d;&#97;&#x69;&#108;&#x74;&#x6f;&#58;&#x78;&#x78;&#x78;&#120;&#120;&#x78;&#x78;&#120;&#x40;&#105;&#x70;&#x2e;&#x68;&#x69;&#x6e;&#101;&#116;&#46;&#110;&#x65;&#116;">&#x78;&#x78;&#120;&#120;&#x78;&#x78;&#x78;&#120;&#64;&#x69;&#x70;&#x2e;&#104;&#x69;&#110;&#x65;&#x74;&#46;&#110;&#x65;&#x74;</a>     取得固定IP  僅限一台電腦使用</li>
 </ul>
 
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: dwarfpool | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/dwarfpool/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2016-08-27T16:57:11+08:00</updated>
+  <updated>2016-08-27T20:24:52+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -32,9 +32,13 @@
 </code></pre>
 
 <p>同步所有交易
-<code>bash C:\
-geth --rpc
-</code>
+<figure class='code'><figcaption><span>C:\</p></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;h1&gt;<span class="p">&amp;</span>ndash<span class="p">;</span><span class="nv">cache</span><span class="o">=</span>看你想分配多少RAM來sync。預設只有16MB&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;geth <span class="p">&amp;</span>ndash<span class="p">;</span>rpc <span class="p">&amp;</span>ndash<span class="p">;</span><span class="nv">cache</span><span class="o">=</span>8192
+</span></code></pre></td></tr></table></div></figure>
 // 第一次似乎可以用geth &ndash;rpc &ndash;fast來快速sync完整node(沒試過)</p>
 
 <h2>2. 安裝mining軟體</h2>
@@ -117,7 +121,7 @@ ethminer -F asia1.nanopool.org:8888/0xb2944f316e14887bce4b5fae1c66ac78ba7c9123/b
 
 <pre><code class="bat ethereum_sync.bat">echo on
 E:
-geth --rpc
+geth --rpc --cache=8192
 </code></pre>
 
 <p>sync會吃網路流量，圖中最下面的 #1401468 就是指我這台目前sync到這個block</p>
