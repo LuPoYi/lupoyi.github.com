@@ -4,7 +4,7 @@
   <title><![CDATA[Category: dwarfpool | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/dwarfpool/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2016-08-27T20:24:52+08:00</updated>
+  <updated>2016-09-03T15:31:21+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -88,7 +88,7 @@ ethminer.exe http://asia1.nanopool.org:8888/YOUR_WALLET_ADDRESS/YOUR_WORKER_NAME
 
 <p>nanopool一天會結算四次，最少要有0.1 Eth才會發transaction到你的wallet</p>
 
-<p>用本機下geth指令查你的錢包資訊</p>
+<p>可以在本機下geth指令查你的錢包資訊</p>
 
 <pre><code class="bash C:\">geth attach
 &gt; eth.coinbase
@@ -105,7 +105,7 @@ ethminer.exe http://asia1.nanopool.org:8888/YOUR_WALLET_ADDRESS/YOUR_WORKER_NAME
 
 <h2>把指令包成.bat批次檔</h2>
 
-<p>因為需要分別開mining, sync以及console三個cmd並執行不同指令，所以我把指令包成.bat放桌面，或是拿來排程執行都ok</p>
+<p>因為需要分別開mining, sync以及console三個cmd並執行不同指令，所以我把指令包成.bat放桌面一鍵執行，或是拿來排程執行也ok</p>
 
 <pre><code class="bat ethereum_mining.bat">echo on
 E:
@@ -117,7 +117,8 @@ ethminer -F asia1.nanopool.org:8888/0xb2944f316e14887bce4b5fae1c66ac78ba7c9123/b
 
 <p><a href="http://blog.poyi.tw/images/poyi/ethereum_mining.jpg" target="_blank"><img src="http://blog.poyi.tw/images/poyi/ethereum_mining.jpg" title="image" alt="images"></a></p>
 
-<p><br></p>
+<hr>
+
 
 <pre><code class="bat ethereum_sync.bat">echo on
 E:
@@ -128,7 +129,8 @@ geth --rpc --cache=8192
 
 <p><a href="http://blog.poyi.tw/images/poyi/ethereum_sync.jpg" target="_blank"><img src="http://blog.poyi.tw/images/poyi/ethereum_sync.jpg" title="image" alt="images"></a></p>
 
-<p><br></p>
+<hr>
+
 
 <pre><code class="bat ethereum_console.bat">echo on
 E:
@@ -139,11 +141,21 @@ geth attach
 
 <p><a href="http://blog.poyi.tw/images/poyi/ethereum_console.jpg" target="_blank"><img src="http://blog.poyi.tw/images/poyi/ethereum_console.jpg" title="image" alt="images"></a></p>
 
+<hr>
+
+
+<pre><code class="bash geth指令整理">geth upgradedb
+geth removedb # 整個blockchain會被清掉
+geth --rpc --cache=8192 # sync
+</code></pre>
+
 <p>Reference:</p>
 
 <p><a href="https://www.cryptocompare.com/mining/guides/how-to-mine-ethereum/">https://www.cryptocompare.com/mining/guides/how-to-mine-ethereum/</a></p>
 
 <p><a href="http://nanopool.org">http://nanopool.org</a></p>
+
+<p><a href="https://github.com/ethereum/go-ethereum/wiki/Backup-&amp;-restore">https://github.com/ethereum/go-ethereum/wiki/Backup-&amp;-restore</a></p>
 ]]></content>
   </entry>
   

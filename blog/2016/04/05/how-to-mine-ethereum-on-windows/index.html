@@ -29,6 +29,7 @@ geth account new 同步所有交易 C:\1
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <script src="/javascripts/custom.js" type="text/javascript"></script>
   
 
   <link href="/atom.xml" rel="alternate" title="Bob 學習筆記" type="application/atom+xml">
@@ -212,7 +213,7 @@ geth account new 同步所有交易 C:\1
 
 <p>nanopool一天會結算四次，最少要有0.1 Eth才會發transaction到你的wallet</p>
 
-<p>用本機下geth指令查你的錢包資訊</p>
+<p>可以在本機下geth指令查你的錢包資訊</p>
 
 <figure class='code'><figcaption><span>C:\</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -237,7 +238,7 @@ geth account new 同步所有交易 C:\1
 
 <h2>把指令包成.bat批次檔</h2>
 
-<p>因為需要分別開mining, sync以及console三個cmd並執行不同指令，所以我把指令包成.bat放桌面，或是拿來排程執行都ok</p>
+<p>因為需要分別開mining, sync以及console三個cmd並執行不同指令，所以我把指令包成.bat放桌面一鍵執行，或是拿來排程執行也ok</p>
 
 <figure class='code'><figcaption><span>ethereum_mining.bat</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -254,7 +255,10 @@ geth account new 同步所有交易 C:\1
 
 <p><a href="/images/poyi/ethereum_mining.jpg" target="_blank"><img src="/images/poyi/ethereum_mining.jpg" title="image" alt="images"></a></p>
 
-<p><br></p>
+<hr>
+
+
+
 
 <figure class='code'><figcaption><span>ethereum_sync.bat</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -269,7 +273,10 @@ geth account new 同步所有交易 C:\1
 
 <p><a href="/images/poyi/ethereum_sync.jpg" target="_blank"><img src="/images/poyi/ethereum_sync.jpg" title="image" alt="images"></a></p>
 
-<p><br></p>
+<hr>
+
+
+
 
 <figure class='code'><figcaption><span>ethereum_console.bat</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -284,11 +291,27 @@ geth account new 同步所有交易 C:\1
 
 <p><a href="/images/poyi/ethereum_console.jpg" target="_blank"><img src="/images/poyi/ethereum_console.jpg" title="image" alt="images"></a></p>
 
+<hr>
+
+
+
+
+<figure class='code'><figcaption><span>geth指令整理</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>geth upgradedb
+</span><span class='line'>geth removedb <span class="c"># 整個blockchain會被清掉</span>
+</span><span class='line'>geth --rpc --cache<span class="o">=</span><span class="m">8192</span> <span class="c"># sync</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
 <p>Reference:</p>
 
 <p><a href="https://www.cryptocompare.com/mining/guides/how-to-mine-ethereum/">https://www.cryptocompare.com/mining/guides/how-to-mine-ethereum/</a></p>
 
 <p><a href="http://nanopool.org">http://nanopool.org</a></p>
+
+<p><a href="https://github.com/ethereum/go-ethereum/wiki/Backup-&amp;-restore">https://github.com/ethereum/go-ethereum/wiki/Backup-&amp;-restore</a></p>
 </div>
 
 
