@@ -242,7 +242,9 @@ $ df -h 查詢系統資訊 &hellip;">
 
 
 <figure class='code'><figcaption><span>/etc/network/interfaces</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>route add default gw 192.168.1.1 <span class="c"># gateway</span>
+</span><span class='line'><span class="nv">$ </span>sudo ifconfig eth0 down <span class="o">&amp;&amp;</span> sudo ifconfig eth0 up
 </span></code></pre></td></tr></table></div></figure>
 
 

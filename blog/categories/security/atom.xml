@@ -4,7 +4,7 @@
   <title><![CDATA[Category: security | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/security/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2016-09-17T15:44:35+08:00</updated>
+  <updated>2016-09-17T16:24:35+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -20,7 +20,23 @@
     <id>http://blog.poyi.tw/blog/2016/08/25/linux-some-common-security-setting</id>
     <content type="html"><![CDATA[<h2>列幾個基本款常見的一些設定</h2>
 
-<h2>fail2ban</h2>
+<h2>ssh port更換到別的port</h2>
+
+<pre><code class="bash ssh port更換到別的port">$ sudo vim /etc/ssh/sshd_config
+Port 1968
+$ sudo service sshd restart
+</code></pre>
+
+<h2>開始自動安全性更新</h2>
+
+<pre><code> $ sudo apt-get install unattended-upgrades
+ $ sudo dpkg-reconfigure -plow unattended-upgrades
+ $ sudo vim /etc/apt/apt.conf.d/50unattended-upgrades
+</code></pre>
+
+<h2>ssh 登入盡量用 key-exchange 方式</h2>
+
+<h2>fail2ban - 自動ban掉多次嘗試登入者</h2>
 
 <pre><code class="bash fail2ban基本設定">$ sudo apt-get install fail2ban
 
@@ -56,13 +72,6 @@ Status for the jail: sshd
    |- Currently banned: 1
    |- Total banned:     1
    `- Banned IP list:   111.248.10.10
-</code></pre>
-
-<h2>ssh port更換到別的port</h2>
-
-<pre><code class="bash ssh port更換到別的port">$ sudo vim /etc/ssh/sshd_config
-Port 1968
-$ sudo service sshd restart
 </code></pre>
 
 <h2>設定iptables</h2>
@@ -160,6 +169,8 @@ StrictModes yes
 <p><a href="http://www.vixual.net/blog/archives/252">http://www.vixual.net/blog/archives/252</a></p>
 
 <p><a href="http://yuanann.pixnet.net/blog/post/16610463-linux-%3Assh-%E6%9B%B4%E6%94%B9%E9%A0%90%E8%A8%ADport%E7%9A%84%E6%96%B9%E6%B3%95">http://yuanann.pixnet.net/blog/post/16610463-linux-%3Assh-%E6%9B%B4%E6%94%B9%E9%A0%90%E8%A8%ADport%E7%9A%84%E6%96%B9%E6%B3%95</a></p>
+
+<p><a href="https://help.ubuntu.com/lts/serverguide/automatic-updates.html">https://help.ubuntu.com/lts/serverguide/automatic-updates.html</a></p>
 ]]></content>
   </entry>
   
