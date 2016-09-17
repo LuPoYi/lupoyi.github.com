@@ -191,6 +191,9 @@
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>chmod <span class="o">[</span>權限角色<span class="o">]</span> <span class="o">[</span>權限動作<span class="o">]</span> <span class="o">[</span>存取權限<span class="o">]</span> 檔案/目錄
 </span><span class='line'>chmod <span class="o">[</span>ugoa<span class="o">]</span> <span class="o">[</span>+-<span class="o">=]</span> <span class="o">[</span>rwxX<span class="o">]</span> test.txt
 </span><span class='line'><span class="nv">$ </span>chmod ugo+r test.txt
@@ -201,28 +204,20 @@
 </span><span class='line'>也可用數字來調整權限
 </span><span class='line'>chmod <span class="o">[</span>u<span class="o">(</span>int<span class="o">)][</span>g<span class="o">(</span>int<span class="o">)][</span>o<span class="o">(</span>int<span class="o">)]</span> 檔案/目錄
 </span><span class='line'><span class="nv">$ </span>chmod <span class="m">777</span> test.txt
-</span><span class='line'>// <span class="nv">r</span><span class="o">=</span>4，w<span class="o">=</span>2，x<span class="o">=</span><span class="m">1</span>
+</span><span class='line'><span class="nv">r</span><span class="o">=</span>4，w<span class="o">=</span>2，x<span class="o">=</span><span class="m">1</span>
+</span><span class='line'>-rwx-r--r--<span class="o">(</span>10個參數，第一個無關chmod<span class="o">)</span>
+</span><span class='line'>2~4: user, 5~7: group, 8~10: others
+</span><span class='line'>755代表 rwxr-xr-x
 </span></code></pre></td></tr></table></div></figure>
 
 
+<p>Reference:</p>
 
+<p><a href="http://www.pcnet.idv.tw/pcnet/linux/linux_command.htm">http://www.pcnet.idv.tw/pcnet/linux/linux_command.htm</a></p>
 
-<figure class='code'><figcaption><span>grep</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>...
-</span></code></pre></td></tr></table></div></figure>
+<p><a href="http://tnrc.ncku.edu.tw/course/93/fedora_core2/page8/p8.htm">http://tnrc.ncku.edu.tw/course/93/fedora_core2/page8/p8.htm</a></p>
 
-
-
-
-<figure class='code'><figcaption><span>tail</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>...
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Reference:
-<a href="http://www.pcnet.idv.tw/pcnet/linux/linux_command.htm">http://www.pcnet.idv.tw/pcnet/linux/linux_command.htm</a>
-<a href="http://tnrc.ncku.edu.tw/course/93/fedora_core2/page8/p8.htm">http://tnrc.ncku.edu.tw/course/93/fedora_core2/page8/p8.htm</a>
-<a href="http://jdev.tw/blog/3599/linux-terminal-commands-and-shortcuts">http://jdev.tw/blog/3599/linux-terminal-commands-and-shortcuts</a></p>
+<p><a href="http://jdev.tw/blog/3599/linux-terminal-commands-and-shortcuts">http://jdev.tw/blog/3599/linux-terminal-commands-and-shortcuts</a></p>
 </div>
 
 
