@@ -4,7 +4,7 @@
   <title><![CDATA[Category: mining | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/mining/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2016-10-01T10:56:31+08:00</updated>
+  <updated>2016-10-01T11:02:46+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -32,13 +32,12 @@
 </code></pre>
 
 <p>同步所有交易
-<figure class='code'><figcaption><span>C:\</p></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;h1&gt;<span class="p">&amp;</span>ndash<span class="p">;</span><span class="nv">cache</span><span class="o">=</span>看你想分配多少RAM來sync。預設只有16MB&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;geth <span class="p">&amp;</span>ndash<span class="p">;</span>rpc <span class="p">&amp;</span>ndash<span class="p">;</span><span class="nv">cache</span><span class="o">=</span>8192
-</span></code></pre></td></tr></table></div></figure>
+&#8220;`bash C:\</p>
+
+<h1>&ndash;cache=看你想分配多少RAM來sync。預設只有16MB</h1>
+
+<p>geth &ndash;rpc &ndash;cache=8192
+&#8220;`
 // 第一次似乎可以用geth &ndash;rpc &ndash;fast來快速sync完整node(沒試過)</p>
 
 <h2>2. 安裝mining軟體</h2>
@@ -154,16 +153,18 @@ geth --rpc --cache=8192 # sync
 
 <p>挖礦及同步的資料預設都放在C底下</p>
 
-<p>C:\Users[你的使用者]\AppData\Local\Ethask 及 C:\Users[你的使用者]\AppData\Roaming\Ethereum</p>
-
 <ul>
-<li>把C:\Users[你的使用者]\AppData\Local\Ethask這個資料夾直接搬移到E:\ETH\Ethash</li>
-<li>開cmd下指令 &ldquo;mklink /D C:\Users[你的使用者]\AppData\Local\Ethask E:\ETH\Ethash</li>
+<li>C:\Users\Bob\AppData\Local\Ethask</li>
+<li><p>C:\Users\Bob\AppData\Roaming\Ethereum</p></li>
+<li><p>把C:\Users\Bob\AppData\Local\Ethask這個資料夾直接搬移到E:\ETH\Ethash</p></li>
+<li>開cmd下指令 &ldquo;mklink /D C:\Users\Bob\AppData\Local\Ethask E:\ETH\Ethash</li>
 <li>這樣就行了，另一個folder也比照辦理</li>
 </ul>
 
 
-<p><a href="http://blog.poyi.tw/images/poyi/ethereum_mklink.jpg" target="_blank"><img src="http://blog.poyi.tw/images/poyi/ethereum_mklink.jpg" title="image" alt="images"></a></p>
+<pre><code class="cmd cmd">C:\Users\Bob&gt; mklink /D C:\Users\Bob\AppData\Local\Ethash E:\ETH\Ethash
+已建立 C:\Users\Bob\AppData\Local\Ethash 的符號連結 &lt;&lt;===&gt;&gt; E:\ETH\Ethash
+</code></pre>
 
 <p>Reference:</p>
 
@@ -171,8 +172,9 @@ geth --rpc --cache=8192 # sync
 
 <p><a href="http://nanopool.org">http://nanopool.org</a></p>
 
-<p><a href="https://diaryofdennis.com/2016/06/11/how-to-move-and-change-your-ethereum-mining-ethash-dag-folder/">https://diaryofdennis.com/2016/06/11/how-to-move-and-change-your-ethereum-mining-ethash-dag-folder/</a>
-<a href="https://github.com/ethereum/go-ethereum/wiki/Backup-&amp;-restore">https://github.com/ethereum/go-ethereum/wiki/Backup-&amp;-restore</a></p>
+<p><a href="https://diaryofdennis.com/2016/06/11/how-to-move-and-change-your-ethereum-mining-ethash-dag-folder/">https://diaryofdennis.com/2016/06/11/how-to-move-and-change-your-ethereum-mining-ethash-dag-folder/</a></p>
+
+<p><a href="https://github.com/ethereum/go-ethereum/wiki/Backup-&amp;-restore">https://github.com/ethereum/go-ethereum/wiki/Backup-&amp;-restore</a></p>
 ]]></content>
   </entry>
   
