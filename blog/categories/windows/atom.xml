@@ -4,7 +4,7 @@
   <title><![CDATA[Category: windows | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/windows/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2016-09-19T12:52:35+08:00</updated>
+  <updated>2016-10-01T10:56:31+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -103,7 +103,9 @@ ethminer.exe http://asia1.nanopool.org:8888/YOUR_WALLET_ADDRESS/YOUR_WORKER_NAME
 
 <p>可以到<a href="https://www.etherchain.org/">Etherchain</a>看一下Recent blocks是不是已經sync到最新的block</p>
 
-<h2>把指令包成.bat批次檔</h2>
+<h2>後記</h2>
+
+<h3>把指令包成.bat批次檔</h3>
 
 <p>因為需要分別開mining, sync以及console三個cmd並執行不同指令，所以我把指令包成.bat放桌面一鍵執行，或是拿來排程執行也ok</p>
 
@@ -141,13 +143,27 @@ geth attach
 
 <p><a href="http://blog.poyi.tw/images/poyi/ethereum_console.jpg" target="_blank"><img src="http://blog.poyi.tw/images/poyi/ethereum_console.jpg" title="image" alt="images"></a></p>
 
-<hr>
-
+<h3>geth指令整理</h3>
 
 <pre><code class="bash geth指令整理">geth upgradedb
 geth removedb # 整個blockchain會被清掉
 geth --rpc --cache=8192 # sync
 </code></pre>
+
+<h3>將ETH所佔的C槽容量移到E槽</h3>
+
+<p>挖礦及同步的資料預設都放在C底下</p>
+
+<p>C:\Users[你的使用者]\AppData\Local\Ethask 及 C:\Users[你的使用者]\AppData\Roaming\Ethereum</p>
+
+<ul>
+<li>把C:\Users[你的使用者]\AppData\Local\Ethask這個資料夾直接搬移到E:\ETH\Ethash</li>
+<li>開cmd下指令 &ldquo;mklink /D C:\Users[你的使用者]\AppData\Local\Ethask E:\ETH\Ethash</li>
+<li>這樣就行了，另一個folder也比照辦理</li>
+</ul>
+
+
+<p><a href="http://blog.poyi.tw/images/poyi/ethereum_mklink.jpg" target="_blank"><img src="http://blog.poyi.tw/images/poyi/ethereum_mklink.jpg" title="image" alt="images"></a></p>
 
 <p>Reference:</p>
 
@@ -155,7 +171,8 @@ geth --rpc --cache=8192 # sync
 
 <p><a href="http://nanopool.org">http://nanopool.org</a></p>
 
-<p><a href="https://github.com/ethereum/go-ethereum/wiki/Backup-&amp;-restore">https://github.com/ethereum/go-ethereum/wiki/Backup-&amp;-restore</a></p>
+<p><a href="https://diaryofdennis.com/2016/06/11/how-to-move-and-change-your-ethereum-mining-ethash-dag-folder/">https://diaryofdennis.com/2016/06/11/how-to-move-and-change-your-ethereum-mining-ethash-dag-folder/</a>
+<a href="https://github.com/ethereum/go-ethereum/wiki/Backup-&amp;-restore">https://github.com/ethereum/go-ethereum/wiki/Backup-&amp;-restore</a></p>
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2016-09-19T12:52:35+08:00</updated>
+  <updated>2016-10-01T10:56:31+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -487,7 +487,9 @@
 
 <p>可以到<a href="https://www.etherchain.org/">Etherchain</a>看一下Recent blocks是不是已經sync到最新的block</p>
 
-<h2>把指令包成.bat批次檔</h2>
+<h2>後記</h2>
+
+<h3>把指令包成.bat批次檔</h3>
 
 <p>因為需要分別開mining, sync以及console三個cmd並執行不同指令，所以我把指令包成.bat放桌面一鍵執行，或是拿來排程執行也ok</p>
 
@@ -542,10 +544,7 @@
 
 <p><a href="http://blog.poyi.tw/images/poyi/ethereum_console.jpg" target="_blank"><img src="http://blog.poyi.tw/images/poyi/ethereum_console.jpg" title="image" alt="images"></a></p>
 
-<hr>
-
-
-
+<h3>geth指令整理</h3>
 
 <figure class='code'><figcaption><span>geth指令整理</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -556,13 +555,29 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
+<h3>將ETH所佔的C槽容量移到E槽</h3>
+
+<p>挖礦及同步的資料預設都放在C底下</p>
+
+<p>C:\Users[你的使用者]\AppData\Local\Ethask 及 C:\Users[你的使用者]\AppData\Roaming\Ethereum</p>
+
+<ul>
+<li>把C:\Users[你的使用者]\AppData\Local\Ethask這個資料夾直接搬移到E:\ETH\Ethash</li>
+<li>開cmd下指令 &ldquo;mklink /D C:\Users[你的使用者]\AppData\Local\Ethask E:\ETH\Ethash</li>
+<li>這樣就行了，另一個folder也比照辦理</li>
+</ul>
+
+
+<p><a href="http://blog.poyi.tw/images/poyi/ethereum_mklink.jpg" target="_blank"><img src="http://blog.poyi.tw/images/poyi/ethereum_mklink.jpg" title="image" alt="images"></a></p>
+
 <p>Reference:</p>
 
 <p><a href="https://www.cryptocompare.com/mining/guides/how-to-mine-ethereum/">https://www.cryptocompare.com/mining/guides/how-to-mine-ethereum/</a></p>
 
 <p><a href="http://nanopool.org">http://nanopool.org</a></p>
 
-<p><a href="https://github.com/ethereum/go-ethereum/wiki/Backup-&amp;-restore">https://github.com/ethereum/go-ethereum/wiki/Backup-&amp;-restore</a></p>
+<p><a href="https://diaryofdennis.com/2016/06/11/how-to-move-and-change-your-ethereum-mining-ethash-dag-folder/">https://diaryofdennis.com/2016/06/11/how-to-move-and-change-your-ethereum-mining-ethash-dag-folder/</a>
+<a href="https://github.com/ethereum/go-ethereum/wiki/Backup-&amp;-restore">https://github.com/ethereum/go-ethereum/wiki/Backup-&amp;-restore</a></p>
 ]]></content>
   </entry>
   
@@ -1287,8 +1302,8 @@
 <h5>帳號以中華電信為例</h5>
 
 <ul>
-<li><a href="&#109;&#97;&#105;&#x6c;&#116;&#111;&#x3a;&#120;&#120;&#x78;&#120;&#120;&#x78;&#x78;&#120;&#64;&#x68;&#105;&#110;&#101;&#x74;&#x2e;&#x6e;&#x65;&#116;">&#x78;&#x78;&#120;&#x78;&#120;&#x78;&#x78;&#x78;&#x40;&#x68;&#x69;&#110;&#101;&#x74;&#46;&#x6e;&#x65;&#116;</a>        取得動態IP (原有帳號格式)</li>
-<li><a href="&#109;&#x61;&#105;&#x6c;&#116;&#111;&#x3a;&#120;&#x78;&#120;&#x78;&#x78;&#120;&#x78;&#120;&#x40;&#105;&#112;&#46;&#104;&#x69;&#110;&#x65;&#x74;&#46;&#x6e;&#101;&#116;">&#120;&#120;&#x78;&#x78;&#x78;&#x78;&#120;&#x78;&#64;&#x69;&#x70;&#x2e;&#x68;&#105;&#110;&#x65;&#x74;&#46;&#110;&#101;&#x74;</a>     取得固定IP  僅限一台電腦使用</li>
+<li><a href="&#x6d;&#97;&#105;&#x6c;&#116;&#x6f;&#x3a;&#x78;&#x78;&#x78;&#120;&#120;&#120;&#x78;&#x78;&#x40;&#104;&#x69;&#110;&#x65;&#116;&#46;&#110;&#x65;&#116;">&#120;&#120;&#120;&#120;&#x78;&#120;&#120;&#x78;&#x40;&#x68;&#x69;&#110;&#101;&#116;&#x2e;&#x6e;&#x65;&#x74;</a>        取得動態IP (原有帳號格式)</li>
+<li><a href="&#x6d;&#97;&#105;&#108;&#116;&#111;&#x3a;&#x78;&#120;&#x78;&#120;&#x78;&#x78;&#120;&#120;&#64;&#x69;&#x70;&#46;&#x68;&#105;&#x6e;&#101;&#x74;&#46;&#110;&#x65;&#x74;">&#x78;&#120;&#x78;&#x78;&#120;&#x78;&#x78;&#120;&#x40;&#105;&#112;&#46;&#104;&#105;&#x6e;&#x65;&#116;&#x2e;&#x6e;&#x65;&#116;</a>     取得固定IP  僅限一台電腦使用</li>
 </ul>
 
 
