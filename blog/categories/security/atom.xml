@@ -4,7 +4,7 @@
   <title><![CDATA[Category: security | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/security/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2016-10-01T11:15:12+08:00</updated>
+  <updated>2016-10-04T18:22:40+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -29,7 +29,7 @@ $ sudo service sshd restart
 
 <h2>開始自動安全性更新</h2>
 
-<pre><code> $ sudo apt-get install unattended-upgrades
+<pre><code class="bash 開始自動安全性更新"> $ sudo apt-get install unattended-upgrades
  $ sudo dpkg-reconfigure -plow unattended-upgrades
  $ sudo vim /etc/apt/apt.conf.d/50unattended-upgrades
 </code></pre>
