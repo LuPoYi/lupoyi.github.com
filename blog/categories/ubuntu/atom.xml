@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ubuntu | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/ubuntu/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2016-10-19T19:45:32+08:00</updated>
+  <updated>2016-10-19T19:48:37+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -18,22 +18,7 @@
     <link href="http://blog.poyi.tw/blog/2016/10/19/my-linux-command/"/>
     <updated>2016-10-19T19:01:28+08:00</updated>
     <id>http://blog.poyi.tw/blog/2016/10/19/my-linux-command</id>
-    <content type="html"><![CDATA[<h3>稍微進階是對我來說啦…稍微整理一下應該記下來的指令</h3>
-
-<ul>
-<li>Ctrl + c : 終止正在執行的程式</li>
-<li><p>Ctrl + l : clear</p></li>
-<li><p>Ctrl + w : 刪除文字至上一個空白</p></li>
-<li>Ctrl + u : 刪除游標前</li>
-<li>Ctrl + k : 刪除游標後</li>
-<li>Ctrl + h : Backspace</li>
-<li><p>Ctrl + d : Del</p></li>
-<li><p>Ctrl + a : 游標移到最前面</p></li>
-<li>Ctrl + e : 游標移到最後面</li>
-<li>Ctrl + f : 往右移一個字元</li>
-<li>Ctrl + b : 往左移一個字元</li>
-</ul>
-
+    <content type="html"><![CDATA[<h4>稍微進階是對我來說啦</h4>
 
 <h2>grep</h2>
 
@@ -59,6 +44,21 @@ grep -E 'bob.*poyi|200.*poyi' abc.txt
 <h2>whereis</h2>
 
 <h2>which</h2>
+
+<ul>
+<li>Ctrl + c : 終止正在執行的程式</li>
+<li><p>Ctrl + l : clear</p></li>
+<li><p>Ctrl + w : 刪除文字至上一個空白</p></li>
+<li>Ctrl + u : 刪除游標前</li>
+<li>Ctrl + k : 刪除游標後</li>
+<li>Ctrl + h : Backspace</li>
+<li><p>Ctrl + d : Del</p></li>
+<li><p>Ctrl + a : 游標移到最前面</p></li>
+<li>Ctrl + e : 游標移到最後面</li>
+<li>Ctrl + f : 往右移一個字元</li>
+<li>Ctrl + b : 往左移一個字元</li>
+</ul>
+
 
 <p>Reference:</p>
 
