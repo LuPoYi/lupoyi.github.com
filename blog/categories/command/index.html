@@ -5,32 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>[ASP.NET] Linq 動態條件搜尋 - Bob 學習筆記</title>
+  <title>Category: command - Bob 學習筆記</title>
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="一般Linq在多種動態條件的組合時會顯得比較麻煩，要額外加很多if else判斷式來達成
-而「PredicateBuilder」可以解決這些麻煩，原理上是將where的條件獨立出來 1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-static &hellip;">
+  <meta name="description" content="Category: command">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -39,7 +18,7 @@ static &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.poyi.tw/blog/2013/09/29/aspnet-linq-dynamic-conditions/">
+  <link rel="canonical" href="http://blog.poyi.tw/blog/categories/command/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
    <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
@@ -119,158 +98,36 @@ static &hellip;">
   <div id="main">
     <div id="content">
       <div>
-<article class="hentry" role="article">
+<article role="article">
   
   <header>
-    
-      <h1 class="entry-title">[ASP.NET] Linq 動態條件搜尋</h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-29T08:10:00+08:00" pubdate data-updated="true"></time>
-        
-         | <a href="#disqus_thread">Comments</a>
-        
-      </p>
+    <h1 class="entry-title">Category: Command</h1>
     
   </header>
-
-
-<div class="entry-content"><p>一般Linq在多種動態條件的組合時會顯得比較麻煩，要額外加很多if else判斷式來達成
-而「PredicateBuilder」可以解決這些麻煩，原理上是將where的條件獨立出來</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-</pre></td><td class='code'><pre><code class='Console'><span class='line'><span class="go">static void linqPB()</span>
-</span><span class='line'><span class="go">    {</span>
-</span><span class='line'><span class="go">        var list = new List&lt;string&gt; { &quot;apple&quot;, &quot;bob&quot;, &quot;coco&quot;, &quot;durex&quot;, &quot;enter&quot;, &quot;fuck&quot;};</span>
-</span><span class='line'><span class="go">        var searchKeyword = new List&lt;string&gt; { &quot;o&quot;, &quot;e&quot; };</span>
-</span><span class='line'><span class="go">        var predicate = PredicateBuilder.False&lt;string&gt;();</span>
-</span><span class='line'>
-</span><span class='line'><span class="go">        foreach (var word in searchKeyword)</span>
-</span><span class='line'><span class="go">        {</span>
-</span><span class='line'><span class="go">            var temp = word;  // 避免參考到相同變數位址</span>
-</span><span class='line'><span class="go">            predicate = predicate.Or(p =&gt; p.Contains(temp));</span>
-</span><span class='line'><span class="go">        }</span>
-</span><span class='line'><span class="go">        var qry = list.Where(predicate.Compile());</span>
-</span><span class='line'>
-</span><span class='line'><span class="go">        foreach (var item in qry)</span>
-</span><span class='line'><span class="go">        {</span>
-</span><span class='line'><span class="go">            Console.WriteLine(item);</span>
-</span><span class='line'><span class="go">        }</span>
-</span><span class='line'><span class="go">        Console.Read();</span>
-</span><span class='line'><span class="go">    }</span>
-</span><span class='line'><span class="go">// result: apple bob coco durex enter</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>主要的重點如下，將條件放入xxx</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='Console'><span class='line'><span class="go">  var predicate = PredicateBuilder.False();  // 這邊的true/false會與下列的or做串接</span>
-</span><span class='line'><span class="go">  predicate = predicate.Or(p =&gt; p.name.Contains(xxx));</span>
-</span><span class='line'><span class="go">  predicate = predicate.Or(p =&gt; p.department.Contains (xxx));</span>
-</span><span class='line'><span class="go">  myDB.employee.Where (predicate);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Reference:
-要使用PredicateBuilder，需要加入參考: LinqKit.dll
-<a href="http://www.albahari.com/nutshell/predicatebuilder.aspx">http://www.albahari.com/nutshell/predicatebuilder.aspx</a> <br/>
-<a href="http://blog.sanc.idv.tw/2010/10/linq.html">http://blog.sanc.idv.tw/2010/10/linq.html</a>
-<a href="http://leaflet-t-h.blogspot.tw/2011/11/linq-predicatebuilder.html">http://leaflet-t-h.blogspot.tw/2011/11/linq-predicatebuilder.html</a></p>
-</div>
-
-
-  <footer>
-    <p class="meta">
-      
   
-
-<span class="byline author vcard">Posted by <span class="fn">Bob (PoYi)</span></span>
-
-      
-
-
-
-
-
+  <div id="blog-archives" class="category">
 
 
 
   
+  <h2>2016</h2>
+
+<article>
+  
+<h1><a href="/blog/2016/10/19/my-linux-command/">[Ubuntu] Linux 稍微進階的常用指令</a></h1>
+<time datetime="2016-10-19T19:01:28+08:00" pubdate><span class='month'>Oct</span> <span class='day'>19</span> <span class='year'>2016</span></time>
+
+<footer>
+  <span class="categories">posted in <a class='category' href='/blog/categories/command/'>command</a>, <a class='category' href='/blog/categories/linux/'>linux</a>, <a class='category' href='/blog/categories/ubuntu/'>ubuntu</a></span>
+</footer>
 
 
-<time datetime="2013-09-29T08:10:00+08:00" pubdate data-updated="true"></time>
-      
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/asp-dot-net/'>asp.net</a>, <a class='category' href='/blog/categories/linq/'>linq</a>, <a class='category' href='/blog/categories/predicatebuilder/'>predicatebuilder</a>
-  
-</span>
-
-
-    </p>
-    
-      <div class="sharing">
-  
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.poyi.tw/blog/2013/09/29/aspnet-linq-dynamic-conditions/" data-via="" data-counturl="http://blog.poyi.tw/blog/2013/09/29/aspnet-linq-dynamic-conditions/" >Tweet</a>
-  
-  
-  
-</div>
-
-    
-    <p class="meta">
-      
-        <a class="basic-alignment left" href="/blog/2013/09/23/aspnet-string-is-padded-with-zeros/" title="Previous Post: [C#] 字串補零">&laquo; [C#] 字串補零</a>
-      
-      
-        <a class="basic-alignment right" href="/blog/2013/09/30/aspnet-connect-to-sql-server/" title="Next Post: [ASP.NET] Connect to SQL Server">[ASP.NET] Connect to SQL Server &raquo;</a>
-      
-    </p>
-  </footer>
 </article>
 
-  <section>
-    <h1>Comments</h1>
-    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
-  </section>
+
+  
+</article>
 
 </div>
 
@@ -310,6 +167,10 @@ static &hellip;">
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/10/19/my-linux-command/">[Ubuntu] Linux 稍微進階的常用指令</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2016/08/25/linux-some-common-security-setting/">[Ubuntu] Linux 基本的安全設定</a>
@@ -367,10 +228,6 @@ static &hellip;">
         <a href="/blog/2015/04/12/ruby-basic-2/">[Ruby] 教學 - 基本使用介紹2</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2015/03/31/ruby-basic-1/">[Ruby] 教學 - 基本使用介紹</a>
-      </li>
-    
   </ul>
 </section>
 
@@ -396,10 +253,7 @@ static &hellip;">
       var disqus_shortname = 'blogpoyitw';
       
         
-        // var disqus_developer = 1;
-        var disqus_identifier = 'http://blog.poyi.tw/blog/2013/09/29/aspnet-linq-dynamic-conditions/';
-        var disqus_url = 'http://blog.poyi.tw/blog/2013/09/29/aspnet-linq-dynamic-conditions/';
-        var disqus_script = 'embed.js';
+        var disqus_script = 'count.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

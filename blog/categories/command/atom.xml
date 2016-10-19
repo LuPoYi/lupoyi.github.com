@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: command | Bob 學習筆記]]></title>
+  <link href="http://blog.poyi.tw/blog/categories/command/atom.xml" rel="self"/>
+  <link href="http://blog.poyi.tw/"/>
+  <updated>2016-10-19T19:43:47+08:00</updated>
+  <id>http://blog.poyi.tw/</id>
+  <author>
+    <name><![CDATA[Bob (PoYi)]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[[Ubuntu] Linux 稍微進階的常用指令]]></title>
+    <link href="http://blog.poyi.tw/blog/2016/10/19/my-linux-command/"/>
+    <updated>2016-10-19T19:01:28+08:00</updated>
+    <id>http://blog.poyi.tw/blog/2016/10/19/my-linux-command</id>
+    <content type="html"><![CDATA[<h3>稍微進階是對我來說啦…稍微整理一下應該記下來的指令</h3>
+
+<ul>
+<li>Ctrl + c : 終止正在執行的程式</li>
+<li><p>Ctrl + l : clear</p></li>
+<li><p>Ctrl + w : 刪除文字至上一個空白</p></li>
+<li>Ctrl + u : 刪除游標前</li>
+<li>Ctrl + k : 刪除游標後</li>
+<li>Ctrl + h : Backspace</li>
+<li><p>Ctrl + d : Del</p></li>
+<li><p>Ctrl + a : 游標移到最前面</p></li>
+<li>Ctrl + e : 游標移到最後面</li>
+<li>Ctrl + f : 往右移一個字元</li>
+<li>Ctrl + b : 往左移一個字元</li>
+</ul>
+
+
+<h2>grep</h2>
+
+<pre><code class="bash 找該目錄底下所有出現'bob'的檔案">grep -r 'bob' *
+</code></pre>
+
+<p><code>bash 找abc.txt內所有出現'bob'或'poyi'的內容 (| =&gt; OR)
+grep -E 'bob|poyi' abc.txt
+egrep 'bob|poyi' abc.txt
+</code></p>
+
+<p><code>bash 找abc.txt內所有出現'bob'及'poyi'的內容 (.* =&gt; AND)
+grep -E 'bob.*poyi|200.*poyi' abc.txt
+</code></p>
+
+<pre><code class="bash 找abc.txt內沒有出現'bob'的內容 (NOT)">grep -v 'bob' abc.txt
+</code></pre>
+
+<h2>find</h2>
+
+<h2>locate</h2>
+
+<h2>whereis</h2>
+
+<h2>which</h2>
+
+<p>Reference:</p>
+
+<p><a href="http://www.arthurtoday.com/2010/12/ubuntu-findlocatewhereiswhich.html">http://www.arthurtoday.com/2010/12/ubuntu-findlocatewhereiswhich.html</a></p>
+
+<p><a href="http://blog.jex.tw/blog/2013/11/26/grep/">http://blog.jex.tw/blog/2013/11/26/grep/</a></p>
+]]></content>
+  </entry>
+  
+</feed>
