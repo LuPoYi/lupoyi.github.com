@@ -4,7 +4,7 @@
   <title><![CDATA[Category: mining | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/mining/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2016-10-19T19:43:47+08:00</updated>
+  <updated>2016-10-19T19:45:32+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -32,12 +32,13 @@
 </code></pre>
 
 <p>同步所有交易
-&#8220;`bash C:\</p>
-
-<h1>&ndash;cache=看你想分配多少RAM來sync。預設只有16MB</h1>
-
-<p>geth &ndash;rpc &ndash;cache=8192
-&#8220;`
+<figure class='code'><figcaption><span>C:\</p></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;h1&gt;<span class="p">&amp;</span>ndash<span class="p">;</span><span class="nv">cache</span><span class="o">=</span>看你想分配多少RAM來sync。預設只有16MB&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;geth <span class="p">&amp;</span>ndash<span class="p">;</span>rpc <span class="p">&amp;</span>ndash<span class="p">;</span><span class="nv">cache</span><span class="o">=</span>8192
+</span></code></pre></td></tr></table></div></figure>
 // 第一次似乎可以用geth &ndash;rpc &ndash;fast來快速sync完整node(沒試過)</p>
 
 <h2>2. 安裝mining軟體</h2>
@@ -160,7 +161,7 @@ geth attach
 </ul>
 
 
-<pre><code class="cmd cmd">C:\Users\Bob&gt; mklink /D C:\Users\Bob\AppData\Local\Ethash E:\ETH\Ethash
+<pre><code class="bash cmd">C:\Users\Bob&gt; mklink /D C:\Users\Bob\AppData\Local\Ethash E:\ETH\Ethash
 已建立 C:\Users\Bob\AppData\Local\Ethash 的符號連結 &lt;&lt;===&gt;&gt; E:\ETH\Ethash
 </code></pre>
 

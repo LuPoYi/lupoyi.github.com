@@ -4,7 +4,7 @@
   <title><![CDATA[Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2016-10-01T10:56:31+08:00</updated>
+  <updated>2016-10-19T19:45:32+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -12,6 +12,74 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[[Ubuntu] Linux 稍微進階的常用指令]]></title>
+    <link href="http://blog.poyi.tw/blog/2016/10/19/my-linux-command/"/>
+    <updated>2016-10-19T19:01:28+08:00</updated>
+    <id>http://blog.poyi.tw/blog/2016/10/19/my-linux-command</id>
+    <content type="html"><![CDATA[<h3>稍微進階是對我來說啦…稍微整理一下應該記下來的指令</h3>
+
+<ul>
+<li>Ctrl + c : 終止正在執行的程式</li>
+<li><p>Ctrl + l : clear</p></li>
+<li><p>Ctrl + w : 刪除文字至上一個空白</p></li>
+<li>Ctrl + u : 刪除游標前</li>
+<li>Ctrl + k : 刪除游標後</li>
+<li>Ctrl + h : Backspace</li>
+<li><p>Ctrl + d : Del</p></li>
+<li><p>Ctrl + a : 游標移到最前面</p></li>
+<li>Ctrl + e : 游標移到最後面</li>
+<li>Ctrl + f : 往右移一個字元</li>
+<li>Ctrl + b : 往左移一個字元</li>
+</ul>
+
+
+<h2>grep</h2>
+
+<figure class='code'><figcaption><span>找該目錄底下所有出現&#8217;bob&#8217;的檔案</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>grep -r <span class="s1">&#39;bob&#39;</span> *
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>找abc.txt內所有出現&#8217;bob&#8217;或&#8217;poyi&#8217;的內容 (| => OR)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>grep -E <span class="s1">&#39;bob|poyi&#39;</span> abc.txt
+</span><span class='line'>egrep <span class="s1">&#39;bob|poyi&#39;</span> abc.txt
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>找abc.txt內所有出現&#8217;bob&#8217;及&#8217;poyi&#8217;的內容 (.* => AND)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>grep -E <span class="s1">&#39;bob.*poyi|200.*poyi&#39;</span> abc.txt
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>找abc.txt內沒有出現&#8217;bob&#8217;的內容 (NOT)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>grep -v <span class="s1">&#39;bob&#39;</span> abc.txt
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>find</h2>
+
+<h2>locate</h2>
+
+<h2>whereis</h2>
+
+<h2>which</h2>
+
+<p>Reference:</p>
+
+<p><a href="http://www.arthurtoday.com/2010/12/ubuntu-findlocatewhereiswhich.html">http://www.arthurtoday.com/2010/12/ubuntu-findlocatewhereiswhich.html</a></p>
+
+<p><a href="http://blog.jex.tw/blog/2013/11/26/grep/">http://blog.jex.tw/blog/2013/11/26/grep/</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[[Ubuntu] Linux 基本的安全設定]]></title>
@@ -33,7 +101,7 @@
 
 <h2>開始自動安全性更新</h2>
 
-<figure class='code'><figcaption><span>ssh port更換到別的port</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>開始自動安全性更新</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'> <span class="nv">$ </span>sudo apt-get install unattended-upgrades
@@ -487,9 +555,18 @@
 
 <p>可以到<a href="https://www.etherchain.org/">Etherchain</a>看一下Recent blocks是不是已經sync到最新的block</p>
 
-<h2>後記</h2>
+<figure class='code'><figcaption><span>geth指令整理</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>geth upgradedb
+</span><span class='line'>geth removedb <span class="c"># 整個blockchain會被清掉</span>
+</span><span class='line'>geth --rpc --cache<span class="o">=</span><span class="m">8192</span> <span class="c"># sync</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<h3>把指令包成.bat批次檔</h3>
+
+<h2>其他－把指令包成.bat批次檔</h2>
+
+<h3>ethereum_mining.bat</h3>
 
 <p>因為需要分別開mining, sync以及console三個cmd並執行不同指令，所以我把指令包成.bat放桌面一鍵執行，或是拿來排程執行也ok</p>
 
@@ -508,10 +585,7 @@
 
 <p><a href="http://blog.poyi.tw/images/poyi/ethereum_mining.jpg" target="_blank"><img src="http://blog.poyi.tw/images/poyi/ethereum_mining.jpg" title="image" alt="images"></a></p>
 
-<hr>
-
-
-
+<h3>ethereum_sync.bat</h3>
 
 <figure class='code'><figcaption><span>ethereum_sync.bat</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -526,10 +600,7 @@
 
 <p><a href="http://blog.poyi.tw/images/poyi/ethereum_sync.jpg" target="_blank"><img src="http://blog.poyi.tw/images/poyi/ethereum_sync.jpg" title="image" alt="images"></a></p>
 
-<hr>
-
-
-
+<h3>ethereum_console.bat</h3>
 
 <figure class='code'><figcaption><span>ethereum_console.bat</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -544,31 +615,27 @@
 
 <p><a href="http://blog.poyi.tw/images/poyi/ethereum_console.jpg" target="_blank"><img src="http://blog.poyi.tw/images/poyi/ethereum_console.jpg" title="image" alt="images"></a></p>
 
-<h3>geth指令整理</h3>
-
-<figure class='code'><figcaption><span>geth指令整理</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>geth upgradedb
-</span><span class='line'>geth removedb <span class="c"># 整個blockchain會被清掉</span>
-</span><span class='line'>geth --rpc --cache<span class="o">=</span><span class="m">8192</span> <span class="c"># sync</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>將ETH所佔的C槽容量移到E槽</h3>
+<h2>其他－將ETH所佔的C槽容量移到E槽</h2>
 
 <p>挖礦及同步的資料預設都放在C底下</p>
 
-<p>C:\Users[你的使用者]\AppData\Local\Ethask 及 C:\Users[你的使用者]\AppData\Roaming\Ethereum</p>
+<p>(C:\Users\Bob\AppData\Local\Ethask)</p>
+
+<p>(C:\Users\Bob\AppData\Roaming\Ethereum)</p>
 
 <ul>
-<li>把C:\Users[你的使用者]\AppData\Local\Ethask這個資料夾直接搬移到E:\ETH\Ethash</li>
-<li>開cmd下指令 &ldquo;mklink /D C:\Users[你的使用者]\AppData\Local\Ethask E:\ETH\Ethash</li>
+<li>把C:\Users\Bob\AppData\Local\Ethask這個資料夾直接搬移到E:\ETH\Ethash</li>
+<li>開cmd下指令 &ldquo;mklink /D C:\Users\Bob\AppData\Local\Ethask E:\ETH\Ethash</li>
 <li>這樣就行了，另一個folder也比照辦理</li>
 </ul>
 
 
-<p><a href="http://blog.poyi.tw/images/poyi/ethereum_mklink.jpg" target="_blank"><img src="http://blog.poyi.tw/images/poyi/ethereum_mklink.jpg" title="image" alt="images"></a></p>
+<figure class='code'><figcaption><span>cmd</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>C:<span class="se">\U</span>sers<span class="se">\B</span>ob&gt; mklink /D C:<span class="se">\U</span>sers<span class="se">\B</span>ob<span class="se">\A</span>ppData<span class="se">\L</span>ocal<span class="se">\E</span>thash E:<span class="se">\E</span>TH<span class="se">\E</span>thash
+</span><span class='line'>已建立 C:<span class="se">\U</span>sers<span class="se">\B</span>ob<span class="se">\A</span>ppData<span class="se">\L</span>ocal<span class="se">\E</span>thash 的符號連結 &lt;&lt;<span class="o">===</span>&gt;&gt; E:<span class="se">\E</span>TH<span class="se">\E</span>thash
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>Reference:</p>
 
@@ -576,8 +643,9 @@
 
 <p><a href="http://nanopool.org">http://nanopool.org</a></p>
 
-<p><a href="https://diaryofdennis.com/2016/06/11/how-to-move-and-change-your-ethereum-mining-ethash-dag-folder/">https://diaryofdennis.com/2016/06/11/how-to-move-and-change-your-ethereum-mining-ethash-dag-folder/</a>
-<a href="https://github.com/ethereum/go-ethereum/wiki/Backup-&amp;-restore">https://github.com/ethereum/go-ethereum/wiki/Backup-&amp;-restore</a></p>
+<p><a href="https://github.com/ethereum/go-ethereum/wiki/Backup-&amp;-restore">https://github.com/ethereum/go-ethereum/wiki/Backup-&amp;-restore</a></p>
+
+<p><a href="https://diaryofdennis.com/2016/06/11/how-to-move-and-change-your-ethereum-mining-ethash-dag-folder/">https://diaryofdennis.com/2016/06/11/how-to-move-and-change-your-ethereum-mining-ethash-dag-folder/</a></p>
 ]]></content>
   </entry>
   
@@ -1302,8 +1370,8 @@
 <h5>帳號以中華電信為例</h5>
 
 <ul>
-<li><a href="&#x6d;&#97;&#105;&#x6c;&#116;&#x6f;&#x3a;&#x78;&#x78;&#x78;&#120;&#120;&#120;&#x78;&#x78;&#x40;&#104;&#x69;&#110;&#x65;&#116;&#46;&#110;&#x65;&#116;">&#120;&#120;&#120;&#120;&#x78;&#120;&#120;&#x78;&#x40;&#x68;&#x69;&#110;&#101;&#116;&#x2e;&#x6e;&#x65;&#x74;</a>        取得動態IP (原有帳號格式)</li>
-<li><a href="&#x6d;&#97;&#105;&#108;&#116;&#111;&#x3a;&#x78;&#120;&#x78;&#120;&#x78;&#x78;&#120;&#120;&#64;&#x69;&#x70;&#46;&#x68;&#105;&#x6e;&#101;&#x74;&#46;&#110;&#x65;&#x74;">&#x78;&#120;&#x78;&#x78;&#120;&#x78;&#x78;&#120;&#x40;&#105;&#112;&#46;&#104;&#105;&#x6e;&#x65;&#116;&#x2e;&#x6e;&#x65;&#116;</a>     取得固定IP  僅限一台電腦使用</li>
+<li><a href="&#109;&#x61;&#x69;&#x6c;&#x74;&#111;&#x3a;&#x78;&#120;&#x78;&#120;&#x78;&#x78;&#x78;&#x78;&#x40;&#x68;&#x69;&#x6e;&#101;&#x74;&#46;&#x6e;&#101;&#116;">&#x78;&#x78;&#120;&#x78;&#x78;&#120;&#x78;&#120;&#64;&#104;&#x69;&#110;&#101;&#116;&#46;&#x6e;&#x65;&#x74;</a>        取得動態IP (原有帳號格式)</li>
+<li><a href="&#109;&#97;&#105;&#x6c;&#x74;&#111;&#58;&#x78;&#x78;&#x78;&#120;&#x78;&#x78;&#x78;&#x78;&#x40;&#105;&#112;&#x2e;&#x68;&#105;&#x6e;&#101;&#116;&#x2e;&#110;&#101;&#116;">&#x78;&#x78;&#x78;&#x78;&#x78;&#120;&#120;&#x78;&#64;&#x69;&#112;&#x2e;&#104;&#x69;&#x6e;&#x65;&#116;&#46;&#110;&#x65;&#116;</a>     取得固定IP  僅限一台電腦使用</li>
 </ul>
 
 
@@ -2406,84 +2474,6 @@ extend: 相當於把目標的code直接放進來；具有目標的class methods<
 <p>Reference:</p>
 
 <p><a href="http://jocoomadao.blogspot.tw/2013/11/macterminal-sublime.html">http://jocoomadao.blogspot.tw/2013/11/macterminal-sublime.html</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[[Mac] Ruby on Rails 基本環境建置]]></title>
-    <link href="http://blog.poyi.tw/blog/2014/01/17/rails-mac-os-environment-build/"/>
-    <updated>2014-01-17T12:47:00+08:00</updated>
-    <id>http://blog.poyi.tw/blog/2014/01/17/rails-mac-os-environment-build</id>
-    <content type="html"><![CDATA[<p>是說終於買了mac，省去開箱文趕緊把環境用好來繼續練習ROR!!
-但使用上還是有一點不習慣，會覺得有些地方也蠻不人性化，但相對穩定就是了</p>
-
-<h2>以下環境為OS X 10.9.1</h2>
-
-<p>1.安裝xcode-select
-Command line tool已經獨立出來，不需要安裝XCode了</p>
-
-<figure class='code'><figcaption><span>terminal</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>xcode-select --install
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/176032/wrVy25UMQkeJEnuNKSEq_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202014-01-17%20%E4%B8%8B%E5%8D%889.07.40.png" alt="螢幕快照 2014-01-17 下午9.07.40.png" /></p>
-
-<p>如果安裝失敗的話也可以到<a href="https://developer.apple.com/downloads/index.action?q=xcode">這裡</a>下載
-<img src="http://user-image.logdown.io/user/2740/blog/2734/post/176032/umDZbcPSNWfhQ0VNDr7l_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202014-01-17%20%E4%B8%8B%E5%8D%8810.01.05.png" alt="螢幕快照 2014-01-17 下午10.01.05.png" /></p>
-
-<p>2.安裝homebrew</p>
-
-<figure class='code'><figcaption><span>terminal</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>ruby -e <span class="s2">&quot;$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>3.安裝所需要的工具</p>
-
-<figure class='code'><figcaption><span>terminal</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>brew install git
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>4.安裝RVM</p>
-
-<figure class='code'><figcaption><span>terminal</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>curl -L https://get.rvm.io <span class="p">|</span> bash -s stable
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>5.透過RVM來安裝RUBY</p>
-
-<figure class='code'><figcaption><span>terminal</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>rvm install ruby
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>6.透過RVM來安裝RubyGems</p>
-
-<figure class='code'><figcaption><span>terminal</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>rvm rubygems current
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>7.安裝Rails</p>
-
-<figure class='code'><figcaption><span>terminal</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>gem install rails
-</span></code></pre></td></tr></table></div></figure>
-
-
-<hr />
-
-<p>XCode:官方提供的一個IDE，主要用來開發IOS APP，不過它也包含了一些開發其他語言所需的環境
-Homebrew: OSX 套件管理工具
-RVM (Ruby Version Manager):Ruby版本管理工具，便於切換不同版本</p>
-
-<p>Reference:</p>
-
-<p><a href="http://www.computersnyou.com/2025/2013/06/install-command-line-tools-in-osx-10-9-mavericks-how-to/">http://www.computersnyou.com/2025/2013/06/install-command-line-tools-in-osx-10-9-mavericks-how-to/</a>
-<a href="http://www.slideshare.net/marsz330/ruby-on-rails-for-mac">http://www.slideshare.net/marsz330/ruby-on-rails-for-mac</a></p>
 ]]></content>
   </entry>
   

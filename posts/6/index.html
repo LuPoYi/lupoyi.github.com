@@ -9,8 +9,8 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="HTML 5 基本樣式 &lt;!DOCTYPE html&gt;
-&lt;html&gt; &lt;head&gt; &lt;meta charset="UTF-8"&gt; &lt;title&gt;HTML 5&lt;/title&gt; &lt;/head&gt; &lt;body&gt &hellip;">
+  <meta name="description" content="以往都是寫供內部使用的網站，也沒想過有什麼資安的問題…
+也就是說資安這一環，幾乎是無知的狀態… SQL Injection 將字串中夾帶SQL指令，讓SERVER認為是正常指令而執行 ASP.NET 防範方法 避免直接將使用者輸入的資料作為SQL指令；或是利用SQLParameter來處理參數 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -100,6 +100,84 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/09/04/network-attacks/">[ASP.NET] 資安基本概念</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-04T01:25:00+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2013/09/04/network-attacks/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>以往都是寫供內部使用的網站，也沒想過有什麼資安的問題…
+也就是說資安這一環，幾乎是無知的狀態…</p>
+
+<hr />
+
+<h1>SQL Injection</h1>
+
+<p><strong>將字串中夾帶SQL指令，讓SERVER認為是正常指令而執行</strong></p>
+
+<h2>ASP.NET 防範方法</h2>
+
+<ol>
+<li>避免直接將使用者輸入的資料作為SQL指令；或是利用SQLParameter來處理參數</li>
+<li>將設定customErrors:On，至少出錯時不會show出程式碼</li>
+<li>設定專屬SQL帳號及必要權限，避免使用sa</li>
+<li>其他&hellip;</li>
+</ol>
+
+
+<hr />
+
+<h1>XSS</h1>
+
+<p><strong>－通常是指對方將有害程式碼惡意嵌入網頁當中，使得其他人連進此網頁時會受到影響；或是對方竊取更高的權限、Cookie等等…；(常見的為JavaScript)</strong></p>
+
+<h2>ASP.NET 防範方法</h2>
+
+<ol>
+<li>盡量保持ValidateRequest為啟用</li>
+<li>進行Html Encode(前端或後端)</li>
+<li>其他&hellip;必須防範所有有機會寫入Html tag的地方</li>
+</ol>
+
+
+<hr />
+
+<p>Reference:
+<a href="http://anti-hacker.blogspot.tw/2008/01/xss.html">http://anti-hacker.blogspot.tw/2008/01/xss.html</a>
+<a href="http://zh.wikipedia.org/wiki/%E8%B7%A8%E7%B6%B2%E7%AB%99%E6%8C%87%E4%BB%A4%E7%A2%BC">http://zh.wikipedia.org/wiki/%E8%B7%A8%E7%B6%B2%E7%AB%99%E6%8C%87%E4%BB%A4%E7%A2%BC</a>
+<a href="https://www.google.com.tw/#q=csrf">https://www.google.com.tw/#q=csrf</a>
+<a href="http://blog.darkthread.net/blogs/darkthreadtw/archive/2008/05/07/are-your-website-naked.aspx">http://blog.darkthread.net/blogs/darkthreadtw/archive/2008/05/07/are-your-website-naked.aspx</a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -733,61 +811,6 @@ Regex.IsMatch(strPwd, @"[\W]")
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/03/c-datatable-operation-memos/">[C#] DataTable 的操作備忘</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-03T12:05:00+08:00" pubdate data-updated="true"></time>
-        
-         | <a href="/blog/2013/03/03/c-datatable-operation-memos/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>稍微記一下，相關變化都蠻簡單的</p>
-
-<p>DataTable dt = new DataTable();</p>
-
-<p>// 定義欄位
-dt.Columns.Add(&ldquo;name&rdquo;);
-dt.Columns.Add(&ldquo;cardNumber&rdquo;);
-// 也可定義欄位型態
-// dt.Columns.Add(&ldquo;ID&rdquo;, typeof(Int32));</p>
-
-<p>dt.Rows.Add(&ldquo;Bob&rdquo;, &ldquo;12345&rdquo;);
-dt.Rows.Add(&ldquo;Ada&rdquo;, &ldquo;10000&rdquo;);
-dt.Rows.Add(&ldquo;Kilin&rdquo;,&ldquo;20000&rdquo;);
-// 也可用DataRow來存放資料</p>
-
-<p>// 格式相同直接放入GridView
-GridView.DataSource = dt;
-GridView.DataBind();</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/7">&larr; Older</a>
@@ -834,6 +857,10 @@ GridView.DataBind();</p>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/10/19/my-linux-command/">[Ubuntu] Linux 稍微進階的常用指令</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2016/08/25/linux-some-common-security-setting/">[Ubuntu] Linux 基本的安全設定</a>
@@ -889,10 +916,6 @@ GridView.DataBind();</p>
     
       <li class="post">
         <a href="/blog/2015/04/12/ruby-basic-2/">[Ruby] 教學 - 基本使用介紹2</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/03/31/ruby-basic-1/">[Ruby] 教學 - 基本使用介紹</a>
       </li>
     
   </ul>

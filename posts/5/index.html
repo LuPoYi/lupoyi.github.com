@@ -9,10 +9,28 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="最近常常手動新增假員工AD帳號來測我的程式
-在嘗試跑程式step by step來測試時，想說奇怪怎麼假帳號會有電腦資產
-原來這帳號跟設計部門的元老經理的員工工號重複了&hellip;
-還好有及時發現沒有把程式執行完，不然IT部門就要起飛了&hellip; &hellip;">
+  <meta name="description" content="一般Linq在多種動態條件的組合時會顯得比較麻煩，要額外加很多if else判斷式來達成
+而「PredicateBuilder」可以解決這些麻煩，原理上是將where的條件獨立出來 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+static &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -102,6 +120,107 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/09/29/aspnet-linq-dynamic-conditions/">[ASP.NET] Linq 動態條件搜尋</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-29T08:10:00+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2013/09/29/aspnet-linq-dynamic-conditions/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>一般Linq在多種動態條件的組合時會顯得比較麻煩，要額外加很多if else判斷式來達成
+而「PredicateBuilder」可以解決這些麻煩，原理上是將where的條件獨立出來</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='Console'><span class='line'><span class="go">static void linqPB()</span>
+</span><span class='line'><span class="go">    {</span>
+</span><span class='line'><span class="go">        var list = new List&lt;string&gt; { &quot;apple&quot;, &quot;bob&quot;, &quot;coco&quot;, &quot;durex&quot;, &quot;enter&quot;, &quot;fuck&quot;};</span>
+</span><span class='line'><span class="go">        var searchKeyword = new List&lt;string&gt; { &quot;o&quot;, &quot;e&quot; };</span>
+</span><span class='line'><span class="go">        var predicate = PredicateBuilder.False&lt;string&gt;();</span>
+</span><span class='line'>
+</span><span class='line'><span class="go">        foreach (var word in searchKeyword)</span>
+</span><span class='line'><span class="go">        {</span>
+</span><span class='line'><span class="go">            var temp = word;  // 避免參考到相同變數位址</span>
+</span><span class='line'><span class="go">            predicate = predicate.Or(p =&gt; p.Contains(temp));</span>
+</span><span class='line'><span class="go">        }</span>
+</span><span class='line'><span class="go">        var qry = list.Where(predicate.Compile());</span>
+</span><span class='line'>
+</span><span class='line'><span class="go">        foreach (var item in qry)</span>
+</span><span class='line'><span class="go">        {</span>
+</span><span class='line'><span class="go">            Console.WriteLine(item);</span>
+</span><span class='line'><span class="go">        }</span>
+</span><span class='line'><span class="go">        Console.Read();</span>
+</span><span class='line'><span class="go">    }</span>
+</span><span class='line'><span class="go">// result: apple bob coco durex enter</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>主要的重點如下，將條件放入xxx</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='Console'><span class='line'><span class="go">  var predicate = PredicateBuilder.False();  // 這邊的true/false會與下列的or做串接</span>
+</span><span class='line'><span class="go">  predicate = predicate.Or(p =&gt; p.name.Contains(xxx));</span>
+</span><span class='line'><span class="go">  predicate = predicate.Or(p =&gt; p.department.Contains (xxx));</span>
+</span><span class='line'><span class="go">  myDB.employee.Where (predicate);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Reference:
+要使用PredicateBuilder，需要加入參考: LinqKit.dll
+<a href="http://www.albahari.com/nutshell/predicatebuilder.aspx">http://www.albahari.com/nutshell/predicatebuilder.aspx</a> <br/>
+<a href="http://blog.sanc.idv.tw/2010/10/linq.html">http://blog.sanc.idv.tw/2010/10/linq.html</a>
+<a href="http://leaflet-t-h.blogspot.tw/2011/11/linq-predicatebuilder.html">http://leaflet-t-h.blogspot.tw/2011/11/linq-predicatebuilder.html</a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -975,84 +1094,6 @@ queue.Commit();
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/09/04/network-attacks/">[ASP.NET] 資安基本概念</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-04T01:25:00+08:00" pubdate data-updated="true"></time>
-        
-         | <a href="/blog/2013/09/04/network-attacks/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>以往都是寫供內部使用的網站，也沒想過有什麼資安的問題…
-也就是說資安這一環，幾乎是無知的狀態…</p>
-
-<hr />
-
-<h1>SQL Injection</h1>
-
-<p><strong>將字串中夾帶SQL指令，讓SERVER認為是正常指令而執行</strong></p>
-
-<h2>ASP.NET 防範方法</h2>
-
-<ol>
-<li>避免直接將使用者輸入的資料作為SQL指令；或是利用SQLParameter來處理參數</li>
-<li>將設定customErrors:On，至少出錯時不會show出程式碼</li>
-<li>設定專屬SQL帳號及必要權限，避免使用sa</li>
-<li>其他&hellip;</li>
-</ol>
-
-
-<hr />
-
-<h1>XSS</h1>
-
-<p><strong>－通常是指對方將有害程式碼惡意嵌入網頁當中，使得其他人連進此網頁時會受到影響；或是對方竊取更高的權限、Cookie等等…；(常見的為JavaScript)</strong></p>
-
-<h2>ASP.NET 防範方法</h2>
-
-<ol>
-<li>盡量保持ValidateRequest為啟用</li>
-<li>進行Html Encode(前端或後端)</li>
-<li>其他&hellip;必須防範所有有機會寫入Html tag的地方</li>
-</ol>
-
-
-<hr />
-
-<p>Reference:
-<a href="http://anti-hacker.blogspot.tw/2008/01/xss.html">http://anti-hacker.blogspot.tw/2008/01/xss.html</a>
-<a href="http://zh.wikipedia.org/wiki/%E8%B7%A8%E7%B6%B2%E7%AB%99%E6%8C%87%E4%BB%A4%E7%A2%BC">http://zh.wikipedia.org/wiki/%E8%B7%A8%E7%B6%B2%E7%AB%99%E6%8C%87%E4%BB%A4%E7%A2%BC</a>
-<a href="https://www.google.com.tw/#q=csrf">https://www.google.com.tw/#q=csrf</a>
-<a href="http://blog.darkthread.net/blogs/darkthreadtw/archive/2008/05/07/are-your-website-naked.aspx">http://blog.darkthread.net/blogs/darkthreadtw/archive/2008/05/07/are-your-website-naked.aspx</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/6">&larr; Older</a>
@@ -1099,6 +1140,10 @@ queue.Commit();
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/10/19/my-linux-command/">[Ubuntu] Linux 稍微進階的常用指令</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2016/08/25/linux-some-common-security-setting/">[Ubuntu] Linux 基本的安全設定</a>
@@ -1154,10 +1199,6 @@ queue.Commit();
     
       <li class="post">
         <a href="/blog/2015/04/12/ruby-basic-2/">[Ruby] 教學 - 基本使用介紹2</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/03/31/ruby-basic-1/">[Ruby] 教學 - 基本使用介紹</a>
       </li>
     
   </ul>

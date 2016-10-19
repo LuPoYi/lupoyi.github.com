@@ -9,9 +9,9 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="bubble up 冒泡 當底層的元件被觸發時，會將所屬的父元件會連帶被觸發 - 多層觸發
-而要處理這問題通常會用到 stopPropagation() 或 preventDefault() stopPropagation() 停止向上層bubble up，但仍然會觸發browser
-看例子比較快 &hellip;">
+  <meta name="description" content="是說終於買了mac，省去開箱文趕緊把環境用好來繼續練習ROR!!
+但使用上還是有一點不習慣，會覺得有些地方也蠻不人性化，但相對穩定就是了 以下環境為OS X 10.9.1 1.安裝xcode-select
+Command line tool已經獨立出來，不需要安裝XCode了 terminal1 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -101,6 +101,113 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/01/17/rails-mac-os-environment-build/">[Mac] Ruby on Rails 基本環境建置</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-17T12:47:00+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2014/01/17/rails-mac-os-environment-build/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>是說終於買了mac，省去開箱文趕緊把環境用好來繼續練習ROR!!
+但使用上還是有一點不習慣，會覺得有些地方也蠻不人性化，但相對穩定就是了</p>
+
+<h2>以下環境為OS X 10.9.1</h2>
+
+<p>1.安裝xcode-select
+Command line tool已經獨立出來，不需要安裝XCode了</p>
+
+<figure class='code'><figcaption><span>terminal</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>xcode-select --install
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/176032/wrVy25UMQkeJEnuNKSEq_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202014-01-17%20%E4%B8%8B%E5%8D%889.07.40.png" alt="螢幕快照 2014-01-17 下午9.07.40.png" /></p>
+
+<p>如果安裝失敗的話也可以到<a href="https://developer.apple.com/downloads/index.action?q=xcode">這裡</a>下載
+<img src="http://user-image.logdown.io/user/2740/blog/2734/post/176032/umDZbcPSNWfhQ0VNDr7l_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202014-01-17%20%E4%B8%8B%E5%8D%8810.01.05.png" alt="螢幕快照 2014-01-17 下午10.01.05.png" /></p>
+
+<p>2.安裝homebrew</p>
+
+<figure class='code'><figcaption><span>terminal</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>ruby -e <span class="s2">&quot;$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>3.安裝所需要的工具</p>
+
+<figure class='code'><figcaption><span>terminal</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>brew install git
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>4.安裝RVM</p>
+
+<figure class='code'><figcaption><span>terminal</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>curl -L https://get.rvm.io <span class="p">|</span> bash -s stable
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>5.透過RVM來安裝RUBY</p>
+
+<figure class='code'><figcaption><span>terminal</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>rvm install ruby
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>6.透過RVM來安裝RubyGems</p>
+
+<figure class='code'><figcaption><span>terminal</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>rvm rubygems current
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>7.安裝Rails</p>
+
+<figure class='code'><figcaption><span>terminal</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>gem install rails
+</span></code></pre></td></tr></table></div></figure>
+
+
+<hr />
+
+<p>XCode:官方提供的一個IDE，主要用來開發IOS APP，不過它也包含了一些開發其他語言所需的環境
+Homebrew: OSX 套件管理工具
+RVM (Ruby Version Manager):Ruby版本管理工具，便於切換不同版本</p>
+
+<p>Reference:</p>
+
+<p><a href="http://www.computersnyou.com/2025/2013/06/install-command-line-tools-in-osx-10-9-mavericks-how-to/">http://www.computersnyou.com/2025/2013/06/install-command-line-tools-in-osx-10-9-mavericks-how-to/</a>
+<a href="http://www.slideshare.net/marsz330/ruby-on-rails-for-mac">http://www.slideshare.net/marsz330/ruby-on-rails-for-mac</a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1019,94 +1126,6 @@ IThome「防駭演練與危機處理」研習會</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/11/14/rails-rest/">[Rails] RESTful</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-11-14T10:45:00+08:00" pubdate data-updated="true"></time>
-        
-         | <a href="/blog/2013/11/14/rails-rest/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><table border="1">
-        <tr>
-            <td>Action</td>
-            <td>helpers</td>
-            <td>Verb</td>
-            <td>Path</td>
-        </tr>
-        <tr>
-            <td>index</td>
-            <td>groups_path</td>
-            <td>GET</td>
-            <td>/groups</td>
-        </tr>
-        <tr>
-            <td>show</td>
-            <td>group_path(@group)</td>
-            <td>GET</td>
-            <td>/groups/1</td>
-        </tr>
-        <tr>
-            <td>new</td>
-            <td>new_group_path</td>
-            <td>GET</td>
-            <td>/groups/new</td>
-        </tr>
-        <tr>
-            <td>create</td>
-            <td>groups_path</td>
-            <td>POST</td>
-            <td>/groups</td>
-        </tr>
-        <tr>
-            <td>edit</td>
-            <td>edit_group_path(@group)</td>
-            <td>GET</td>
-            <td>/groups/1/edit</td>
-        </tr>
-        <tr>
-            <td>update</td>
-            <td>group_path(@group)</td>
-            <td>PUT</td>
-            <td>/groups/1</td>
-        </tr>
-        <tr>
-            <td>destroy</td>
-            <td>group_path(@group)</td>
-            <td>DELETE</td>
-            <td>/groups/1</td>
-        </tr>
-    </table>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/4">&larr; Older</a>
@@ -1153,6 +1172,10 @@ IThome「防駭演練與危機處理」研習會</p>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/10/19/my-linux-command/">[Ubuntu] Linux 稍微進階的常用指令</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2016/08/25/linux-some-common-security-setting/">[Ubuntu] Linux 基本的安全設定</a>
@@ -1208,10 +1231,6 @@ IThome「防駭演練與危機處理」研習會</p>
     
       <li class="post">
         <a href="/blog/2015/04/12/ruby-basic-2/">[Ruby] 教學 - 基本使用介紹2</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/03/31/ruby-basic-1/">[Ruby] 教學 - 基本使用介紹</a>
       </li>
     
   </ul>

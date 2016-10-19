@@ -5,13 +5,17 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>[CSS] 定位 - Bob 學習筆記</title>
+  <title>[Ubuntu] Linux 稍微進階的常用指令 - Bob 學習筆記</title>
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="以前都是直接用現成的，或是抓別人的css來用
-一堆語法都知道是幹麻的，但自己寫的時候就完全不行
-尤其是layout的配置..明明感覺很簡單的卻要一直亂試喬半天&hellip; 趁著最近面試的機會來記一下CSS&hellip;. 不然平常都很懶得學 Position position, 依top, &hellip;">
+  <meta name="description" content="稍微進階是對我來說啦…稍微整理一下應該記下來的指令 Ctrl + c : 終止正在執行的程式
+Ctrl + l : clear
+Ctrl + w : 刪除文字至上一個空白
+Ctrl + u : 刪除游標前
+Ctrl + k : 刪除游標後
+Ctrl + h : Backspace
+Ctrl + d &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -20,7 +24,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.poyi.tw/blog/2013/01/02/css-position/">
+  <link rel="canonical" href="http://blog.poyi.tw/blog/2016/10/19/my-linux-command/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
    <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
@@ -104,7 +108,7 @@
   
   <header>
     
-      <h1 class="entry-title">[CSS] 定位</h1>
+      <h1 class="entry-title">[Ubuntu] Linux 稍微進階的常用指令</h1>
     
     
       <p class="meta">
@@ -120,7 +124,7 @@
   
 
 
-<time datetime="2013-01-02T02:43:00+08:00" pubdate data-updated="true"></time>
+<time datetime="2016-10-19T19:01:28+08:00" pubdate data-updated="true"></time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -129,47 +133,66 @@
   </header>
 
 
-<div class="entry-content"><p>以前都是直接用現成的，或是抓別人的css來用
-一堆語法都知道是幹麻的，但自己寫的時候就完全不行
-尤其是layout的配置..明明感覺很簡單的卻要一直亂試喬半天&hellip;</p>
+<div class="entry-content"><h3>稍微進階是對我來說啦…稍微整理一下應該記下來的指令</h3>
 
-<p>趁著最近面試的機會來記一下CSS&hellip;. <del>不然平常都很懶得學</del></p>
+<ul>
+<li>Ctrl + c : 終止正在執行的程式</li>
+<li><p>Ctrl + l : clear</p></li>
+<li><p>Ctrl + w : 刪除文字至上一個空白</p></li>
+<li>Ctrl + u : 刪除游標前</li>
+<li>Ctrl + k : 刪除游標後</li>
+<li>Ctrl + h : Backspace</li>
+<li><p>Ctrl + d : Del</p></li>
+<li><p>Ctrl + a : 游標移到最前面</p></li>
+<li>Ctrl + e : 游標移到最後面</li>
+<li>Ctrl + f : 往右移一個字元</li>
+<li>Ctrl + b : 往左移一個字元</li>
+</ul>
 
-<h2>Position</h2>
 
-<figure class='code'><figcaption><span>position, 依top, left, right, bottom調整位置</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nt">position</span><span class="o">:</span> <span class="nt">absloute</span> <span class="c">/* 絕對位置 */</span>
-</span><span class='line'><span class="nt">position</span><span class="o">:</span> <span class="nt">relative</span> <span class="c">/* 相對位置，以該元件所屬的左上角做基準點，移動位置仍會佔有原先位置的空間 */</span>
-</span><span class='line'><span class="nt">position</span><span class="o">:</span> <span class="nt">fixed</span>    <span class="c">/* 固定位置，定在視窗上 */</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">/* 當相對位置包住絕對位置時，絕對位置所基準就會為相對位置 */</span>
+<h2>grep</h2>
+
+<figure class='code'><figcaption><span>找該目錄底下所有出現&#8217;bob&#8217;的檔案</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>grep -r <span class="s1">&#39;bob&#39;</span> *
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h2>z-index</h2>
 
-<p>z-index 元件重疊時，值愈大，顯示愈上面</p>
 
-<h2>overflow</h2>
-
-<figure class='code'><figcaption><span>控制轉軸</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>找abc.txt內所有出現&#8217;bob&#8217;或&#8217;poyi&#8217;的內容 (| => OR)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='css'><span class='line'><span class="nt">overflow</span><span class="o">:</span> <span class="nt">visible</span> <span class="c">/* 內容完整呈現 */</span>
-</span><span class='line'><span class="nt">overflow</span><span class="o">:</span> <span class="nt">hidden</span>  <span class="c">/* 只顯示放得下的內容 */</span>
-</span><span class='line'><span class="nt">overflow</span><span class="o">:</span> <span class="nt">scroll</span>  <span class="c">/* 強制加右方下方捲軸 */</span>
-</span><span class='line'><span class="nt">overflow</span><span class="o">:</span> <span class="nt">auto</span>    <span class="c">/* 內容放不下時，加右方捲軸 */</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>grep -E <span class="s1">&#39;bob|poyi&#39;</span> abc.txt
+</span><span class='line'>egrep <span class="s1">&#39;bob|poyi&#39;</span> abc.txt
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Reference:
-<a href="http://my-web-design.blogspot.tw/2007/10/css-divposition.html">http://my-web-design.blogspot.tw/2007/10/css-divposition.html</a>
-<a href="http://www.1keydata.com/css-tutorial/tw/position.php">http://www.1keydata.com/css-tutorial/tw/position.php</a></p>
+
+
+<figure class='code'><figcaption><span>找abc.txt內所有出現&#8217;bob&#8217;及&#8217;poyi&#8217;的內容 (.* => AND)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>grep -E <span class="s1">&#39;bob.*poyi|200.*poyi&#39;</span> abc.txt
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>找abc.txt內沒有出現&#8217;bob&#8217;的內容 (NOT)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>grep -v <span class="s1">&#39;bob&#39;</span> abc.txt
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>find</h2>
+
+<h2>locate</h2>
+
+<h2>whereis</h2>
+
+<h2>which</h2>
+
+<p>Reference:</p>
+
+<p><a href="http://www.arthurtoday.com/2010/12/ubuntu-findlocatewhereiswhich.html">http://www.arthurtoday.com/2010/12/ubuntu-findlocatewhereiswhich.html</a></p>
+
+<p><a href="http://blog.jex.tw/blog/2013/11/26/grep/">http://blog.jex.tw/blog/2013/11/26/grep/</a></p>
 </div>
 
 
@@ -192,12 +215,12 @@
   
 
 
-<time datetime="2013-01-02T02:43:00+08:00" pubdate data-updated="true"></time>
+<time datetime="2016-10-19T19:01:28+08:00" pubdate data-updated="true"></time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/css/'>css</a>
+    <a class='category' href='/blog/categories/command/'>command</a>, <a class='category' href='/blog/categories/linux/'>linux</a>, <a class='category' href='/blog/categories/ubuntu/'>ubuntu</a>
   
 </span>
 
@@ -206,7 +229,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.poyi.tw/blog/2013/01/02/css-position/" data-via="" data-counturl="http://blog.poyi.tw/blog/2013/01/02/css-position/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.poyi.tw/blog/2016/10/19/my-linux-command/" data-via="" data-counturl="http://blog.poyi.tw/blog/2016/10/19/my-linux-command/" >Tweet</a>
   
   
   
@@ -215,8 +238,8 @@
     
     <p class="meta">
       
+        <a class="basic-alignment left" href="/blog/2016/08/25/linux-some-common-security-setting/" title="Previous Post: [Ubuntu] Linux 基本的安全設定">&laquo; [Ubuntu] Linux 基本的安全設定</a>
       
-        <a class="basic-alignment right" href="/blog/2013/02/08/mac-set-to-open-files-by-default-software/" title="Next Post: [Mac] 設定開啟檔案的預設軟體">[Mac] 設定開啟檔案的預設軟體 &raquo;</a>
       
     </p>
   </footer>
@@ -353,8 +376,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://blog.poyi.tw/blog/2013/01/02/css-position/';
-        var disqus_url = 'http://blog.poyi.tw/blog/2013/01/02/css-position/';
+        var disqus_identifier = 'http://blog.poyi.tw/blog/2016/10/19/my-linux-command/';
+        var disqus_url = 'http://blog.poyi.tw/blog/2016/10/19/my-linux-command/';
         var disqus_script = 'embed.js';
       
     (function () {

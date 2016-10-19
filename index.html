@@ -9,12 +9,13 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="列幾個基本款常見的一些設定 ssh port更換到別的port ssh port更換到別的port1
-2
-3
-$ sudo vim /etc/ssh/sshd_config
-Port 1968
-$ sudo service sshd restart 開始自動安全性更新 ssh &hellip;">
+  <meta name="description" content="稍微進階是對我來說啦…稍微整理一下應該記下來的指令 Ctrl + c : 終止正在執行的程式
+Ctrl + l : clear
+Ctrl + w : 刪除文字至上一個空白
+Ctrl + u : 刪除游標前
+Ctrl + k : 刪除游標後
+Ctrl + h : Backspace
+Ctrl + d &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -110,6 +111,103 @@ $ sudo service sshd restart 開始自動安全性更新 ssh &hellip;">
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2016/10/19/my-linux-command/">[Ubuntu] Linux 稍微進階的常用指令</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-10-19T19:01:28+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2016/10/19/my-linux-command/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>稍微進階是對我來說啦…稍微整理一下應該記下來的指令</h3>
+
+<ul>
+<li>Ctrl + c : 終止正在執行的程式</li>
+<li><p>Ctrl + l : clear</p></li>
+<li><p>Ctrl + w : 刪除文字至上一個空白</p></li>
+<li>Ctrl + u : 刪除游標前</li>
+<li>Ctrl + k : 刪除游標後</li>
+<li>Ctrl + h : Backspace</li>
+<li><p>Ctrl + d : Del</p></li>
+<li><p>Ctrl + a : 游標移到最前面</p></li>
+<li>Ctrl + e : 游標移到最後面</li>
+<li>Ctrl + f : 往右移一個字元</li>
+<li>Ctrl + b : 往左移一個字元</li>
+</ul>
+
+
+<h2>grep</h2>
+
+<figure class='code'><figcaption><span>找該目錄底下所有出現&#8217;bob&#8217;的檔案</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>grep -r <span class="s1">&#39;bob&#39;</span> *
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>找abc.txt內所有出現&#8217;bob&#8217;或&#8217;poyi&#8217;的內容 (| => OR)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>grep -E <span class="s1">&#39;bob|poyi&#39;</span> abc.txt
+</span><span class='line'>egrep <span class="s1">&#39;bob|poyi&#39;</span> abc.txt
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>找abc.txt內所有出現&#8217;bob&#8217;及&#8217;poyi&#8217;的內容 (.* => AND)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>grep -E <span class="s1">&#39;bob.*poyi|200.*poyi&#39;</span> abc.txt
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>找abc.txt內沒有出現&#8217;bob&#8217;的內容 (NOT)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>grep -v <span class="s1">&#39;bob&#39;</span> abc.txt
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>find</h2>
+
+<h2>locate</h2>
+
+<h2>whereis</h2>
+
+<h2>which</h2>
+
+<p>Reference:</p>
+
+<p><a href="http://www.arthurtoday.com/2010/12/ubuntu-findlocatewhereiswhich.html">http://www.arthurtoday.com/2010/12/ubuntu-findlocatewhereiswhich.html</a></p>
+
+<p><a href="http://blog.jex.tw/blog/2013/11/26/grep/">http://blog.jex.tw/blog/2013/11/26/grep/</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2016/08/25/linux-some-common-security-setting/">[Ubuntu] Linux 基本的安全設定</a></h1>
     
     
@@ -150,7 +248,7 @@ $ sudo service sshd restart 開始自動安全性更新 ssh &hellip;">
 
 <h2>開始自動安全性更新</h2>
 
-<figure class='code'><figcaption><span>ssh port更換到別的port</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>開始自動安全性更新</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'> <span class="nv">$ </span>sudo apt-get install unattended-upgrades
@@ -662,9 +760,18 @@ $ sudo service sshd restart 開始自動安全性更新 ssh &hellip;">
 
 <p>可以到<a href="https://www.etherchain.org/">Etherchain</a>看一下Recent blocks是不是已經sync到最新的block</p>
 
-<h2>後記</h2>
+<figure class='code'><figcaption><span>geth指令整理</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>geth upgradedb
+</span><span class='line'>geth removedb <span class="c"># 整個blockchain會被清掉</span>
+</span><span class='line'>geth --rpc --cache<span class="o">=</span><span class="m">8192</span> <span class="c"># sync</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<h3>把指令包成.bat批次檔</h3>
+
+<h2>其他－把指令包成.bat批次檔</h2>
+
+<h3>ethereum_mining.bat</h3>
 
 <p>因為需要分別開mining, sync以及console三個cmd並執行不同指令，所以我把指令包成.bat放桌面一鍵執行，或是拿來排程執行也ok</p>
 
@@ -683,10 +790,7 @@ $ sudo service sshd restart 開始自動安全性更新 ssh &hellip;">
 
 <p><a href="/images/poyi/ethereum_mining.jpg" target="_blank"><img src="/images/poyi/ethereum_mining.jpg" title="image" alt="images"></a></p>
 
-<hr>
-
-
-
+<h3>ethereum_sync.bat</h3>
 
 <figure class='code'><figcaption><span>ethereum_sync.bat</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -701,10 +805,7 @@ $ sudo service sshd restart 開始自動安全性更新 ssh &hellip;">
 
 <p><a href="/images/poyi/ethereum_sync.jpg" target="_blank"><img src="/images/poyi/ethereum_sync.jpg" title="image" alt="images"></a></p>
 
-<hr>
-
-
-
+<h3>ethereum_console.bat</h3>
 
 <figure class='code'><figcaption><span>ethereum_console.bat</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -719,31 +820,27 @@ $ sudo service sshd restart 開始自動安全性更新 ssh &hellip;">
 
 <p><a href="/images/poyi/ethereum_console.jpg" target="_blank"><img src="/images/poyi/ethereum_console.jpg" title="image" alt="images"></a></p>
 
-<h3>geth指令整理</h3>
-
-<figure class='code'><figcaption><span>geth指令整理</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>geth upgradedb
-</span><span class='line'>geth removedb <span class="c"># 整個blockchain會被清掉</span>
-</span><span class='line'>geth --rpc --cache<span class="o">=</span><span class="m">8192</span> <span class="c"># sync</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>將ETH所佔的C槽容量移到E槽</h3>
+<h2>其他－將ETH所佔的C槽容量移到E槽</h2>
 
 <p>挖礦及同步的資料預設都放在C底下</p>
 
-<p>C:\Users[你的使用者]\AppData\Local\Ethask 及 C:\Users[你的使用者]\AppData\Roaming\Ethereum</p>
+<p>(C:\Users\Bob\AppData\Local\Ethask)</p>
+
+<p>(C:\Users\Bob\AppData\Roaming\Ethereum)</p>
 
 <ul>
-<li>把C:\Users[你的使用者]\AppData\Local\Ethask這個資料夾直接搬移到E:\ETH\Ethash</li>
-<li>開cmd下指令 &ldquo;mklink /D C:\Users[你的使用者]\AppData\Local\Ethask E:\ETH\Ethash</li>
+<li>把C:\Users\Bob\AppData\Local\Ethask這個資料夾直接搬移到E:\ETH\Ethash</li>
+<li>開cmd下指令 &ldquo;mklink /D C:\Users\Bob\AppData\Local\Ethask E:\ETH\Ethash</li>
 <li>這樣就行了，另一個folder也比照辦理</li>
 </ul>
 
 
-<p><a href="/images/poyi/ethereum_mklink.jpg" target="_blank"><img src="/images/poyi/ethereum_mklink.jpg" title="image" alt="images"></a></p>
+<figure class='code'><figcaption><span>cmd</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>C:<span class="se">\U</span>sers<span class="se">\B</span>ob&gt; mklink /D C:<span class="se">\U</span>sers<span class="se">\B</span>ob<span class="se">\A</span>ppData<span class="se">\L</span>ocal<span class="se">\E</span>thash E:<span class="se">\E</span>TH<span class="se">\E</span>thash
+</span><span class='line'>已建立 C:<span class="se">\U</span>sers<span class="se">\B</span>ob<span class="se">\A</span>ppData<span class="se">\L</span>ocal<span class="se">\E</span>thash 的符號連結 &lt;&lt;<span class="o">===</span>&gt;&gt; E:<span class="se">\E</span>TH<span class="se">\E</span>thash
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>Reference:</p>
 
@@ -751,8 +848,9 @@ $ sudo service sshd restart 開始自動安全性更新 ssh &hellip;">
 
 <p><a href="http://nanopool.org">http://nanopool.org</a></p>
 
-<p><a href="https://diaryofdennis.com/2016/06/11/how-to-move-and-change-your-ethereum-mining-ethash-dag-folder/">https://diaryofdennis.com/2016/06/11/how-to-move-and-change-your-ethereum-mining-ethash-dag-folder/</a>
-<a href="https://github.com/ethereum/go-ethereum/wiki/Backup-&amp;-restore">https://github.com/ethereum/go-ethereum/wiki/Backup-&amp;-restore</a></p>
+<p><a href="https://github.com/ethereum/go-ethereum/wiki/Backup-&amp;-restore">https://github.com/ethereum/go-ethereum/wiki/Backup-&amp;-restore</a></p>
+
+<p><a href="https://diaryofdennis.com/2016/06/11/how-to-move-and-change-your-ethereum-mining-ethash-dag-folder/">https://diaryofdennis.com/2016/06/11/how-to-move-and-change-your-ethereum-mining-ethash-dag-folder/</a></p>
 </div>
   
   
@@ -1622,8 +1720,8 @@ $ sudo service sshd restart 開始自動安全性更新 ssh &hellip;">
 <h5>帳號以中華電信為例</h5>
 
 <ul>
-<li><a href="&#x6d;&#97;&#105;&#x6c;&#116;&#x6f;&#x3a;&#x78;&#x78;&#x78;&#120;&#120;&#120;&#x78;&#x78;&#x40;&#104;&#x69;&#110;&#x65;&#116;&#46;&#110;&#x65;&#116;">&#120;&#120;&#120;&#120;&#x78;&#120;&#120;&#x78;&#x40;&#x68;&#x69;&#110;&#101;&#116;&#x2e;&#x6e;&#x65;&#x74;</a>        取得動態IP (原有帳號格式)</li>
-<li><a href="&#x6d;&#97;&#105;&#108;&#116;&#111;&#x3a;&#x78;&#120;&#x78;&#120;&#x78;&#x78;&#120;&#120;&#64;&#x69;&#x70;&#46;&#x68;&#105;&#x6e;&#101;&#x74;&#46;&#110;&#x65;&#x74;">&#x78;&#120;&#x78;&#x78;&#120;&#x78;&#x78;&#120;&#x40;&#105;&#112;&#46;&#104;&#105;&#x6e;&#x65;&#116;&#x2e;&#x6e;&#x65;&#116;</a>     取得固定IP  僅限一台電腦使用</li>
+<li><a href="&#109;&#x61;&#x69;&#x6c;&#x74;&#111;&#x3a;&#x78;&#120;&#x78;&#120;&#x78;&#x78;&#x78;&#x78;&#x40;&#x68;&#x69;&#x6e;&#101;&#x74;&#46;&#x6e;&#101;&#116;">&#x78;&#x78;&#120;&#x78;&#x78;&#120;&#x78;&#120;&#64;&#104;&#x69;&#110;&#101;&#116;&#46;&#x6e;&#x65;&#x74;</a>        取得動態IP (原有帳號格式)</li>
+<li><a href="&#109;&#97;&#105;&#x6c;&#x74;&#111;&#58;&#x78;&#x78;&#x78;&#120;&#x78;&#x78;&#x78;&#x78;&#x40;&#105;&#112;&#x2e;&#x68;&#105;&#x6e;&#101;&#116;&#x2e;&#110;&#101;&#116;">&#x78;&#x78;&#x78;&#x78;&#x78;&#120;&#120;&#x78;&#64;&#x69;&#112;&#x2e;&#104;&#x69;&#x6e;&#x65;&#116;&#46;&#110;&#x65;&#116;</a>     取得固定IP  僅限一台電腦使用</li>
 </ul>
 
 
@@ -1760,104 +1858,6 @@ $ sudo service sshd restart 開始自動安全性更新 ssh &hellip;">
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/07/11/rails-various-update-methods/">[Rails] 各種update Method</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2015-07-11T17:16:55+08:00" pubdate data-updated="true"></time>
-        
-         | <a href="/blog/2015/07/11/rails-various-update-methods/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>正規Rails的更新 - update</h2>
-
-<p>會觸發validation、callback、也會更新updated_at</p>
-
-<figure class='code'><figcaption><span>update 寫法 (for 單筆)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='Ruby'><span class='line'><span class="o">&gt;</span> <span class="no">Comment</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="ss">message</span><span class="p">:</span> <span class="s1">&#39;bbb&#39;</span><span class="p">)</span>
-</span><span class='line'>   <span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">1</span><span class="n">ms</span><span class="p">)</span>  <span class="k">begin</span> <span class="n">transaction</span>
-</span><span class='line'>  <span class="no">SQL</span> <span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">4</span><span class="n">ms</span><span class="p">)</span>  <span class="no">UPDATE</span> <span class="s2">&quot;comments&quot;</span> <span class="no">SET</span> <span class="s2">&quot;message&quot;</span> <span class="o">=</span> <span class="sc">?,</span> <span class="s2">&quot;updated_at&quot;</span> <span class="o">=</span> <span class="p">?</span> <span class="no">WHERE</span> <span class="s2">&quot;comments&quot;</span><span class="o">.</span><span class="s2">&quot;id&quot;</span> <span class="o">=</span> <span class="p">?</span>  <span class="o">[[</span><span class="s2">&quot;message&quot;</span><span class="p">,</span> <span class="s2">&quot;bbb&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;updated_at&quot;</span><span class="p">,</span> <span class="s2">&quot;2015-07-11 09:42:02.303661&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="mi">200</span><span class="o">]]</span>
-</span><span class='line'>   <span class="p">(</span><span class="mi">9</span><span class="o">.</span><span class="mi">1</span><span class="n">ms</span><span class="p">)</span>  <span class="n">commit</span> <span class="n">transaction</span>
-</span><span class='line'> <span class="o">=&gt;</span> <span class="kp">true</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>相當於直接下SQL的更新 - update_columns, update_all</h2>
-
-<p>而 update_columns 及 update_all 是直接幫你下SQL更新欄位，會忽視Rails的validation，也沒有callback，updated_at也不會更新。所以最好是很確定要更新的值沒問題再使用這類語法。</p>
-
-<figure class='code'><figcaption><span>update_columns 寫法 (for 單筆)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='Ruby'><span class='line'><span class="o">&gt;</span> <span class="no">Comment</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="ss">:id</span> <span class="o">=&gt;</span> <span class="mi">200</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">update_columns</span><span class="p">(</span><span class="ss">message</span><span class="p">:</span> <span class="s1">&#39;bbbbb&#39;</span><span class="p">,</span> <span class="ss">post_id</span><span class="p">:</span> <span class="mi">3</span><span class="p">)</span>
-</span><span class='line'>  <span class="no">SQL</span> <span class="p">(</span><span class="mi">9</span><span class="o">.</span><span class="mi">2</span><span class="n">ms</span><span class="p">)</span>  <span class="no">UPDATE</span> <span class="s2">&quot;comments&quot;</span> <span class="no">SET</span> <span class="s2">&quot;message&quot;</span> <span class="o">=</span> <span class="s1">&#39;bbbbb&#39;</span><span class="p">,</span> <span class="s2">&quot;post_id&quot;</span> <span class="o">=</span> <span class="mi">3</span> <span class="no">WHERE</span> <span class="s2">&quot;comments&quot;</span><span class="o">.</span><span class="s2">&quot;id&quot;</span> <span class="o">=</span> <span class="p">?</span>  <span class="o">[[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="mi">200</span><span class="o">]]</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># update_column 跟 update_columns 相同，只是傳入值key跟value必須是string，並用逗點分隔</span>
-</span><span class='line'><span class="o">&gt;</span> <span class="no">Comment</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="ss">:id</span> <span class="o">=&gt;</span> <span class="mi">200</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">update_column</span><span class="p">(</span><span class="s1">&#39;message&#39;</span> <span class="p">,</span><span class="s1">&#39;bbbbb&#39;</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>update_all 寫法 (for relation)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='Ruby'><span class='line'><span class="o">&gt;</span> <span class="no">Comment</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="ss">:id</span> <span class="o">=&gt;</span> <span class="mi">200</span><span class="p">)</span><span class="o">.</span><span class="n">update_all</span><span class="p">(</span><span class="ss">message</span><span class="p">:</span> <span class="s1">&#39;aaaaaaaaaa&#39;</span><span class="p">,</span> <span class="ss">post_id</span><span class="p">:</span> <span class="mi">10</span><span class="p">)</span>
-</span><span class='line'>  <span class="no">SQL</span> <span class="p">(</span><span class="mi">9</span><span class="o">.</span><span class="mi">2</span><span class="n">ms</span><span class="p">)</span>  <span class="no">UPDATE</span> <span class="s2">&quot;comments&quot;</span> <span class="no">SET</span> <span class="s2">&quot;message&quot;</span> <span class="o">=</span> <span class="s1">&#39;aaaaaaaaaa&#39;</span><span class="p">,</span> <span class="s2">&quot;post_id&quot;</span> <span class="o">=</span> <span class="mi">10</span> <span class="no">WHERE</span> <span class="s2">&quot;comments&quot;</span><span class="o">.</span><span class="s2">&quot;id&quot;</span> <span class="o">=</span> <span class="p">?</span>  <span class="o">[[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="mi">200</span><span class="o">]]</span>
-</span><span class='line'> <span class="o">=&gt;</span> <span class="mi">1</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>其他 - update_attribute</h2>
-
-<p>忽視validation，有callback，會更新updated_at</p>
-
-<figure class='code'><figcaption><span>update_attribute 寫法 (for 單筆)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='Ruby'><span class='line'><span class="o">&gt;</span> <span class="no">Comment</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">update_attribute</span><span class="p">(</span><span class="s1">&#39;message&#39;</span> <span class="p">,</span><span class="s1">&#39;bbbbb&#39;</span><span class="p">)</span>
-</span><span class='line'>   <span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">1</span><span class="n">ms</span><span class="p">)</span>  <span class="k">begin</span> <span class="n">transaction</span>
-</span><span class='line'>  <span class="no">SQL</span> <span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">4</span><span class="n">ms</span><span class="p">)</span>  <span class="no">UPDATE</span> <span class="s2">&quot;comments&quot;</span> <span class="no">SET</span> <span class="s2">&quot;message&quot;</span> <span class="o">=</span> <span class="sc">?,</span> <span class="s2">&quot;updated_at&quot;</span> <span class="o">=</span> <span class="p">?</span> <span class="no">WHERE</span> <span class="s2">&quot;comments&quot;</span><span class="o">.</span><span class="s2">&quot;id&quot;</span> <span class="o">=</span> <span class="p">?</span>  <span class="o">[[</span><span class="s2">&quot;message&quot;</span><span class="p">,</span> <span class="s2">&quot;bbbbb&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;updated_at&quot;</span><span class="p">,</span> <span class="s2">&quot;2015-07-11 09:45:55.190026&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="mi">200</span><span class="o">]]</span>
-</span><span class='line'>   <span class="p">(</span><span class="mi">8</span><span class="o">.</span><span class="mi">5</span><span class="n">ms</span><span class="p">)</span>  <span class="n">commit</span> <span class="n">transaction</span>
-</span><span class='line'> <span class="o">=&gt;</span> <span class="kp">true</span>
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -1902,6 +1902,10 @@ $ sudo service sshd restart 開始自動安全性更新 ssh &hellip;">
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/10/19/my-linux-command/">[Ubuntu] Linux 稍微進階的常用指令</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2016/08/25/linux-some-common-security-setting/">[Ubuntu] Linux 基本的安全設定</a>
@@ -1957,10 +1961,6 @@ $ sudo service sshd restart 開始自動安全性更新 ssh &hellip;">
     
       <li class="post">
         <a href="/blog/2015/04/12/ruby-basic-2/">[Ruby] 教學 - 基本使用介紹2</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/03/31/ruby-basic-1/">[Ruby] 教學 - 基本使用介紹</a>
       </li>
     
   </ul>

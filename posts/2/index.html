@@ -9,20 +9,12 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="將載好的ubuntu.iso 轉成 ubuntu.dmg1
+  <meta name="description" content="正規Rails的更新 - update 會觸發validation、callback、也會更新updated_at update 寫法 (for 單筆)1
 2
 3
 4
 5
-6
-7
-8
-9
-10
-11
-12
-13
-Bob:Downloads $ hdiutil convert -format UDRW -o ubuntu-14.04.2-server-amd64.dmg ubuntu-14. &hellip;">
+&gt; Comment.last.update(message: &#39;bbb&#39;) (0.1ms) begin &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -112,6 +104,104 @@ Bob:Downloads $ hdiutil convert -format UDRW -o ubuntu-14.04.2-server-amd64.dmg 
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/07/11/rails-various-update-methods/">[Rails] 各種update Method</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-07-11T17:16:55+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2015/07/11/rails-various-update-methods/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>正規Rails的更新 - update</h2>
+
+<p>會觸發validation、callback、也會更新updated_at</p>
+
+<figure class='code'><figcaption><span>update 寫法 (for 單筆)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='Ruby'><span class='line'><span class="o">&gt;</span> <span class="no">Comment</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="ss">message</span><span class="p">:</span> <span class="s1">&#39;bbb&#39;</span><span class="p">)</span>
+</span><span class='line'>   <span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">1</span><span class="n">ms</span><span class="p">)</span>  <span class="k">begin</span> <span class="n">transaction</span>
+</span><span class='line'>  <span class="no">SQL</span> <span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">4</span><span class="n">ms</span><span class="p">)</span>  <span class="no">UPDATE</span> <span class="s2">&quot;comments&quot;</span> <span class="no">SET</span> <span class="s2">&quot;message&quot;</span> <span class="o">=</span> <span class="sc">?,</span> <span class="s2">&quot;updated_at&quot;</span> <span class="o">=</span> <span class="p">?</span> <span class="no">WHERE</span> <span class="s2">&quot;comments&quot;</span><span class="o">.</span><span class="s2">&quot;id&quot;</span> <span class="o">=</span> <span class="p">?</span>  <span class="o">[[</span><span class="s2">&quot;message&quot;</span><span class="p">,</span> <span class="s2">&quot;bbb&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;updated_at&quot;</span><span class="p">,</span> <span class="s2">&quot;2015-07-11 09:42:02.303661&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="mi">200</span><span class="o">]]</span>
+</span><span class='line'>   <span class="p">(</span><span class="mi">9</span><span class="o">.</span><span class="mi">1</span><span class="n">ms</span><span class="p">)</span>  <span class="n">commit</span> <span class="n">transaction</span>
+</span><span class='line'> <span class="o">=&gt;</span> <span class="kp">true</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>相當於直接下SQL的更新 - update_columns, update_all</h2>
+
+<p>而 update_columns 及 update_all 是直接幫你下SQL更新欄位，會忽視Rails的validation，也沒有callback，updated_at也不會更新。所以最好是很確定要更新的值沒問題再使用這類語法。</p>
+
+<figure class='code'><figcaption><span>update_columns 寫法 (for 單筆)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='Ruby'><span class='line'><span class="o">&gt;</span> <span class="no">Comment</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="ss">:id</span> <span class="o">=&gt;</span> <span class="mi">200</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">update_columns</span><span class="p">(</span><span class="ss">message</span><span class="p">:</span> <span class="s1">&#39;bbbbb&#39;</span><span class="p">,</span> <span class="ss">post_id</span><span class="p">:</span> <span class="mi">3</span><span class="p">)</span>
+</span><span class='line'>  <span class="no">SQL</span> <span class="p">(</span><span class="mi">9</span><span class="o">.</span><span class="mi">2</span><span class="n">ms</span><span class="p">)</span>  <span class="no">UPDATE</span> <span class="s2">&quot;comments&quot;</span> <span class="no">SET</span> <span class="s2">&quot;message&quot;</span> <span class="o">=</span> <span class="s1">&#39;bbbbb&#39;</span><span class="p">,</span> <span class="s2">&quot;post_id&quot;</span> <span class="o">=</span> <span class="mi">3</span> <span class="no">WHERE</span> <span class="s2">&quot;comments&quot;</span><span class="o">.</span><span class="s2">&quot;id&quot;</span> <span class="o">=</span> <span class="p">?</span>  <span class="o">[[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="mi">200</span><span class="o">]]</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># update_column 跟 update_columns 相同，只是傳入值key跟value必須是string，並用逗點分隔</span>
+</span><span class='line'><span class="o">&gt;</span> <span class="no">Comment</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="ss">:id</span> <span class="o">=&gt;</span> <span class="mi">200</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">update_column</span><span class="p">(</span><span class="s1">&#39;message&#39;</span> <span class="p">,</span><span class="s1">&#39;bbbbb&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>update_all 寫法 (for relation)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='Ruby'><span class='line'><span class="o">&gt;</span> <span class="no">Comment</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="ss">:id</span> <span class="o">=&gt;</span> <span class="mi">200</span><span class="p">)</span><span class="o">.</span><span class="n">update_all</span><span class="p">(</span><span class="ss">message</span><span class="p">:</span> <span class="s1">&#39;aaaaaaaaaa&#39;</span><span class="p">,</span> <span class="ss">post_id</span><span class="p">:</span> <span class="mi">10</span><span class="p">)</span>
+</span><span class='line'>  <span class="no">SQL</span> <span class="p">(</span><span class="mi">9</span><span class="o">.</span><span class="mi">2</span><span class="n">ms</span><span class="p">)</span>  <span class="no">UPDATE</span> <span class="s2">&quot;comments&quot;</span> <span class="no">SET</span> <span class="s2">&quot;message&quot;</span> <span class="o">=</span> <span class="s1">&#39;aaaaaaaaaa&#39;</span><span class="p">,</span> <span class="s2">&quot;post_id&quot;</span> <span class="o">=</span> <span class="mi">10</span> <span class="no">WHERE</span> <span class="s2">&quot;comments&quot;</span><span class="o">.</span><span class="s2">&quot;id&quot;</span> <span class="o">=</span> <span class="p">?</span>  <span class="o">[[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="mi">200</span><span class="o">]]</span>
+</span><span class='line'> <span class="o">=&gt;</span> <span class="mi">1</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>其他 - update_attribute</h2>
+
+<p>忽視validation，有callback，會更新updated_at</p>
+
+<figure class='code'><figcaption><span>update_attribute 寫法 (for 單筆)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='Ruby'><span class='line'><span class="o">&gt;</span> <span class="no">Comment</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">update_attribute</span><span class="p">(</span><span class="s1">&#39;message&#39;</span> <span class="p">,</span><span class="s1">&#39;bbbbb&#39;</span><span class="p">)</span>
+</span><span class='line'>   <span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">1</span><span class="n">ms</span><span class="p">)</span>  <span class="k">begin</span> <span class="n">transaction</span>
+</span><span class='line'>  <span class="no">SQL</span> <span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">4</span><span class="n">ms</span><span class="p">)</span>  <span class="no">UPDATE</span> <span class="s2">&quot;comments&quot;</span> <span class="no">SET</span> <span class="s2">&quot;message&quot;</span> <span class="o">=</span> <span class="sc">?,</span> <span class="s2">&quot;updated_at&quot;</span> <span class="o">=</span> <span class="p">?</span> <span class="no">WHERE</span> <span class="s2">&quot;comments&quot;</span><span class="o">.</span><span class="s2">&quot;id&quot;</span> <span class="o">=</span> <span class="p">?</span>  <span class="o">[[</span><span class="s2">&quot;message&quot;</span><span class="p">,</span> <span class="s2">&quot;bbbbb&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;updated_at&quot;</span><span class="p">,</span> <span class="s2">&quot;2015-07-11 09:45:55.190026&quot;</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="mi">200</span><span class="o">]]</span>
+</span><span class='line'>   <span class="p">(</span><span class="mi">8</span><span class="o">.</span><span class="mi">5</span><span class="n">ms</span><span class="p">)</span>  <span class="n">commit</span> <span class="n">transaction</span>
+</span><span class='line'> <span class="o">=&gt;</span> <span class="kp">true</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1307,113 +1397,6 @@ extend: 相當於把目標的code直接放進來；具有目標的class methods<
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/01/17/rails-mac-os-environment-build/">[Mac] Ruby on Rails 基本環境建置</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-01-17T12:47:00+08:00" pubdate data-updated="true"></time>
-        
-         | <a href="/blog/2014/01/17/rails-mac-os-environment-build/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>是說終於買了mac，省去開箱文趕緊把環境用好來繼續練習ROR!!
-但使用上還是有一點不習慣，會覺得有些地方也蠻不人性化，但相對穩定就是了</p>
-
-<h2>以下環境為OS X 10.9.1</h2>
-
-<p>1.安裝xcode-select
-Command line tool已經獨立出來，不需要安裝XCode了</p>
-
-<figure class='code'><figcaption><span>terminal</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>xcode-select --install
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/176032/wrVy25UMQkeJEnuNKSEq_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202014-01-17%20%E4%B8%8B%E5%8D%889.07.40.png" alt="螢幕快照 2014-01-17 下午9.07.40.png" /></p>
-
-<p>如果安裝失敗的話也可以到<a href="https://developer.apple.com/downloads/index.action?q=xcode">這裡</a>下載
-<img src="http://user-image.logdown.io/user/2740/blog/2734/post/176032/umDZbcPSNWfhQ0VNDr7l_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202014-01-17%20%E4%B8%8B%E5%8D%8810.01.05.png" alt="螢幕快照 2014-01-17 下午10.01.05.png" /></p>
-
-<p>2.安裝homebrew</p>
-
-<figure class='code'><figcaption><span>terminal</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>ruby -e <span class="s2">&quot;$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>3.安裝所需要的工具</p>
-
-<figure class='code'><figcaption><span>terminal</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>brew install git
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>4.安裝RVM</p>
-
-<figure class='code'><figcaption><span>terminal</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>curl -L https://get.rvm.io <span class="p">|</span> bash -s stable
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>5.透過RVM來安裝RUBY</p>
-
-<figure class='code'><figcaption><span>terminal</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>rvm install ruby
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>6.透過RVM來安裝RubyGems</p>
-
-<figure class='code'><figcaption><span>terminal</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>rvm rubygems current
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>7.安裝Rails</p>
-
-<figure class='code'><figcaption><span>terminal</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>gem install rails
-</span></code></pre></td></tr></table></div></figure>
-
-
-<hr />
-
-<p>XCode:官方提供的一個IDE，主要用來開發IOS APP，不過它也包含了一些開發其他語言所需的環境
-Homebrew: OSX 套件管理工具
-RVM (Ruby Version Manager):Ruby版本管理工具，便於切換不同版本</p>
-
-<p>Reference:</p>
-
-<p><a href="http://www.computersnyou.com/2025/2013/06/install-command-line-tools-in-osx-10-9-mavericks-how-to/">http://www.computersnyou.com/2025/2013/06/install-command-line-tools-in-osx-10-9-mavericks-how-to/</a>
-<a href="http://www.slideshare.net/marsz330/ruby-on-rails-for-mac">http://www.slideshare.net/marsz330/ruby-on-rails-for-mac</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/3">&larr; Older</a>
@@ -1460,6 +1443,10 @@ RVM (Ruby Version Manager):Ruby版本管理工具，便於切換不同版本</p>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/10/19/my-linux-command/">[Ubuntu] Linux 稍微進階的常用指令</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2016/08/25/linux-some-common-security-setting/">[Ubuntu] Linux 基本的安全設定</a>
@@ -1515,10 +1502,6 @@ RVM (Ruby Version Manager):Ruby版本管理工具，便於切換不同版本</p>
     
       <li class="post">
         <a href="/blog/2015/04/12/ruby-basic-2/">[Ruby] 教學 - 基本使用介紹2</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/03/31/ruby-basic-1/">[Ruby] 教學 - 基本使用介紹</a>
       </li>
     
   </ul>
