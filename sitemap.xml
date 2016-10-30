@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://blog.poyi.tw/blog/2016/10/30/rails-mac-os-environment-sierra/</loc>
+    <lastmod>2016-10-30T15:39:21+08:00</lastmod>
+  </url>
+  <url>
     <loc>http://blog.poyi.tw/blog/2016/10/19/my-linux-command/</loc>
     <lastmod>2016-10-19T19:01:28+08:00</lastmod>
   </url>
@@ -354,6 +358,9 @@
     <loc>http://blog.poyi.tw/blog/categories/javascript/</loc>
   </url>
   <url>
+    <loc>http://blog.poyi.tw/blog/categories/mavericks/</loc>
+  </url>
+  <url>
     <loc>http://blog.poyi.tw/blog/categories/extend/</loc>
   </url>
   <url>
@@ -472,6 +479,27 @@
   </url>
   <url>
     <loc>http://blog.poyi.tw/blog/categories/command/</loc>
+  </url>
+  <url>
+    <loc>http://blog.poyi.tw/blog/categories/sierra/</loc>
+  </url>
+  <url>
+    <loc>http://blog.poyi.tw/posts/2/</loc>
+  </url>
+  <url>
+    <loc>http://blog.poyi.tw/posts/3/</loc>
+  </url>
+  <url>
+    <loc>http://blog.poyi.tw/posts/4/</loc>
+  </url>
+  <url>
+    <loc>http://blog.poyi.tw/posts/5/</loc>
+  </url>
+  <url>
+    <loc>http://blog.poyi.tw/posts/6/</loc>
+  </url>
+  <url>
+    <loc>http://blog.poyi.tw/posts/7/</loc>
   </url>
   <url>
     <loc>http://blog.poyi.tw/about/weight/index.html</loc>

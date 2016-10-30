@@ -4,7 +4,7 @@
   <title><![CDATA[Category: command | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/command/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2016-10-19T19:48:37+08:00</updated>
+  <updated>2016-10-30T15:48:04+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -37,13 +37,19 @@ grep -E 'bob.*poyi|200.*poyi' abc.txt
 <pre><code class="bash 找abc.txt內沒有出現'bob'的內容 (NOT)">grep -v 'bob' abc.txt
 </code></pre>
 
-<h2>find</h2>
+<h2>find 找檔案</h2>
 
-<h2>locate</h2>
+<pre><code class="bash 在/home目錄下找檔名為production.log的檔案">find /home -name production.log
+find /home -iname production.log # 不分大小寫
+</code></pre>
 
-<h2>whereis</h2>
+<pre><code class="bash 在/home目錄下找所有的log folder">find /home -type d -name log
+</code></pre>
 
-<h2>which</h2>
+<h2>locate 找檔案(查系統index，不是直接掃目錄)</h2>
+
+<pre><code class="bash ">locate nginx.conf
+</code></pre>
 
 <ul>
 <li>Ctrl + c : 終止正在執行的程式</li>

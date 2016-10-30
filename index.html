@@ -9,11 +9,14 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="稍微進階是對我來說啦 grep 找該目錄底下所有出現'bob'的檔案1
-grep -r &#39;bob&#39; * 找abc.txt內所有出現'bob'或'poyi'的內容 (| => OR)1
+  <meta name="description" content="Installing Homebrew1
+ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot; Installing Ruby1
 2
-grep -E &#39;bob|poyi&#39; abc.txt
-egrep &#39; &hellip;&#8221;>
+3
+4
+5
+6
+7 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -109,6 +112,84 @@ egrep &#39; &hellip;&#8221;>
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2016/10/30/rails-mac-os-environment-sierra/">[Mac] Ruby on Rails 基本環境建置 - 10.12 Sierra</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-10-30T15:39:21+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2016/10/30/rails-mac-os-environment-sierra/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><figure class='code'><figcaption><span>Installing Homebrew</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ruby -e <span class="s2">&quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>Installing Ruby</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># 改用相對輕量的rbenv取代肥肥的rvm</span>
+</span><span class='line'>brew install rbenv ruby-build
+</span><span class='line'>
+</span><span class='line'><span class="nb">echo</span> <span class="s1">&#39;if which rbenv &gt; /dev/null; then eval &quot;$(rbenv init -)&quot;; fi&#39;</span> &gt;&gt; ~/.bash_profile
+</span><span class='line'><span class="nb">source</span> ~/.bash_profile
+</span><span class='line'>
+</span><span class='line'>rbenv install 2.3.1
+</span><span class='line'>rbenv global 2.3.1
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>Installing Rails</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem install rails -v 4.2.6
+</span><span class='line'>rbenv rehash
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>others</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew install mysql
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2016/10/19/my-linux-command/">[Ubuntu] Linux 稍微進階的常用指令</a></h1>
     
     
@@ -166,13 +247,28 @@ egrep &#39; &hellip;&#8221;>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h2>find</h2>
+<h2>find 找檔案</h2>
 
-<h2>locate</h2>
+<figure class='code'><figcaption><span>在/home目錄下找檔名為production.log的檔案</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>find /home -name production.log
+</span><span class='line'>find /home -iname production.log <span class="c"># 不分大小寫</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<h2>whereis</h2>
 
-<h2>which</h2>
+
+
+<figure class='code'><figcaption><span>在/home目錄下找所有的log folder</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>find /home -type d -name log
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>locate 找檔案(查系統index，不是直接掃目錄)</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>locate nginx.conf
+</span></code></pre></td></tr></table></div></figure>
+
 
 <ul>
 <li>Ctrl + c : 終止正在執行的程式</li>
@@ -1718,8 +1814,8 @@ egrep &#39; &hellip;&#8221;>
 <h5>帳號以中華電信為例</h5>
 
 <ul>
-<li><a href="&#x6d;&#x61;&#x69;&#x6c;&#116;&#x6f;&#58;&#x78;&#120;&#120;&#120;&#x78;&#x78;&#x78;&#120;&#64;&#104;&#x69;&#110;&#101;&#x74;&#x2e;&#110;&#101;&#116;">&#x78;&#x78;&#120;&#120;&#120;&#120;&#x78;&#120;&#x40;&#x68;&#105;&#x6e;&#x65;&#x74;&#x2e;&#110;&#x65;&#116;</a>        取得動態IP (原有帳號格式)</li>
-<li><a href="&#x6d;&#97;&#105;&#x6c;&#x74;&#x6f;&#58;&#x78;&#120;&#x78;&#x78;&#x78;&#x78;&#x78;&#120;&#64;&#x69;&#112;&#46;&#104;&#105;&#x6e;&#x65;&#x74;&#46;&#x6e;&#101;&#116;">&#x78;&#120;&#120;&#120;&#120;&#x78;&#x78;&#x78;&#64;&#x69;&#112;&#x2e;&#x68;&#105;&#110;&#101;&#x74;&#46;&#110;&#101;&#116;</a>     取得固定IP  僅限一台電腦使用</li>
+<li><a href="&#109;&#97;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#x78;&#120;&#x78;&#120;&#x78;&#x78;&#x78;&#120;&#64;&#x68;&#105;&#x6e;&#x65;&#116;&#x2e;&#x6e;&#x65;&#116;">&#120;&#120;&#x78;&#x78;&#120;&#x78;&#x78;&#120;&#64;&#104;&#x69;&#x6e;&#x65;&#116;&#x2e;&#110;&#x65;&#x74;</a>        取得動態IP (原有帳號格式)</li>
+<li><a href="&#x6d;&#97;&#x69;&#108;&#x74;&#x6f;&#x3a;&#x78;&#120;&#120;&#120;&#x78;&#120;&#120;&#x78;&#x40;&#x69;&#x70;&#46;&#104;&#x69;&#110;&#101;&#x74;&#x2e;&#x6e;&#x65;&#x74;">&#x78;&#120;&#120;&#x78;&#x78;&#x78;&#x78;&#120;&#64;&#105;&#x70;&#46;&#104;&#105;&#x6e;&#x65;&#116;&#x2e;&#110;&#101;&#116;</a>     取得固定IP  僅限一台電腦使用</li>
 </ul>
 
 
@@ -1737,118 +1833,6 @@ egrep &#39; &hellip;&#8221;>
 <p>Reference:</p>
 
 <p><a href="http://note.drx.tw/2008/08/networkpppoe-adsl.html">http://note.drx.tw/2008/08/networkpppoe-adsl.html</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/11/07/ruby-aes-encrypt-decrypt/">[Ruby] AES 加密解密</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2015-11-07T14:48:06+08:00" pubdate data-updated="true"></time>
-        
-         | <a href="/blog/2015/11/07/ruby-aes-encrypt-decrypt/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h3>對稱金鑰加密：加解密使用的金鑰是同一把</h3>
-
-<ul>
-<li>DES (Data Encryption Standard)</li>
-<li>AES (Advanced Encryption Standard)</li>
-</ul>
-
-
-<h3>非對稱金鑰加密系統(公開金鑰加密)，加解密不同把key(公鑰私鑰)</h3>
-
-<ul>
-<li>RSA</li>
-</ul>
-
-
-<figure class='code'><figcaption><span>加密解密</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="vg">$key</span> <span class="o">=</span> <span class="s2">&quot;自定key&quot;</span> <span class="c1"># 可利用rails的sercret key(Rails.application.secrets.secret_key_base)</span>
-</span><span class='line'><span class="vg">$iv</span>  <span class="o">=</span> <span class="s2">&quot;自定iv&quot;</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># AES 加密</span>
-</span><span class='line'><span class="k">def</span> <span class="nf">aes_encrypt</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">cipher</span> <span class="o">=</span> <span class="no">OpenSSL</span><span class="o">::</span><span class="no">Cipher</span><span class="o">::</span><span class="no">AES128</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:CBC</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">cipher</span><span class="o">.</span><span class="n">encrypt</span>
-</span><span class='line'>  <span class="n">cipher</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="vg">$key</span>
-</span><span class='line'>  <span class="n">cipher</span><span class="o">.</span><span class="n">iv</span> <span class="o">=</span> <span class="vg">$iv</span>
-</span><span class='line'>  <span class="n">encrypted</span> <span class="o">=</span> <span class="n">cipher</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">+</span> <span class="n">cipher</span><span class="o">.</span><span class="n">final</span>
-</span><span class='line'>  <span class="n">encrypted_base64</span> <span class="o">=</span> <span class="no">Base64</span><span class="o">.</span><span class="n">encode64</span><span class="p">(</span><span class="n">encrypted</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">return</span> <span class="n">encrypted_base64</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># 解密  </span>
-</span><span class='line'><span class="k">def</span> <span class="nf">aes_decrypt</span><span class="p">(</span><span class="n">encrypted_base64</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">encrypted</span> <span class="o">=</span> <span class="no">Base64</span><span class="o">.</span><span class="n">decode64</span><span class="p">(</span><span class="n">encrypted_base64</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">decipher</span> <span class="o">=</span> <span class="no">OpenSSL</span><span class="o">::</span><span class="no">Cipher</span><span class="o">::</span><span class="no">AES128</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:CBC</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">decipher</span><span class="o">.</span><span class="n">decrypt</span>
-</span><span class='line'>  <span class="n">decipher</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="vg">$key</span>
-</span><span class='line'>  <span class="n">decipher</span><span class="o">.</span><span class="n">iv</span>  <span class="o">=</span> <span class="vg">$iv</span>
-</span><span class='line'>  <span class="n">data</span> <span class="o">=</span> <span class="n">decipher</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">encrypted</span><span class="p">)</span> <span class="o">+</span> <span class="n">decipher</span><span class="o">.</span><span class="n">final</span>
-</span><span class='line'>  <span class="k">return</span> <span class="n">data</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Reference:</p>
-
-<p><a href="http://wemee.blogspot.tw/2015/01/ruby-product-key-ruby.html">http://wemee.blogspot.tw/2015/01/ruby-product-key-ruby.html</a></p>
-
-<p><a href="http://webos-goodies.jp/archives/encryption_in_ruby.html">http://webos-goodies.jp/archives/encryption_in_ruby.html</a></p>
-
-<p><a href="http://blog.ifyouseewendy.com/blog/2014/11/20/encryption-in-ruby/">http://blog.ifyouseewendy.com/blog/2014/11/20/encryption-in-ruby/</a></p>
 </div>
   
   
@@ -1900,6 +1884,10 @@ egrep &#39; &hellip;&#8221;>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/10/30/rails-mac-os-environment-sierra/">[Mac] Ruby on Rails 基本環境建置 - 10.12 Sierra</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2016/10/19/my-linux-command/">[Ubuntu] Linux 稍微進階的常用指令</a>
@@ -1955,10 +1943,6 @@ egrep &#39; &hellip;&#8221;>
     
       <li class="post">
         <a href="/blog/2015/04/18/all-your-important-files-are-encrypted/">資料被綁架軟體加密，要求贖金用比特幣支付</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/04/12/ruby-basic-2/">[Ruby] 教學 - 基本使用介紹2</a>
       </li>
     
   </ul>

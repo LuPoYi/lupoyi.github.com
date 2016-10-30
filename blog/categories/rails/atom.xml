@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rails | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2016-10-19T19:48:37+08:00</updated>
+  <updated>2016-10-30T15:48:04+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -12,6 +12,33 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[[Mac] Ruby on Rails 基本環境建置 - 10.12 Sierra]]></title>
+    <link href="http://blog.poyi.tw/blog/2016/10/30/rails-mac-os-environment-sierra/"/>
+    <updated>2016-10-30T15:39:21+08:00</updated>
+    <id>http://blog.poyi.tw/blog/2016/10/30/rails-mac-os-environment-sierra</id>
+    <content type="html"><![CDATA[<pre><code class="bash Installing Homebrew">ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+</code></pre>
+
+<pre><code class="bash Installing Ruby"># 改用相對輕量的rbenv取代肥肥的rvm
+brew install rbenv ruby-build
+
+echo 'if which rbenv &gt; /dev/null; then eval "$(rbenv init -)"; fi' &gt;&gt; ~/.bash_profile
+source ~/.bash_profile
+
+rbenv install 2.3.1
+rbenv global 2.3.1
+</code></pre>
+
+<pre><code class="bash Installing Rails">gem install rails -v 4.2.6
+rbenv rehash
+</code></pre>
+
+<pre><code class="bash others">brew install mysql
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[[Rails] 各種update method]]></title>
@@ -201,66 +228,6 @@ body = ['ruby','1000','18']
 <p><a href="http://blog.inheart.tw/2013/09/rubyraisl-csv-excel.html">http://blog.inheart.tw/2013/09/rubyraisl-csv-excel.html</a></p>
 
 <p><a href="http://salayhin.wordpress.com/2014/05/10/export-csv-file-from-rails-console/">http://salayhin.wordpress.com/2014/05/10/export-csv-file-from-rails-console/</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[[Mac] Ruby on Rails 基本環境建置]]></title>
-    <link href="http://blog.poyi.tw/blog/2014/01/17/rails-mac-os-environment-build/"/>
-    <updated>2014-01-17T12:47:00+08:00</updated>
-    <id>http://blog.poyi.tw/blog/2014/01/17/rails-mac-os-environment-build</id>
-    <content type="html"><![CDATA[<p>是說終於買了mac，省去開箱文趕緊把環境用好來繼續練習ROR!!
-但使用上還是有一點不習慣，會覺得有些地方也蠻不人性化，但相對穩定就是了</p>
-
-<h2>以下環境為OS X 10.9.1</h2>
-
-<p>1.安裝xcode-select
-Command line tool已經獨立出來，不需要安裝XCode了
-<code>bash terminal
-$ xcode-select --install
-</code>
-<img src="http://user-image.logdown.io/user/2740/blog/2734/post/176032/wrVy25UMQkeJEnuNKSEq_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202014-01-17%20%E4%B8%8B%E5%8D%889.07.40.png" alt="螢幕快照 2014-01-17 下午9.07.40.png" /></p>
-
-<p>如果安裝失敗的話也可以到<a href="https://developer.apple.com/downloads/index.action?q=xcode">這裡</a>下載
-<img src="http://user-image.logdown.io/user/2740/blog/2734/post/176032/umDZbcPSNWfhQ0VNDr7l_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202014-01-17%20%E4%B8%8B%E5%8D%8810.01.05.png" alt="螢幕快照 2014-01-17 下午10.01.05.png" /></p>
-
-<p>2.安裝homebrew
-<code>bash terminal
-$ ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)"
-</code></p>
-
-<p>3.安裝所需要的工具
-<code>bash terminal
-$ brew install git
-</code></p>
-
-<p>4.安裝RVM
-<code>bash terminal
-$ curl -L https://get.rvm.io | bash -s stable
-</code>
-5.透過RVM來安裝RUBY
-<code>bash terminal
-$ rvm install ruby
-</code>
-6.透過RVM來安裝RubyGems
-<code>bash terminal
-$ rvm rubygems current
-</code>
-7.安裝Rails
-<code>bash terminal
-$ gem install rails
-</code></p>
-
-<hr />
-
-<p>XCode:官方提供的一個IDE，主要用來開發IOS APP，不過它也包含了一些開發其他語言所需的環境
-Homebrew: OSX 套件管理工具
-RVM (Ruby Version Manager):Ruby版本管理工具，便於切換不同版本</p>
-
-<p>Reference:</p>
-
-<p><a href="http://www.computersnyou.com/2025/2013/06/install-command-line-tools-in-osx-10-9-mavericks-how-to/">http://www.computersnyou.com/2025/2013/06/install-command-line-tools-in-osx-10-9-mavericks-how-to/</a>
-<a href="http://www.slideshare.net/marsz330/ruby-on-rails-for-mac">http://www.slideshare.net/marsz330/ruby-on-rails-for-mac</a></p>
 ]]></content>
   </entry>
   

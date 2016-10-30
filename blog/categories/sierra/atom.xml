@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: sierra | Bob 學習筆記]]></title>
+  <link href="http://blog.poyi.tw/blog/categories/sierra/atom.xml" rel="self"/>
+  <link href="http://blog.poyi.tw/"/>
+  <updated>2016-10-30T15:48:04+08:00</updated>
+  <id>http://blog.poyi.tw/</id>
+  <author>
+    <name><![CDATA[Bob (PoYi)]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[[Mac] Ruby on Rails 基本環境建置 - 10.12 Sierra]]></title>
+    <link href="http://blog.poyi.tw/blog/2016/10/30/rails-mac-os-environment-sierra/"/>
+    <updated>2016-10-30T15:39:21+08:00</updated>
+    <id>http://blog.poyi.tw/blog/2016/10/30/rails-mac-os-environment-sierra</id>
+    <content type="html"><![CDATA[<pre><code class="bash Installing Homebrew">ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+</code></pre>
+
+<pre><code class="bash Installing Ruby"># 改用相對輕量的rbenv取代肥肥的rvm
+brew install rbenv ruby-build
+
+echo 'if which rbenv &gt; /dev/null; then eval "$(rbenv init -)"; fi' &gt;&gt; ~/.bash_profile
+source ~/.bash_profile
+
+rbenv install 2.3.1
+rbenv global 2.3.1
+</code></pre>
+
+<pre><code class="bash Installing Rails">gem install rails -v 4.2.6
+rbenv rehash
+</code></pre>
+
+<pre><code class="bash others">brew install mysql
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>

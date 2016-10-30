@@ -9,8 +9,9 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="以往都是寫供內部使用的網站，也沒想過有什麼資安的問題…
-也就是說資安這一環，幾乎是無知的狀態… SQL Injection 將字串中夾帶SQL指令，讓SERVER認為是正常指令而執行 ASP.NET 防範方法 避免直接將使用者輸入的資料作為SQL指令；或是利用SQLParameter來處理參數 &hellip;">
+  <meta name="description" content="列印指定文件 string filePath = "C:\\test.txt"; // 使用預設印表機
+LocalPrintServer ps = new LocalPrintServer();
+PrintQueue queue = ps.DefaultPrintQueue; // 指定特定印表機 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -100,6 +101,63 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/09/04/aspnet-print/">[ASP.NET] 列印</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-04T02:46:00+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2013/09/04/aspnet-print/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1>列印指定文件</h1>
+
+<pre><code>string filePath = "C:\\test.txt";
+
+// 使用預設印表機
+LocalPrintServer ps = new LocalPrintServer();
+PrintQueue queue = ps.DefaultPrintQueue;
+
+// 指定特定印表機
+PrintServer ps = new PrintServer(@"\\TY-SRV-PRINT01");
+PrintQueue queue = new PrintQueue(ps, "FUJIXEROX");
+
+PrintSystemJobInfo pj = queue.AddJob(filePath);
+Stream myStream = pj.JobStream;
+Byte[] myByteBuffer = System.IO.File.ReadAllBytes(filePath);
+myStream.Write(myByteBuffer, 0, myByteBuffer.Length);
+myStream.Close();
+
+queue.Commit();
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -743,74 +801,6 @@ Regex.IsMatch(strPwd, @"[\W]")
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/03/aspnet-auto-return/">[ASP.NET] 自動寄信</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-03T12:48:00+08:00" pubdate data-updated="true"></time>
-        
-         | <a href="/blog/2013/03/03/aspnet-auto-return/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>一樣是紀綠一下&hellip;</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>MailMessage mailMessage = new MailMessage();
-</span><span class='line'>mailMessage.IsBodyHtml = true;
-</span><span class='line'>
-</span><span class='line'>mailMessage.To.Add(emailAddress);
-</span><span class='line'>mailMessage.CC.Add(cCMailAddress);
-</span><span class='line'>
-</span><span class='line'>MailAddress fromWho = new MailAddress(senderMailAddress);
-</span><span class='line'>mailMessage.From = fromWho;
-</span><span class='line'>mailMessage.Subject = title;
-</span><span class='line'>mailMessage.Body = "這邊可放html"
-</span><span class='line'>
-</span><span class='line'>SmtpClient mailSmtp = new SmtpClient(mailServer,mailServerPort);
-</span><span class='line'>
-</span><span class='line'>mailSmtp.Send(mailMessage);</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/7">&larr; Older</a>
@@ -857,6 +847,10 @@ Regex.IsMatch(strPwd, @"[\W]")
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/10/30/rails-mac-os-environment-sierra/">[Mac] Ruby on Rails 基本環境建置 - 10.12 Sierra</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2016/10/19/my-linux-command/">[Ubuntu] Linux 稍微進階的常用指令</a>
@@ -912,10 +906,6 @@ Regex.IsMatch(strPwd, @"[\W]")
     
       <li class="post">
         <a href="/blog/2015/04/18/all-your-important-files-are-encrypted/">資料被綁架軟體加密，要求贖金用比特幣支付</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/04/12/ruby-basic-2/">[Ruby] 教學 - 基本使用介紹2</a>
       </li>
     
   </ul>

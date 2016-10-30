@@ -9,11 +9,22 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="稍微記一下，相關變化都蠻簡單的 DataTable dt = new DataTable(); // 定義欄位
-dt.Columns.Add(&ldquo;name&rdquo;);
-dt.Columns.Add(&ldquo;cardNumber&rdquo;);
-// 也可定義欄位型態
-// &hellip;">
+  <meta name="description" content="一樣是紀綠一下&hellip; 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+MailMessage mailMessage = new MailMessage();
+mailMessage.IsBodyHtml = true; mailMessage.To.Add( &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -103,6 +114,74 @@ dt.Columns.Add(&ldquo;cardNumber&rdquo;);
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/03/aspnet-auto-return/">[ASP.NET] 自動寄信</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-03T12:48:00+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2013/03/03/aspnet-auto-return/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>一樣是紀綠一下&hellip;</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>MailMessage mailMessage = new MailMessage();
+</span><span class='line'>mailMessage.IsBodyHtml = true;
+</span><span class='line'>
+</span><span class='line'>mailMessage.To.Add(emailAddress);
+</span><span class='line'>mailMessage.CC.Add(cCMailAddress);
+</span><span class='line'>
+</span><span class='line'>MailAddress fromWho = new MailAddress(senderMailAddress);
+</span><span class='line'>mailMessage.From = fromWho;
+</span><span class='line'>mailMessage.Subject = title;
+</span><span class='line'>mailMessage.Body = "這邊可放html"
+</span><span class='line'>
+</span><span class='line'>SmtpClient mailSmtp = new SmtpClient(mailServer,mailServerPort);
+</span><span class='line'>
+</span><span class='line'>mailSmtp.Send(mailMessage);</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -595,6 +674,10 @@ GridView.DataBind();</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/10/30/rails-mac-os-environment-sierra/">[Mac] Ruby on Rails 基本環境建置 - 10.12 Sierra</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2016/10/19/my-linux-command/">[Ubuntu] Linux 稍微進階的常用指令</a>
       </li>
     
@@ -648,10 +731,6 @@ GridView.DataBind();</p>
     
       <li class="post">
         <a href="/blog/2015/04/18/all-your-important-files-are-encrypted/">資料被綁架軟體加密，要求贖金用比特幣支付</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/04/12/ruby-basic-2/">[Ruby] 教學 - 基本使用介紹2</a>
       </li>
     
   </ul>

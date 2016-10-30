@@ -4,7 +4,7 @@
   <title><![CDATA[Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2016-10-19T19:48:37+08:00</updated>
+  <updated>2016-10-30T15:48:04+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -12,6 +12,55 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[[Mac] Ruby on Rails 基本環境建置 - 10.12 Sierra]]></title>
+    <link href="http://blog.poyi.tw/blog/2016/10/30/rails-mac-os-environment-sierra/"/>
+    <updated>2016-10-30T15:39:21+08:00</updated>
+    <id>http://blog.poyi.tw/blog/2016/10/30/rails-mac-os-environment-sierra</id>
+    <content type="html"><![CDATA[<figure class='code'><figcaption><span>Installing Homebrew</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ruby -e <span class="s2">&quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>Installing Ruby</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># 改用相對輕量的rbenv取代肥肥的rvm</span>
+</span><span class='line'>brew install rbenv ruby-build
+</span><span class='line'>
+</span><span class='line'><span class="nb">echo</span> <span class="s1">&#39;if which rbenv &gt; /dev/null; then eval &quot;$(rbenv init -)&quot;; fi&#39;</span> &gt;&gt; ~/.bash_profile
+</span><span class='line'><span class="nb">source</span> ~/.bash_profile
+</span><span class='line'>
+</span><span class='line'>rbenv install 2.3.1
+</span><span class='line'>rbenv global 2.3.1
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>Installing Rails</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem install rails -v 4.2.6
+</span><span class='line'>rbenv rehash
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>others</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew install mysql
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[[Ubuntu] Linux 稍微進階的常用指令]]></title>
@@ -50,13 +99,28 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h2>find</h2>
+<h2>find 找檔案</h2>
 
-<h2>locate</h2>
+<figure class='code'><figcaption><span>在/home目錄下找檔名為production.log的檔案</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>find /home -name production.log
+</span><span class='line'>find /home -iname production.log <span class="c"># 不分大小寫</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<h2>whereis</h2>
 
-<h2>which</h2>
+
+
+<figure class='code'><figcaption><span>在/home目錄下找所有的log folder</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>find /home -type d -name log
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>locate 找檔案(查系統index，不是直接掃目錄)</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>locate nginx.conf
+</span></code></pre></td></tr></table></div></figure>
+
 
 <ul>
 <li>Ctrl + c : 終止正在執行的程式</li>
@@ -1370,8 +1434,8 @@
 <h5>帳號以中華電信為例</h5>
 
 <ul>
-<li><a href="&#x6d;&#x61;&#x69;&#x6c;&#116;&#x6f;&#58;&#x78;&#120;&#120;&#120;&#x78;&#x78;&#x78;&#120;&#64;&#104;&#x69;&#110;&#101;&#x74;&#x2e;&#110;&#101;&#116;">&#x78;&#x78;&#120;&#120;&#120;&#120;&#x78;&#120;&#x40;&#x68;&#105;&#x6e;&#x65;&#x74;&#x2e;&#110;&#x65;&#116;</a>        取得動態IP (原有帳號格式)</li>
-<li><a href="&#x6d;&#97;&#105;&#x6c;&#x74;&#x6f;&#58;&#x78;&#120;&#x78;&#x78;&#x78;&#x78;&#x78;&#120;&#64;&#x69;&#112;&#46;&#104;&#105;&#x6e;&#x65;&#x74;&#46;&#x6e;&#101;&#116;">&#x78;&#120;&#120;&#120;&#120;&#x78;&#x78;&#x78;&#64;&#x69;&#112;&#x2e;&#x68;&#105;&#110;&#101;&#x74;&#46;&#110;&#101;&#116;</a>     取得固定IP  僅限一台電腦使用</li>
+<li><a href="&#109;&#97;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#x78;&#120;&#x78;&#120;&#x78;&#x78;&#x78;&#120;&#64;&#x68;&#105;&#x6e;&#x65;&#116;&#x2e;&#x6e;&#x65;&#116;">&#120;&#120;&#x78;&#x78;&#120;&#x78;&#x78;&#120;&#64;&#104;&#x69;&#x6e;&#x65;&#116;&#x2e;&#110;&#x65;&#x74;</a>        取得動態IP (原有帳號格式)</li>
+<li><a href="&#x6d;&#97;&#x69;&#108;&#x74;&#x6f;&#x3a;&#x78;&#120;&#120;&#120;&#x78;&#120;&#120;&#x78;&#x40;&#x69;&#x70;&#46;&#104;&#x69;&#110;&#101;&#x74;&#x2e;&#x6e;&#x65;&#x74;">&#x78;&#120;&#120;&#x78;&#x78;&#x78;&#x78;&#120;&#64;&#105;&#x70;&#46;&#104;&#105;&#x6e;&#x65;&#116;&#x2e;&#110;&#101;&#116;</a>     取得固定IP  僅限一台電腦使用</li>
 </ul>
 
 
@@ -2443,37 +2507,6 @@ extend: 相當於把目標的code直接放進來；具有目標的class methods<
 <p><a href="http://www.slideshare.net/BruceLi2/rubypart2">http://www.slideshare.net/BruceLi2/rubypart2</a></p>
 
 <p><a href="http://cat-son.blogspot.tw/2012/10/2-rubyinclude-extendrequire.html#sthash.QduzPsMe.cFJYqpMb.dpbs">http://cat-son.blogspot.tw/2012/10/2-rubyinclude-extendrequire.html#sthash.QduzPsMe.cFJYqpMb.dpbs</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[[Mac] 直接在終端機開啟sublime]]></title>
-    <link href="http://blog.poyi.tw/blog/2014/01/19/mac-directly-in-the-terminal-to-open-sublime/"/>
-    <updated>2014-01-19T04:31:00+08:00</updated>
-    <id>http://blog.poyi.tw/blog/2014/01/19/mac-directly-in-the-terminal-to-open-sublime</id>
-    <content type="html"><![CDATA[<p>應該有更方便的用法吧我想，但目前對我來說算好用了:D</p>
-
-<figure class='code'><figcaption><span>執行這行指令</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>ln -s /Applications/Sublime<span class="se">\ </span>Text<span class="se">\ </span>2.app/Contents/SharedSupport/bin/subl /usr/local/bin/sublime
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>執行這行指令</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>open id_rsa.pub
-</span><span class='line'>No application knows how to open /Users/Bob/.ssh/id_rsa.pub.
-</span><span class='line'><span class="nv">$ </span>ln -s /Applications/Sublime<span class="se">\ </span>Text<span class="se">\ </span>2.app/Contents/SharedSupport/bin/subl /usr/local/bin/sublime
-</span><span class='line'><span class="nv">$ </span>sublime id_rsa.pub
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Reference:</p>
-
-<p><a href="http://jocoomadao.blogspot.tw/2013/11/macterminal-sublime.html">http://jocoomadao.blogspot.tw/2013/11/macterminal-sublime.html</a></p>
 ]]></content>
   </entry>
   

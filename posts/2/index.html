@@ -9,12 +9,17 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="正規Rails的更新 - update 會觸發validation、callback、也會更新updated_at update 寫法 (for 單筆)1
+  <meta name="description" content="對稱金鑰加密：加解密使用的金鑰是同一把 DES (Data Encryption Standard)
+AES (Advanced Encryption Standard) 非對稱金鑰加密系統(公開金鑰加密)，加解密不同把key(公鑰私鑰) RSA 加密解密1
 2
 3
 4
 5
-&gt; Comment.last.update(message: &#39;bbb&#39;) (0.1ms) begin &hellip;">
+6
+7
+8
+9
+10 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -104,6 +109,118 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/11/07/ruby-aes-encrypt-decrypt/">[Ruby] AES 加密解密</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-11-07T14:48:06+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2015/11/07/ruby-aes-encrypt-decrypt/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>對稱金鑰加密：加解密使用的金鑰是同一把</h3>
+
+<ul>
+<li>DES (Data Encryption Standard)</li>
+<li>AES (Advanced Encryption Standard)</li>
+</ul>
+
+
+<h3>非對稱金鑰加密系統(公開金鑰加密)，加解密不同把key(公鑰私鑰)</h3>
+
+<ul>
+<li>RSA</li>
+</ul>
+
+
+<figure class='code'><figcaption><span>加密解密</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="vg">$key</span> <span class="o">=</span> <span class="s2">&quot;自定key&quot;</span> <span class="c1"># 可利用rails的sercret key(Rails.application.secrets.secret_key_base)</span>
+</span><span class='line'><span class="vg">$iv</span>  <span class="o">=</span> <span class="s2">&quot;自定iv&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># AES 加密</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">aes_encrypt</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">cipher</span> <span class="o">=</span> <span class="no">OpenSSL</span><span class="o">::</span><span class="no">Cipher</span><span class="o">::</span><span class="no">AES128</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:CBC</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">cipher</span><span class="o">.</span><span class="n">encrypt</span>
+</span><span class='line'>  <span class="n">cipher</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="vg">$key</span>
+</span><span class='line'>  <span class="n">cipher</span><span class="o">.</span><span class="n">iv</span> <span class="o">=</span> <span class="vg">$iv</span>
+</span><span class='line'>  <span class="n">encrypted</span> <span class="o">=</span> <span class="n">cipher</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">+</span> <span class="n">cipher</span><span class="o">.</span><span class="n">final</span>
+</span><span class='line'>  <span class="n">encrypted_base64</span> <span class="o">=</span> <span class="no">Base64</span><span class="o">.</span><span class="n">encode64</span><span class="p">(</span><span class="n">encrypted</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">encrypted_base64</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># 解密  </span>
+</span><span class='line'><span class="k">def</span> <span class="nf">aes_decrypt</span><span class="p">(</span><span class="n">encrypted_base64</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">encrypted</span> <span class="o">=</span> <span class="no">Base64</span><span class="o">.</span><span class="n">decode64</span><span class="p">(</span><span class="n">encrypted_base64</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">decipher</span> <span class="o">=</span> <span class="no">OpenSSL</span><span class="o">::</span><span class="no">Cipher</span><span class="o">::</span><span class="no">AES128</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:CBC</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">decipher</span><span class="o">.</span><span class="n">decrypt</span>
+</span><span class='line'>  <span class="n">decipher</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="vg">$key</span>
+</span><span class='line'>  <span class="n">decipher</span><span class="o">.</span><span class="n">iv</span>  <span class="o">=</span> <span class="vg">$iv</span>
+</span><span class='line'>  <span class="n">data</span> <span class="o">=</span> <span class="n">decipher</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">encrypted</span><span class="p">)</span> <span class="o">+</span> <span class="n">decipher</span><span class="o">.</span><span class="n">final</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">data</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Reference:</p>
+
+<p><a href="http://wemee.blogspot.tw/2015/01/ruby-product-key-ruby.html">http://wemee.blogspot.tw/2015/01/ruby-product-key-ruby.html</a></p>
+
+<p><a href="http://webos-goodies.jp/archives/encryption_in_ruby.html">http://webos-goodies.jp/archives/encryption_in_ruby.html</a></p>
+
+<p><a href="http://blog.ifyouseewendy.com/blog/2014/11/20/encryption-in-ruby/">http://blog.ifyouseewendy.com/blog/2014/11/20/encryption-in-ruby/</a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1337,66 +1454,6 @@ extend: 相當於把目標的code直接放進來；具有目標的class methods<
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/01/19/mac-directly-in-the-terminal-to-open-sublime/">[Mac] 直接在終端機開啟sublime</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-01-19T04:31:00+08:00" pubdate data-updated="true"></time>
-        
-         | <a href="/blog/2014/01/19/mac-directly-in-the-terminal-to-open-sublime/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>應該有更方便的用法吧我想，但目前對我來說算好用了:D</p>
-
-<figure class='code'><figcaption><span>執行這行指令</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>ln -s /Applications/Sublime<span class="se">\ </span>Text<span class="se">\ </span>2.app/Contents/SharedSupport/bin/subl /usr/local/bin/sublime
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>執行這行指令</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>open id_rsa.pub
-</span><span class='line'>No application knows how to open /Users/Bob/.ssh/id_rsa.pub.
-</span><span class='line'><span class="nv">$ </span>ln -s /Applications/Sublime<span class="se">\ </span>Text<span class="se">\ </span>2.app/Contents/SharedSupport/bin/subl /usr/local/bin/sublime
-</span><span class='line'><span class="nv">$ </span>sublime id_rsa.pub
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Reference:</p>
-
-<p><a href="http://jocoomadao.blogspot.tw/2013/11/macterminal-sublime.html">http://jocoomadao.blogspot.tw/2013/11/macterminal-sublime.html</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/3">&larr; Older</a>
@@ -1443,6 +1500,10 @@ extend: 相當於把目標的code直接放進來；具有目標的class methods<
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/10/30/rails-mac-os-environment-sierra/">[Mac] Ruby on Rails 基本環境建置 - 10.12 Sierra</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2016/10/19/my-linux-command/">[Ubuntu] Linux 稍微進階的常用指令</a>
@@ -1498,10 +1559,6 @@ extend: 相當於把目標的code直接放進來；具有目標的class methods<
     
       <li class="post">
         <a href="/blog/2015/04/18/all-your-important-files-are-encrypted/">資料被綁架軟體加密，要求贖金用比特幣支付</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/04/12/ruby-basic-2/">[Ruby] 教學 - 基本使用介紹2</a>
       </li>
     
   </ul>

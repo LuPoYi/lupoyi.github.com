@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2016-10-19T19:48:37+08:00</updated>
+  <updated>2016-10-30T15:48:04+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -12,6 +12,33 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[[Mac] Ruby on Rails 基本環境建置 - 10.12 Sierra]]></title>
+    <link href="http://blog.poyi.tw/blog/2016/10/30/rails-mac-os-environment-sierra/"/>
+    <updated>2016-10-30T15:39:21+08:00</updated>
+    <id>http://blog.poyi.tw/blog/2016/10/30/rails-mac-os-environment-sierra</id>
+    <content type="html"><![CDATA[<pre><code class="bash Installing Homebrew">ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+</code></pre>
+
+<pre><code class="bash Installing Ruby"># 改用相對輕量的rbenv取代肥肥的rvm
+brew install rbenv ruby-build
+
+echo 'if which rbenv &gt; /dev/null; then eval "$(rbenv init -)"; fi' &gt;&gt; ~/.bash_profile
+source ~/.bash_profile
+
+rbenv install 2.3.1
+rbenv global 2.3.1
+</code></pre>
+
+<pre><code class="bash Installing Rails">gem install rails -v 4.2.6
+rbenv rehash
+</code></pre>
+
+<pre><code class="bash others">brew install mysql
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[[Ruby] AES 加密解密]]></title>
@@ -380,78 +407,6 @@ end
 <p>Reference:</p>
 
 <p><a href="http://ruby-doc.org/core-2.1.4/File.html">http://ruby-doc.org/core-2.1.4/File.html</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[[Ruby] 匯出批次csv檔]]></title>
-    <link href="http://blog.poyi.tw/blog/2014/05/06/ruby-csv-file/"/>
-    <updated>2014-05-06T21:14:00+08:00</updated>
-    <id>http://blog.poyi.tw/blog/2014/05/06/ruby-csv-file</id>
-    <content type="html"><![CDATA[<p>讀取或寫入csv在ruby都蠻方便的，只是編碼或格式要稍微注意一下</p>
-
-<h2>匯出csv</h2>
-
-<pre><code class="ruby">header = ['name','money','age']
-body = ['ruby','1000','18']
-</code></pre>
-
-<pre><code class="ruby export_to_csv_string 匯出csv的string格式再利用send_data下載">  head = 'EF BB BF'.split(' ').map{|a|a.hex.chr}.join() # 加入BOM，解決excel中文亂碼
-
-
-  csv_string = CSV.generate(csv = head) do |csv|
-    csv &lt;&lt; header
-    csv &lt;&lt; body
-  end
-
-  # &gt; csv_string.encoding 執行這句會發現預設編碼為ACSII
-  csv_string.force_encoding('big5')
-  # BOM也可以這樣加 csv_string = "\xEF\xBB\xBF#{csv_string}"  
-  # 若不需要調整格式就直接下載
-  send_data csv_string
-</code></pre>
-
-<pre><code class="ruby export_to_csv 直接匯出檔案"> require 'csv'
- CSV.open("export.csv","w") do |csv|
-   csv &lt;&lt; header
-   csv &lt;&lt; body
- end
-</code></pre>
-
-<h2>半形轉全形</h2>
-
-<p>在某些情況會需要轉出全形字元，照理說不用才對，<del>可能是因為合作對方的系統太爛</del>
-其實也不太確定怎解，我單純用硬幹的方式
-<figure class='code'><figcaption><span>convert_to_wide_word 大小寫英文數字轉全形字元</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">convert_to_wide_word</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">text</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/[a-v]/</span><span class="p">){</span><span class="o">|</span><span class="n">a</span><span class="o">|</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">ord</span> <span class="o">+</span> <span class="mi">41608</span><span class="p">)</span><span class="o">.</span><span class="n">chr</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">big5</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;)}</span>
-</span><span class='line'>    <span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/[w-z]/</span><span class="p">){</span><span class="o">|</span><span class="n">a</span><span class="o">|</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">ord</span> <span class="o">+</span> <span class="mi">41673</span><span class="p">)</span><span class="o">.</span><span class="n">chr</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">big5</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;)}</span>
-</span><span class='line'>    <span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/[A-Z]/</span><span class="p">){</span><span class="o">|</span><span class="n">a</span><span class="o">|</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">ord</span> <span class="o">+</span> <span class="mi">41614</span><span class="p">)</span><span class="o">.</span><span class="n">chr</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">big5</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;)}</span>
-</span><span class='line'>    <span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/[0-9]/</span><span class="p">){</span><span class="o">|</span><span class="n">a</span><span class="o">|</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">ord</span> <span class="o">+</span> <span class="mi">41599</span><span class="p">)</span><span class="o">.</span><span class="n">chr</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">big5</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;)}</span>
-</span><span class='line'><span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;convert_to_wide_word(&amp;ldquo;0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&amp;rdquo;)</span>
-</span><span class='line'><span class="sr"> =&gt; &amp;ldquo;０１２３４５６７８９ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚＡＢＣＤＥＦＧＨＩＪＫＬ</span>
-</span><span class='line'><span class="sr"> ＭＮＯＰＱＲＳＴＵＶＷＸＹＺ&amp;rdquo;</span>
-</span></code></pre></td></tr></table></div></figure>
-匯出匯入csv也可以試試FasterCSV這個gem</p>
-
-<p>Reference:</p>
-
-<p><a href="http://www.sitepoint.com/guide-ruby-csv-library-part/">http://www.sitepoint.com/guide-ruby-csv-library-part/</a></p>
-
-<p><a href="http://blog.inheart.tw/2013/09/rubyraisl-csv-excel.html">http://blog.inheart.tw/2013/09/rubyraisl-csv-excel.html</a></p>
-
-<p><a href="http://salayhin.wordpress.com/2014/05/10/export-csv-file-from-rails-console/">http://salayhin.wordpress.com/2014/05/10/export-csv-file-from-rails-console/</a></p>
 ]]></content>
   </entry>
   
