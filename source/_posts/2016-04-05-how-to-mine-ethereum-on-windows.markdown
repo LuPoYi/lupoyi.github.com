@@ -21,7 +21,8 @@ geth account new
 
 同步所有交易
 ```bash C:\
-geth --rpc
+# --cache=看你想分配多少RAM來sync。預設只有16MB
+geth --rpc --cache=8192
 ```
 // 第一次似乎可以用geth --rpc --fast來快速sync完整node(沒試過)
 
@@ -75,7 +76,7 @@ https://www.etherchain.org/account/0xb2944f316e14887bce4b5fae1c66ac78ba7c9123
 
 nanopool一天會結算四次，最少要有0.1 Eth才會發transaction到你的wallet
 
-用本機下geth指令查你的錢包資訊
+可以在本機下geth指令查你的錢包資訊
 
 ```bash C:\
 geth attach
@@ -91,9 +92,17 @@ geth attach
 
 可以到[Etherchain](https://www.etherchain.org/)看一下Recent blocks是不是已經sync到最新的block
 
-## 把指令包成.bat批次檔
+```bash geth指令整理
+geth upgradedb
+geth removedb # 整個blockchain會被清掉
+geth --rpc --cache=8192 # sync
+```
 
-因為需要分別開mining, sync以及console三個cmd並執行不同指令，所以我把指令包成.bat放桌面，或是拿來排程執行都ok
+## 其他－把指令包成.bat批次檔
+
+### ethereum_mining.bat
+
+因為需要分別開mining, sync以及console三個cmd並執行不同指令，所以我把指令包成.bat放桌面一鍵執行，或是拿來排程執行也ok
 
 ```bat ethereum_mining.bat
 echo on
@@ -106,18 +115,18 @@ ethminer -F asia1.nanopool.org:8888/0xb2944f316e14887bce4b5fae1c66ac78ba7c9123/b
 
 <a href="/images/poyi/ethereum_mining.jpg" target="_blank"><img src="/images/poyi/ethereum_mining.jpg" title="image" alt="images"></a>
 
-<br>
+### ethereum_sync.bat
 
 ```bat ethereum_sync.bat
 echo on
 E:
-geth --rpc
+geth --rpc --cache=8192
 ```
 sync會吃網路流量，圖中最下面的 #1401468 就是指我這台目前sync到這個block
 
 <a href="/images/poyi/ethereum_sync.jpg" target="_blank"><img src="/images/poyi/ethereum_sync.jpg" title="image" alt="images"></a>
 
-<br>
+### ethereum_console.bat
 
 ```bat ethereum_console.bat
 echo on
@@ -130,8 +139,33 @@ geth attach
 <a href="/images/poyi/ethereum_console.jpg" target="_blank"><img src="/images/poyi/ethereum_console.jpg" title="image" alt="images"></a>
 
 
+
+## 其他－將ETH所佔的C槽容量移到E槽
+
+挖礦及同步的資料預設都放在C底下
+
+(C:\Users\Bob\AppData\Local\Ethask)
+
+(C:\Users\Bob\AppData\Roaming\Ethereum)
+
+* 把C:\Users\Bob\AppData\Local\Ethask這個資料夾直接搬移到E:\ETH\Ethash
+* 開cmd下指令 "mklink /D C:\Users\Bob\AppData\Local\Ethask E:\ETH\Ethash
+* 這樣就行了，另一個folder也比照辦理
+
+```bash cmd
+C:\Users\Bob> mklink /D C:\Users\Bob\AppData\Local\Ethash E:\ETH\Ethash
+已建立 C:\Users\Bob\AppData\Local\Ethash 的符號連結 <<===>> E:\ETH\Ethash
+```
+
+
 Reference:
 
 https://www.cryptocompare.com/mining/guides/how-to-mine-ethereum/
 
 http://nanopool.org
+
+https://github.com/ethereum/go-ethereum/wiki/Backup-&-restore
+
+https://diaryofdennis.com/2016/06/11/how-to-move-and-change-your-ethereum-mining-ethash-dag-folder/
+
+

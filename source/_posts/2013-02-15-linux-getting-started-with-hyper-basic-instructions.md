@@ -47,19 +47,17 @@ $ chmod ugo+r test.txt
 也可用數字來調整權限
 chmod [u(int)][g(int)][o(int)] 檔案/目錄
 $ chmod 777 test.txt
-// r=4，w=2，x=1 
+r=4，w=2，x=1 
+-rwx-r--r--(10個參數，第一個無關chmod)
+2~4: user, 5~7: group, 8~10: others
+755代表 rwxr-xr-x
 
 ```
 
-
-``` bash grep
-...
-```
-
-``` bash tail
-...
-```
 Reference:
+
 http://www.pcnet.idv.tw/pcnet/linux/linux_command.htm
+
 http://tnrc.ncku.edu.tw/course/93/fedora_core2/page8/p8.htm
+
 http://jdev.tw/blog/3599/linux-terminal-commands-and-shortcuts

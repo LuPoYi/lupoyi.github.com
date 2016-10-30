@@ -28,3 +28,5 @@ $ ntpdate time.stdtime.gov.tw
 Reference:
 
 http://pineapplelin.pixnet.net/blog/post/25364493-ubuntu%E5%A6%82%E4%BD%95%E8%A8%AD%E5%AE%9Antp%E6%A0%A1%E6%99%82
+
+http://www.nowtaxes.com.tw/node/1112

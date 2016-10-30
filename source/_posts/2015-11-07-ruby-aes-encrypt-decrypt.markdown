@@ -22,7 +22,7 @@ categories: [ruby, aes, encrypt, decrypt]
 $key = "自定key" # 可利用rails的sercret key(Rails.application.secrets.secret_key_base)
 $iv  = "自定iv" 
 
-# 加密
+# AES 加密
 def aes_encrypt(data)
   cipher = OpenSSL::Cipher::AES128.new(:CBC)
   cipher.encrypt

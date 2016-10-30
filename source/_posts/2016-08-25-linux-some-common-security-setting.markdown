@@ -1,0 +1,169 @@
+---
+layout: post
+title: "[Ubuntu] Linux 基本的安全設定"
+date: 2016-08-25 20:54:54 +0800
+comments: true
+categories: [linux, ubuntu, security, fail2ban]
+---
+
+## 列幾個基本款常見的一些設定
+
+## ssh port更換到別的port
+
+```bash ssh port更換到別的port
+$ sudo vim /etc/ssh/sshd_config
+Port 1968
+$ sudo service sshd restart
+```
+
+## 開始自動安全性更新
+
+```bash 開始自動安全性更新
+ $ sudo apt-get install unattended-upgrades
+ $ sudo dpkg-reconfigure -plow unattended-upgrades
+ $ sudo vim /etc/apt/apt.conf.d/50unattended-upgrades
+```
+
+## ssh 登入盡量用 key-exchange 方式
+
+## fail2ban - 自動ban掉多次嘗試登入者
+
+```bash fail2ban基本設定
+$ sudo apt-get install fail2ban
+
+# 保留原始conf檔，把設定都寫在.local
+$ sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local 
+$ vim /etc/fail2ban/jail.local 
+# 將enabled改成true
+  [DEFAULT]
+    ignoreip = 127.0.0.1/8
+    bantime  = 600
+    findtime = 600
+    maxretry = 5
+    backend  = auto
+    enabled = true
+
+# 啟動
+$ sudo service fail2ban start
+
+# 看目前狀態，目前有一個被ban
+$ sudo fail2ban-client status
+Status
+|- Number of jail:      1
+`- Jail list:   sshd
+
+# detail
+$ sudo fail2ban-client status sshd
+Status for the jail: sshd
+|- Filter
+|  |- Currently failed: 1
+|  |- Total failed:     6
+|  `- File list:        /var/log/auth.log
+`- Actions
+   |- Currently banned: 1
+   |- Total banned:     1
+   `- Banned IP list:   111.248.10.10
+
+```
+
+## 設定iptables
+
+#### 用來過濾該網路封包是否能進出server，預設都是開啟的，若是沒有外部防火牆的話還蠻危險的
+
+```
+### clear tables
+iptables --flush
+iptables --delete-chain
+iptables --table mangle --flush
+iptables --table mangle --delete-chain
+
+### default policies
+iptables --policy INPUT   DROP
+iptables --policy OUTPUT  DROP
+iptables --policy FORWARD DROP
+
+### loopback
+iptables --append INPUT  --in-interface lo --jump ACCEPT
+iptables --append OUTPUT --out-interface lo --jump ACCEPT
+
+### existing connections
+iptables --append INPUT  --match conntrack --ctstate ESTABLISHED,RELATED --jump ACCEPT
+iptables --append OUTPUT --match conntrack --ctstate ESTABLISHED,RELATED --jump ACCEPT
+
+### trashlog chain
+iptables --new-chain trashlog
+iptables --append trashlog --jump LOG --log-level notice --log-prefix "trashlog: "
+iptables --append trashlog --jump DROP
+
+### INPUT
+iptables --append INPUT  --protocol tcp --dport 22 --match conntrack --ctstate NEW --jump ACCEPT
+iptables --append INPUT  --protocol tcp --dport 80 --match conntrack --ctstate NEW --jump ACCEPT
+iptables --append INPUT  --protocol tcp --dport 443 --match conntrack --ctstate NEW --jump ACCEPT
+
+### OUTPUT
+iptables --append OUTPUT --jump ACCEPT
+
+...
+
+
+# 其他客製化設定可參考
+# https://gist.github.com/virtualstaticvoid/1024546
+```
+
+## Logrotate.conf
+
+#### OS層的log大多紀錄在/var/log/底下，而預設開啟logrotate
+#### 調整/etc/logrotate.conf的自動rotate，把時間拉長或是不使用rotate
+
+* syslog 系統日誌
+* dpkg.log 軟體安裝及更新紀錄
+* auth.log 身份確認相關紀錄(使用sudo)
+
+```bash /etc/logrotate.conf
+# (略)
+```
+
+```bash /etc/logrotate.d
+# (略)
+```
+
+
+```bash wtmp user登入次數及使用時間紀錄
+$ last
+$ last -f /var/log/wtmp
+bob      pts/1        1.1.1.1   Tue Aug 23 13:22   still logged in
+bob      pts/1        1.1.1.1   Sun Aug 14 06:34 - 06:45  (00:10)
+bob      pts/0        1.1.1.1   Sun Aug 14 05:44 - 08:45  (03:00)
+bob      pts/0        1.1.1.1   Sat Aug  6 13:14 - 05:44 (7+16:29)
+```
+
+```bash wtmp user登入失敗紀錄
+$ sudo lastb
+$ last -f /var/log/btmp
+bob      pts/1        1.1.1.1   Tue Aug 23 13:22   still logged in
+bob      pts/1        1.1.1.1   Sun Aug 14 06:34 - 06:45  (00:10)
+bob      pts/0        1.1.1.1   Sun Aug 14 05:44 - 08:45  (03:00)
+bob      pts/0        1.1.1.1   Sat Aug  6 13:14 - 05:44 (7+16:29)
+```
+
+
+## 關閉root ssh登入
+
+```bash /etc/ssh/sshd_config
+# Authentication:
+LoginGraceTime 120
+PermitRootLogin prohibit-password 
+# 新版本ssh root登入預設不能使用密碼登入，僅可用key(有設定的話)
+# 也可以直接改成 PermitRootLogin no 直接擋掉
+StrictModes yes
+```
+
+Reference: 
+
+https://blog.camel2243.com/2016/02/29/ubuntu-fail2ban-%E9%98%B2%E6%AD%A2-ssh-%E6%9A%B4%E5%8A%9B%E5%98%97%E8%A9%A6%E5%AF%86%E7%A2%BC/
+
+http://www.vixual.net/blog/archives/252
+
+http://yuanann.pixnet.net/blog/post/16610463-linux-%3Assh-%E6%9B%B4%E6%94%B9%E9%A0%90%E8%A8%ADport%E7%9A%84%E6%96%B9%E6%B3%95
+
+https://help.ubuntu.com/lts/serverguide/automatic-updates.html
