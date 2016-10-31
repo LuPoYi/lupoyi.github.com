@@ -6,7 +6,11 @@ comments: true
 sharing: true
 footer: true
 ---
-
+<style type="text/css">
+  #blog-others .re {
+    margin-bottom: 10px;
+  }
+</style>
 
 <div id="blog-others">
   <h2>推薦線上服務</h2>
@@ -41,5 +45,14 @@ footer: true
   <div class="re">
   <a href="https://wrapbootstrap.com/" target="_blank">https://wrapbootstrap.com/</a><br>
     > 各種bootstrap樣版都有賣，花20鎂就可以有很漂亮的版
+  </div>
+
+  <div class="re">
+  <a href="https://xta.github.io/HalloweenBash/" target="_blank">https://xta.github.io/HalloweenBash/</a><br>
+    > Bash Profile Generator
+  </div>
+  <div class="re">
+  <a href="http://geoff.greer.fm/lscolors/" target="_blank">http://geoff.greer.fm/lscolors/</a><br>
+    > ls color Generator
   </div>
 </div>

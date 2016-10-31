@@ -1,0 +1,15 @@
+body{max-width: 1090px;}
+
+#menu .fa-lg {min-width:17px}
+
+@media only screen and (min-width: 992px){
+  body>header, body>nav, body>footer, body #content>article, body #content>div>article, body #content>div>section {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+.blog-index figcaption.code + .highlight {
+  border-top-left-radius: 0,
+  border-top-right-radius: 0
+}
