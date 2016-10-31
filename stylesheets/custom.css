@@ -9,7 +9,7 @@ body{max-width: 1090px;}
   }
 }
 
-.blog-index figcaption.code + .highlight {
+.blog-index figcaption + .highlight {
   border-top-left-radius: 0,
   border-top-right-radius: 0
 }
