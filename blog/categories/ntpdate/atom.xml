@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: ntp | Bob 學習筆記]]></title>
-  <link href="http://blog.poyi.tw/blog/categories/ntp/atom.xml" rel="self"/>
+  <title><![CDATA[Category: ntpdate | Bob 學習筆記]]></title>
+  <link href="http://blog.poyi.tw/blog/categories/ntpdate/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
   <updated>2016-11-19T14:39:45+08:00</updated>
   <id>http://blog.poyi.tw/</id>

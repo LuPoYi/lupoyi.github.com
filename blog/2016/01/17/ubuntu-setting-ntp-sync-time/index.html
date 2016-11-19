@@ -21,9 +21,16 @@
 10
 11
 12
+13
+14
+15
+16
+17
+18
+19
+20
 $ date # 確認目前時間
-$ dpkg -l | grep ntp # 檢查是否已安裝
-$ sudo apt-get install &hellip;">
+$ dpkg -l | grep ntp # &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -158,10 +165,23 @@ $ sudo apt-get install &hellip;">
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
 <span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>date <span class="c"># 確認目前時間</span>
 </span><span class='line'><span class="nv">$ </span>dpkg -l <span class="p">|</span> grep ntp <span class="c"># 檢查是否已安裝</span>
-</span><span class='line'><span class="nv">$ </span>sudo apt-get install ntp
+</span><span class='line'><span class="nv">$ </span>sudo apt-get install ntp ntpdate
 </span><span class='line'><span class="nv">$ </span>vim /etc/ntp.conf
+</span><span class='line'>  <span class="c"># Specify one or more NTP servers.</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c"># Use servers from the NTP Pool Project. Approved by Ubuntu Technical Board</span>
+</span><span class='line'>  <span class="c"># on 2011-02-08 (LP: #104525). See http://www.pool.ntp.org/join.html for</span>
+</span><span class='line'>  <span class="c"># more information.</span>
 </span><span class='line'>  <span class="c"># 加上</span>
 </span><span class='line'>  server tock.stdtime.gov.tw
 </span><span class='line'>  server watch.stdtime.gov.tw
@@ -169,7 +189,10 @@ $ sudo apt-get install &hellip;">
 </span><span class='line'>  server clock.stdtime.gov.tw
 </span><span class='line'>  server tick.stdtime.gov.tw
 </span><span class='line'>
-</span><span class='line'><span class="nv">$ </span>ntpdate time.stdtime.gov.tw
+</span><span class='line'><span class="nv">$ </span>sudo service ntp restart <span class="c"># ntp會自動校時</span>
+</span><span class='line'>
+</span><span class='line'><span class="nv">$ </span>ntpdate time.stdtime.gov.tw <span class="c"># 測試 NTP Server</span>
+</span><span class='line'><span class="m">19</span> Nov 14:38:08 ntpdate<span class="o">[</span>20006<span class="o">]</span>: the NTP socket is in use, exiting
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -205,7 +228,7 @@ $ sudo apt-get install &hellip;">
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/ntp/'>ntp</a>, <a class='category' href='/blog/categories/ubuntu/'>ubuntu</a>
+    <a class='category' href='/blog/categories/ntp/'>ntp</a>, <a class='category' href='/blog/categories/ntpdate/'>ntpdate</a>, <a class='category' href='/blog/categories/ubuntu/'>ubuntu</a>
   
 </span>
 
