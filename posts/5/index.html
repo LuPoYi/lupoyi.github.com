@@ -9,19 +9,9 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="最陽春的寫法 用SQL驗證來登入1
-string QueryString = &quot;Data Source=xxxx;Initial Catalog=xxxx;User ID=xxxx;Password=xxxx&quot;; QUERY1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12 &hellip;">
+  <meta name="description" content="在linq的使用上，IEnumerable是不可或缺的泛型介面
+像是foreach迴圈就是利用IEnumerable的特性(MoveNext)來實現逐一檢查。 而IQueryable又繼承了IEnumerable&hellip; 兩者的差別從概念上來說：
+IEnumerable:先將查詢的值取出， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -112,6 +102,92 @@ string QueryString = &quot;Data Source=xxxx;Initial Catalog=xxxx;User ID=xxxx;Pa
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/09/30/c-ienumerable/">[C#] IEnumerable vs IQueryable</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-30T14:34:00+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2013/09/30/c-ienumerable/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>在linq的使用上，IEnumerable<T>是不可或缺的泛型介面
+像是foreach迴圈就是利用IEnumerable的特性(MoveNext)來實現逐一檢查。</p>
+
+<p>而IQueryable<T>又繼承了IEnumerable<T>&hellip;</p>
+
+<p>兩者的差別從概念上來說：
+<strong>IEnumerable<T></strong>:先將查詢的值取出，再一層一層做篩選。
+<strong>IQueryable<T></strong>:把全部Linq翻成T-SQL，直到真正要使用時才去執行。</p>
+
+<figure class='code'><figcaption><span>IEnumerable</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="c1">// list1</span>
+</span><span class='line'><span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">Employee</span><span class="p">&gt;</span> <span class="n">list1</span> <span class="p">=</span> <span class="n">myDB</span><span class="p">.</span><span class="n">Employees</span><span class="p">.</span><span class="n">Where</span><span class="p">(</span><span class="n">p</span> <span class="p">=&gt;</span> <span class="n">p</span><span class="p">.</span><span class="n">Name</span><span class="p">.</span><span class="n">StartsWith</span><span class="p">(</span><span class="s">&quot;S&quot;</span><span class="p">));</span>
+</span><span class='line'><span class="n">list1</span> <span class="p">=</span> <span class="n">list1</span><span class="p">.</span><span class="n">Take</span><span class="p">&lt;</span><span class="n">Employee</span><span class="p">&gt;(</span><span class="m">10</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// list2</span>
+</span><span class='line'><span class="n">IQueryable</span><span class="p">&lt;</span><span class="n">Employee</span><span class="p">&gt;</span> <span class="n">list2</span> <span class="p">=</span> <span class="n">myDB</span><span class="p">.</span><span class="n">Employees</span><span class="p">.</span><span class="n">Where</span><span class="p">(</span><span class="n">p</span> <span class="p">=&gt;</span> <span class="n">p</span><span class="p">.</span><span class="n">Name</span><span class="p">.</span><span class="n">StartsWith</span><span class="p">(</span><span class="s">&quot;S&quot;</span><span class="p">));</span>
+</span><span class='line'><span class="n">list2</span> <span class="p">=</span> <span class="n">list2</span><span class="p">.</span><span class="n">Take</span><span class="p">&lt;</span><span class="n">Employee</span><span class="p">&gt;(</span><span class="m">10</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><figcaption><span>SQL</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='SQL'><span class='line'><span class="o">//</span> <span class="n">list1</span>
+</span><span class='line'><span class="k">SELECT</span> <span class="p">[</span><span class="n">t0</span><span class="p">].[</span><span class="n">EmpID</span><span class="p">],</span> <span class="p">[</span><span class="n">t0</span><span class="p">].[</span><span class="n">EmpName</span><span class="p">],</span> <span class="p">[</span><span class="n">t0</span><span class="p">].[</span><span class="n">Salary</span><span class="p">]</span> <span class="k">FROM</span> <span class="p">[</span><span class="n">Employee</span><span class="p">]</span> <span class="k">AS</span> <span class="p">[</span><span class="n">t0</span><span class="p">]</span>
+</span><span class='line'><span class="k">WHERE</span> <span class="p">[</span><span class="n">t0</span><span class="p">].[</span><span class="n">EmpName</span><span class="p">]</span> <span class="k">LIKE</span> <span class="o">@</span><span class="n">p0</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">//</span> <span class="n">list2</span>
+</span><span class='line'><span class="k">SELECT</span> <span class="n">TOP</span> <span class="mi">10</span> <span class="p">[</span><span class="n">t0</span><span class="p">].[</span><span class="n">EmpID</span><span class="p">],</span> <span class="p">[</span><span class="n">t0</span><span class="p">].[</span><span class="n">EmpName</span><span class="p">],</span> <span class="p">[</span><span class="n">t0</span><span class="p">].[</span><span class="n">Salary</span><span class="p">]</span> <span class="k">FROM</span> <span class="p">[</span><span class="n">Employee</span><span class="p">]</span> <span class="k">AS</span> <span class="p">[</span><span class="n">t0</span><span class="p">]</span>
+</span><span class='line'><span class="k">WHERE</span> <span class="p">[</span><span class="n">t0</span><span class="p">].[</span><span class="n">EmpName</span><span class="p">]</span> <span class="k">LIKE</span> <span class="o">@</span><span class="n">p0</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>可以看到 IQueryable 在執行時直接向SQL要求TOP 10；而 IEnumerable 則是把全部撈出來再做一些篩選。</p>
+
+<p>Reference:
+<a href="http://msdn.microsoft.com/zh-tw/library/ttw7t8t6.ASPX">http://msdn.microsoft.com/zh-tw/library/ttw7t8t6.ASPX</a>
+<a href="http://www.cnblogs.com/seebook/archive/2009/02/21/1395310.html">http://www.cnblogs.com/seebook/archive/2009/02/21/1395310.html</a>
+<a href="http://www.dotnet-tricks.com/Tutorial/linq/I8SY160612-IEnumerable-VS-IQueryable.html">http://www.dotnet-tricks.com/Tutorial/linq/I8SY160612-IEnumerable-VS-IQueryable.html</a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1086,59 +1162,6 @@ TextBox1.Text = DateTime4.ToString("yyyy-MM-dd HH:mm:ss");
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/09/04/aspnet-implementation/">[ASP.NET] 呼叫執行檔</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-04T07:12:00+08:00" pubdate data-updated="true"></time>
-        
-         | <a href="/blog/2013/09/04/aspnet-implementation/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>執行指定檔案(or .exe)</h2>
-
-<h2>Client端</h2>
-
-<pre><code>Process p = new Process();
-p.StartInfo.FileName   = "@"C:\Users\PoYi\Desktop\test.txt"";
-p.Start();
-</code></pre>
-
-<h2>Server端</h2>
-
-<pre><code>System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo();
-psi.FileName = @"C:\Users\PoYi\Desktop\test.txt";
-psi.Arguments="";
-System.Diagnostics.Process.Start(psi);
-</code></pre>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/6">&larr; Older</a>
@@ -1185,6 +1208,10 @@ System.Diagnostics.Process.Start(psi);
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/11/26/rails-ubuntu-environment-ubuntu16-dot-04/">[Ubuntu] Ruby on Rails 基本環境建置 - Ubuntu 16.04 LTS</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2016/10/30/rails-mac-os-environment-sierra/">[Mac] Ruby on Rails 基本環境建置 - 10.12 Sierra</a>
@@ -1240,10 +1267,6 @@ System.Diagnostics.Process.Start(psi);
     
       <li class="post">
         <a href="/blog/2015/06/12/rails-ajax-render-error-in-json/">[Rails] AJAX render errors in json</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/04/18/all-your-important-files-are-encrypted/">資料被綁架軟體加密，要求贖金用比特幣支付</a>
       </li>
     
   </ul>

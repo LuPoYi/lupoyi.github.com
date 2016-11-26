@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2016-11-19T14:39:45+08:00</updated>
+  <updated>2016-11-26T17:18:48+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -12,6 +12,93 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[[Ubuntu] Ruby on Rails 基本環境建置 - Ubuntu 16.04 LTS]]></title>
+    <link href="http://blog.poyi.tw/blog/2016/11/26/rails-ubuntu-environment-ubuntu16-dot-04/"/>
+    <updated>2016-11-26T16:56:10+08:00</updated>
+    <id>http://blog.poyi.tw/blog/2016/11/26/rails-ubuntu-environment-ubuntu16-dot-04</id>
+    <content type="html"><![CDATA[<pre><code class="bash 建立user">sudo adduser bob
+sudo adduser bob sudo
+su bob
+</code></pre>
+
+<pre><code class="bash 安裝常用lib">sudo apt-get update
+sudo apt-get install vim nodejs
+sudo apt-get install git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev
+</code></pre>
+
+<pre><code class="bash 使用rbenv來管理ruby">cd
+git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+echo 'export PATH="$HOME/.rbenv/bin:$PATH"' &gt;&gt; ~/.bashrc
+echo 'eval "$(rbenv init -)"' &gt;&gt; ~/.bashrc
+exec $SHELL
+
+git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+echo 'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"' &gt;&gt; ~/.bashrc
+exec $SHELL
+
+rbenv install 2.3.1
+rbenv global 2.3.1
+ruby -v
+
+gem install bundler
+</code></pre>
+
+<pre><code class="bash 安裝mysql">sudo apt-get install mysql-server mysql-client libmysqlclient-dev
+</code></pre>
+
+<pre><code class="bash install nginx">sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 561F9B9CAC40B2F7
+sudo apt-get install -y apt-transport-https ca-certificates
+
+# Add Passenger APT repository
+sudo sh -c 'echo deb https://oss-binaries.phusionpassenger.com/apt/passenger xenial main &gt; /etc/apt/sources.list.d/passenger.list'
+sudo apt-get update
+
+# Install Passenger &amp; Nginx
+sudo apt-get install -y nginx-extras passenger
+
+sudo service nginx start
+</code></pre>
+
+<pre><code class="bash /etc/nginx/nginx.conf">##
+# Phusion Passenger
+##
+# Uncomment it if you installed ruby-passenger or ruby-passenger-enterprise
+##
+
+# 加上
+passenger_root /usr/lib/ruby/vendor_ruby/phusion_passenger/locations.ini;
+passenger_ruby /home/deploy/.rbenv/shims/ruby;
+</code></pre>
+
+<h3>這邊先跳過 capistrano deploy</h3>
+
+<pre><code class="bash /etc/nginx/sites-enabled/default">server {
+        listen 80 default_server;
+        listen [::]:80 default_server ipv6only=on;
+
+        server_name poyi.com;
+        passenger_enabled on;
+        rails_env    production;
+        root         /home/bob/poyi/public;
+
+        # redirect server error pages to the static page /50x.html
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   html;
+        }
+
+        # 註解掉
+        # root /var/www/html;
+}
+</code></pre>
+
+<p>Reference:</p>
+
+<p><a href="https://gorails.com/deploy/ubuntu/16.04">https://gorails.com/deploy/ubuntu/16.04</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[[Mac] Ruby on Rails 基本環境建置 - 10.12 Sierra]]></title>
@@ -373,40 +460,6 @@ end
 </code></pre>
 
 <p>Reference: RailsFun - JokerCatz</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[[Ruby] 匯出txt檔]]></title>
-    <link href="http://blog.poyi.tw/blog/2014/05/06/ruby-txt-file/"/>
-    <updated>2014-05-06T22:00:59+08:00</updated>
-    <id>http://blog.poyi.tw/blog/2014/05/06/ruby-txt-file</id>
-    <content type="html"><![CDATA[<h4>需要在正式環境上撈大量特定資料下來，又不想dump整份database，用ORM來把資料匯出成txt就很方便了</h4>
-
-<pre><code class="ruby 寫入txt">all_users_mobile = User.where('mobile like ?', '+8869%').select(:mobile).uniq
-
-# 建立txt並給予寫入權限
-file = File.open('mobile_tw.txt' , 'w')
-
-all_users_mobile.each do |mobile|
-  file.puts mobile # 一行一筆mobile
-end
-
-# 記得要關掉
-file.close
-</code></pre>
-
-<pre><code class="ruby 讀取txt"># 讀取txt
-file = File.open('mobile_tw.txt' , 'r')
-
-100.times do
-  file.readline
-end
-</code></pre>
-
-<p>Reference:</p>
-
-<p><a href="http://ruby-doc.org/core-2.1.4/File.html">http://ruby-doc.org/core-2.1.4/File.html</a></p>
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2016-11-19T14:39:45+08:00</updated>
+  <updated>2016-11-26T17:18:48+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -12,6 +12,170 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[[Ubuntu] Ruby on Rails 基本環境建置 - Ubuntu 16.04 LTS]]></title>
+    <link href="http://blog.poyi.tw/blog/2016/11/26/rails-ubuntu-environment-ubuntu16-dot-04/"/>
+    <updated>2016-11-26T16:56:10+08:00</updated>
+    <id>http://blog.poyi.tw/blog/2016/11/26/rails-ubuntu-environment-ubuntu16-dot-04</id>
+    <content type="html"><![CDATA[<figure class='code'><figcaption><span>建立user</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo adduser bob
+</span><span class='line'>sudo adduser bob sudo
+</span><span class='line'>su bob
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>安裝常用lib</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get update
+</span><span class='line'>sudo apt-get install vim nodejs
+</span><span class='line'>sudo apt-get install git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>使用rbenv來管理ruby</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd</span>
+</span><span class='line'>git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+</span><span class='line'><span class="nb">echo</span> <span class="s1">&#39;export PATH=&quot;$HOME/.rbenv/bin:$PATH&quot;&#39;</span> &gt;&gt; ~/.bashrc
+</span><span class='line'><span class="nb">echo</span> <span class="s1">&#39;eval &quot;$(rbenv init -)&quot;&#39;</span> &gt;&gt; ~/.bashrc
+</span><span class='line'><span class="nb">exec</span> <span class="nv">$SHELL</span>
+</span><span class='line'>
+</span><span class='line'>git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+</span><span class='line'><span class="nb">echo</span> <span class="s1">&#39;export PATH=&quot;$HOME/.rbenv/plugins/ruby-build/bin:$PATH&quot;&#39;</span> &gt;&gt; ~/.bashrc
+</span><span class='line'><span class="nb">exec</span> <span class="nv">$SHELL</span>
+</span><span class='line'>
+</span><span class='line'>rbenv install 2.3.1
+</span><span class='line'>rbenv global 2.3.1
+</span><span class='line'>ruby -v
+</span><span class='line'>
+</span><span class='line'>gem install bundler
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>安裝mysql</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install mysql-server mysql-client libmysqlclient-dev
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>install nginx</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 561F9B9CAC40B2F7
+</span><span class='line'>sudo apt-get install -y apt-transport-https ca-certificates
+</span><span class='line'>
+</span><span class='line'><span class="c"># Add Passenger APT repository</span>
+</span><span class='line'>sudo sh -c <span class="s1">&#39;echo deb https://oss-binaries.phusionpassenger.com/apt/passenger xenial main &gt; /etc/apt/sources.list.d/passenger.list&#39;</span>
+</span><span class='line'>sudo apt-get update
+</span><span class='line'>
+</span><span class='line'><span class="c"># Install Passenger &amp; Nginx</span>
+</span><span class='line'>sudo apt-get install -y nginx-extras passenger
+</span><span class='line'>
+</span><span class='line'>sudo service nginx start
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>/etc/nginx/nginx.conf</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">##</span>
+</span><span class='line'><span class="c"># Phusion Passenger</span>
+</span><span class='line'><span class="c">##</span>
+</span><span class='line'><span class="c"># Uncomment it if you installed ruby-passenger or ruby-passenger-enterprise</span>
+</span><span class='line'><span class="c">##</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># 加上</span>
+</span><span class='line'>passenger_root /usr/lib/ruby/vendor_ruby/phusion_passenger/locations.ini<span class="p">;</span>
+</span><span class='line'>passenger_ruby /home/deploy/.rbenv/shims/ruby<span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>這邊先跳過 capistrano deploy</h3>
+
+<figure class='code'><figcaption><span>/etc/nginx/sites-enabled/default</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>server <span class="o">{</span>
+</span><span class='line'>        listen <span class="m">80</span> default_server<span class="p">;</span>
+</span><span class='line'>        listen <span class="o">[</span>::<span class="o">]</span>:80 default_server <span class="nv">ipv6only</span><span class="o">=</span>on<span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>        server_name poyi.com<span class="p">;</span>
+</span><span class='line'>        passenger_enabled on<span class="p">;</span>
+</span><span class='line'>        rails_env    production<span class="p">;</span>
+</span><span class='line'>        root         /home/bob/poyi/public<span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c"># redirect server error pages to the static page /50x.html</span>
+</span><span class='line'>        error_page   <span class="m">500</span> <span class="m">502</span> <span class="m">503</span> <span class="m">504</span>  /50x.html<span class="p">;</span>
+</span><span class='line'>        <span class="nv">location</span> <span class="o">=</span> /50x.html <span class="o">{</span>
+</span><span class='line'>            root   html<span class="p">;</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c"># 註解掉</span>
+</span><span class='line'>        <span class="c"># root /var/www/html;</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Reference:</p>
+
+<p><a href="https://gorails.com/deploy/ubuntu/16.04">https://gorails.com/deploy/ubuntu/16.04</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[[Mac] Ruby on Rails 基本環境建置 - 10.12 Sierra]]></title>
@@ -1450,8 +1614,8 @@
 <h5>帳號以中華電信為例</h5>
 
 <ul>
-<li><a href="&#x6d;&#97;&#x69;&#108;&#116;&#x6f;&#58;&#120;&#120;&#120;&#120;&#120;&#x78;&#120;&#x78;&#64;&#x68;&#x69;&#x6e;&#101;&#116;&#46;&#x6e;&#x65;&#x74;">&#x78;&#120;&#120;&#120;&#x78;&#x78;&#x78;&#120;&#64;&#104;&#105;&#x6e;&#101;&#116;&#46;&#x6e;&#x65;&#116;</a>        取得動態IP (原有帳號格式)</li>
-<li><a href="&#109;&#x61;&#x69;&#108;&#116;&#111;&#58;&#120;&#120;&#120;&#120;&#x78;&#x78;&#x78;&#x78;&#64;&#x69;&#112;&#x2e;&#x68;&#105;&#110;&#x65;&#116;&#x2e;&#x6e;&#x65;&#x74;">&#120;&#120;&#x78;&#120;&#x78;&#120;&#x78;&#x78;&#64;&#x69;&#112;&#46;&#x68;&#105;&#x6e;&#x65;&#x74;&#46;&#x6e;&#101;&#x74;</a>     取得固定IP  僅限一台電腦使用</li>
+<li><a href="&#109;&#x61;&#x69;&#x6c;&#x74;&#111;&#58;&#120;&#x78;&#120;&#x78;&#120;&#120;&#x78;&#x78;&#x40;&#x68;&#105;&#110;&#x65;&#x74;&#46;&#110;&#101;&#116;">&#x78;&#120;&#120;&#x78;&#120;&#x78;&#x78;&#x78;&#64;&#x68;&#105;&#110;&#x65;&#116;&#46;&#x6e;&#x65;&#116;</a>        取得動態IP (原有帳號格式)</li>
+<li><a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#x3a;&#x78;&#120;&#120;&#x78;&#120;&#120;&#x78;&#120;&#64;&#105;&#112;&#46;&#104;&#x69;&#110;&#x65;&#116;&#x2e;&#110;&#101;&#x74;">&#120;&#120;&#x78;&#x78;&#120;&#120;&#120;&#120;&#64;&#105;&#x70;&#46;&#104;&#x69;&#x6e;&#101;&#116;&#x2e;&#110;&#101;&#116;</a>     取得固定IP  僅限一台電腦使用</li>
 </ul>
 
 
@@ -2417,112 +2581,6 @@ Reference:</p>
 <p><a href="http://blog.inheart.tw/2013/09/rubyraisl-csv-excel.html">http://blog.inheart.tw/2013/09/rubyraisl-csv-excel.html</a></p>
 
 <p><a href="http://salayhin.wordpress.com/2014/05/10/export-csv-file-from-rails-console/">http://salayhin.wordpress.com/2014/05/10/export-csv-file-from-rails-console/</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[[Ruby] require,load,include,extend]]></title>
-    <link href="http://blog.poyi.tw/blog/2014/03/16/ruby-require-load-include-extend/"/>
-    <updated>2014-03-16T21:14:00+08:00</updated>
-    <id>http://blog.poyi.tw/blog/2014/03/16/ruby-require-load-include-extend</id>
-    <content type="html"><![CDATA[<h2>require vs load</h2>
-
-<p>首先require與load都是用來載入指定的檔案
-差別在於使用require只會調用一次，且副檔名可省略，load則相反。</p>
-
-<figure class='code'><figcaption><span>random.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="vg">$a</span> <span class="o">=</span> <span class="p">(</span><span class="nb">rand</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">floor</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>use_require.rb 產出的兩個值相同(只載入一次random.rb)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s2">&quot;./random&quot;</span>
-</span><span class='line'><span class="nb">puts</span> <span class="vg">$a</span>
-</span><span class='line'><span class="nb">require</span> <span class="s2">&quot;./random&quot;</span> <span class="c1"># 此行無效果</span>
-</span><span class='line'><span class="nb">puts</span> <span class="vg">$a</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>use_load.rb 產生的兩個值不一定相同</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">load</span> <span class="s2">&quot;./random.rb&quot;</span>
-</span><span class='line'><span class="nb">puts</span> <span class="vg">$a</span>
-</span><span class='line'><span class="nb">load</span> <span class="s2">&quot;./random.rb&quot;</span>
-</span><span class='line'><span class="nb">puts</span> <span class="vg">$a</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<hr />
-
-<h2>include vs extend</h2>
-
-<p>include: 將目標當作instance來使用；並不直接擁有method，需建立一個實例後才能用
-extend: 相當於把目標的code直接放進來；具有目標的class methods</p>
-
-<figure class='code'><figcaption><span>include_extend.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">Say</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">say_hi</span>
-</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;Hi!&quot;</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">class</span> <span class="nc">People</span>
-</span><span class='line'>  <span class="kp">include</span> <span class="no">Say</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">class</span> <span class="nc">Person</span>
-</span><span class='line'>  <span class="kp">extend</span> <span class="no">Say</span> <span class="c1"># 具有Say的method，可直接呼叫</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>irb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="m">001</span> &gt; require <span class="s1">&#39;./include_extend.rb&#39;</span>
-</span><span class='line'> <span class="o">=</span>&gt; <span class="nb">true </span>
-</span><span class='line'><span class="m">002</span> &gt; Person.say_hi
-</span><span class='line'>Hi!
-</span><span class='line'> <span class="o">=</span>&gt; nil
-</span><span class='line'><span class="m">003</span> &gt; People.new.say_hi
-</span><span class='line'>Hi!
-</span><span class='line'> <span class="o">=</span>&gt; nil
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Reference:</p>
-
-<p><a href="http://www.slideshare.net/BruceLi2/rubypart2">http://www.slideshare.net/BruceLi2/rubypart2</a></p>
-
-<p><a href="http://cat-son.blogspot.tw/2012/10/2-rubyinclude-extendrequire.html#sthash.QduzPsMe.cFJYqpMb.dpbs">http://cat-son.blogspot.tw/2012/10/2-rubyinclude-extendrequire.html#sthash.QduzPsMe.cFJYqpMb.dpbs</a></p>
 ]]></content>
   </entry>
   

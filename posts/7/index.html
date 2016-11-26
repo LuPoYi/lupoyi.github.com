@@ -9,22 +9,10 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="一樣是紀綠一下&hellip; 1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-MailMessage mailMessage = new MailMessage();
-mailMessage.IsBodyHtml = true; mailMessage.To.Add( &hellip;">
+  <meta name="description" content="StringBuilder: 用append串接；大量動態字串時效率較高
+String: 用+串接；固定字串時，效率較高 一般情況都用String String.IndexOf
+找字串中第一次出現的index 1
+if(employeeName.IndexOf("Admin") == -1 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -115,6 +103,83 @@ mailMessage.IsBodyHtml = true; mailMessage.To.Add( &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/07/22/string-syntax/">[C#] String常用語法</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-22T11:37:00+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2013/07/22/string-syntax/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>StringBuilder: 用append串接；大量動態字串時效率較高
+String: 用+串接；固定字串時，效率較高</p>
+
+<h2>一般情況都用String</h2>
+
+<p><strong>String.IndexOf</strong>
+找字串中第一次出現的index</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>if(employeeName.IndexOf("Admin") == -1)  // 可判斷Name中是否有符合Admin的字串</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>String.LastIndexOf</strong>
+找字串中最後一次出現的index</p>
+
+<p><strong>Substring(int startIndex, int length)</strong> 擷取字串</p>
+
+<pre><code>string str = "台灣駐史瓦濟蘭大使館";
+str.Substring(3, 6);    // output: 史瓦濟蘭大使
+</code></pre>
+
+<p><strong>Split</strong> 分隔字串</p>
+
+<pre><code>string wholeString = "Bob.Lu";
+string[] spiltString = wholeString.Split(new string[] { "." }, StringSplitOptions.RemoveEmptyEntries);
+aryUserInfo[0].ToString(); // output: Bob
+</code></pre>
+
+<p><strong>Regex.IsMatch(string input,   string pattern)</strong> 是否包含xxx</p>
+
+<pre><code>Regex.IsMatch(strPwd, "[0-9]")  // = Regex.IsMatch(strPwd, @"\d")
+
+Regex.IsMatch(strPwd, @"[\W]")
+</code></pre>
+
+<p>pattern表示法 :
+\d : [0-9] 數字
+\D : 數字以外的字元
+\w : [a-zA-Z0-9_]
+\W : \w以外的字元</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -675,6 +740,10 @@ GridView.DataBind();</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/11/26/rails-ubuntu-environment-ubuntu16-dot-04/">[Ubuntu] Ruby on Rails 基本環境建置 - Ubuntu 16.04 LTS</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2016/10/30/rails-mac-os-environment-sierra/">[Mac] Ruby on Rails 基本環境建置 - 10.12 Sierra</a>
       </li>
     
@@ -728,10 +797,6 @@ GridView.DataBind();</p>
     
       <li class="post">
         <a href="/blog/2015/06/12/rails-ajax-render-error-in-json/">[Rails] AJAX render errors in json</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/04/18/all-your-important-files-are-encrypted/">資料被綁架軟體加密，要求贖金用比特幣支付</a>
       </li>
     
   </ul>

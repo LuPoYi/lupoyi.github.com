@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rails | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2016-11-19T14:39:45+08:00</updated>
+  <updated>2016-11-26T17:18:48+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -12,6 +12,93 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[[Ubuntu] Ruby on Rails 基本環境建置 - Ubuntu 16.04 LTS]]></title>
+    <link href="http://blog.poyi.tw/blog/2016/11/26/rails-ubuntu-environment-ubuntu16-dot-04/"/>
+    <updated>2016-11-26T16:56:10+08:00</updated>
+    <id>http://blog.poyi.tw/blog/2016/11/26/rails-ubuntu-environment-ubuntu16-dot-04</id>
+    <content type="html"><![CDATA[<pre><code class="bash 建立user">sudo adduser bob
+sudo adduser bob sudo
+su bob
+</code></pre>
+
+<pre><code class="bash 安裝常用lib">sudo apt-get update
+sudo apt-get install vim nodejs
+sudo apt-get install git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev
+</code></pre>
+
+<pre><code class="bash 使用rbenv來管理ruby">cd
+git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+echo 'export PATH="$HOME/.rbenv/bin:$PATH"' &gt;&gt; ~/.bashrc
+echo 'eval "$(rbenv init -)"' &gt;&gt; ~/.bashrc
+exec $SHELL
+
+git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+echo 'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"' &gt;&gt; ~/.bashrc
+exec $SHELL
+
+rbenv install 2.3.1
+rbenv global 2.3.1
+ruby -v
+
+gem install bundler
+</code></pre>
+
+<pre><code class="bash 安裝mysql">sudo apt-get install mysql-server mysql-client libmysqlclient-dev
+</code></pre>
+
+<pre><code class="bash install nginx">sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 561F9B9CAC40B2F7
+sudo apt-get install -y apt-transport-https ca-certificates
+
+# Add Passenger APT repository
+sudo sh -c 'echo deb https://oss-binaries.phusionpassenger.com/apt/passenger xenial main &gt; /etc/apt/sources.list.d/passenger.list'
+sudo apt-get update
+
+# Install Passenger &amp; Nginx
+sudo apt-get install -y nginx-extras passenger
+
+sudo service nginx start
+</code></pre>
+
+<pre><code class="bash /etc/nginx/nginx.conf">##
+# Phusion Passenger
+##
+# Uncomment it if you installed ruby-passenger or ruby-passenger-enterprise
+##
+
+# 加上
+passenger_root /usr/lib/ruby/vendor_ruby/phusion_passenger/locations.ini;
+passenger_ruby /home/deploy/.rbenv/shims/ruby;
+</code></pre>
+
+<h3>這邊先跳過 capistrano deploy</h3>
+
+<pre><code class="bash /etc/nginx/sites-enabled/default">server {
+        listen 80 default_server;
+        listen [::]:80 default_server ipv6only=on;
+
+        server_name poyi.com;
+        passenger_enabled on;
+        rails_env    production;
+        root         /home/bob/poyi/public;
+
+        # redirect server error pages to the static page /50x.html
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   html;
+        }
+
+        # 註解掉
+        # root /var/www/html;
+}
+</code></pre>
+
+<p>Reference:</p>
+
+<p><a href="https://gorails.com/deploy/ubuntu/16.04">https://gorails.com/deploy/ubuntu/16.04</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[[Mac] Ruby on Rails 基本環境建置 - 10.12 Sierra]]></title>
@@ -156,78 +243,6 @@ end
 <p>Reference:</p>
 
 <p><a href="http://ruby-doc.org/core-2.1.4/File.html">http://ruby-doc.org/core-2.1.4/File.html</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[[Ruby] 匯出批次csv檔]]></title>
-    <link href="http://blog.poyi.tw/blog/2014/05/06/ruby-csv-file/"/>
-    <updated>2014-05-06T21:14:00+08:00</updated>
-    <id>http://blog.poyi.tw/blog/2014/05/06/ruby-csv-file</id>
-    <content type="html"><![CDATA[<p>讀取或寫入csv在ruby都蠻方便的，只是編碼或格式要稍微注意一下</p>
-
-<h2>匯出csv</h2>
-
-<pre><code class="ruby">header = ['name','money','age']
-body = ['ruby','1000','18']
-</code></pre>
-
-<pre><code class="ruby export_to_csv_string 匯出csv的string格式再利用send_data下載">  head = 'EF BB BF'.split(' ').map{|a|a.hex.chr}.join() # 加入BOM，解決excel中文亂碼
-
-
-  csv_string = CSV.generate(csv = head) do |csv|
-    csv &lt;&lt; header
-    csv &lt;&lt; body
-  end
-
-  # &gt; csv_string.encoding 執行這句會發現預設編碼為ACSII
-  csv_string.force_encoding('big5')
-  # BOM也可以這樣加 csv_string = "\xEF\xBB\xBF#{csv_string}"  
-  # 若不需要調整格式就直接下載
-  send_data csv_string
-</code></pre>
-
-<pre><code class="ruby export_to_csv 直接匯出檔案"> require 'csv'
- CSV.open("export.csv","w") do |csv|
-   csv &lt;&lt; header
-   csv &lt;&lt; body
- end
-</code></pre>
-
-<h2>半形轉全形</h2>
-
-<p>在某些情況會需要轉出全形字元，照理說不用才對，<del>可能是因為合作對方的系統太爛</del>
-其實也不太確定怎解，我單純用硬幹的方式
-<figure class='code'><figcaption><span>convert_to_wide_word 大小寫英文數字轉全形字元</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">convert_to_wide_word</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">text</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/[a-v]/</span><span class="p">){</span><span class="o">|</span><span class="n">a</span><span class="o">|</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">ord</span> <span class="o">+</span> <span class="mi">41608</span><span class="p">)</span><span class="o">.</span><span class="n">chr</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">big5</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;)}</span>
-</span><span class='line'>    <span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/[w-z]/</span><span class="p">){</span><span class="o">|</span><span class="n">a</span><span class="o">|</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">ord</span> <span class="o">+</span> <span class="mi">41673</span><span class="p">)</span><span class="o">.</span><span class="n">chr</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">big5</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;)}</span>
-</span><span class='line'>    <span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/[A-Z]/</span><span class="p">){</span><span class="o">|</span><span class="n">a</span><span class="o">|</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">ord</span> <span class="o">+</span> <span class="mi">41614</span><span class="p">)</span><span class="o">.</span><span class="n">chr</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">big5</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;)}</span>
-</span><span class='line'>    <span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/[0-9]/</span><span class="p">){</span><span class="o">|</span><span class="n">a</span><span class="o">|</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">ord</span> <span class="o">+</span> <span class="mi">41599</span><span class="p">)</span><span class="o">.</span><span class="n">chr</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">big5</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;)}</span>
-</span><span class='line'><span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;convert_to_wide_word(&amp;ldquo;0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&amp;rdquo;)</span>
-</span><span class='line'><span class="sr"> =&gt; &amp;ldquo;０１２３４５６７８９ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚＡＢＣＤＥＦＧＨＩＪＫＬ</span>
-</span><span class='line'><span class="sr"> ＭＮＯＰＱＲＳＴＵＶＷＸＹＺ&amp;rdquo;</span>
-</span></code></pre></td></tr></table></div></figure>
-匯出匯入csv也可以試試FasterCSV這個gem</p>
-
-<p>Reference:</p>
-
-<p><a href="http://www.sitepoint.com/guide-ruby-csv-library-part/">http://www.sitepoint.com/guide-ruby-csv-library-part/</a></p>
-
-<p><a href="http://blog.inheart.tw/2013/09/rubyraisl-csv-excel.html">http://blog.inheart.tw/2013/09/rubyraisl-csv-excel.html</a></p>
-
-<p><a href="http://salayhin.wordpress.com/2014/05/10/export-csv-file-from-rails-console/">http://salayhin.wordpress.com/2014/05/10/export-csv-file-from-rails-console/</a></p>
 ]]></content>
   </entry>
   

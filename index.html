@@ -9,14 +9,17 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="Installing Homebrew1
-ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot; Installing Ruby1
+  <meta name="description" content="建立user1
 2
 3
-4
-5
-6
-7 &hellip;">
+sudo adduser bob
+sudo adduser bob sudo
+su bob 安裝常用lib1
+2
+3
+sudo apt-get update
+sudo apt-get install vim nodejs
+sudo apt-get install git- &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -107,6 +110,199 @@ ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/ma
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2016/11/26/rails-ubuntu-environment-ubuntu16-dot-04/">[Ubuntu] Ruby on Rails 基本環境建置 - Ubuntu 16.04 LTS</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-11-26T16:56:10+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2016/11/26/rails-ubuntu-environment-ubuntu16-dot-04/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><figure class='code'><figcaption><span>建立user</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo adduser bob
+</span><span class='line'>sudo adduser bob sudo
+</span><span class='line'>su bob
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>安裝常用lib</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get update
+</span><span class='line'>sudo apt-get install vim nodejs
+</span><span class='line'>sudo apt-get install git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>使用rbenv來管理ruby</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd</span>
+</span><span class='line'>git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+</span><span class='line'><span class="nb">echo</span> <span class="s1">&#39;export PATH=&quot;$HOME/.rbenv/bin:$PATH&quot;&#39;</span> &gt;&gt; ~/.bashrc
+</span><span class='line'><span class="nb">echo</span> <span class="s1">&#39;eval &quot;$(rbenv init -)&quot;&#39;</span> &gt;&gt; ~/.bashrc
+</span><span class='line'><span class="nb">exec</span> <span class="nv">$SHELL</span>
+</span><span class='line'>
+</span><span class='line'>git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+</span><span class='line'><span class="nb">echo</span> <span class="s1">&#39;export PATH=&quot;$HOME/.rbenv/plugins/ruby-build/bin:$PATH&quot;&#39;</span> &gt;&gt; ~/.bashrc
+</span><span class='line'><span class="nb">exec</span> <span class="nv">$SHELL</span>
+</span><span class='line'>
+</span><span class='line'>rbenv install 2.3.1
+</span><span class='line'>rbenv global 2.3.1
+</span><span class='line'>ruby -v
+</span><span class='line'>
+</span><span class='line'>gem install bundler
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>安裝mysql</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install mysql-server mysql-client libmysqlclient-dev
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>install nginx</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 561F9B9CAC40B2F7
+</span><span class='line'>sudo apt-get install -y apt-transport-https ca-certificates
+</span><span class='line'>
+</span><span class='line'><span class="c"># Add Passenger APT repository</span>
+</span><span class='line'>sudo sh -c <span class="s1">&#39;echo deb https://oss-binaries.phusionpassenger.com/apt/passenger xenial main &gt; /etc/apt/sources.list.d/passenger.list&#39;</span>
+</span><span class='line'>sudo apt-get update
+</span><span class='line'>
+</span><span class='line'><span class="c"># Install Passenger &amp; Nginx</span>
+</span><span class='line'>sudo apt-get install -y nginx-extras passenger
+</span><span class='line'>
+</span><span class='line'>sudo service nginx start
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>/etc/nginx/nginx.conf</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">##</span>
+</span><span class='line'><span class="c"># Phusion Passenger</span>
+</span><span class='line'><span class="c">##</span>
+</span><span class='line'><span class="c"># Uncomment it if you installed ruby-passenger or ruby-passenger-enterprise</span>
+</span><span class='line'><span class="c">##</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># 加上</span>
+</span><span class='line'>passenger_root /usr/lib/ruby/vendor_ruby/phusion_passenger/locations.ini<span class="p">;</span>
+</span><span class='line'>passenger_ruby /home/deploy/.rbenv/shims/ruby<span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>這邊先跳過 capistrano deploy</h3>
+
+<figure class='code'><figcaption><span>/etc/nginx/sites-enabled/default</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>server <span class="o">{</span>
+</span><span class='line'>        listen <span class="m">80</span> default_server<span class="p">;</span>
+</span><span class='line'>        listen <span class="o">[</span>::<span class="o">]</span>:80 default_server <span class="nv">ipv6only</span><span class="o">=</span>on<span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>        server_name poyi.com<span class="p">;</span>
+</span><span class='line'>        passenger_enabled on<span class="p">;</span>
+</span><span class='line'>        rails_env    production<span class="p">;</span>
+</span><span class='line'>        root         /home/bob/poyi/public<span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c"># redirect server error pages to the static page /50x.html</span>
+</span><span class='line'>        error_page   <span class="m">500</span> <span class="m">502</span> <span class="m">503</span> <span class="m">504</span>  /50x.html<span class="p">;</span>
+</span><span class='line'>        <span class="nv">location</span> <span class="o">=</span> /50x.html <span class="o">{</span>
+</span><span class='line'>            root   html<span class="p">;</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c"># 註解掉</span>
+</span><span class='line'>        <span class="c"># root /var/www/html;</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Reference:</p>
+
+<p><a href="https://gorails.com/deploy/ubuntu/16.04">https://gorails.com/deploy/ubuntu/16.04</a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1779,84 +1975,6 @@ ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/ma
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2016/01/17/ubuntu-setting-pppoe-static-ip/">[Ubuntu] 設定 PPPoE 固定IP</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2016-01-17T16:08:49+08:00" pubdate data-updated="true"></time>
-        
-         | <a href="/blog/2016/01/17/ubuntu-setting-pppoe-static-ip/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h4>一般設定IP會直接寫在/etc/network/interfaces 看是要static還是dynamic</h4>
-
-<figure class='code'><figcaption><span>/etc/network/interfaces</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>auto p1p1
-</span><span class='line'>iface p1p1 inet static
-</span><span class='line'>
-</span><span class='line'>address 192.168.1.100
-</span><span class='line'>netmask 255.255.255.0
-</span><span class='line'>gateway 192.168.1.1
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>而需要使用PPPoE 輸入電信商提供的帳號來登入時</h4>
-
-<h5>帳號以中華電信為例</h5>
-
-<ul>
-<li><a href="&#x6d;&#97;&#x69;&#108;&#116;&#x6f;&#58;&#120;&#120;&#120;&#120;&#120;&#x78;&#120;&#x78;&#64;&#x68;&#x69;&#x6e;&#101;&#116;&#46;&#x6e;&#x65;&#x74;">&#x78;&#120;&#120;&#120;&#x78;&#x78;&#x78;&#120;&#64;&#104;&#105;&#x6e;&#101;&#116;&#46;&#x6e;&#x65;&#116;</a>        取得動態IP (原有帳號格式)</li>
-<li><a href="&#109;&#x61;&#x69;&#108;&#116;&#111;&#58;&#120;&#120;&#120;&#120;&#x78;&#x78;&#x78;&#x78;&#64;&#x69;&#112;&#x2e;&#x68;&#105;&#110;&#x65;&#116;&#x2e;&#x6e;&#x65;&#x74;">&#120;&#120;&#x78;&#120;&#x78;&#120;&#x78;&#x78;&#64;&#x69;&#112;&#46;&#x68;&#105;&#x6e;&#x65;&#x74;&#46;&#x6e;&#101;&#x74;</a>     取得固定IP  僅限一台電腦使用</li>
-</ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo apt-get install pppoeconf
-</span><span class='line'><span class="nv">$ </span>sudo pppoeconf
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>接著照著說明下一步，輸入帳號密碼等等的，全部設定完即可使用</p>
-
-<p>也可以看到/etc/network/interfaces被加了一些設定</p>
-
-<p>Reference:</p>
-
-<p><a href="http://note.drx.tw/2008/08/networkpppoe-adsl.html">http://note.drx.tw/2008/08/networkpppoe-adsl.html</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -1901,6 +2019,10 @@ ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/ma
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/11/26/rails-ubuntu-environment-ubuntu16-dot-04/">[Ubuntu] Ruby on Rails 基本環境建置 - Ubuntu 16.04 LTS</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2016/10/30/rails-mac-os-environment-sierra/">[Mac] Ruby on Rails 基本環境建置 - 10.12 Sierra</a>
@@ -1956,10 +2078,6 @@ ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/ma
     
       <li class="post">
         <a href="/blog/2015/06/12/rails-ajax-render-error-in-json/">[Rails] AJAX render errors in json</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/04/18/all-your-important-files-are-encrypted/">資料被綁架軟體加密，要求贖金用比特幣支付</a>
       </li>
     
   </ul>

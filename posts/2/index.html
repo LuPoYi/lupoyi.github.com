@@ -9,17 +9,14 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="對稱金鑰加密：加解密使用的金鑰是同一把 DES (Data Encryption Standard)
-AES (Advanced Encryption Standard) 非對稱金鑰加密系統(公開金鑰加密)，加解密不同把key(公鑰私鑰) RSA 加密解密1
+  <meta name="description" content="一般設定IP會直接寫在/etc/network/interfaces 看是要static還是dynamic /etc/network/interfaces1
 2
 3
 4
 5
 6
-7
-8
-9
-10 &hellip;">
+auto p1p1
+iface p1p1 inet static address 192.168.1.100 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -110,6 +107,84 @@ AES (Advanced Encryption Standard) 非對稱金鑰加密系統(公開金鑰加�
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2016/01/17/ubuntu-setting-pppoe-static-ip/">[Ubuntu] 設定 PPPoE 固定IP</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-01-17T16:08:49+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2016/01/17/ubuntu-setting-pppoe-static-ip/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h4>一般設定IP會直接寫在/etc/network/interfaces 看是要static還是dynamic</h4>
+
+<figure class='code'><figcaption><span>/etc/network/interfaces</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>auto p1p1
+</span><span class='line'>iface p1p1 inet static
+</span><span class='line'>
+</span><span class='line'>address 192.168.1.100
+</span><span class='line'>netmask 255.255.255.0
+</span><span class='line'>gateway 192.168.1.1
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>而需要使用PPPoE 輸入電信商提供的帳號來登入時</h4>
+
+<h5>帳號以中華電信為例</h5>
+
+<ul>
+<li><a href="&#109;&#x61;&#x69;&#x6c;&#x74;&#111;&#58;&#120;&#x78;&#120;&#x78;&#120;&#120;&#x78;&#x78;&#x40;&#x68;&#105;&#110;&#x65;&#x74;&#46;&#110;&#101;&#116;">&#x78;&#120;&#120;&#x78;&#120;&#x78;&#x78;&#x78;&#64;&#x68;&#105;&#110;&#x65;&#116;&#46;&#x6e;&#x65;&#116;</a>        取得動態IP (原有帳號格式)</li>
+<li><a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#x3a;&#x78;&#120;&#120;&#x78;&#120;&#120;&#x78;&#120;&#64;&#105;&#112;&#46;&#104;&#x69;&#110;&#x65;&#116;&#x2e;&#110;&#101;&#x74;">&#120;&#120;&#x78;&#x78;&#120;&#120;&#120;&#120;&#64;&#105;&#x70;&#46;&#104;&#x69;&#x6e;&#101;&#116;&#x2e;&#110;&#101;&#116;</a>     取得固定IP  僅限一台電腦使用</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo apt-get install pppoeconf
+</span><span class='line'><span class="nv">$ </span>sudo pppoeconf
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>接著照著說明下一步，輸入帳號密碼等等的，全部設定完即可使用</p>
+
+<p>也可以看到/etc/network/interfaces被加了一些設定</p>
+
+<p>Reference:</p>
+
+<p><a href="http://note.drx.tw/2008/08/networkpppoe-adsl.html">http://note.drx.tw/2008/08/networkpppoe-adsl.html</a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1320,141 +1395,6 @@ Reference:</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/03/16/ruby-require-load-include-extend/">[Ruby] Require,load,include,extend</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-03-16T21:14:00+08:00" pubdate data-updated="true"></time>
-        
-         | <a href="/blog/2014/03/16/ruby-require-load-include-extend/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>require vs load</h2>
-
-<p>首先require與load都是用來載入指定的檔案
-差別在於使用require只會調用一次，且副檔名可省略，load則相反。</p>
-
-<figure class='code'><figcaption><span>random.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="vg">$a</span> <span class="o">=</span> <span class="p">(</span><span class="nb">rand</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">floor</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>use_require.rb 產出的兩個值相同(只載入一次random.rb)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s2">&quot;./random&quot;</span>
-</span><span class='line'><span class="nb">puts</span> <span class="vg">$a</span>
-</span><span class='line'><span class="nb">require</span> <span class="s2">&quot;./random&quot;</span> <span class="c1"># 此行無效果</span>
-</span><span class='line'><span class="nb">puts</span> <span class="vg">$a</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>use_load.rb 產生的兩個值不一定相同</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">load</span> <span class="s2">&quot;./random.rb&quot;</span>
-</span><span class='line'><span class="nb">puts</span> <span class="vg">$a</span>
-</span><span class='line'><span class="nb">load</span> <span class="s2">&quot;./random.rb&quot;</span>
-</span><span class='line'><span class="nb">puts</span> <span class="vg">$a</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<hr />
-
-<h2>include vs extend</h2>
-
-<p>include: 將目標當作instance來使用；並不直接擁有method，需建立一個實例後才能用
-extend: 相當於把目標的code直接放進來；具有目標的class methods</p>
-
-<figure class='code'><figcaption><span>include_extend.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">Say</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">say_hi</span>
-</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;Hi!&quot;</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">class</span> <span class="nc">People</span>
-</span><span class='line'>  <span class="kp">include</span> <span class="no">Say</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">class</span> <span class="nc">Person</span>
-</span><span class='line'>  <span class="kp">extend</span> <span class="no">Say</span> <span class="c1"># 具有Say的method，可直接呼叫</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>irb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="m">001</span> &gt; require <span class="s1">&#39;./include_extend.rb&#39;</span>
-</span><span class='line'> <span class="o">=</span>&gt; <span class="nb">true </span>
-</span><span class='line'><span class="m">002</span> &gt; Person.say_hi
-</span><span class='line'>Hi!
-</span><span class='line'> <span class="o">=</span>&gt; nil
-</span><span class='line'><span class="m">003</span> &gt; People.new.say_hi
-</span><span class='line'>Hi!
-</span><span class='line'> <span class="o">=</span>&gt; nil
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Reference:</p>
-
-<p><a href="http://www.slideshare.net/BruceLi2/rubypart2">http://www.slideshare.net/BruceLi2/rubypart2</a></p>
-
-<p><a href="http://cat-son.blogspot.tw/2012/10/2-rubyinclude-extendrequire.html#sthash.QduzPsMe.cFJYqpMb.dpbs">http://cat-son.blogspot.tw/2012/10/2-rubyinclude-extendrequire.html#sthash.QduzPsMe.cFJYqpMb.dpbs</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/3">&larr; Older</a>
@@ -1501,6 +1441,10 @@ extend: 相當於把目標的code直接放進來；具有目標的class methods<
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/11/26/rails-ubuntu-environment-ubuntu16-dot-04/">[Ubuntu] Ruby on Rails 基本環境建置 - Ubuntu 16.04 LTS</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2016/10/30/rails-mac-os-environment-sierra/">[Mac] Ruby on Rails 基本環境建置 - 10.12 Sierra</a>
@@ -1556,10 +1500,6 @@ extend: 相當於把目標的code直接放進來；具有目標的class methods<
     
       <li class="post">
         <a href="/blog/2015/06/12/rails-ajax-render-error-in-json/">[Rails] AJAX render errors in json</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/04/18/all-your-important-files-are-encrypted/">資料被綁架軟體加密，要求贖金用比特幣支付</a>
       </li>
     
   </ul>
