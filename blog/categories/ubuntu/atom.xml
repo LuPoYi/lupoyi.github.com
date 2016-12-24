@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ubuntu | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/ubuntu/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2016-12-24T16:38:14+08:00</updated>
+  <updated>2016-12-24T16:55:07+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -73,7 +73,7 @@ sudo service nginx start
 
 # 加上
 passenger_root /usr/lib/ruby/vendor_ruby/phusion_passenger/locations.ini;
-passenger_ruby /home/deploy/.rbenv/shims/ruby;
+passenger_ruby /home/bob/.rbenv/shims/ruby;
 </code></pre>
 
 <h3>這邊先跳過 capistrano deploy</h3>

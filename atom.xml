@@ -4,7 +4,7 @@
   <title><![CDATA[Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2016-12-24T16:38:14+08:00</updated>
+  <updated>2016-12-24T16:55:07+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -134,7 +134,7 @@
 </span><span class='line'>
 </span><span class='line'><span class="c"># 加上</span>
 </span><span class='line'>passenger_root /usr/lib/ruby/vendor_ruby/phusion_passenger/locations.ini<span class="p">;</span>
-</span><span class='line'>passenger_ruby /home/deploy/.rbenv/shims/ruby<span class="p">;</span>
+</span><span class='line'>passenger_ruby /home/bob/.rbenv/shims/ruby<span class="p">;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -1622,8 +1622,8 @@
 <h5>帳號以中華電信為例</h5>
 
 <ul>
-<li><a href="&#109;&#x61;&#x69;&#108;&#116;&#111;&#58;&#x78;&#x78;&#120;&#120;&#120;&#120;&#x78;&#x78;&#64;&#104;&#x69;&#110;&#x65;&#x74;&#x2e;&#110;&#101;&#116;">&#x78;&#x78;&#x78;&#x78;&#120;&#x78;&#x78;&#x78;&#64;&#104;&#x69;&#110;&#101;&#116;&#x2e;&#110;&#101;&#x74;</a>        取得動態IP (原有帳號格式)</li>
-<li><a href="&#109;&#97;&#105;&#108;&#116;&#x6f;&#x3a;&#x78;&#120;&#120;&#x78;&#120;&#x78;&#120;&#x78;&#64;&#x69;&#x70;&#x2e;&#x68;&#105;&#110;&#x65;&#x74;&#46;&#x6e;&#101;&#116;">&#120;&#120;&#x78;&#120;&#120;&#120;&#x78;&#120;&#x40;&#105;&#112;&#46;&#104;&#x69;&#110;&#x65;&#116;&#46;&#x6e;&#x65;&#x74;</a>     取得固定IP  僅限一台電腦使用</li>
+<li><a href="&#x6d;&#97;&#x69;&#108;&#116;&#x6f;&#x3a;&#x78;&#120;&#120;&#120;&#x78;&#120;&#x78;&#120;&#64;&#104;&#105;&#110;&#101;&#x74;&#46;&#110;&#x65;&#116;">&#x78;&#x78;&#120;&#120;&#x78;&#120;&#120;&#x78;&#x40;&#104;&#x69;&#110;&#x65;&#x74;&#46;&#x6e;&#x65;&#x74;</a>        取得動態IP (原有帳號格式)</li>
+<li><a href="&#x6d;&#97;&#105;&#x6c;&#x74;&#111;&#x3a;&#x78;&#x78;&#120;&#x78;&#x78;&#120;&#120;&#120;&#64;&#x69;&#112;&#46;&#x68;&#x69;&#x6e;&#x65;&#x74;&#46;&#110;&#101;&#116;">&#120;&#x78;&#120;&#x78;&#x78;&#120;&#x78;&#120;&#64;&#105;&#112;&#46;&#104;&#x69;&#x6e;&#101;&#116;&#x2e;&#x6e;&#x65;&#x74;</a>     取得固定IP  僅限一台電腦使用</li>
 </ul>
 
 
