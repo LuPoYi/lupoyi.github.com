@@ -4,7 +4,7 @@
   <title><![CDATA[Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2016-11-26T17:18:48+08:00</updated>
+  <updated>2016-12-24T16:38:14+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -32,7 +32,9 @@
 <figure class='code'><figcaption><span>安裝常用lib</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
+<span class='line-number'>4</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get update
+</span><span class='line'>sudo apt-get upgrade
 </span><span class='line'>sudo apt-get install vim nodejs
 </span><span class='line'>sudo apt-get install git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev
 </span></code></pre></td></tr></table></div></figure>
@@ -55,6 +57,9 @@
 <span class='line-number'>13</span>
 <span class='line-number'>14</span>
 <span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd</span>
 </span><span class='line'>git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 </span><span class='line'><span class="nb">echo</span> <span class="s1">&#39;export PATH=&quot;$HOME/.rbenv/bin:$PATH&quot;&#39;</span> &gt;&gt; ~/.bashrc
@@ -68,6 +73,9 @@
 </span><span class='line'>rbenv install 2.3.1
 </span><span class='line'>rbenv global 2.3.1
 </span><span class='line'>ruby -v
+</span><span class='line'>
+</span><span class='line'><span class="c"># skip doc</span>
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;gem: --no-ri --no-rdoc&quot;</span> &gt; ~/.gemrc
 </span><span class='line'>
 </span><span class='line'>gem install bundler
 </span></code></pre></td></tr></table></div></figure>
@@ -1614,8 +1622,8 @@
 <h5>帳號以中華電信為例</h5>
 
 <ul>
-<li><a href="&#109;&#x61;&#x69;&#x6c;&#x74;&#111;&#58;&#120;&#x78;&#120;&#x78;&#120;&#120;&#x78;&#x78;&#x40;&#x68;&#105;&#110;&#x65;&#x74;&#46;&#110;&#101;&#116;">&#x78;&#120;&#120;&#x78;&#120;&#x78;&#x78;&#x78;&#64;&#x68;&#105;&#110;&#x65;&#116;&#46;&#x6e;&#x65;&#116;</a>        取得動態IP (原有帳號格式)</li>
-<li><a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#x3a;&#x78;&#120;&#120;&#x78;&#120;&#120;&#x78;&#120;&#64;&#105;&#112;&#46;&#104;&#x69;&#110;&#x65;&#116;&#x2e;&#110;&#101;&#x74;">&#120;&#120;&#x78;&#x78;&#120;&#120;&#120;&#120;&#64;&#105;&#x70;&#46;&#104;&#x69;&#x6e;&#101;&#116;&#x2e;&#110;&#101;&#116;</a>     取得固定IP  僅限一台電腦使用</li>
+<li><a href="&#109;&#x61;&#x69;&#108;&#116;&#111;&#58;&#x78;&#x78;&#120;&#120;&#120;&#120;&#x78;&#x78;&#64;&#104;&#x69;&#110;&#x65;&#x74;&#x2e;&#110;&#101;&#116;">&#x78;&#x78;&#x78;&#x78;&#120;&#x78;&#x78;&#x78;&#64;&#104;&#x69;&#110;&#101;&#116;&#x2e;&#110;&#101;&#x74;</a>        取得動態IP (原有帳號格式)</li>
+<li><a href="&#109;&#97;&#105;&#108;&#116;&#x6f;&#x3a;&#x78;&#120;&#120;&#x78;&#120;&#x78;&#120;&#x78;&#64;&#x69;&#x70;&#x2e;&#x68;&#105;&#110;&#x65;&#x74;&#46;&#x6e;&#101;&#116;">&#120;&#120;&#x78;&#120;&#120;&#120;&#x78;&#120;&#x40;&#105;&#112;&#46;&#104;&#x69;&#110;&#x65;&#116;&#46;&#x6e;&#x65;&#x74;</a>     取得固定IP  僅限一台電腦使用</li>
 </ul>
 
 

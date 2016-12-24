@@ -17,9 +17,10 @@ sudo adduser bob sudo
 su bob 安裝常用lib1
 2
 3
+4
 sudo apt-get update
-sudo apt-get install vim nodejs
-sudo apt-get install git- &hellip;">
+sudo apt-get upgrade
+sudo apt-get install vim nodejs &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -155,7 +156,9 @@ sudo apt-get install git- &hellip;">
 <figure class='code'><figcaption><span>安裝常用lib</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
+<span class='line-number'>4</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get update
+</span><span class='line'>sudo apt-get upgrade
 </span><span class='line'>sudo apt-get install vim nodejs
 </span><span class='line'>sudo apt-get install git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev
 </span></code></pre></td></tr></table></div></figure>
@@ -178,6 +181,9 @@ sudo apt-get install git- &hellip;">
 <span class='line-number'>13</span>
 <span class='line-number'>14</span>
 <span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd</span>
 </span><span class='line'>git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 </span><span class='line'><span class="nb">echo</span> <span class="s1">&#39;export PATH=&quot;$HOME/.rbenv/bin:$PATH&quot;&#39;</span> &gt;&gt; ~/.bashrc
@@ -191,6 +197,9 @@ sudo apt-get install git- &hellip;">
 </span><span class='line'>rbenv install 2.3.1
 </span><span class='line'>rbenv global 2.3.1
 </span><span class='line'>ruby -v
+</span><span class='line'>
+</span><span class='line'><span class="c"># skip doc</span>
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;gem: --no-ri --no-rdoc&quot;</span> &gt; ~/.gemrc
 </span><span class='line'>
 </span><span class='line'>gem install bundler
 </span></code></pre></td></tr></table></div></figure>
