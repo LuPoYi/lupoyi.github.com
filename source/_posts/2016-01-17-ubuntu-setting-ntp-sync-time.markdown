@@ -3,7 +3,7 @@ layout: post
 title: "[Ubuntu] 設定NTP校正時間"
 date: 2016-01-17 23:34:01 +0800
 comments: true
-categories: [ubuntu, ntp]
+categories: [ubuntu, ntp, ntpdate]
 ---
 
 ### 校正系統時間
@@ -13,8 +13,13 @@ categories: [ubuntu, ntp]
 ```bash
 $ date # 確認目前時間
 $ dpkg -l | grep ntp # 檢查是否已安裝
-$ sudo apt-get install ntp
+$ sudo apt-get install ntp ntpdate
 $ vim /etc/ntp.conf
+  # Specify one or more NTP servers.
+
+  # Use servers from the NTP Pool Project. Approved by Ubuntu Technical Board
+  # on 2011-02-08 (LP: #104525). See http://www.pool.ntp.org/join.html for
+  # more information.
   # 加上
   server tock.stdtime.gov.tw
   server watch.stdtime.gov.tw
@@ -22,7 +27,10 @@ $ vim /etc/ntp.conf
   server clock.stdtime.gov.tw
   server tick.stdtime.gov.tw
 
-$ ntpdate time.stdtime.gov.tw
+$ sudo service ntp restart # ntp會自動校時
+
+$ ntpdate time.stdtime.gov.tw # 測試 NTP Server
+19 Nov 14:38:08 ntpdate[20006]: the NTP socket is in use, exiting
 ```
 
 Reference:
