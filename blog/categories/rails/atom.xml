@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rails | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2016-12-24T16:55:07+08:00</updated>
+  <updated>2017-01-13T10:58:29+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -42,6 +42,14 @@ exec $SHELL
 rbenv install 2.3.1
 rbenv global 2.3.1
 ruby -v
+
+# rvm 
+# sudo apt-get install libgdbm-dev libncurses5-dev automake libtool bison libffi-dev
+# gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+# curl -sSL https://get.rvm.io | bash -s stable
+# source ~/.rvm/scripts/rvm
+# rvm install 2.3.1
+# rvm use 2.3.1 --default
 
 # skip doc
 echo "gem: --no-ri --no-rdoc" &gt; ~/.gemrc
