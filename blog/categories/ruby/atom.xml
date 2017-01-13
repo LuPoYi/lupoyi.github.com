@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2017-01-13T11:12:32+08:00</updated>
+  <updated>2017-01-13T11:12:57+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -79,7 +79,10 @@ sudo service nginx start
 # Uncomment it if you installed ruby-passenger or ruby-passenger-enterprise
 ##
 
-# 加上
+include /etc/nginx/passenger.conf;
+</code></pre>
+
+<pre><code class="bash /etc/nginx/passenger.conf"># 加上
 passenger_root /usr/lib/ruby/vendor_ruby/phusion_passenger/locations.ini;
 passenger_ruby /home/bob/.rbenv/shims/ruby;
 </code></pre>

@@ -261,15 +261,22 @@ sudo apt-get install vim nodejs &hellip;">
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">##</span>
 </span><span class='line'><span class="c"># Phusion Passenger</span>
 </span><span class='line'><span class="c">##</span>
 </span><span class='line'><span class="c"># Uncomment it if you installed ruby-passenger or ruby-passenger-enterprise</span>
 </span><span class='line'><span class="c">##</span>
 </span><span class='line'>
-</span><span class='line'><span class="c"># 加上</span>
+</span><span class='line'>include /etc/nginx/passenger.conf<span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>/etc/nginx/passenger.conf</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># 加上</span>
 </span><span class='line'>passenger_root /usr/lib/ruby/vendor_ruby/phusion_passenger/locations.ini<span class="p">;</span>
 </span><span class='line'>passenger_ruby /home/bob/.rbenv/shims/ruby<span class="p">;</span>
 </span></code></pre></td></tr></table></div></figure>
