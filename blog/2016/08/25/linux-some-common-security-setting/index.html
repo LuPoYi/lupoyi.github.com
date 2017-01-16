@@ -319,7 +319,7 @@ $ sudo service sshd restart 開始自動安全性更新 開始自動安全性更
 
 <h4>OS層的log大多紀錄在/var/log/底下，而預設開啟logrotate</h4>
 
-<h4>調整/etc/logrotate.conf的自動rotate，把時間拉長或是不使用rotate</h4>
+<h4>調整/etc/logrotate.conf的自動rotate，把時間拉長或是不使用rotate或是另外備份</h4>
 
 <ul>
 <li>syslog 系統日誌</li>
@@ -329,7 +329,25 @@ $ sudo service sshd restart 開始自動安全性更新 開始自動安全性更
 
 
 <figure class='code'><figcaption><span>/etc/logrotate.conf</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># (略)</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>/path/to/your/rails/log/*.log <span class="o">{</span>
+</span><span class='line'>  daily <span class="c"># </span>
+</span><span class='line'>  dateext
+</span><span class='line'>  missingok
+</span><span class='line'>  rotate <span class="m">30</span> <span class="c"># 保留30份</span>
+</span><span class='line'>  compress
+</span><span class='line'>  delaycompress
+</span><span class='line'>  notifempty
+</span><span class='line'>  copytruncate
+</span><span class='line'><span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -337,6 +355,13 @@ $ sudo service sshd restart 開始自動安全性更新 開始自動安全性更
 
 <figure class='code'><figcaption><span>/etc/logrotate.d</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># (略)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>設定完成可直接執行看是否設定正確，或等明天系統自己run</p>
+
+<figure class='code'><figcaption><span>/etc/logrotate.d</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>/usr/sbin/logrotate -f /etc/logrotate.conf
 </span></code></pre></td></tr></table></div></figure>
 
 

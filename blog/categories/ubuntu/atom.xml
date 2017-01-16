@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ubuntu | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/ubuntu/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2017-01-16T11:33:02+08:00</updated>
+  <updated>2017-01-16T21:32:41+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -284,7 +284,7 @@ iptables --append OUTPUT --jump ACCEPT
 
 <h4>OS層的log大多紀錄在/var/log/底下，而預設開啟logrotate</h4>
 
-<h4>調整/etc/logrotate.conf的自動rotate，把時間拉長或是不使用rotate</h4>
+<h4>調整/etc/logrotate.conf的自動rotate，把時間拉長或是不使用rotate或是另外備份</h4>
 
 <ul>
 <li>syslog 系統日誌</li>
@@ -293,11 +293,25 @@ iptables --append OUTPUT --jump ACCEPT
 </ul>
 
 
-<pre><code class="bash /etc/logrotate.conf"># (略)
+<pre><code class="bash /etc/logrotate.conf">/path/to/your/rails/log/*.log {
+  daily # 
+  dateext
+  missingok
+  rotate 30 # 保留30份
+  compress 
+  delaycompress
+  notifempty
+  copytruncate
+}
 </code></pre>
 
 <pre><code class="bash /etc/logrotate.d"># (略)
 </code></pre>
+
+<p>設定完成可直接執行看是否設定正確，或等明天系統自己run
+<code>
+/usr/sbin/logrotate -f /etc/logrotate.conf
+</code></p>
 
 <pre><code class="bash wtmp user登入次數及使用時間紀錄">$ last
 $ last -f /var/log/wtmp

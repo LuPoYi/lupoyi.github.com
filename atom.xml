@@ -4,7 +4,7 @@
   <title><![CDATA[Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2017-01-16T11:33:02+08:00</updated>
+  <updated>2017-01-16T21:32:41+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -584,7 +584,7 @@
 
 <h4>OS層的log大多紀錄在/var/log/底下，而預設開啟logrotate</h4>
 
-<h4>調整/etc/logrotate.conf的自動rotate，把時間拉長或是不使用rotate</h4>
+<h4>調整/etc/logrotate.conf的自動rotate，把時間拉長或是不使用rotate或是另外備份</h4>
 
 <ul>
 <li>syslog 系統日誌</li>
@@ -594,7 +594,25 @@
 
 
 <figure class='code'><figcaption><span>/etc/logrotate.conf</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># (略)</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>/path/to/your/rails/log/*.log <span class="o">{</span>
+</span><span class='line'>  daily <span class="c"># </span>
+</span><span class='line'>  dateext
+</span><span class='line'>  missingok
+</span><span class='line'>  rotate <span class="m">30</span> <span class="c"># 保留30份</span>
+</span><span class='line'>  compress
+</span><span class='line'>  delaycompress
+</span><span class='line'>  notifempty
+</span><span class='line'>  copytruncate
+</span><span class='line'><span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -602,6 +620,13 @@
 
 <figure class='code'><figcaption><span>/etc/logrotate.d</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># (略)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>設定完成可直接執行看是否設定正確，或等明天系統自己run</p>
+
+<figure class='code'><figcaption><span>/etc/logrotate.d</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>/usr/sbin/logrotate -f /etc/logrotate.conf
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -1700,8 +1725,8 @@
 <h5>帳號以中華電信為例</h5>
 
 <ul>
-<li><a href="&#x6d;&#97;&#105;&#108;&#116;&#111;&#x3a;&#x78;&#120;&#120;&#120;&#120;&#120;&#120;&#120;&#x40;&#x68;&#105;&#110;&#101;&#x74;&#46;&#x6e;&#101;&#116;">&#120;&#x78;&#x78;&#120;&#x78;&#120;&#120;&#x78;&#64;&#104;&#x69;&#x6e;&#x65;&#x74;&#x2e;&#110;&#x65;&#116;</a>        取得動態IP (原有帳號格式)</li>
-<li><a href="&#109;&#x61;&#105;&#108;&#x74;&#111;&#58;&#x78;&#x78;&#120;&#x78;&#x78;&#120;&#x78;&#120;&#64;&#x69;&#x70;&#46;&#x68;&#105;&#110;&#101;&#116;&#x2e;&#x6e;&#x65;&#x74;">&#x78;&#120;&#x78;&#120;&#120;&#x78;&#120;&#x78;&#x40;&#105;&#112;&#x2e;&#104;&#x69;&#110;&#101;&#116;&#x2e;&#110;&#101;&#116;</a>     取得固定IP  僅限一台電腦使用</li>
+<li><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#120;&#120;&#x78;&#120;&#x78;&#x78;&#x78;&#120;&#64;&#x68;&#105;&#x6e;&#x65;&#116;&#46;&#x6e;&#101;&#x74;">&#120;&#x78;&#120;&#120;&#120;&#120;&#120;&#120;&#64;&#104;&#105;&#110;&#101;&#116;&#46;&#x6e;&#101;&#x74;</a>        取得動態IP (原有帳號格式)</li>
+<li><a href="&#109;&#x61;&#105;&#x6c;&#116;&#111;&#58;&#120;&#x78;&#x78;&#x78;&#x78;&#120;&#x78;&#120;&#x40;&#x69;&#112;&#x2e;&#x68;&#105;&#110;&#101;&#116;&#46;&#110;&#101;&#x74;">&#120;&#120;&#120;&#120;&#120;&#120;&#x78;&#120;&#x40;&#105;&#112;&#46;&#x68;&#x69;&#x6e;&#x65;&#116;&#x2e;&#110;&#x65;&#116;</a>     取得固定IP  僅限一台電腦使用</li>
 </ul>
 
 
