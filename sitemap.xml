@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://blog.poyi.tw/blog/2017/01/15/how-to-mine-zcash-on-windows/</loc>
+    <lastmod>2017-01-15T13:32:55+08:00</lastmod>
+  </url>
+  <url>
     <loc>http://blog.poyi.tw/blog/2016/11/26/rails-ubuntu-environment-ubuntu16-dot-04/</loc>
     <lastmod>2016-11-26T16:56:10+08:00</lastmod>
   </url>
@@ -491,22 +495,10 @@
     <loc>http://blog.poyi.tw/blog/categories/sierra/</loc>
   </url>
   <url>
-    <loc>http://blog.poyi.tw/posts/2/</loc>
+    <loc>http://blog.poyi.tw/blog/categories/zcash/</loc>
   </url>
   <url>
-    <loc>http://blog.poyi.tw/posts/3/</loc>
-  </url>
-  <url>
-    <loc>http://blog.poyi.tw/posts/4/</loc>
-  </url>
-  <url>
-    <loc>http://blog.poyi.tw/posts/5/</loc>
-  </url>
-  <url>
-    <loc>http://blog.poyi.tw/posts/6/</loc>
-  </url>
-  <url>
-    <loc>http://blog.poyi.tw/posts/7/</loc>
+    <loc>http://blog.poyi.tw/blog/categories/zec/</loc>
   </url>
   <url>
     <loc>http://blog.poyi.tw/about/weight/index.html</loc>

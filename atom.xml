@@ -4,7 +4,7 @@
   <title><![CDATA[Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2017-01-13T11:12:57+08:00</updated>
+  <updated>2017-01-16T11:33:02+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -12,6 +12,59 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[[Zcash] 如何使用Windows來挖礦]]></title>
+    <link href="http://blog.poyi.tw/blog/2017/01/15/how-to-mine-zcash-on-windows/"/>
+    <updated>2017-01-15T13:32:55+08:00</updated>
+    <id>http://blog.poyi.tw/blog/2017/01/15/how-to-mine-zcash-on-windows</id>
+    <content type="html"><![CDATA[<h2>Zcash錢包</h2>
+
+<p>首先要下載一個錢包並取得address(t1bjg8ZSVhW2LzRP3BiHZKbMGipLJuxibYE)來存放你挖到的幣</p>
+
+<p>推薦<a href="https://jaxx.io/">Jaxx</a>，支援windows/macos/ios/android&hellip;，幣別也支援btc/eth/etc/zec&hellip;.。</p>
+
+<h2>miner</h2>
+
+<p>使用<a href="https://github.com/etherchain-org/nheqminer/releases/latest">Nicehash miner</a></p>
+
+<p>載好解壓縮後會發現有一個&#8221;xheqminer.exe&#8221;</p>
+
+<p>一樣是開cmd後面接一些參數就能挖了</p>
+
+<h2>礦池</h2>
+
+<p><a href="http://zcash.flypool.org/">http://zcash.flypool.org/</a></p>
+
+<p>通常礦池首頁都會寫很清楚該怎麼做</p>
+
+<p>&ldquo;Windows - NVIDIA&rdquo;</p>
+
+<p>&ldquo;NiceHash Miner&rdquo;</p>
+
+<p>&ldquo;asia1-zcash.flypool.org&rdquo;</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>nheqminer.exe -cd 0 -l &lt;礦池server&gt; -u &lt;你自己的錢包地址&gt;.&lt;自命名worker&gt; </span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>nheqminer.exe -cd <span class="m">0</span> -l asia1-zcash.flypool.org:3333 -u t1bjg8ZSVhW2LzRP3BiHZKbMGipLJuxibYE.bob1
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>監控挖礦情況
+<a href="http://zcash.flypool.org/miners/t1bjg8ZSVhW2LzRP3BiHZKbMGipLJuxibYE">http://zcash.flypool.org/miners/t1bjg8ZSVhW2LzRP3BiHZKbMGipLJuxibYE</a></p>
+
+<p>Reference:</p>
+
+<p><a href="https://www.cryptocompare.com/mining/guides/how-to-mine-zcash-with-gpu-and-cpu/">https://www.cryptocompare.com/mining/guides/how-to-mine-zcash-with-gpu-and-cpu/</a></p>
+
+<p><a href="http://zcash.flypool.org/">http://zcash.flypool.org/</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[[Ubuntu] Ruby on Rails 基本環境建置 - Ubuntu 16.04 LTS]]></title>
@@ -161,7 +214,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h3>這邊先跳過 capistrano deploy</h3>
+
 
 <figure class='code'><figcaption><span>/etc/nginx/sites-enabled/default</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -201,6 +254,8 @@
 </span><span class='line'><span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
+
+<h3>這邊先跳過 capistrano deploy</h3>
 
 <p>Reference:</p>
 
@@ -1645,8 +1700,8 @@
 <h5>帳號以中華電信為例</h5>
 
 <ul>
-<li><a href="&#x6d;&#97;&#105;&#x6c;&#116;&#111;&#x3a;&#x78;&#x78;&#x78;&#x78;&#x78;&#x78;&#x78;&#120;&#64;&#x68;&#x69;&#110;&#101;&#116;&#46;&#110;&#101;&#x74;">&#x78;&#120;&#120;&#x78;&#120;&#x78;&#x78;&#120;&#x40;&#104;&#x69;&#x6e;&#x65;&#116;&#46;&#110;&#x65;&#x74;</a>        取得動態IP (原有帳號格式)</li>
-<li><a href="&#109;&#97;&#x69;&#108;&#x74;&#x6f;&#x3a;&#x78;&#x78;&#x78;&#120;&#x78;&#120;&#x78;&#x78;&#64;&#105;&#x70;&#x2e;&#x68;&#105;&#110;&#x65;&#x74;&#x2e;&#110;&#x65;&#x74;">&#x78;&#120;&#x78;&#x78;&#120;&#120;&#x78;&#120;&#x40;&#105;&#x70;&#x2e;&#x68;&#x69;&#110;&#101;&#116;&#46;&#110;&#x65;&#x74;</a>     取得固定IP  僅限一台電腦使用</li>
+<li><a href="&#x6d;&#97;&#105;&#108;&#116;&#111;&#x3a;&#x78;&#120;&#120;&#120;&#120;&#120;&#120;&#120;&#x40;&#x68;&#105;&#110;&#101;&#x74;&#46;&#x6e;&#101;&#116;">&#120;&#x78;&#x78;&#120;&#x78;&#120;&#120;&#x78;&#64;&#104;&#x69;&#x6e;&#x65;&#x74;&#x2e;&#110;&#x65;&#116;</a>        取得動態IP (原有帳號格式)</li>
+<li><a href="&#109;&#x61;&#105;&#108;&#x74;&#111;&#58;&#x78;&#x78;&#120;&#x78;&#x78;&#120;&#x78;&#120;&#64;&#x69;&#x70;&#46;&#x68;&#105;&#110;&#101;&#116;&#x2e;&#x6e;&#x65;&#x74;">&#x78;&#120;&#x78;&#120;&#120;&#x78;&#120;&#x78;&#x40;&#105;&#112;&#x2e;&#104;&#x69;&#110;&#101;&#116;&#x2e;&#110;&#101;&#116;</a>     取得固定IP  僅限一台電腦使用</li>
 </ul>
 
 
@@ -2510,108 +2565,6 @@ Reference:</p>
 <p>Reference:</p>
 
 <p><a href="http://ruby-doc.org/core-2.1.4/File.html">http://ruby-doc.org/core-2.1.4/File.html</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[[Ruby] 匯出批次csv檔]]></title>
-    <link href="http://blog.poyi.tw/blog/2014/05/06/ruby-csv-file/"/>
-    <updated>2014-05-06T21:14:00+08:00</updated>
-    <id>http://blog.poyi.tw/blog/2014/05/06/ruby-csv-file</id>
-    <content type="html"><![CDATA[<p>讀取或寫入csv在ruby都蠻方便的，只是編碼或格式要稍微注意一下</p>
-
-<h2>匯出csv</h2>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">header</span> <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span><span class="s1">&#39;money&#39;</span><span class="p">,</span><span class="s1">&#39;age&#39;</span><span class="o">]</span>
-</span><span class='line'><span class="n">body</span> <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;ruby&#39;</span><span class="p">,</span><span class="s1">&#39;1000&#39;</span><span class="p">,</span><span class="s1">&#39;18&#39;</span><span class="o">]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>export_to_csv_string 匯出csv的string格式再利用send_data下載</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">head</span> <span class="o">=</span> <span class="s1">&#39;EF BB BF&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">{</span><span class="o">|</span><span class="n">a</span><span class="o">|</span><span class="n">a</span><span class="o">.</span><span class="n">hex</span><span class="o">.</span><span class="n">chr</span><span class="p">}</span><span class="o">.</span><span class="n">join</span><span class="p">()</span> <span class="c1"># 加入BOM，解決excel中文亂碼</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">csv_string</span> <span class="o">=</span> <span class="no">CSV</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">csv</span> <span class="o">=</span> <span class="n">head</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">csv</span><span class="o">|</span>
-</span><span class='line'>    <span class="n">csv</span> <span class="o">&lt;&lt;</span> <span class="n">header</span>
-</span><span class='line'>    <span class="n">csv</span> <span class="o">&lt;&lt;</span> <span class="n">body</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c1"># &gt; csv_string.encoding 執行這句會發現預設編碼為ACSII</span>
-</span><span class='line'>  <span class="n">csv_string</span><span class="o">.</span><span class="n">force_encoding</span><span class="p">(</span><span class="s1">&#39;big5&#39;</span><span class="p">)</span>
-</span><span class='line'>  <span class="c1"># BOM也可以這樣加 csv_string = &quot;\xEF\xBB\xBF#{csv_string}&quot;  </span>
-</span><span class='line'>  <span class="c1"># 若不需要調整格式就直接下載</span>
-</span><span class='line'>  <span class="n">send_data</span> <span class="n">csv_string</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>export_to_csv 直接匯出檔案</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'> <span class="nb">require</span> <span class="s1">&#39;csv&#39;</span>
-</span><span class='line'> <span class="no">CSV</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;export.csv&quot;</span><span class="p">,</span><span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">csv</span><span class="o">|</span>
-</span><span class='line'>   <span class="n">csv</span> <span class="o">&lt;&lt;</span> <span class="n">header</span>
-</span><span class='line'>   <span class="n">csv</span> <span class="o">&lt;&lt;</span> <span class="n">body</span>
-</span><span class='line'> <span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>半形轉全形</h2>
-
-<p>在某些情況會需要轉出全形字元，照理說不用才對，<del>可能是因為合作對方的系統太爛</del>
-其實也不太確定怎解，我單純用硬幹的方式</p>
-
-<figure class='code'><figcaption><span>convert_to_wide_word 大小寫英文數字轉全形字元</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">convert_to_wide_word</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">text</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/[a-v]/</span><span class="p">){</span><span class="o">|</span><span class="n">a</span><span class="o">|</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">ord</span> <span class="o">+</span> <span class="mi">41608</span><span class="p">)</span><span class="o">.</span><span class="n">chr</span><span class="p">(</span><span class="s1">&#39;big5&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)}</span>
-</span><span class='line'>    <span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/[w-z]/</span><span class="p">){</span><span class="o">|</span><span class="n">a</span><span class="o">|</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">ord</span> <span class="o">+</span> <span class="mi">41673</span><span class="p">)</span><span class="o">.</span><span class="n">chr</span><span class="p">(</span><span class="s1">&#39;big5&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)}</span>
-</span><span class='line'>    <span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/[A-Z]/</span><span class="p">){</span><span class="o">|</span><span class="n">a</span><span class="o">|</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">ord</span> <span class="o">+</span> <span class="mi">41614</span><span class="p">)</span><span class="o">.</span><span class="n">chr</span><span class="p">(</span><span class="s1">&#39;big5&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)}</span>
-</span><span class='line'>    <span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/[0-9]/</span><span class="p">){</span><span class="o">|</span><span class="n">a</span><span class="o">|</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">ord</span> <span class="o">+</span> <span class="mi">41599</span><span class="p">)</span><span class="o">.</span><span class="n">chr</span><span class="p">(</span><span class="s1">&#39;big5&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)}</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">convert_to_wide_word</span><span class="p">(</span><span class="s2">&quot;0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;</span><span class="p">)</span>
-</span><span class='line'> <span class="o">=&gt;</span> <span class="s2">&quot;０１２３４５６７８９ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚＡＢＣＤＥＦＧＨＩＪＫＬ</span>
-</span><span class='line'><span class="s2"> ＭＮＯＰＱＲＳＴＵＶＷＸＹＺ&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>匯出匯入csv也可以試試FasterCSV這個gem</p>
-
-<p>Reference:</p>
-
-<p><a href="http://www.sitepoint.com/guide-ruby-csv-library-part/">http://www.sitepoint.com/guide-ruby-csv-library-part/</a></p>
-
-<p><a href="http://blog.inheart.tw/2013/09/rubyraisl-csv-excel.html">http://blog.inheart.tw/2013/09/rubyraisl-csv-excel.html</a></p>
-
-<p><a href="http://salayhin.wordpress.com/2014/05/10/export-csv-file-from-rails-console/">http://salayhin.wordpress.com/2014/05/10/export-csv-file-from-rails-console/</a></p>
 ]]></content>
   </entry>
   

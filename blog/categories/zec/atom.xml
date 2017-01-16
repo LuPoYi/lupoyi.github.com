@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: zec | Bob 學習筆記]]></title>
+  <link href="http://blog.poyi.tw/blog/categories/zec/atom.xml" rel="self"/>
+  <link href="http://blog.poyi.tw/"/>
+  <updated>2017-01-16T11:33:02+08:00</updated>
+  <id>http://blog.poyi.tw/</id>
+  <author>
+    <name><![CDATA[Bob (PoYi)]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[[Zcash] 如何使用Windows來挖礦]]></title>
+    <link href="http://blog.poyi.tw/blog/2017/01/15/how-to-mine-zcash-on-windows/"/>
+    <updated>2017-01-15T13:32:55+08:00</updated>
+    <id>http://blog.poyi.tw/blog/2017/01/15/how-to-mine-zcash-on-windows</id>
+    <content type="html"><![CDATA[<h2>Zcash錢包</h2>
+
+<p>首先要下載一個錢包並取得address(t1bjg8ZSVhW2LzRP3BiHZKbMGipLJuxibYE)來存放你挖到的幣</p>
+
+<p>推薦<a href="https://jaxx.io/">Jaxx</a>，支援windows/macos/ios/android&hellip;，幣別也支援btc/eth/etc/zec&hellip;.。</p>
+
+<h2>miner</h2>
+
+<p>使用<a href="https://github.com/etherchain-org/nheqminer/releases/latest">Nicehash miner</a></p>
+
+<p>載好解壓縮後會發現有一個&#8221;xheqminer.exe&#8221;</p>
+
+<p>一樣是開cmd後面接一些參數就能挖了</p>
+
+<h2>礦池</h2>
+
+<p><a href="http://zcash.flypool.org/">http://zcash.flypool.org/</a></p>
+
+<p>通常礦池首頁都會寫很清楚該怎麼做</p>
+
+<p>&ldquo;Windows - NVIDIA&rdquo;</p>
+
+<p>&ldquo;NiceHash Miner&rdquo;</p>
+
+<p>&ldquo;asia1-zcash.flypool.org&rdquo;</p>
+
+<pre><code>nheqminer.exe -cd 0 -l &lt;礦池server&gt; -u &lt;你自己的錢包地址&gt;.&lt;自命名worker&gt; 
+</code></pre>
+
+<pre><code class="bash ">nheqminer.exe -cd 0 -l asia1-zcash.flypool.org:3333 -u t1bjg8ZSVhW2LzRP3BiHZKbMGipLJuxibYE.bob1
+</code></pre>
+
+<p>監控挖礦情況
+<a href="http://zcash.flypool.org/miners/t1bjg8ZSVhW2LzRP3BiHZKbMGipLJuxibYE">http://zcash.flypool.org/miners/t1bjg8ZSVhW2LzRP3BiHZKbMGipLJuxibYE</a></p>
+
+<p>Reference:</p>
+
+<p><a href="https://www.cryptocompare.com/mining/guides/how-to-mine-zcash-with-gpu-and-cpu/">https://www.cryptocompare.com/mining/guides/how-to-mine-zcash-with-gpu-and-cpu/</a></p>
+
+<p><a href="http://zcash.flypool.org/">http://zcash.flypool.org/</a></p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rails | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2017-01-13T11:12:57+08:00</updated>
+  <updated>2017-01-16T11:33:02+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -87,8 +87,6 @@ passenger_root /usr/lib/ruby/vendor_ruby/phusion_passenger/locations.ini;
 passenger_ruby /home/bob/.rbenv/shims/ruby;
 </code></pre>
 
-<h3>這邊先跳過 capistrano deploy</h3>
-
 <pre><code class="bash /etc/nginx/sites-enabled/default">server {
         listen 80 default_server;
         listen [::]:80 default_server ipv6only=on;
@@ -108,6 +106,8 @@ passenger_ruby /home/bob/.rbenv/shims/ruby;
         # root /var/www/html;
 }
 </code></pre>
+
+<h3>這邊先跳過 capistrano deploy</h3>
 
 <p>Reference:</p>
 

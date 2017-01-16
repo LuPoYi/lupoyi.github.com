@@ -9,9 +9,7 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="在linq的使用上，IEnumerable是不可或缺的泛型介面
-像是foreach迴圈就是利用IEnumerable的特性(MoveNext)來實現逐一檢查。 而IQueryable又繼承了IEnumerable&hellip; 兩者的差別從概念上來說：
-IEnumerable:先將查詢的值取出， &hellip;">
+  <meta name="description" content="Delegate 是 C# 的特殊型別，用來定義方法（method/function）的 signature，delegate 的實體（instance）可以存放一或多個符合該 signature 的方法。這樣講也許還是鴨子聽雷，不如我們實際來感受一下吧！ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -102,6 +100,97 @@ IEnumerable:先將查詢的值取出， &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/10/04/c-delegate-delegate/">[C#] Delegate 委派</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-04T14:22:00+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2013/10/04/c-delegate-delegate/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>Delegate 是 C# 的特殊型別，用來定義方法（method/function）的 signature，delegate 的實體（instance）可以存放一或多個符合該 signature 的方法。這樣講也許還是鴨子聽雷，不如我們實際來感受一下吧！</h2>
+
+<p>delegate實例獨立於它所封裝的方法的類
+這邊在個multicst delegate的例子
+using System;</p>
+
+<p>class MulticastTester
+{
+    delegate void Greeting();</p>
+
+<pre><code>public static void Main()
+{
+    Greeting myGreeting = new Greeting(SayThankYou);
+    Console.WriteLine("My single greeting:");
+    myGreeting();
+
+    Greeting yourGreeting = new Greeting(SayGoodMorning);        
+    Console.WriteLine("\nYour single greeting:");
+    yourGreeting();
+
+    Greeting ourGreeting = myGreeting + yourGreeting;
+    Console.WriteLine("\nOur multicast greeting:");
+    ourGreeting();
+
+    ourGreeting += new Greeting(SayGoodnight);
+    Console.WriteLine("\nMulticast greeting which includes Goodnight:");
+    ourGreeting();
+
+    ourGreeting = ourGreeting - yourGreeting;
+    Console.WriteLine("\nMulticast greeting without your greeting:");
+    ourGreeting();
+
+    ourGreeting -= myGreeting;
+    Console.WriteLine("\nSingle greeting without your greeting and my greeting:");
+    ourGreeting();
+}
+
+public static void SayThankYou()
+{
+    Console.WriteLine("Thank you!");
+}
+
+public static void SayGoodMorning()
+{
+    Console.WriteLine("Good morning!");
+}
+
+public static void SayGoodnight()
+{
+    Console.WriteLine("Goodnight");
+}
+</code></pre>
+
+<p>}</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1105,63 +1194,6 @@ ou.CommitChanges();
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/09/05/aspnet-date/">[ASP.NET] 日期處理</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-05T09:07:00+08:00" pubdate data-updated="true"></time>
-        
-         | <a href="/blog/2013/09/05/aspnet-date/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1>日期運算其實還蠻常用到的，但好像變化不多</h1>
-
-<pre><code>// 利用TimeSpan 日期相減
-TimeSpan ts = DateTime1 - DateTime2;
-int differenceInDays = ts.Days;
-
-// 加上指定月數、天數、時間
-DateTime DateTime3 = DateTime1.AddDays(50);
-DateTime DateTime4 = DateTime1.AddMonths(12);
-
-// 顯示特定格式
-TextBox1.Text = DateTime4.ToString("dddd"); // 星期二
-TextBox1.Text = DateTime4.ToString("MMMM"); // 七月
-TextBox1.Text = DateTime4.ToString("MMMM",CultureInfo.CreateSpecificCulture("en-US"))); // July
-TextBox1.Text = DateTime4.ToString("yyyy-MM-dd HH:mm:ss");
-</code></pre>
-
-<p>Reference:
-<a href="http://www.dotblogs.com.tw/hung-chin/archive/2012/10/15/77503.aspx">http://www.dotblogs.com.tw/hung-chin/archive/2012/10/15/77503.aspx</a>
-<a href="http://gogo1119.pixnet.net/blog/post/28140411-%5Bc%23%5D-datetime-tostring%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%99%95%E7%90%86">http://gogo1119.pixnet.net/blog/post/28140411-%5Bc%23%5D-datetime-tostring%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%99%95%E7%90%86</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/6">&larr; Older</a>
@@ -1208,6 +1240,10 @@ TextBox1.Text = DateTime4.ToString("yyyy-MM-dd HH:mm:ss");
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/01/15/how-to-mine-zcash-on-windows/">[Zcash] 如何使用Windows來挖礦</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2016/11/26/rails-ubuntu-environment-ubuntu16-dot-04/">[Ubuntu] Ruby on Rails 基本環境建置 - Ubuntu 16.04 LTS</a>
@@ -1263,10 +1299,6 @@ TextBox1.Text = DateTime4.ToString("yyyy-MM-dd HH:mm:ss");
     
       <li class="post">
         <a href="/blog/2015/06/29/mac-build-ubuntu-flash-using-command/">[Mac] 三步驟純指令建立Ubuntu的USB隨身碟</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/06/12/rails-ajax-render-error-in-json/">[Rails] AJAX render errors in json</a>
       </li>
     
   </ul>
