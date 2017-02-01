@@ -587,6 +587,31 @@
 </ul>
 
 
+<h2>權限管理</h2>
+
+<figure class='code'><figcaption><span>查詢所屬群組</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>id bob
+</span><span class='line'><span class="nv">uid</span><span class="o">=</span>1000<span class="o">(</span>bob<span class="o">)</span> <span class="nv">gid</span><span class="o">=</span>1000<span class="o">(</span>bob<span class="o">)</span> <span class="nv">groups</span><span class="o">=</span>1000<span class="o">(</span>bob<span class="o">)</span>,27<span class="o">(</span>sudo<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>新增account, 給予sudo權限</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo adduser newuser
+</span><span class='line'><span class="nv">$ </span>sudo adduser newuser sudo
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>帳號相關資訊</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>/etc/passwd
+</span></code></pre></td></tr></table></div></figure>
+
+
 <p>Reference:</p>
 
 <p><a href="http://www.arthurtoday.com/2010/12/ubuntu-findlocatewhereiswhich.html">http://www.arthurtoday.com/2010/12/ubuntu-findlocatewhereiswhich.html</a></p>

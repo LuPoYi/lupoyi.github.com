@@ -4,7 +4,7 @@
   <title><![CDATA[Category: linux | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2017-01-16T21:32:41+08:00</updated>
+  <updated>2017-02-01T15:29:31+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -65,6 +65,19 @@ find /home -iname production.log # 不分大小寫
 <li>Ctrl + b : 往左移一個字元</li>
 </ul>
 
+
+<h2>權限管理</h2>
+
+<pre><code class="bash 查詢所屬群組">$ id bob
+uid=1000(bob) gid=1000(bob) groups=1000(bob),27(sudo)
+</code></pre>
+
+<pre><code class="bash 新增account, 給予sudo權限">$ sudo adduser newuser
+$ sudo adduser newuser sudo
+</code></pre>
+
+<pre><code class="bash 帳號相關資訊">/etc/passwd
+</code></pre>
 
 <p>Reference:</p>
 
