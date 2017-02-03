@@ -113,18 +113,33 @@ iptables --append OUTPUT --jump ACCEPT
 ## Logrotate.conf
 
 #### OS層的log大多紀錄在/var/log/底下，而預設開啟logrotate
-#### 調整/etc/logrotate.conf的自動rotate，把時間拉長或是不使用rotate
+#### 調整/etc/logrotate.conf的自動rotate，把時間拉長或是不使用rotate或是另外備份
 
 * syslog 系統日誌
 * dpkg.log 軟體安裝及更新紀錄
 * auth.log 身份確認相關紀錄(使用sudo)
 
 ```bash /etc/logrotate.conf
-# (略)
+/path/to/your/rails/log/*.log {
+  daily # 
+  dateext
+  missingok
+  rotate 30 # 保留30份
+  compress 
+  delaycompress
+  notifempty
+  copytruncate
+}
+
 ```
 
 ```bash /etc/logrotate.d
 # (略)
+```
+
+設定完成可直接執行看是否設定正確，或等明天系統自己run
+```
+/usr/sbin/logrotate -f /etc/logrotate.conf 
 ```
 
 

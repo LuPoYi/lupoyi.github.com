@@ -3,7 +3,7 @@ layout: post
 title: "[Ubuntu] Linux 稍微進階的常用指令"
 date: 2016-10-19 19:01:28 +0800
 comments: true
-categories: [linux, ubuntu, command]
+categories: [linux, ubuntu, command, permission]
 ---
 
 #### 稍微進階是對我來說啦
@@ -57,7 +57,21 @@ locate nginx.conf
 * Ctrl + f : 往右移一個字元
 * Ctrl + b : 往左移一個字元
 
+## 權限管理
 
+```bash 查詢所屬群組
+$ id bob
+uid=1000(bob) gid=1000(bob) groups=1000(bob),27(sudo)
+```
+
+```bash 新增account, 給予sudo權限
+$ sudo adduser newuser
+$ sudo adduser newuser sudo
+```
+
+```bash 帳號相關資訊
+/etc/passwd
+```
 
 Reference: 
 
