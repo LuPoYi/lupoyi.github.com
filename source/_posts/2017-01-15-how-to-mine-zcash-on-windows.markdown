@@ -1,12 +1,12 @@
 ---
 layout: post
-title: "[Zcash] 如何使用Windows來挖礦"
+title: "[ZCash] 如何使用Windows來挖礦"
 date: 2017-01-15 13:32:55 +0800
 comments: true
 categories: [Zcash, mining, windows, zec]
 ---
 
-## Zcash錢包
+## ZCash錢包
 
 首先要下載一個錢包並取得address(t1bjg8ZSVhW2LzRP3BiHZKbMGipLJuxibYE)來存放你挖到的幣
 
