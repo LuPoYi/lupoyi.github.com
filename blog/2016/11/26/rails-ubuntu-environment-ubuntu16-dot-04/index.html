@@ -161,7 +161,7 @@ sudo apt-get install vim nodejs &hellip;">
 </span></code></pre></td></tr></table></div></figure>
 
 
-
+<h2>Install Ruby &amp; Rails</h2>
 
 <figure class='code'><figcaption><span>使用rbenv來管理ruby</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -218,14 +218,7 @@ sudo apt-get install vim nodejs &hellip;">
 </span></code></pre></td></tr></table></div></figure>
 
 
-
-
-<figure class='code'><figcaption><span>安裝mysql</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install mysql-server mysql-client libmysqlclient-dev
-</span></code></pre></td></tr></table></div></figure>
-
-
-
+<h2>Install Passenger &amp; Nginx</h2>
 
 <figure class='code'><figcaption><span>install nginx</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -323,6 +316,185 @@ sudo apt-get install vim nodejs &hellip;">
 </span></code></pre></td></tr></table></div></figure>
 
 
+<h2>Install Mysql</h2>
+
+<figure class='code'><figcaption><span>安裝mysql</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install mysql-server mysql-client libmysqlclient-dev
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Install Redis</h2>
+
+<figure class='code'><figcaption><span>安裝redis</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get update
+</span><span class='line'>sudo apt-get install build-essential tcl
+</span><span class='line'>
+</span><span class='line'><span class="nb">cd</span> /tmp
+</span><span class='line'>curl -O http://download.redis.io/redis-stable.tar.gz
+</span><span class='line'>tar xzvf redis-stable.tar.gz
+</span><span class='line'><span class="nb">cd </span>redis-stable
+</span><span class='line'>make
+</span><span class='line'>make <span class="nb">test</span>
+</span><span class='line'>sudo make install
+</span><span class='line'>
+</span><span class='line'>sudo mkdir /etc/redis
+</span><span class='line'>sudo cp /tmp/redis-stable/redis.conf /etc/redis
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>修改/etc/redis/redis.conf</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># 兩個地方要改</span>
+</span><span class='line'>supervised systemd
+</span><span class='line'>dir /var/lib/redis
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>新增/etc/systemd/system/redis.service</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>Unit<span class="o">]</span>
+</span><span class='line'><span class="nv">Description</span><span class="o">=</span>Redis In-Memory Data Store
+</span><span class='line'><span class="nv">After</span><span class="o">=</span>network.target
+</span><span class='line'>
+</span><span class='line'><span class="o">[</span>Service<span class="o">]</span>
+</span><span class='line'><span class="nv">User</span><span class="o">=</span>redis
+</span><span class='line'><span class="nv">Group</span><span class="o">=</span>redis
+</span><span class='line'><span class="nv">ExecStart</span><span class="o">=</span>/usr/local/bin/redis-server /etc/redis/redis.conf
+</span><span class='line'><span class="nv">ExecStop</span><span class="o">=</span>/usr/local/bin/redis-cli shutdown
+</span><span class='line'><span class="nv">Restart</span><span class="o">=</span>always
+</span><span class='line'>
+</span><span class='line'><span class="o">[</span>Install<span class="o">]</span>
+</span><span class='line'><span class="nv">WantedBy</span><span class="o">=</span>multi-user.target
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>新增redis user並給權限</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo adduser --system --group --no-create-home redis
+</span><span class='line'>sudo mkdir /var/lib/redis
+</span><span class='line'>sudo chown redis:redis /var/lib/redis
+</span><span class='line'>sudo chmod <span class="m">770</span> /var/lib/redis
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo systemctl <span class="nb">enable </span>redis <span class="c"># 設定開機啟動</span>
+</span><span class='line'>sudo systemctl start redis
+</span><span class='line'>sudo systemctl stop redis
+</span><span class='line'>sudo systemctl status redis
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Install SSDB</h2>
+
+<figure class='code'><figcaption><span>安裝ssdb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>wget --no-check-certificate https://github.com/ideawu/ssdb/archive/master.zip
+</span><span class='line'>unzip master
+</span><span class='line'><span class="nb">cd </span>ssdb-master
+</span><span class='line'>make
+</span><span class='line'>sudo make install
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>新增</span><a href='/usr/lib/systemd/system/ssdb.service'>link</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>Unit<span class="o">]</span>
+</span><span class='line'><span class="nv">Description</span><span class="o">=</span>SSDB
+</span><span class='line'><span class="nv">After</span><span class="o">=</span>network.target
+</span><span class='line'>
+</span><span class='line'><span class="o">[</span>Service<span class="o">]</span>
+</span><span class='line'><span class="nv">LimitCORE</span><span class="o">=</span>infinity
+</span><span class='line'><span class="nv">LimitNOFILE</span><span class="o">=</span>100000
+</span><span class='line'><span class="nv">LimitNPROC</span><span class="o">=</span>100000
+</span><span class='line'><span class="nv">PIDFile</span><span class="o">=</span>/usr/local/ssdb/var/ssdb.pid
+</span><span class='line'><span class="nv">WorkingDirectory</span><span class="o">=</span>/usr/local/ssdb
+</span><span class='line'><span class="nv">ExecStart</span><span class="o">=</span>/usr/local/ssdb/ssdb-server /usr/local/ssdb/ssdb.conf -s restart -d
+</span><span class='line'><span class="nv">ExecStop</span><span class="o">=</span>/usr/local/ssdb/ssdb-server /usr/local/ssdb/ssdb.conf -s stop -d
+</span><span class='line'><span class="nv">Type</span><span class="o">=</span>forking
+</span><span class='line'><span class="nv">KillMode</span><span class="o">=</span>none
+</span><span class='line'><span class="nv">Restart</span><span class="o">=</span>on-failure
+</span><span class='line'><span class="nv">RestartSec</span><span class="o">=</span>10s
+</span><span class='line'><span class="nv">User</span><span class="o">=</span>root
+</span><span class='line'>
+</span><span class='line'><span class="o">[</span>Install<span class="o">]</span>
+</span><span class='line'><span class="nv">WantedBy</span><span class="o">=</span>multi-user.target
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo systemctl <span class="nb">enable </span>ssdb <span class="c"># 設定開機啟動</span>
+</span><span class='line'>sudo systemctl start ssdb
+</span><span class='line'>sudo systemctl stop ssdb
+</span><span class='line'>sudo systemctl status ssdb
+</span></code></pre></td></tr></table></div></figure>
+
+
 <h3>這邊先跳過 capistrano deploy</h3>
 
 <p>Reference:</p>
@@ -376,7 +548,7 @@ sudo apt-get install vim nodejs &hellip;">
         <a class="basic-alignment left" href="/blog/2016/10/30/rails-mac-os-environment-sierra/" title="Previous Post: [Mac] Ruby on Rails 基本環境建置 - 10.12 Sierra">&laquo; [Mac] Ruby on Rails 基本環境建置 - 10.12 Sierra</a>
       
       
-        <a class="basic-alignment right" href="/blog/2017/01/15/how-to-mine-zcash-on-windows/" title="Next Post: [Zcash] 如何使用Windows來挖礦">[Zcash] 如何使用Windows來挖礦 &raquo;</a>
+        <a class="basic-alignment right" href="/blog/2017/01/15/how-to-mine-zcash-on-windows/" title="Next Post: [ZCash] 如何使用Windows來挖礦">[ZCash] 如何使用Windows來挖礦 &raquo;</a>
       
     </p>
   </footer>
@@ -428,7 +600,7 @@ sudo apt-get install vim nodejs &hellip;">
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2017/01/15/how-to-mine-zcash-on-windows/">[Zcash] 如何使用Windows來挖礦</a>
+        <a href="/blog/2017/01/15/how-to-mine-zcash-on-windows/">[ZCash] 如何使用Windows來挖礦</a>
       </li>
     
       <li class="post">

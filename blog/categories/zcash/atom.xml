@@ -4,7 +4,7 @@
   <title><![CDATA[Category: zcash | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/zcash/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2017-02-01T15:29:31+08:00</updated>
+  <updated>2017-03-04T19:13:47+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -14,11 +14,11 @@
 
   
   <entry>
-    <title type="html"><![CDATA[[Zcash] 如何使用Windows來挖礦]]></title>
+    <title type="html"><![CDATA[[ZCash] 如何使用Windows來挖礦]]></title>
     <link href="http://blog.poyi.tw/blog/2017/01/15/how-to-mine-zcash-on-windows/"/>
     <updated>2017-01-15T13:32:55+08:00</updated>
     <id>http://blog.poyi.tw/blog/2017/01/15/how-to-mine-zcash-on-windows</id>
-    <content type="html"><![CDATA[<h2>Zcash錢包</h2>
+    <content type="html"><![CDATA[<h2>ZCash錢包</h2>
 
 <p>首先要下載一個錢包並取得address(t1bjg8ZSVhW2LzRP3BiHZKbMGipLJuxibYE)來存放你挖到的幣</p>
 
