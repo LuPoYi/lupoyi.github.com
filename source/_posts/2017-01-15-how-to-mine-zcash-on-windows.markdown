@@ -12,7 +12,7 @@ categories: [Zcash, mining, windows, zec]
 
 推薦[Jaxx](https://jaxx.io/)，支援windows/macos/ios/android...，幣別也支援btc/eth/etc/zec....。
 
-## miner
+## Miner
 
 使用[Nicehash miner](https://github.com/etherchain-org/nheqminer/releases/latest)
 
