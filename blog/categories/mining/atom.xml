@@ -4,7 +4,7 @@
   <title><![CDATA[Category: mining | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/mining/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2017-03-04T19:13:47+08:00</updated>
+  <updated>2017-03-04T19:53:12+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -24,7 +24,7 @@
 
 <p>推薦<a href="https://jaxx.io/">Jaxx</a>，支援windows/macos/ios/android&hellip;，幣別也支援btc/eth/etc/zec&hellip;.。</p>
 
-<h2>miner</h2>
+<h2>Miner</h2>
 
 <p>使用<a href="https://github.com/etherchain-org/nheqminer/releases/latest">Nicehash miner</a></p>
 
