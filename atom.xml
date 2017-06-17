@@ -4,7 +4,7 @@
   <title><![CDATA[Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2017-03-04T19:53:12+08:00</updated>
+  <updated>2017-06-17T10:24:18+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -24,25 +24,29 @@
 
 <p>推薦<a href="https://jaxx.io/">Jaxx</a>，支援windows/macos/ios/android&hellip;，幣別也支援btc/eth/etc/zec&hellip;.。</p>
 
-<h2>Miner</h2>
+<p>Nvidia挖ZCash會比較快，如果是AMD可考慮挖Ethereum之類的</p>
 
-<p>使用<a href="https://github.com/etherchain-org/nheqminer/releases/latest">Nicehash miner</a></p>
+<h2>Miner 挖礦軟體</h2>
 
-<p>載好解壓縮後會發現有一個&#8221;xheqminer.exe&#8221;</p>
+<p><del>使用<a href="https://github.com/etherchain-org/nheqminer/releases/latest">Nicehash miner</a></del></p>
+
+<p><del>載好解壓縮後會發現有一個&#8221;xheqminer.exe&#8221;</del></p>
+
+<p><a href="https://github.com/nicehash/nheqminer/releases">nheqminer-0.5c</a>挖的效率好很多</p>
 
 <p>一樣是開cmd後面接一些參數就能挖了</p>
 
 <h2>礦池</h2>
 
+<p>如果是組礦機多張顯卡，算力夠強的話可以考慮自己挖，只是台桌機的話就加入礦池吧</p>
+
+<p>礦池是你提供多少算力，就會回饋給你，收益比較穩定</p>
+
+<p>自己solo的話就是有挖到block才有收益</p>
+
 <p><a href="http://zcash.flypool.org/">http://zcash.flypool.org/</a></p>
 
 <p>通常礦池首頁都會寫很清楚該怎麼做</p>
-
-<p>&ldquo;Windows - NVIDIA&rdquo;</p>
-
-<p>&ldquo;NiceHash Miner&rdquo;</p>
-
-<p>&ldquo;asia1-zcash.flypool.org&rdquo;</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>nheqminer.exe -cd 0 -l &lt;礦池server&gt; -u &lt;你自己的錢包地址&gt;.&lt;自命名worker&gt; </span></code></pre></td></tr></table></div></figure>
@@ -1922,8 +1926,8 @@
 <h5>帳號以中華電信為例</h5>
 
 <ul>
-<li><a href="&#x6d;&#x61;&#x69;&#x6c;&#116;&#111;&#58;&#x78;&#x78;&#x78;&#x78;&#x78;&#x78;&#x78;&#x78;&#64;&#x68;&#x69;&#x6e;&#x65;&#x74;&#46;&#110;&#101;&#x74;">&#x78;&#120;&#120;&#120;&#120;&#x78;&#x78;&#x78;&#64;&#104;&#105;&#x6e;&#101;&#x74;&#46;&#x6e;&#101;&#x74;</a>        取得動態IP (原有帳號格式)</li>
-<li><a href="&#109;&#x61;&#x69;&#108;&#116;&#111;&#x3a;&#x78;&#120;&#x78;&#x78;&#120;&#x78;&#120;&#120;&#x40;&#105;&#112;&#46;&#x68;&#105;&#x6e;&#x65;&#116;&#46;&#x6e;&#x65;&#116;">&#120;&#120;&#120;&#120;&#x78;&#x78;&#120;&#120;&#x40;&#x69;&#x70;&#x2e;&#x68;&#x69;&#x6e;&#101;&#x74;&#46;&#x6e;&#101;&#116;</a>     取得固定IP  僅限一台電腦使用</li>
+<li><a href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#111;&#x3a;&#120;&#120;&#120;&#120;&#x78;&#x78;&#120;&#120;&#x40;&#104;&#105;&#x6e;&#101;&#116;&#x2e;&#110;&#x65;&#x74;">&#x78;&#120;&#120;&#x78;&#120;&#x78;&#120;&#x78;&#64;&#x68;&#105;&#x6e;&#101;&#116;&#x2e;&#110;&#101;&#116;</a>        取得動態IP (原有帳號格式)</li>
+<li><a href="&#x6d;&#97;&#105;&#x6c;&#x74;&#111;&#58;&#x78;&#x78;&#x78;&#x78;&#120;&#120;&#x78;&#120;&#64;&#105;&#112;&#46;&#x68;&#x69;&#110;&#101;&#x74;&#x2e;&#x6e;&#x65;&#x74;">&#x78;&#120;&#x78;&#x78;&#120;&#120;&#120;&#x78;&#64;&#105;&#x70;&#x2e;&#x68;&#105;&#x6e;&#x65;&#x74;&#46;&#110;&#101;&#116;</a>     取得固定IP  僅限一台電腦使用</li>
 </ul>
 
 

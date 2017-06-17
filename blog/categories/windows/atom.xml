@@ -4,7 +4,7 @@
   <title><![CDATA[Category: windows | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/windows/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2017-03-04T19:53:12+08:00</updated>
+  <updated>2017-06-17T10:24:18+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -24,25 +24,29 @@
 
 <p>推薦<a href="https://jaxx.io/">Jaxx</a>，支援windows/macos/ios/android&hellip;，幣別也支援btc/eth/etc/zec&hellip;.。</p>
 
-<h2>Miner</h2>
+<p>Nvidia挖ZCash會比較快，如果是AMD可考慮挖Ethereum之類的</p>
 
-<p>使用<a href="https://github.com/etherchain-org/nheqminer/releases/latest">Nicehash miner</a></p>
+<h2>Miner 挖礦軟體</h2>
 
-<p>載好解壓縮後會發現有一個&#8221;xheqminer.exe&#8221;</p>
+<p><del>使用<a href="https://github.com/etherchain-org/nheqminer/releases/latest">Nicehash miner</a></del></p>
+
+<p><del>載好解壓縮後會發現有一個&#8221;xheqminer.exe&#8221;</del></p>
+
+<p><a href="https://github.com/nicehash/nheqminer/releases">nheqminer-0.5c</a>挖的效率好很多</p>
 
 <p>一樣是開cmd後面接一些參數就能挖了</p>
 
 <h2>礦池</h2>
 
+<p>如果是組礦機多張顯卡，算力夠強的話可以考慮自己挖，只是台桌機的話就加入礦池吧</p>
+
+<p>礦池是你提供多少算力，就會回饋給你，收益比較穩定</p>
+
+<p>自己solo的話就是有挖到block才有收益</p>
+
 <p><a href="http://zcash.flypool.org/">http://zcash.flypool.org/</a></p>
 
 <p>通常礦池首頁都會寫很清楚該怎麼做</p>
-
-<p>&ldquo;Windows - NVIDIA&rdquo;</p>
-
-<p>&ldquo;NiceHash Miner&rdquo;</p>
-
-<p>&ldquo;asia1-zcash.flypool.org&rdquo;</p>
 
 <pre><code>nheqminer.exe -cd 0 -l &lt;礦池server&gt; -u &lt;你自己的錢包地址&gt;.&lt;自命名worker&gt; 
 </code></pre>
