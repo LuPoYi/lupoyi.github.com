@@ -4,7 +4,7 @@
   <title><![CDATA[Category: windows | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/windows/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2017-06-17T10:31:56+08:00</updated>
+  <updated>2017-06-17T10:36:37+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -30,9 +30,9 @@
 
 <p><del>使用<a href="https://github.com/etherchain-org/nheqminer/releases/latest">Nicehash miner</a></del></p>
 
-<p><del>載好解壓縮後會發現有一個&#8221;xheqminer.exe&#8221;</del></p>
+<p>後來發現 <a href="https://github.com/nicehash/nheqminer/releases">nheqminer-0.5c</a> 挖的效率好很多</p>
 
-<p><a href="https://github.com/nicehash/nheqminer/releases">nheqminer-0.5c</a>挖的效率好很多</p>
+<p>載好解壓縮後會有一個nheqminer.exe</p>
 
 <p>一樣是開cmd後面接一些參數就能挖了</p>
 
@@ -40,7 +40,7 @@
 
 <p>如果是組礦機多張顯卡，算力夠強的話可以考慮自己挖，只是台桌機的話就加入礦池吧</p>
 
-<p>礦池是你提供多少算力，就會回饋給你，收益比較穩定</p>
+<p>礦池是你提供多少算力，就會回饋給你多少，收益比較穩定</p>
 
 <p>自己solo的話就是有挖到block才有收益</p>
 
