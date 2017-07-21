@@ -14,7 +14,7 @@ categories: [Zcash, mining, windows, zec]
 
 Nvidia挖ZCash會比較快，如果是AMD可考慮挖Ethereum之類的
 
-## Miner 挖礦軟體
+## Miner 挖礦軟體 (挑一款即可)
 
 ### EWBF Miner
 

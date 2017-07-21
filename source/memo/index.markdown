@@ -7,6 +7,12 @@ sharing: true
 footer: true
 ---
 
+## 調整系統時區
+
+```bash 調整系統時區
+  sudo dpkg-reconfigure tzdata
+```
+
 ## 查詢容量
 
 ```bash du檢視檔案資料夾/df檢視整體磁區
