@@ -6,6 +6,8 @@ comments: true
 categories: [Zcash, mining, windows, zec]
 ---
 
+> 幾千塊的顯卡來挖其實收益非常低，電費還比較貴，玩票性質再試試看吧
+
 ## ZCash錢包
 
 首先要下載一個錢包並取得address(t1bjg8ZSVhW2LzRP3BiHZKbMGipLJuxibYE)來存放你挖到的幣

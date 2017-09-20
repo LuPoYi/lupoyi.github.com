@@ -9,8 +9,8 @@ footer: true
 
 <div id="blog-about">
   <h2>Bob Lu</h2>
-  <p>Ruby on Rails Developer</p>
-  <p>往Full Stack發展中 :D (但主力還是會放後端，前端發展好快好複雜QQ)</p>
+  <p>Ruby on Rails</p>
+  <p>Bitcoin, Blockchain, Cryptocurrency</p>
   <p>maydaybob2000 at gmail.com</p>
   <div>Bitcoin Address: <span id="qrcode_serial">1BobLu5mh5H6sbhGYcwfKt2griDkV6Vhmw</span></div>
   
