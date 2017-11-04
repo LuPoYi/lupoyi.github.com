@@ -3,7 +3,7 @@ layout: post
 title: "[ZCash] 如何使用Windows來挖礦"
 date: 2017-01-15 13:32:55 +0800
 comments: true
-categories: [Zcash, mining, windows, zec]
+categories: [ZCash, mining, windows, zec]
 ---
 
 > 幾千塊的顯卡來挖其實收益非常低，電費還比較貴，玩票性質再試試看吧
