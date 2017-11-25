@@ -21,21 +21,17 @@ Bitcoin 本身有一定的隱私性，錢包地址跟使用者之間沒有直接
 
 ## Monero(XMR)
 
-* Base on Bitcoin
-* CryptoNote
+* 使用 CryptoNote 演算法
 * Ring Signature
+* RingCT
 
-* 100% privacy by default
+* Private
+* Untraceable
+
 * viewkey可以選擇性公開交易 
-* untraceable
 * address - 95 character string (public view key & public spend key)
-* 混幣(mixin)
-* 與bytecoin同技術? 
-* Ring Signature
 * add some fake transaction to mix
 
-* Ring Signatures - ring size
-* RingCT
 
 ```
 Alice 要發送交易給 Bob
@@ -48,15 +44,33 @@ Bob可以用一次性的公鑰推出一次性的私鑰，最後用private spend 
 
 ## Dash
 
-* 多筆 mix transaction?
-* 混幣 - 將多筆交易包起來發送，沒辦法準確知道誰發多少誰拿多少
-* coin mixing
-* 交易速度快
+* 主要特色是雙層網路並提供即時發送及匿名發送
+
+* Masternodes 主節點
+
+    - 需抵押 1000 Dash
+    - 具投票權可以決定Dash未來走向
+    - 45%的區塊獎勵
+    - 持續 sync blockchain
+    - 提供 InstantSend(即時發送) 服務
+    - 提供 PirvateSend(匿名發送) 服務
+
+* PirvateSend 匿名發送 - 混幣(Coinjoin)
+    - 發送 PirvateSend
+        + 該筆交易會在Masternodes上與相同數量的交易進行合併，併成同一筆交易來混淆你的資金流向
+
+* InstantSend 即時發送
+
+    - 發送 InstantSend
+        + 每個block產生後會隨機挑選10個Masternodes來提供InstantSend服務
+        + 發送交易時這10個Masternodes會優先收到廣播，而它們會對其他node廣播說這筆發送方已被鎖定，如果在這同時收到另一筆來自發送方的交易將會被reject
+        + 這時該筆交易會馬上收到5confirm，即完成交易 (1.3秒)
 
 ## ZCash
 
  * Zero-knowledge proof (zk snarks)
  * 2100w
+ * t-addresses(public address) vs z-addresses(shielded address)
 
 Reference:
 
