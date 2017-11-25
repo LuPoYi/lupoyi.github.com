@@ -47,7 +47,6 @@ Bob可以用一次性的公鑰推出一次性的私鑰，最後用private spend 
 * 主要特色是雙層網路並提供即時發送及匿名發送
 
 * Masternodes 主節點
-
     - 需抵押 1000 Dash
     - 具投票權可以決定Dash未來走向
     - 45%的區塊獎勵
@@ -55,12 +54,13 @@ Bob可以用一次性的公鑰推出一次性的私鑰，最後用private spend 
     - 提供 InstantSend(即時發送) 服務
     - 提供 PirvateSend(匿名發送) 服務
 
+
 * PirvateSend 匿名發送 - 混幣(Coinjoin)
     - 發送 PirvateSend
         + 該筆交易會在Masternodes上與相同數量的交易進行合併，併成同一筆交易來混淆你的資金流向
 
-* InstantSend 即時發送
 
+* InstantSend 即時發送
     - 發送 InstantSend
         + 每個block產生後會隨機挑選10個Masternodes來提供InstantSend服務
         + 發送交易時這10個Masternodes會優先收到廣播，而它們會對其他node廣播說這筆發送方已被鎖定，如果在這同時收到另一筆來自發送方的交易將會被reject
