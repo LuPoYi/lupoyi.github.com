@@ -18,6 +18,7 @@ Bitcoin 本身具有一定的隱私性，錢包地址跟使用者之間沒有直
 ## Dash
 
 ### 主要特色是雙層網路並提供即時發送及匿名發送
+> 150 seconds/block
 
 #### Masternodes 主節點
 
@@ -38,11 +39,27 @@ Bitcoin 本身具有一定的隱私性，錢包地址跟使用者之間沒有直
 * 發送交易時這10個Masternodes會優先收到廣播，而它們會對其他node廣播說這筆發送方已被鎖定，如果在這同時收到另一筆來自發送方的交易將會被reject
 * 這時該筆交易會馬上收到5confirm，即完成交易 (1.3秒)
 
-## Pivx - not yet
+## Pivx
 
-// private instant verified transactions
-// Based on dash
-// POS
+### 特色與Dash相同 - PoS版本的Dash
+> 60 seconds/block
+
+#### Masternodes 主節點
+
+* 需抵押 10000 Pivx
+* 具投票權可以決定Pivx未來走向
+* 持續 sync blockchain
+* 提供 InstantSend(即時發送) 服務
+* 提供 PirvateSend(匿名發送) 服務
+
+#### PirvateSend 匿名發送 - 混幣(Coinjoin)
+
+* 該筆交易會在Masternodes上與相同數量的交易進行合併，併成同一筆交易來混淆你的資金流向
+* Zerocoin Protocol(zPiv)
+
+#### InstantSend 即時發送(SwiftTx)
+
+* SwiftTx
 
 ## Zcash
 
