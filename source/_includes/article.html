@@ -12,6 +12,7 @@
          | <a href="{% if index %}{{ root_url }}{{ post.url }}{% endif %}#disqus_thread">Comments</a>
         {% endif %}
       </p>
+      <p class="pull-right">{{ post.date_text }}{{ page.date_text }}</p>
     {% endunless %}
   </header>
 {% endunless %}

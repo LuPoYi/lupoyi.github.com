@@ -27,7 +27,7 @@ categories: [bip39, bip44, bip32, mnemonic, deterministic, wallet]
 
 ## BIP-39 / BIP-32 / BIP-44
 
-* BIP-32 - 規範出如何建立一個HD錢包
+* BIP-32 - 規範出如何建立一個HD錢包，由用一份seed產生多組私鑰
 * BIP-39 - 制定由哪些字組來產生成512 bit seed
 * BIP-44 - 基於BIP-32上的擴充，提供了5層path，其中包括了多幣種
 
@@ -42,8 +42,8 @@ categories: [bip39, bip44, bip32, mnemonic, deterministic, wallet]
 ###　BIP-44五層path
 
 * m/purpose'/coin_type'/account'/change/address_index
-* m/44'/60'/0'/0/0
-* m/44'/0'/0'/0/0
+* m/44'/60'/0'/0/0 : ethererum
+* m/44'/0'/0'/0/0  : bitcoin
 
 
 
