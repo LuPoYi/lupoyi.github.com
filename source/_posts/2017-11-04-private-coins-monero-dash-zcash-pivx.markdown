@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "[Crypto] 加密貨幣(DASH Pivx Zcash Monero)筆記"
+title: "[Crypto] 加密貨幣(Dash Pivx Zcash Monero)筆記"
 date: 2017-11-04 16:22:35 +0800
 comments: true
-categories: [ZCash, Monero, Dash, zec, xmr, private]
+categories: [ZCash, Monero, Dash, Pivx, zec, xmr, private]
 ---
 
 // 個人筆記尚未整理
@@ -41,7 +41,7 @@ Bitcoin 本身具有一定的隱私性，錢包地址跟使用者之間沒有直
 
 ## Pivx
 
-### 特色與Dash相同 - PoS版本的Dash
+### 特色與Dash相同，似乎更著重在隱私 - PoS版本的Dash
 > 60 seconds/block
 
 #### Masternodes 主節點
@@ -74,24 +74,24 @@ Bitcoin 本身具有一定的隱私性，錢包地址跟使用者之間沒有直
 
 * z開頭的地址 
 * 零知識證明(Zero-knowledge proof) - zk-SNARKs
-* 無法在公司帳本上查詢
+* 無法在公開帳本上查詢
 
 ![Zcash Transaction Type](https://z.cash/images/basic-txn-types_v2.png)
 
 
-## Monero(XMR) - not yet
+## Monero(XMR)
+
+
+### 任何地址交易金額都無法查詢，完整的強制匿名貨幣
 
 * 使用 CryptoNote 演算法
 * Ring Signature
 * RingCT
-
-* Private
-* Untraceable
+* 動態區塊大小
 
 * viewkey可以選擇性公開交易 
 * address - 95 character string (public view key & public spend key)
 * add some fake transaction to mix
-
 
 ```
 Alice 要發送交易給 Bob
