@@ -9,7 +9,7 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="ZCash錢包 首先要下載一個錢包並取得address(t1bjg8ZSVhW2LzRP3BiHZKbMGipLJuxibYE)來存放你挖到的幣 推薦Jaxx，支援windows/macos/ios/android&hellip;，幣別也支援btc/eth/etc/zec&hellip;.。 &hellip;">
+  <meta name="description" content="幾千塊的顯卡來挖其實收益非常低，電費還比較貴，玩票性質再試試看吧 ZCash錢包 首先要下載一個錢包並取得address(t1bjg8ZSVhW2LzRP3BiHZKbMGipLJuxibYE)來存放你挖到的幣 推薦Jaxx，支援windows/macos/ios/android&hellip;， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -124,11 +124,14 @@
          | <a href="#disqus_thread">Comments</a>
         
       </p>
+      <p class="pull-right">2017-01-15</p>
     
   </header>
 
 
-<div class="entry-content"><h2>ZCash錢包</h2>
+<div class="entry-content"><blockquote><p>幾千塊的顯卡來挖其實收益非常低，電費還比較貴，玩票性質再試試看吧</p></blockquote>
+
+<h2>ZCash錢包</h2>
 
 <p>首先要下載一個錢包並取得address(t1bjg8ZSVhW2LzRP3BiHZKbMGipLJuxibYE)來存放你挖到的幣</p>
 
@@ -136,15 +139,25 @@
 
 <p>Nvidia挖ZCash會比較快，如果是AMD可考慮挖Ethereum之類的</p>
 
-<h2>Miner 挖礦軟體</h2>
+<h2>Miner 挖礦軟體 (挑一款即可)</h2>
 
-<p><del>使用<a href="https://github.com/etherchain-org/nheqminer/releases/latest">Nicehash miner</a></del></p>
+<h3>EWBF Miner</h3>
 
-<p>後來發現 <a href="https://github.com/nicehash/nheqminer/releases">nheqminer-0.5c</a> 挖的效率好很多</p>
+<p><a href="https://bitcointalk.org/index.php?topic=1707546.0">EWBF&rsquo;s CUDA Zcash miner</a></p>
 
-<p>載好解壓縮後會有一個nheqminer.exe</p>
+<ul>
+<li>EWBF Miner - 效率好30% - 使用時會吃掉大部分顯卡效能無法正常使用</li>
+</ul>
 
-<p>一樣是開cmd後面接一些參數就能挖了</p>
+
+<h3>Nicehash - nheqminer-0.5c</h3>
+
+<p><a href="https://github.com/nicehash/nheqminer/releases">nheqminer-0.5c</a></p>
+
+<ul>
+<li>Nicehash - 不開大型遊戲的話，電腦還可以正常使用</li>
+</ul>
+
 
 <h2>礦池</h2>
 
@@ -158,19 +171,51 @@
 
 <p>通常礦池首頁都會寫很清楚該怎麼做</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>nheqminer.exe -cd 0 -l &lt;礦池server&gt; -u &lt;你自己的錢包地址&gt;.&lt;自命名worker&gt; </span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>nheqminer.exe -cd <span class="m">0</span> -l asia1-zcash.flypool.org:3333 -u t1bjg8ZSVhW2LzRP3BiHZKbMGipLJuxibYE.bob1
+<figure class='code'><figcaption><span>EWBF Miner</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>miner.exe --server &lt;server&gt; --user &lt;address&gt;.&lt;worker&gt; --port &lt;port&gt; --cuda_devices <span class="m">0</span> <span class="m">1</span> <span class="m">2</span> 3
+</span><span class='line'>miner.exe --server asia1-zcash.flypool.org --user t1bjg8ZSVhW2LzRP3BiHZKbMGipLJuxibYE.bob3 --port <span class="m">3333</span> --cuda_devices <span class="m">0</span> <span class="m">1</span> <span class="m">2</span> 3
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>監控挖礦情況
-<a href="http://zcash.flypool.org/miners/t1bjg8ZSVhW2LzRP3BiHZKbMGipLJuxibYE">http://zcash.flypool.org/miners/t1bjg8ZSVhW2LzRP3BiHZKbMGipLJuxibYE</a></p>
+
+
+<figure class='code'><figcaption><span>Nicehash Miner</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>nheqminer.exe -cd <span class="m">0</span> -l &lt;礦池server&gt; -u &lt;你自己的錢包地址&gt;.&lt;自命名worker&gt;
+</span><span class='line'>nheqminer.exe -cd <span class="m">0</span> -l asia1-zcash.flypool.org:3333 -u t1bjg8ZSVhW2LzRP3BiHZKbMGipLJuxibYE.bob2
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>監控挖礦情況 (Nvidia GTX960)</p>
+
+<p><a href="http://zcash.flypool.org/miners/t1bjg8ZSVhW2LzRP3BiHZKbMGipLJuxibYE">http://zcash.flypool.org/miners/t1bjg8ZSVhW2LzRP3BiHZKbMGipLJuxibYE</a></p>
+
+<h2>打包至桌面一鍵開挖</h2>
+
+<figure class='code'><figcaption><span>EWBF_Miner.bat</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>@echo on
+</span><span class='line'>E:
+</span><span class='line'><span class="nb">cd</span> <span class="s2">&quot;Zec Miner 0.3.4b\0.3.4b&quot;</span>
+</span><span class='line'>miner.exe --server asia1-zcash.flypool.org --user t1bjg8ZSVhW2LzRP3BiHZKbMGipLJuxibYE.bob3 --port <span class="m">3333</span> --cuda_devices <span class="m">0</span> <span class="m">1</span> <span class="m">2</span> 3
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>Nicehash_Miner.bat</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>@echo on
+</span><span class='line'>E:
+</span><span class='line'><span class="nb">cd</span> <span class="s2">&quot;Windows_x64_nheqminer-5c&quot;</span>
+</span><span class='line'>nheqminer.exe -cd <span class="m">0</span> -l asia1-zcash.flypool.org:3333 -u t1bjg8ZSVhW2LzRP3BiHZKbMGipLJuxibYE.bob2
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>Reference:</p>
 
@@ -225,6 +270,8 @@
         <a class="basic-alignment left" href="/blog/2016/11/26/rails-ubuntu-environment-ubuntu16-dot-04/" title="Previous Post: [Ubuntu] Ruby on Rails 基本環境建置 - Ubuntu 16.04 LTS">&laquo; [Ubuntu] Ruby on Rails 基本環境建置 - Ubuntu 16.04 LTS</a>
       
       
+        <a class="basic-alignment right" href="/blog/2017/11/04/private-coins-monero-dash-zcash-pivx/" title="Next Post: [Crypto] 加密貨幣(Dash Pivx Zcash Monero)筆記">[Crypto] 加密貨幣(Dash Pivx Zcash Monero)筆記 &raquo;</a>
+      
     </p>
   </footer>
 </article>
@@ -273,6 +320,14 @@
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/12/10/bitcoin-improvement-proposal-39/">[Crypto] BIP-39 mnemonic words</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/11/04/private-coins-monero-dash-zcash-pivx/">[Crypto] 加密貨幣(Dash Pivx Zcash Monero)筆記</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2017/01/15/how-to-mine-zcash-on-windows/">[ZCash] 如何使用Windows來挖礦</a>
@@ -326,14 +381,6 @@
         <a href="/blog/2015/11/07/ruby-aes-encrypt-decrypt/">[Ruby] AES 加密解密</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2015/07/11/rails-various-update-methods/">[Rails] 各種update method</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/06/29/mac-build-ubuntu-flash-using-command/">[Mac] 三步驟純指令建立Ubuntu的USB隨身碟</a>
-      </li>
-    
   </ul>
 </section>
 
@@ -348,7 +395,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2017 - Bob (PoYi) -
+  Copyright &copy; 2019 - Bob (PoYi) -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

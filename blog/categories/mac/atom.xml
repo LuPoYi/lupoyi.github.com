@@ -4,7 +4,7 @@
   <title><![CDATA[Category: mac | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/mac/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2017-06-17T10:36:37+08:00</updated>
+  <updated>2019-05-26T14:57:51+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -89,24 +89,21 @@ Password:
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[[Mac] 直接在終端機開啟sublime]]></title>
+    <title type="html"><![CDATA[[Mac] 直接在command line開啟sublime]]></title>
     <link href="http://blog.poyi.tw/blog/2014/01/19/mac-directly-in-the-terminal-to-open-sublime/"/>
     <updated>2014-01-19T04:31:00+08:00</updated>
     <id>http://blog.poyi.tw/blog/2014/01/19/mac-directly-in-the-terminal-to-open-sublime</id>
-    <content type="html"><![CDATA[<p>應該有更方便的用法吧我想，但目前對我來說算好用了:D</p>
+    <content type="html"><![CDATA[<pre><code class="bash Sublime Text 3">ln -sv /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/local/bin/subl
 
-<pre><code class="bash 執行這行指令">ln -s /Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl /usr/local/bin/sublime
-</code></pre>
+subl test.rb
 
-<pre><code>$ open id_rsa.pub
-No application knows how to open /Users/Bob/.ssh/id_rsa.pub.
-$ ln -s /Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl /usr/local/bin/sublime
-$ sublime id_rsa.pub
+git clone https://github.com/bitcoin/bitcoin.git
+subl bitcoin/
 </code></pre>
 
 <p>Reference:</p>
 
-<p><a href="http://jocoomadao.blogspot.tw/2013/11/macterminal-sublime.html">http://jocoomadao.blogspot.tw/2013/11/macterminal-sublime.html</a></p>
+<p><a href="https://gist.github.com/martinbuberl/5823ed247d279d1a2d06">https://gist.github.com/martinbuberl/5823ed247d279d1a2d06</a></p>
 ]]></content>
   </entry>
   

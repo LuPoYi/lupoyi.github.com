@@ -9,7 +9,8 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="ZCash錢包 首先要下載一個錢包並取得address(t1bjg8ZSVhW2LzRP3BiHZKbMGipLJuxibYE)來存放你挖到的幣 推薦Jaxx，支援windows/macos/ios/android&hellip;，幣別也支援btc/eth/etc/zec&hellip;.。 &hellip;">
+  <meta name="description" content="// 個人筆記尚未整理 錢包本身並不存放幣，存放的是私鑰 而透過私鑰能轉換成錢包地址，並到區塊鏈上將交易紀錄及餘額取回 隨機(non-deterministic)錢包 每個被隨機建立出來的私鑰沒有相關性
+需要各別管理及備份 deterministic wallet 透過一組主私鑰來建立許多子私鑰 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -106,6 +107,275 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2017/12/10/bitcoin-improvement-proposal-39/">[Crypto] BIP-39 Mnemonic Words</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2017-12-10T18:26:47+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2017/12/10/bitcoin-improvement-proposal-39/#disqus_thread">Comments</a>
+        
+      </p>
+      <p class="pull-right">2017-12-10</p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>// 個人筆記尚未整理</p>
+
+<p>錢包本身並不存放幣，存放的是私鑰</p>
+
+<p>而透過私鑰能轉換成錢包地址，並到區塊鏈上將交易紀錄及餘額取回</p>
+
+<h2>隨機(non-deterministic)錢包</h2>
+
+<ul>
+<li>每個被隨機建立出來的私鑰沒有相關性</li>
+<li>需要各別管理及備份</li>
+</ul>
+
+
+<h2>deterministic wallet</h2>
+
+<ul>
+<li>透過一組主私鑰來建立許多子私鑰</li>
+<li><p>只需要備份主私鑰</p></li>
+<li><p>Hierarchical Deterministic(HD) Wallet</p></li>
+<li>大部分的HD錢包(Jaxx、ledgerwallet&hellip;)都實作了BIP-32、BIP-39、BIP-44</li>
+</ul>
+
+
+<h2>BIP-39 / BIP-32 / BIP-44</h2>
+
+<ul>
+<li>BIP-32 - 規範出如何建立一個HD錢包，由用一份seed產生多組私鑰</li>
+<li>BIP-39 - 制定由哪些字組來產生成512 bit seed</li>
+<li>BIP-44 - 基於BIP-32上的擴充，提供了5層path，其中包括了多幣種</li>
+</ul>
+
+
+<p>目前已經成為大部分加密貨幣的標準規範</p>
+
+<p>12~24字組 => 512 bit seed(BIP-39 seed) => 主私鑰 => 子私鑰(公鑰、地址)</p>
+
+<p><a href="https://github.com/bitcoin/bips/blob/master/bip-0039/bip-0039-wordlists.md" title="bip-0039-wordlists">bip-0039-wordlists</a> - 共2048字</p>
+
+<p>若錢包產出為12/24字組，那所有排列的組合共用2048的12/24次方</p>
+
+<h3>　BIP-44五層path</h3>
+
+<ul>
+<li>m/purpose&#8217;/coin_type&#8217;/account&#8217;/change/address_index</li>
+<li>m/44&#8217;/60&#8217;/0&#8217;/0/0 : ethererum</li>
+<li>m/44&#8217;/0&#8217;/0&#8217;/0/0  : bitcoin</li>
+</ul>
+
+
+<p>Reference:</p>
+
+<p><a href="https://github.com/bitcoin/bips">https://github.com/bitcoin/bips</a></p>
+
+<p><a href="https://medium.com/@bun919tw/hd-wallet-970096a6d72f">https://medium.com/@bun919tw/hd-wallet-970096a6d72f</a></p>
+
+<p><a href="http://blog.xuite.net/metafun/life/545924715-HD+Wallet+%E5%88%86%E5%B1%A4%E7%A2%BA%E5%AE%9A%E6%80%A7%28Hierarchical+Deterministic%29%E9%8C%A2%E5%8C%85">http://blog.xuite.net/metafun/life/545924715-HD+Wallet+%E5%88%86%E5%B1%A4%E7%A2%BA%E5%AE%9A%E6%80%A7%28Hierarchical+Deterministic%29%E9%8C%A2%E5%8C%85</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2017/11/04/private-coins-monero-dash-zcash-pivx/">[Crypto] 加密貨幣(Dash Pivx Zcash Monero)筆記</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2017-11-04T16:22:35+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2017/11/04/private-coins-monero-dash-zcash-pivx/#disqus_thread">Comments</a>
+        
+      </p>
+      <p class="pull-right">2017-11-04</p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>// 個人筆記尚未整理</p>
+
+<h2>Pirvacy Coins 匿名貨幣 - 強調隱私</h2>
+
+<p>Bitcoin 本身具有一定的隱私性，錢包地址跟使用者之間沒有直接的關聯性
+所有交易都是公開的，任何人都可以知道某錢包地址現在或過去有過多少交易，但理論上無法得知該錢包是持有者是誰。</p>
+
+<p>但今天你發送一筆交易給朋友或是客戶，對方得知了你的錢包地址，就可以觀察你持有多少BTC，就像你的銀行存款暴露在外一樣，任何人只要知道你的錢包地址都可以查得到你的餘額及所有交易紀錄。當然你也可以一直換錢包地址或是透過交易所發送來隱藏你主要的錢包地址，而這些匿名貨幣用各自的手段去解決這些問題。</p>
+
+<h2>Dash</h2>
+
+<h3>主要特色是雙層網路並提供即時發送及匿名發送</h3>
+
+<blockquote><p>150 seconds/block</p></blockquote>
+
+<h4>Masternodes 主節點</h4>
+
+<ul>
+<li>需抵押 1000 Dash</li>
+<li>具投票權可以決定Dash未來走向</li>
+<li>45%的區塊獎勵</li>
+<li>持續 sync blockchain</li>
+<li>提供 InstantSend(即時發送) 服務</li>
+<li>提供 PirvateSend(匿名發送) 服務</li>
+</ul>
+
+
+<h4>PirvateSend 匿名發送 - 混幣(Coinjoin)</h4>
+
+<ul>
+<li>該筆交易會在Masternodes上與相同數量的交易進行合併，併成同一筆交易來混淆你的資金流向</li>
+</ul>
+
+
+<h4>InstantSend 即時發送</h4>
+
+<ul>
+<li>每個block產生後會隨機挑選10個Masternodes來提供InstantSend服務</li>
+<li>發送交易時這10個Masternodes會優先收到廣播，而它們會對其他node廣播說這筆發送方已被鎖定，如果在這同時收到另一筆來自發送方的交易將會被reject</li>
+<li>這時該筆交易會馬上收到5confirm，即完成交易 (1.3秒)</li>
+</ul>
+
+
+<h2>Pivx</h2>
+
+<h3>特色與Dash相同，似乎更著重在隱私 - PoS版本的Dash</h3>
+
+<blockquote><p>60 seconds/block</p></blockquote>
+
+<h4>Masternodes 主節點</h4>
+
+<ul>
+<li>需抵押 10000 Pivx</li>
+<li>具投票權可以決定Pivx未來走向</li>
+<li>持續 sync blockchain</li>
+<li>提供 InstantSend(即時發送) 服務</li>
+<li>提供 PirvateSend(匿名發送) 服務</li>
+</ul>
+
+
+<h4>PirvateSend 匿名發送 - 混幣(Coinjoin)</h4>
+
+<ul>
+<li>該筆交易會在Masternodes上與相同數量的交易進行合併，併成同一筆交易來混淆你的資金流向</li>
+<li>Zerocoin Protocol(zPiv)</li>
+</ul>
+
+
+<h4>InstantSend 即時發送(SwiftTx)</h4>
+
+<ul>
+<li>SwiftTx</li>
+</ul>
+
+
+<h2>Zcash</h2>
+
+<h3>主要特色是錢包地址分為兩種類型，Public address(t-addrs)及 Shielded address(z-addrs)</h3>
+
+<h4>Public address(t-addrs)</h4>
+
+<ul>
+<li>t開頭的地址</li>
+<li>與其他加密貨幣地址相同，在公開帳本可查詢餘額、歷史交易</li>
+</ul>
+
+
+<h4>Shielded address(z-addrs)</h4>
+
+<ul>
+<li>z開頭的地址</li>
+<li>零知識證明(Zero-knowledge proof) - zk-SNARKs</li>
+<li>無法在公開帳本上查詢</li>
+</ul>
+
+
+<p><img src="https://z.cash/images/basic-txn-types_v2.png" alt="Zcash Transaction Type" /></p>
+
+<h2>Monero(XMR)</h2>
+
+<h3>任何地址交易金額都無法查詢，完整的強制匿名貨幣</h3>
+
+<ul>
+<li>使用 CryptoNote 演算法</li>
+<li>Ring Signature</li>
+<li>RingCT</li>
+<li><p>動態區塊大小</p></li>
+<li><p>viewkey可以選擇性公開交易</p></li>
+<li>address - 95 character string (public view key &amp; public spend key)</li>
+<li>add some fake transaction to mix</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Alice 要發送交易給 Bob
+</span><span class='line'>Alice 將 Bob 的 public view key & public spend key 再加上 randon data 來產生一次性的公鑰 供 Bob 後續使用
+</span><span class='line'>一次性的公鑰大家都看得到
+</span><span class='line'>Bob可以用一次性的公鑰推出一次性的私鑰，最後用private spend key來發送給別人
+</span><span class='line'>整個交易都不需要Bob的address
+</span><span class='line'>// A 發送給 B =&gt; 使用A+ 發送給 B+ (而A+/B+無法推回A/B)</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Reference:</p>
+
+<p><a href="https://www.youtube.com/watch?v=591J9KcKgHM">https://www.youtube.com/watch?v=591J9KcKgHM</a></p>
+
+<p><a href="http://bitcoin-yoro.com/altcoin/dashmonerozcash">http://bitcoin-yoro.com/altcoin/dashmonerozcash</a></p>
+
+<p><a href="https://moneroforcash.com/monero-vs-dash-vs-zcash-vs-bitcoinmixers.php">https://moneroforcash.com/monero-vs-dash-vs-zcash-vs-bitcoinmixers.php</a></p>
+
+<p><a href="https://pivx.org/coin-specs/">https://pivx.org/coin-specs/</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2017/01/15/how-to-mine-zcash-on-windows/">[ZCash] 如何使用Windows來挖礦</a></h1>
     
     
@@ -127,11 +397,14 @@
          | <a href="/blog/2017/01/15/how-to-mine-zcash-on-windows/#disqus_thread">Comments</a>
         
       </p>
+      <p class="pull-right">2017-01-15</p>
     
   </header>
 
 
-  <div class="entry-content"><h2>ZCash錢包</h2>
+  <div class="entry-content"><blockquote><p>幾千塊的顯卡來挖其實收益非常低，電費還比較貴，玩票性質再試試看吧</p></blockquote>
+
+<h2>ZCash錢包</h2>
 
 <p>首先要下載一個錢包並取得address(t1bjg8ZSVhW2LzRP3BiHZKbMGipLJuxibYE)來存放你挖到的幣</p>
 
@@ -139,15 +412,25 @@
 
 <p>Nvidia挖ZCash會比較快，如果是AMD可考慮挖Ethereum之類的</p>
 
-<h2>Miner 挖礦軟體</h2>
+<h2>Miner 挖礦軟體 (挑一款即可)</h2>
 
-<p><del>使用<a href="https://github.com/etherchain-org/nheqminer/releases/latest">Nicehash miner</a></del></p>
+<h3>EWBF Miner</h3>
 
-<p>後來發現 <a href="https://github.com/nicehash/nheqminer/releases">nheqminer-0.5c</a> 挖的效率好很多</p>
+<p><a href="https://bitcointalk.org/index.php?topic=1707546.0">EWBF&rsquo;s CUDA Zcash miner</a></p>
 
-<p>載好解壓縮後會有一個nheqminer.exe</p>
+<ul>
+<li>EWBF Miner - 效率好30% - 使用時會吃掉大部分顯卡效能無法正常使用</li>
+</ul>
 
-<p>一樣是開cmd後面接一些參數就能挖了</p>
+
+<h3>Nicehash - nheqminer-0.5c</h3>
+
+<p><a href="https://github.com/nicehash/nheqminer/releases">nheqminer-0.5c</a></p>
+
+<ul>
+<li>Nicehash - 不開大型遊戲的話，電腦還可以正常使用</li>
+</ul>
+
 
 <h2>礦池</h2>
 
@@ -161,19 +444,51 @@
 
 <p>通常礦池首頁都會寫很清楚該怎麼做</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>nheqminer.exe -cd 0 -l &lt;礦池server&gt; -u &lt;你自己的錢包地址&gt;.&lt;自命名worker&gt; </span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>nheqminer.exe -cd <span class="m">0</span> -l asia1-zcash.flypool.org:3333 -u t1bjg8ZSVhW2LzRP3BiHZKbMGipLJuxibYE.bob1
+<figure class='code'><figcaption><span>EWBF Miner</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>miner.exe --server &lt;server&gt; --user &lt;address&gt;.&lt;worker&gt; --port &lt;port&gt; --cuda_devices <span class="m">0</span> <span class="m">1</span> <span class="m">2</span> 3
+</span><span class='line'>miner.exe --server asia1-zcash.flypool.org --user t1bjg8ZSVhW2LzRP3BiHZKbMGipLJuxibYE.bob3 --port <span class="m">3333</span> --cuda_devices <span class="m">0</span> <span class="m">1</span> <span class="m">2</span> 3
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>監控挖礦情況
-<a href="http://zcash.flypool.org/miners/t1bjg8ZSVhW2LzRP3BiHZKbMGipLJuxibYE">http://zcash.flypool.org/miners/t1bjg8ZSVhW2LzRP3BiHZKbMGipLJuxibYE</a></p>
+
+
+<figure class='code'><figcaption><span>Nicehash Miner</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>nheqminer.exe -cd <span class="m">0</span> -l &lt;礦池server&gt; -u &lt;你自己的錢包地址&gt;.&lt;自命名worker&gt;
+</span><span class='line'>nheqminer.exe -cd <span class="m">0</span> -l asia1-zcash.flypool.org:3333 -u t1bjg8ZSVhW2LzRP3BiHZKbMGipLJuxibYE.bob2
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>監控挖礦情況 (Nvidia GTX960)</p>
+
+<p><a href="http://zcash.flypool.org/miners/t1bjg8ZSVhW2LzRP3BiHZKbMGipLJuxibYE">http://zcash.flypool.org/miners/t1bjg8ZSVhW2LzRP3BiHZKbMGipLJuxibYE</a></p>
+
+<h2>打包至桌面一鍵開挖</h2>
+
+<figure class='code'><figcaption><span>EWBF_Miner.bat</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>@echo on
+</span><span class='line'>E:
+</span><span class='line'><span class="nb">cd</span> <span class="s2">&quot;Zec Miner 0.3.4b\0.3.4b&quot;</span>
+</span><span class='line'>miner.exe --server asia1-zcash.flypool.org --user t1bjg8ZSVhW2LzRP3BiHZKbMGipLJuxibYE.bob3 --port <span class="m">3333</span> --cuda_devices <span class="m">0</span> <span class="m">1</span> <span class="m">2</span> 3
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>Nicehash_Miner.bat</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>@echo on
+</span><span class='line'>E:
+</span><span class='line'><span class="nb">cd</span> <span class="s2">&quot;Windows_x64_nheqminer-5c&quot;</span>
+</span><span class='line'>nheqminer.exe -cd <span class="m">0</span> -l asia1-zcash.flypool.org:3333 -u t1bjg8ZSVhW2LzRP3BiHZKbMGipLJuxibYE.bob2
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>Reference:</p>
 
@@ -213,6 +528,7 @@
          | <a href="/blog/2016/11/26/rails-ubuntu-environment-ubuntu16-dot-04/#disqus_thread">Comments</a>
         
       </p>
+      <p class="pull-right">2016-11-26</p>
     
   </header>
 
@@ -234,7 +550,7 @@
 <span class='line-number'>4</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get update
 </span><span class='line'>sudo apt-get upgrade
-</span><span class='line'>sudo apt-get install vim nodejs
+</span><span class='line'>sudo apt-get install vim nodejs autoconf
 </span><span class='line'>sudo apt-get install git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev
 </span></code></pre></td></tr></table></div></figure>
 
@@ -267,6 +583,9 @@
 <span class='line-number'>24</span>
 <span class='line-number'>25</span>
 <span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd</span>
 </span><span class='line'>git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 </span><span class='line'><span class="nb">echo</span> <span class="s1">&#39;export PATH=&quot;$HOME/.rbenv/bin:$PATH&quot;&#39;</span> &gt;&gt; ~/.bashrc
@@ -279,6 +598,9 @@
 </span><span class='line'>
 </span><span class='line'>rbenv install 2.3.1
 </span><span class='line'>rbenv global 2.3.1
+</span><span class='line'><span class="c"># rbenv shell 2.3.1 </span>
+</span><span class='line'><span class="c"># rbenv local 2.3.1</span>
+</span><span class='line'><span class="c"># rbenv global 2.3.1</span>
 </span><span class='line'>ruby -v
 </span><span class='line'>
 </span><span class='line'><span class="c"># rvm </span>
@@ -517,7 +839,7 @@
 
 
 
-<figure class='code'><figcaption><span>新增</span><a href='/usr/lib/systemd/system/ssdb.service'>link</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>新增/etc/systemd/system/ssdb.service</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -611,6 +933,7 @@
          | <a href="/blog/2016/10/30/rails-mac-os-environment-sierra/#disqus_thread">Comments</a>
         
       </p>
+      <p class="pull-right">2016-10-30</p>
     
   </header>
 
@@ -689,6 +1012,7 @@
          | <a href="/blog/2016/10/19/my-linux-command/#disqus_thread">Comments</a>
         
       </p>
+      <p class="pull-right">2016-10-19</p>
     
   </header>
 
@@ -826,6 +1150,7 @@
          | <a href="/blog/2016/08/25/linux-some-common-security-setting/#disqus_thread">Comments</a>
         
       </p>
+      <p class="pull-right">2016-08-25</p>
     
   </header>
 
@@ -1153,6 +1478,7 @@
          | <a href="/blog/2016/07/14/ssl-certificate-nginx-ubuntu-config/#disqus_thread">Comments</a>
         
       </p>
+      <p class="pull-right">2016-07-14</p>
     
   </header>
 
@@ -1272,6 +1598,7 @@
          | <a href="/blog/2016/04/05/how-to-mine-ethereum-on-windows/#disqus_thread">Comments</a>
         
       </p>
+      <p class="pull-right">2016-04-05</p>
     
   </header>
 
@@ -1506,6 +1833,7 @@
          | <a href="/blog/2016/04/02/golang-begging/#disqus_thread">Comments</a>
         
       </p>
+      <p class="pull-right">2016-04-02</p>
     
   </header>
 
@@ -1749,474 +2077,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2016/03/05/generate-your-own-bitcoin-address/">[Bitcoin] 客製比特幣位址並匯入錢包</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2016-03-05T13:32:29+08:00" pubdate data-updated="true"></time>
-        
-         | <a href="/blog/2016/03/05/generate-your-own-bitcoin-address/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>使用vanitygen客製比特幣位址</h2>
-
-<h3>安裝vanitygen</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install build-essential libssl-dev libpcre3-dev
-</span><span class='line'>git clone https://github.com/samr7/vanitygen.git
-</span><span class='line'><span class="nb">cd </span>vanitygen
-</span><span class='line'>make
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Generate Your Own Bitcoin Address</h3>
-
-<ul>
-<li>Base58 避免使用數字0和字母大寫O以及字母大寫I和字母小寫l</li>
-<li>要使用該Address的話，記得備份好Privkey避免公開，擁有Privkey即等於擁有此Address發送權</li>
-</ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># 指定開頭</span>
-</span><span class='line'><span class="nv">$ </span>./vanitygen 1Bob
-</span><span class='line'>  Difficulty: 77178
-</span><span class='line'>  Pattern: 1Bob
-</span><span class='line'>  Address: 1Bobnp85Ns6JUDaMntc672ZjfsWSzrUnZH
-</span><span class='line'>  Privkey: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-</span><span class='line'>
-</span><span class='line'><span class="c"># 忽略大小寫</span>
-</span><span class='line'><span class="nv">$ </span>./vanitygen -i 1boba
-</span><span class='line'>  Difficulty: 1100434
-</span><span class='line'>  Pattern: 1boba
-</span><span class='line'>  Address: 1BoBAeQ6vEw2wCitEvRAXuSfRJfwuVGt1L
-</span><span class='line'>  Privkey: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-</span><span class='line'>
-</span><span class='line'><span class="c"># 指定結尾</span>
-</span><span class='line'><span class="nv">$ </span>./vanitygen -r bob<span class="err">$</span>
-</span><span class='line'>Pattern: bob<span class="err">$</span>
-</span><span class='line'>Address: 14a6Pw84woyKjysT6Uc9gJF2M8prwYtbob
-</span><span class='line'>Privkey: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>將 Privkey 匯入Bitcoind錢包</h3>
-
-<p>大部分錢包軟體都會提供匯入Privkey的功能，但我這邊使用Bitcoind</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># 先確認此Address狀態</span>
-</span><span class='line'><span class="nv">$ </span>bitcoin-cli validateaddress 1Bobnp85Ns6JUDaMntc672ZjfsWSzrUnZH
-</span><span class='line'><span class="o">{</span>
-</span><span class='line'>  <span class="s2">&quot;isvalid&quot;</span>: <span class="nb">true</span>,
-</span><span class='line'>  <span class="s2">&quot;address&quot;</span>: <span class="s2">&quot;1Bobnp85Ns6JUDaMntc672ZjfsWSzrUnZH&quot;</span>,
-</span><span class='line'>  <span class="s2">&quot;scriptPubKey&quot;</span>: <span class="s2">&quot;76a91476816ee640da13a0d821d79a01892d8598288bb488ac&quot;</span>,
-</span><span class='line'>  <span class="s2">&quot;ismine&quot;</span>: <span class="nb">false</span>,
-</span><span class='line'>  <span class="s2">&quot;iswatchonly&quot;</span>: <span class="nb">false</span>,
-</span><span class='line'>  <span class="s2">&quot;isscript&quot;</span>: <span class="nb">false</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'><span class="c"># &quot;ismine&quot;: false =&gt; 代表此address還不是自己的</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># bitcoin-cli importprivkey &lt;Privkey&gt; [label] [rescan=true]</span>
-</span><span class='line'><span class="c"># label 是指你要放入哪個account，預設都會有一個””空字串的account</span>
-</span><span class='line'><span class="c"># rescan 填true的話，會去掃以前到現在所有的transaction確定此address是否有被使用過(但會跑很久)</span>
-</span><span class='line'><span class="c">#        如果只是新address的話這邊填false就行了</span>
-</span><span class='line'><span class="nv">$ </span>bitcoin-cli importprivkey XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX “” <span class="nb">false</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>bitcoin-cli validateaddress 1Bobnp85Ns6JUDaMntc672ZjfsWSzrUnZH
-</span><span class='line'><span class="o">{</span>
-</span><span class='line'>  <span class="s2">&quot;isvalid&quot;</span>: <span class="nb">true</span>,
-</span><span class='line'>  <span class="s2">&quot;address&quot;</span>: <span class="s2">&quot;1Bobnp85Ns6JUDaMntc672ZjfsWSzrUnZH&quot;</span>,
-</span><span class='line'>  <span class="s2">&quot;scriptPubKey&quot;</span>: <span class="s2">&quot;76a91476816ee640da13a0d821d79a01892d8598288bb488ac&quot;</span>,
-</span><span class='line'>  <span class="s2">&quot;ismine&quot;</span>: <span class="nb">true</span>,
-</span><span class='line'>  <span class="s2">&quot;iswatchonly&quot;</span>: <span class="nb">false</span>,
-</span><span class='line'>  <span class="s2">&quot;isscript&quot;</span>: <span class="nb">false</span>,
-</span><span class='line'>  <span class="s2">&quot;iscompressed&quot;</span>: <span class="nb">true</span>,
-</span><span class='line'>  <span class="s2">&quot;account&quot;</span>: <span class="s2">&quot;&quot;</span>
-</span><span class='line'><span class="o">}</span> 
-</span><span class='line'><span class="c"># &quot;ismine&quot;: true =&gt; 現在此Address就是屬於你的</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Reference:</p>
-
-<p><a href="https://en.bitcoin.it/wiki/Vanitygen">https://en.bitcoin.it/wiki/Vanitygen</a></p>
-
-<p><a href="http://8btc.com/article-1930-1.html">http://8btc.com/article-1930-1.html</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2016/03/05/ubuntu-openvpn-server-client/">[Ubuntu] 架設 OpenVpn Server & Client</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2016-03-05T11:42:49+08:00" pubdate data-updated="true"></time>
-        
-         | <a href="/blog/2016/03/05/ubuntu-openvpn-server-client/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>OpenVpn</h2>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>apt-get update
-</span><span class='line'>apt-get install openvpn easy-rsa
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>gunzip -c /usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz &gt; /etc/openvpn/server.conf
-</span><span class='line'>vim /etc/openvpn/server.conf
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>/etc/openvpn/server.conf</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># dh dh1024.pem</span>
-</span><span class='line'>dh2048.pem
-</span><span class='line'>
-</span><span class='line'>ca ca.crt
-</span><span class='line'>cert server.crt
-</span><span class='line'>key server.key
-</span><span class='line'>
-</span><span class='line'><span class="c"># 拿掉註解</span>
-</span><span class='line'>push <span class="s2">&quot;redirect-gateway def1 bypass-dhcp&quot;</span>
-</span><span class='line'>user nobody
-</span><span class='line'>group nogroup
-</span><span class='line'><span class="c"># 補上8.8.8.8</span>
-</span><span class='line'>push <span class="s2">&quot;dhcp-option DNS 8.8.8.8&quot;</span>
-</span><span class='line'><span class="p">;</span>push <span class="s2">&quot;dhcp-option DNS 208.67.222.222&quot;</span>
-</span><span class='line'><span class="p">;</span>push <span class="s2">&quot;dhcp-option DNS 208.67.220.220&quot;</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">#其他基本上維持預設即可</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Packet Forwarding</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">echo </span><span class="m">1</span> &gt; /proc/sys/net/ipv4/ip_forward
-</span><span class='line'>vim /etc/sysctl.conf
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>/etc/sysctl.conf</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># 拿掉註解</span>
-</span><span class='line'>net.ipv4.ip_forward<span class="o">=</span>1
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Uncomplicated Firewall</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>ufw allow ssh
-</span><span class='line'>ufw allow 1194/udp
-</span><span class='line'>ufw allow <span class="m">80</span> <span class="c"># 開外連進來所需要的port</span>
-</span><span class='line'>vim /etc/default/ufw
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>/etc/default/ufw</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># 將DROP改成ACCEPT</span>
-</span><span class='line'><span class="nv">DEFAULT_FORWARD_POLICY</span><span class="o">=</span><span class="s2">&quot;ACCEPT&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>vim /etc/ufw/before.rules
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>/etc/ufw/before.rules 加入OPENVPN RULES(11~18行)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">#</span>
-</span><span class='line'><span class="c"># rules.before</span>
-</span><span class='line'><span class="c">#</span>
-</span><span class='line'><span class="c"># Rules that should be run before the ufw command line added rules. Custom</span>
-</span><span class='line'><span class="c"># rules should be added to one of these chains:</span>
-</span><span class='line'><span class="c">#   ufw-before-input</span>
-</span><span class='line'><span class="c">#   ufw-before-output</span>
-</span><span class='line'><span class="c">#   ufw-before-forward</span>
-</span><span class='line'><span class="c">#</span>
-</span><span class='line'>
-</span><span class='line'><span class="c"># START OPENVPN RULES</span>
-</span><span class='line'><span class="c"># NAT table rules</span>
-</span><span class='line'>*nat
-</span><span class='line'>:POSTROUTING ACCEPT <span class="o">[</span>0:0<span class="o">]</span>
-</span><span class='line'><span class="c"># Allow traffic from OpenVPN client to ppp0</span>
-</span><span class='line'>-A POSTROUTING -s 10.8.0.0/8 -o ppp0 -j MASQUERADE
-</span><span class='line'>COMMIT
-</span><span class='line'><span class="c"># END OPENVPN RULES</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>ufw <span class="nb">enable</span>
-</span><span class='line'>ufw status
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Generate Certificate Authority</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>cp -r /usr/share/easy-rsa/ /etc/openvpn
-</span><span class='line'>mkdir /etc/openvpn/easy-rsa/keys
-</span><span class='line'>vim /etc/openvpn/easy-rsa/vars
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>/etc/openvpn/easy-rsa/vars</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">KEY_COUNTRY</span><span class="o">=</span>“TW”
-</span><span class='line'><span class="nb">export </span><span class="nv">KEY_PROVINCE</span><span class="o">=</span>“Taiwan”
-</span><span class='line'><span class="nb">export </span><span class="nv">KEY_CITY</span><span class="o">=</span>“Taipei”
-</span><span class='line'><span class="nb">export </span><span class="nv">KEY_ORG</span><span class="o">=</span><span class="s2">&quot;My Company Name&quot;</span>
-</span><span class='line'><span class="nb">export </span><span class="nv">KEY_EMAIL</span><span class="o">=</span><span class="s2">&quot;sammy@example.com&quot;</span>
-</span><span class='line'><span class="nb">export </span><span class="nv">KEY_OU</span><span class="o">=</span><span class="s2">&quot;MYOrganizationalUnit&quot;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">export </span><span class="nv">KEY_NAME</span><span class="o">=</span>“server”
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>openssl dhparam -out /etc/openvpn/dh2048.pem 2048
-</span><span class='line'><span class="nb">cd</span> /etc/openvpn/easy-rsa
-</span><span class='line'>. ./vars
-</span><span class='line'>./clean-all
-</span><span class='line'>./build-ca
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Generate Server-side Key</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>./build-key-server server
-</span><span class='line'>cp /etc/openvpn/easy-rsa/keys/<span class="o">{</span>server.crt,server.key,ca.crt<span class="o">}</span> /etc/openvpn
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>啟動Server</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>service openvpn start
-</span><span class='line'>service openvpn status
-</span><span class='line'><span class="c"># service openvpn stop</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Generate Client-side Key</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>./build-key bob01
-</span><span class='line'>mkdir /etc/openvpn/bob01
-</span><span class='line'>cp /etc/openvpn/easy-rsa/keys/bob01.crt,bob01.key /etc/openvpn/bob01/
-</span><span class='line'>cp /etc/openvpn/easy-rsa/ca.crt /etc/openvpn/bob01/
-</span><span class='line'>cp /usr/share/doc/openvpn/examples/sample-config-files/client.conf  /etc/openvpn/bob01/bob01.ovpn
-</span><span class='line'>vim /etc/openvpn/bob01/bob01.ovpn
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>/etc/openvpn/bob01/bob01.ovpn</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>remote MY_SERVER_IP 1194
-</span><span class='line'>ca ca.crt
-</span><span class='line'>cert bob01.crt
-</span><span class='line'>key bob01.key
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>最後在client端把/etc/openvpn/bob01/抓下來，用bob01.ovpn啟動即可</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -2261,6 +2121,14 @@
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/12/10/bitcoin-improvement-proposal-39/">[Crypto] BIP-39 mnemonic words</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/11/04/private-coins-monero-dash-zcash-pivx/">[Crypto] 加密貨幣(Dash Pivx Zcash Monero)筆記</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2017/01/15/how-to-mine-zcash-on-windows/">[ZCash] 如何使用Windows來挖礦</a>
@@ -2314,14 +2182,6 @@
         <a href="/blog/2015/11/07/ruby-aes-encrypt-decrypt/">[Ruby] AES 加密解密</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2015/07/11/rails-various-update-methods/">[Rails] 各種update method</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/06/29/mac-build-ubuntu-flash-using-command/">[Mac] 三步驟純指令建立Ubuntu的USB隨身碟</a>
-      </li>
-    
   </ul>
 </section>
 
@@ -2335,7 +2195,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2017 - Bob (PoYi) -
+  Copyright &copy; 2019 - Bob (PoYi) -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

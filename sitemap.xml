@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://blog.poyi.tw/blog/2017/12/10/bitcoin-improvement-proposal-39/</loc>
+    <lastmod>2017-12-10T18:26:47+08:00</lastmod>
+  </url>
+  <url>
+    <loc>http://blog.poyi.tw/blog/2017/11/04/private-coins-monero-dash-zcash-pivx/</loc>
+    <lastmod>2017-11-04T16:22:35+08:00</lastmod>
+  </url>
+  <url>
     <loc>http://blog.poyi.tw/blog/2017/01/15/how-to-mine-zcash-on-windows/</loc>
     <lastmod>2017-01-15T13:32:55+08:00</lastmod>
   </url>
@@ -273,10 +281,10 @@
     <lastmod>2013-01-02T02:43:00+08:00</lastmod>
   </url>
   <url>
-    <loc>http://blog.poyi.tw/blog/archives/</loc>
+    <loc>http://blog.poyi.tw/</loc>
   </url>
   <url>
-    <loc>http://blog.poyi.tw/</loc>
+    <loc>http://blog.poyi.tw/blog/archives/</loc>
   </url>
   <url>
     <loc>http://blog.poyi.tw/friends/</loc>
@@ -285,10 +293,10 @@
     <loc>http://blog.poyi.tw/about/</loc>
   </url>
   <url>
-    <loc>http://blog.poyi.tw/memo/</loc>
+    <loc>http://blog.poyi.tw/others/</loc>
   </url>
   <url>
-    <loc>http://blog.poyi.tw/others/</loc>
+    <loc>http://blog.poyi.tw/memo/</loc>
   </url>
   <url>
     <loc>http://blog.poyi.tw/blog/categories/css/</loc>
@@ -502,6 +510,54 @@
   </url>
   <url>
     <loc>http://blog.poyi.tw/blog/categories/zec/</loc>
+  </url>
+  <url>
+    <loc>http://blog.poyi.tw/blog/categories/monero/</loc>
+  </url>
+  <url>
+    <loc>http://blog.poyi.tw/blog/categories/dash/</loc>
+  </url>
+  <url>
+    <loc>http://blog.poyi.tw/blog/categories/pivx/</loc>
+  </url>
+  <url>
+    <loc>http://blog.poyi.tw/blog/categories/xmr/</loc>
+  </url>
+  <url>
+    <loc>http://blog.poyi.tw/blog/categories/private/</loc>
+  </url>
+  <url>
+    <loc>http://blog.poyi.tw/blog/categories/bip39/</loc>
+  </url>
+  <url>
+    <loc>http://blog.poyi.tw/blog/categories/bip44/</loc>
+  </url>
+  <url>
+    <loc>http://blog.poyi.tw/blog/categories/bip32/</loc>
+  </url>
+  <url>
+    <loc>http://blog.poyi.tw/blog/categories/mnemonic/</loc>
+  </url>
+  <url>
+    <loc>http://blog.poyi.tw/blog/categories/deterministic/</loc>
+  </url>
+  <url>
+    <loc>http://blog.poyi.tw/posts/2/</loc>
+  </url>
+  <url>
+    <loc>http://blog.poyi.tw/posts/3/</loc>
+  </url>
+  <url>
+    <loc>http://blog.poyi.tw/posts/4/</loc>
+  </url>
+  <url>
+    <loc>http://blog.poyi.tw/posts/5/</loc>
+  </url>
+  <url>
+    <loc>http://blog.poyi.tw/posts/6/</loc>
+  </url>
+  <url>
+    <loc>http://blog.poyi.tw/posts/7/</loc>
   </url>
   <url>
     <loc>http://blog.poyi.tw/about/weight/index.html</loc>

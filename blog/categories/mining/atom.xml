@@ -4,7 +4,7 @@
   <title><![CDATA[Category: mining | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/mining/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2017-06-17T10:36:37+08:00</updated>
+  <updated>2019-05-26T14:57:51+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -18,7 +18,9 @@
     <link href="http://blog.poyi.tw/blog/2017/01/15/how-to-mine-zcash-on-windows/"/>
     <updated>2017-01-15T13:32:55+08:00</updated>
     <id>http://blog.poyi.tw/blog/2017/01/15/how-to-mine-zcash-on-windows</id>
-    <content type="html"><![CDATA[<h2>ZCash錢包</h2>
+    <content type="html"><![CDATA[<blockquote><p>幾千塊的顯卡來挖其實收益非常低，電費還比較貴，玩票性質再試試看吧</p></blockquote>
+
+<h2>ZCash錢包</h2>
 
 <p>首先要下載一個錢包並取得address(t1bjg8ZSVhW2LzRP3BiHZKbMGipLJuxibYE)來存放你挖到的幣</p>
 
@@ -26,15 +28,25 @@
 
 <p>Nvidia挖ZCash會比較快，如果是AMD可考慮挖Ethereum之類的</p>
 
-<h2>Miner 挖礦軟體</h2>
+<h2>Miner 挖礦軟體 (挑一款即可)</h2>
 
-<p><del>使用<a href="https://github.com/etherchain-org/nheqminer/releases/latest">Nicehash miner</a></del></p>
+<h3>EWBF Miner</h3>
 
-<p>後來發現 <a href="https://github.com/nicehash/nheqminer/releases">nheqminer-0.5c</a> 挖的效率好很多</p>
+<p><a href="https://bitcointalk.org/index.php?topic=1707546.0">EWBF&rsquo;s CUDA Zcash miner</a></p>
 
-<p>載好解壓縮後會有一個nheqminer.exe</p>
+<ul>
+<li>EWBF Miner - 效率好30% - 使用時會吃掉大部分顯卡效能無法正常使用</li>
+</ul>
 
-<p>一樣是開cmd後面接一些參數就能挖了</p>
+
+<h3>Nicehash - nheqminer-0.5c</h3>
+
+<p><a href="https://github.com/nicehash/nheqminer/releases">nheqminer-0.5c</a></p>
+
+<ul>
+<li>Nicehash - 不開大型遊戲的話，電腦還可以正常使用</li>
+</ul>
+
 
 <h2>礦池</h2>
 
@@ -48,14 +60,31 @@
 
 <p>通常礦池首頁都會寫很清楚該怎麼做</p>
 
-<pre><code>nheqminer.exe -cd 0 -l &lt;礦池server&gt; -u &lt;你自己的錢包地址&gt;.&lt;自命名worker&gt; 
+<pre><code class="bash EWBF Miner">miner.exe --server &lt;server&gt; --user &lt;address&gt;.&lt;worker&gt; --port &lt;port&gt; --cuda_devices 0 1 2 3
+miner.exe --server asia1-zcash.flypool.org --user t1bjg8ZSVhW2LzRP3BiHZKbMGipLJuxibYE.bob3 --port 3333 --cuda_devices 0 1 2 3
 </code></pre>
 
-<pre><code class="bash ">nheqminer.exe -cd 0 -l asia1-zcash.flypool.org:3333 -u t1bjg8ZSVhW2LzRP3BiHZKbMGipLJuxibYE.bob1
+<pre><code class="bash Nicehash Miner">nheqminer.exe -cd 0 -l &lt;礦池server&gt; -u &lt;你自己的錢包地址&gt;.&lt;自命名worker&gt; 
+nheqminer.exe -cd 0 -l asia1-zcash.flypool.org:3333 -u t1bjg8ZSVhW2LzRP3BiHZKbMGipLJuxibYE.bob2
 </code></pre>
 
-<p>監控挖礦情況
-<a href="http://zcash.flypool.org/miners/t1bjg8ZSVhW2LzRP3BiHZKbMGipLJuxibYE">http://zcash.flypool.org/miners/t1bjg8ZSVhW2LzRP3BiHZKbMGipLJuxibYE</a></p>
+<p>監控挖礦情況 (Nvidia GTX960)</p>
+
+<p><a href="http://zcash.flypool.org/miners/t1bjg8ZSVhW2LzRP3BiHZKbMGipLJuxibYE">http://zcash.flypool.org/miners/t1bjg8ZSVhW2LzRP3BiHZKbMGipLJuxibYE</a></p>
+
+<h2>打包至桌面一鍵開挖</h2>
+
+<pre><code class="bash EWBF_Miner.bat">@echo on
+E:
+cd "Zec Miner 0.3.4b\0.3.4b"
+miner.exe --server asia1-zcash.flypool.org --user t1bjg8ZSVhW2LzRP3BiHZKbMGipLJuxibYE.bob3 --port 3333 --cuda_devices 0 1 2 3
+</code></pre>
+
+<pre><code class="bash Nicehash_Miner.bat">@echo on
+E:
+cd "Windows_x64_nheqminer-5c"
+nheqminer.exe -cd 0 -l asia1-zcash.flypool.org:3333 -u t1bjg8ZSVhW2LzRP3BiHZKbMGipLJuxibYE.bob2
+</code></pre>
 
 <p>Reference:</p>
 

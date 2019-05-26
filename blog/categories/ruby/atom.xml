@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2017-06-17T10:36:37+08:00</updated>
+  <updated>2019-05-26T14:57:51+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -25,7 +25,7 @@ su bob
 
 <pre><code class="bash 安裝常用lib">sudo apt-get update
 sudo apt-get upgrade
-sudo apt-get install vim nodejs
+sudo apt-get install vim nodejs autoconf
 sudo apt-get install git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev
 </code></pre>
 
@@ -43,6 +43,9 @@ exec $SHELL
 
 rbenv install 2.3.1
 rbenv global 2.3.1
+# rbenv shell 2.3.1 
+# rbenv local 2.3.1
+# rbenv global 2.3.1
 ruby -v
 
 # rvm 
@@ -171,7 +174,7 @@ make
 sudo make install
 </code></pre>
 
-<pre><code class="bash 新增 /usr/lib/systemd/system/ssdb.service">[Unit]
+<pre><code class="bash 新增/etc/systemd/system/ssdb.service">[Unit]
 Description=SSDB
 After=network.target
 

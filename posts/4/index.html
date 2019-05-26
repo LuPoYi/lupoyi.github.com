@@ -9,9 +9,7 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="當我們要安裝別人寫好的Library、API時，通常會 Gemfile1
-gem &#39;google-translate&#39; 或是 Terminal1
-$ gem install google-translate 打包gem 而當我們要打包自己的gem，自用或供他人使用，該怎麼做？ &hellip;">
+  <meta name="description" content="在Ruby中的邏輯運算有兩組，[!,&amp;&amp;,||]及[not,and,or] [!,&amp;&amp;,||] higher precedence [=,%=,~=,/=] between this two [not,and,or] lower precedence 優先權：& &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -108,6 +106,198 @@ $ gem install google-translate 打包gem 而當我們要打包自己的gem，自
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2013/12/09/ruby-and/">[Ruby] And與&&的差別</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-09T03:01:00+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2013/12/09/ruby-and/#disqus_thread">Comments</a>
+        
+      </p>
+      <p class="pull-right">2013-12-09</p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>在Ruby中的邏輯運算有兩組，[!,&amp;&amp;,||]及[not,and,or]</p>
+
+<ul>
+<li>[!,&amp;&amp;,||]
+
+<ul>
+<li>higher precedence</li>
+</ul>
+</li>
+<li>[=,%=,~=,/=]
+
+<ul>
+<li>between this two</li>
+</ul>
+</li>
+<li>[not,and,or]
+
+<ul>
+<li>lower precedence
+
+<ul>
+<li>優先權：&amp;&amp;　→　||　→　and　＝　or 。</li>
+<li>&amp;&amp; 或 || 會將符號前後方都認定為boolean(true,false)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<figure class='code'><figcaption><span>&& 與 and 的比較</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="kp">true</span> <span class="o">&amp;&amp;</span> <span class="kp">false</span>
+</span><span class='line'> <span class="o">=&gt;</span> <span class="kp">false</span>
+</span><span class='line'><span class="o">&gt;</span> <span class="n">a</span>
+</span><span class='line'> <span class="o">=&gt;</span> <span class="kp">false</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="kp">true</span> <span class="ow">and</span> <span class="kp">false</span>
+</span><span class='line'> <span class="o">=&gt;</span> <span class="kp">false</span>
+</span><span class='line'><span class="o">&gt;</span> <span class="n">a</span>
+</span><span class='line'> <span class="o">=&gt;</span> <span class="kp">true</span>  <span class="c1">#</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><figcaption><span>|| 與 or 的比較</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="kp">false</span> <span class="o">||</span> <span class="kp">true</span>
+</span><span class='line'> <span class="o">=&gt;</span> <span class="kp">true</span>
+</span><span class='line'><span class="o">&gt;</span> <span class="n">a</span>
+</span><span class='line'> <span class="o">=&gt;</span> <span class="kp">true</span>
+</span><span class='line'><span class="o">&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="kp">false</span> <span class="ow">or</span> <span class="kp">true</span>
+</span><span class='line'> <span class="o">=&gt;</span> <span class="kp">true</span>
+</span><span class='line'><span class="o">&gt;</span> <span class="n">a</span>
+</span><span class='line'> <span class="o">=&gt;</span> <span class="kp">false</span>  <span class="c1">#</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>總結，布林運算用[!,&&,||]，流程控制用[not,and,or]</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># boolean expression</span>
+</span><span class='line'><span class="k">if</span> <span class="n">some_condition</span> <span class="o">&amp;&amp;</span> <span class="n">some_other_condition</span>
+</span><span class='line'>  <span class="n">do_something</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># control flow</span>
+</span><span class='line'><span class="n">document</span><span class="o">.</span><span class="n">saved?</span> <span class="ow">or</span> <span class="n">document</span><span class="o">.</span><span class="n">save!</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Reference:</p>
+
+<p><a href="http://phrogz.net/ProgrammingRuby/language.html#table%5F18.4">Ruby operators 優先順序</a></p>
+
+<p><a href="http://blog.jeffean.net/wiki/ruby.html">http://blog.jeffean.net/wiki/ruby.html</a></p>
+
+<p><a href="http://stackoverflow.com/questions/1426826/difference-between-and-and-in-ruby">http://stackoverflow.com/questions/1426826/difference-between-and-and-in-ruby</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/12/07/rails-bootstrap-for-rails/">[Rails] Bootstrap for Rails</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-07T06:46:00+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2013/12/07/rails-bootstrap-for-rails/#disqus_thread">Comments</a>
+        
+      </p>
+      <p class="pull-right">2013-12-07</p>
+    
+  </header>
+
+
+  <div class="entry-content"><figure class='code'><figcaption><span>add to gemfile.rb and remember to bundle install</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem <span class="s1">&#39;bootstrap-sass&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>新增一個app/assets/stylesheets/styles.css.scss並將bootstrap import</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>@import <span class="s1">&#39;bootstrap&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>app/assets/javascripts/application.js 加入bootstrap</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>//<span class="o">=</span> require bootstrap
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>這樣就可以用了yaya</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2013/12/02/rails-gem/">[Rails] 打包Gem套件</a></h1>
     
     
@@ -129,6 +319,7 @@ $ gem install google-translate 打包gem 而當我們要打包自己的gem，自
          | <a href="/blog/2013/12/02/rails-gem/#disqus_thread">Comments</a>
         
       </p>
+      <p class="pull-right">2013-12-02</p>
     
   </header>
 
@@ -228,6 +419,7 @@ $ gem install google-translate 打包gem 而當我們要打包自己的gem，自
          | <a href="/blog/2013/11/22/apt/#disqus_thread">Comments</a>
         
       </p>
+      <p class="pull-right">2013-11-22</p>
     
   </header>
 
@@ -319,6 +511,7 @@ IThome「防駭演練與危機處理」研習會</p>
          | <a href="/blog/2013/11/20/rails-activerecord/#disqus_thread">Comments</a>
         
       </p>
+      <p class="pull-right">2013-11-20</p>
     
   </header>
 
@@ -449,6 +642,7 @@ IThome「防駭演練與危機處理」研習會</p>
          | <a href="/blog/2013/11/14/rails-rest/#disqus_thread">Comments</a>
         
       </p>
+      <p class="pull-right">2013-11-14</p>
     
   </header>
 
@@ -537,6 +731,7 @@ IThome「防駭演練與危機處理」研習會</p>
          | <a href="/blog/2013/10/30/rails-search/#disqus_thread">Comments</a>
         
       </p>
+      <p class="pull-right">2013-10-30</p>
     
   </header>
 
@@ -634,6 +829,7 @@ IThome「防駭演練與危機處理」研習會</p>
          | <a href="/blog/2013/10/30/rails-crud/#disqus_thread">Comments</a>
         
       </p>
+      <p class="pull-right">2013-10-30</p>
     
   </header>
 
@@ -789,6 +985,7 @@ IThome「防駭演練與危機處理」研習會</p>
          | <a href="/blog/2013/10/25/vmware-vcenter-cluster-exercises/#disqus_thread">Comments</a>
         
       </p>
+      <p class="pull-right">2013-10-25</p>
     
   </header>
 
@@ -844,6 +1041,7 @@ HT Hyper-threading 可將核心分成兩個序列在處理 cpu數<em>核心數</
          | <a href="/blog/2013/10/16/rails-tips/#disqus_thread">Comments</a>
         
       </p>
+      <p class="pull-right">2013-10-16</p>
     
   </header>
 
@@ -899,197 +1097,6 @@ HT Hyper-threading 可將核心分成兩個序列在處理 cpu數<em>核心數</
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/10/14/vmware-vcenter-80-port-is-already-in-use/">[VMware] VCenter 80 Port 已被使用</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-10-14T13:50:00+08:00" pubdate data-updated="true"></time>
-        
-         | <a href="/blog/2013/10/14/vmware-vcenter-80-port-is-already-in-use/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>在嘗試安裝vCenter時，中途出現了「VMware VirtualCenter HTTP Port: 80」</p>
-
-<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/147088/Dh30xvaKQpiGNxLRUEAh_2013-10-14%20%E4%B8%8B%E5%8D%88%2002-30-11.jpg" alt="2013-10-14 下午 02-30-11.jpg" /></p>
-
-<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/147088/BSI6GB26R6GYxsu7JrMh_181188866_x.jpg" alt="181188866_x.jpg" /></p>
-
-<p>原因是vCenter自動安裝時會把SQL Server及.NET Framework相關的元件裝上，導致IIS佔用了80Port。</p>
-
-<p>解法之一就是直接在Roles裡把IIS移掉就行了(想在vCenter上使用IIS就要另求解了)</p>
-
-<p><br>
-Reference:
-<a href="http://blog.xuite.net/cadmus.lin/yo/43386562-%E3%80%90%E7%B3%BB%E3%80%91%E5%A6%82%E4%BD%95%E6%9F%A5%E8%A9%A2%E5%93%AA%E5%80%8B%E7%A8%8B%E5%BC%8F%E4%BD%94%E7%94%A8%E4%BA%86%E6%8C%87%E5%AE%9APort">http://blog.xuite.net/cadmus.lin/yo/43386562-%E3%80%90%E7%B3%BB%E3%80%91%E5%A6%82%E4%BD%95%E6%9F%A5%E8%A9%A2%E5%93%AA%E5%80%8B%E7%A8%8B%E5%BC%8F%E4%BD%94%E7%94%A8%E4%BA%86%E6%8C%87%E5%AE%9APort</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/10/07/ruby/">[Rails] 基本概念（待補）</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-10-07T05:30:00+08:00" pubdate data-updated="true"></time>
-        
-         | <a href="/blog/2013/10/07/ruby/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><figure class='code'><figcaption><span>config/database.yml</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="ss">development</span><span class="p">:</span> <span class="c1"># 開發用</span>
-</span><span class='line'>  <span class="ss">adapter</span><span class="p">:</span> <span class="n">sqlite3</span>
-</span><span class='line'>  <span class="ss">database</span><span class="p">:</span> <span class="n">db</span><span class="o">/</span><span class="n">development</span><span class="o">.</span><span class="n">sqlite3</span>
-</span><span class='line'>  <span class="ss">pool</span><span class="p">:</span> <span class="mi">5</span>
-</span><span class='line'>  <span class="ss">timeout</span><span class="p">:</span> <span class="mi">5000</span>
-</span><span class='line'><span class="nb">test</span><span class="p">:</span> <span class="c1"># 測試用</span>
-</span><span class='line'>  <span class="ss">adapter</span><span class="p">:</span> <span class="n">sqlite3</span>
-</span><span class='line'>  <span class="ss">database</span><span class="p">:</span> <span class="n">db</span><span class="o">/</span><span class="n">development</span><span class="o">.</span><span class="n">sqlite3</span>
-</span><span class='line'>  <span class="ss">pool</span><span class="p">:</span> <span class="mi">5</span>
-</span><span class='line'>  <span class="ss">timeout</span><span class="p">:</span> <span class="mi">5000</span>
-</span><span class='line'><span class="ss">production</span><span class="p">:</span> <span class="c1"># 上線用</span>
-</span><span class='line'>  <span class="ss">adapter</span><span class="p">:</span> <span class="n">sqlite3</span>
-</span><span class='line'>  <span class="ss">database</span><span class="p">:</span> <span class="n">db</span><span class="o">/</span><span class="n">development</span><span class="o">.</span><span class="n">sqlite3</span>
-</span><span class='line'>  <span class="ss">pool</span><span class="p">:</span> <span class="mi">5</span>
-</span><span class='line'>  <span class="ss">timeout</span><span class="p">:</span> <span class="mi">5000</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>config/routes.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">get</span> <span class="s2">&quot;welcome&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;welcome#index&quot;</span>
-</span><span class='line'><span class="c1"># 代表http://localhost:3000/welcome 會對應到 welcome Controller的index Action。 </span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="n">resources</span> <span class="ss">:events</span>
-</span><span class='line'><span class="c1"># 會自動生成四個四個命名路由(named routes)，搭配四個HTTP動詞，對應到七個Actions，如下：</span>
-</span><span class='line'><span class="n">get</span>    <span class="s1">&#39;/events&#39;</span>          <span class="o">=&gt;</span> <span class="s2">&quot;events#index&quot;</span><span class="p">,</span>   <span class="ss">:as</span> <span class="o">=&gt;</span> <span class="s2">&quot;events&quot;</span>
-</span><span class='line'><span class="n">post</span>   <span class="s1">&#39;/events&#39;</span>          <span class="o">=&gt;</span> <span class="s2">&quot;events#create&quot;</span><span class="p">,</span>  <span class="ss">:as</span> <span class="o">=&gt;</span> <span class="s2">&quot;events&quot;</span>
-</span><span class='line'><span class="n">get</span>    <span class="s1">&#39;/events/:id&#39;</span>      <span class="o">=&gt;</span> <span class="s2">&quot;events#show&quot;</span><span class="p">,</span>    <span class="ss">:as</span> <span class="o">=&gt;</span> <span class="s2">&quot;event&quot;</span>
-</span><span class='line'><span class="n">put</span>    <span class="s1">&#39;/events/:id&#39;</span>      <span class="o">=&gt;</span> <span class="s2">&quot;events#update&quot;</span><span class="p">,</span>  <span class="ss">:as</span> <span class="o">=&gt;</span> <span class="s2">&quot;event&quot;</span>
-</span><span class='line'><span class="n">delete</span> <span class="s1">&#39;/events/:id&#39;</span>      <span class="o">=&gt;</span> <span class="s2">&quot;events#destroy&quot;</span><span class="p">,</span> <span class="ss">:as</span> <span class="o">=&gt;</span> <span class="s2">&quot;event&quot;</span>
-</span><span class='line'><span class="n">get</span>    <span class="s1">&#39;/events/new&#39;</span>      <span class="o">=&gt;</span> <span class="s2">&quot;events#new&quot;</span><span class="p">,</span>     <span class="ss">:as</span> <span class="o">=&gt;</span> <span class="s2">&quot;new_event&quot;</span>
-</span><span class='line'><span class="n">get</span>    <span class="s1">&#39;/events/:id/edit&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;events#edit&quot;</span><span class="p">,</span>    <span class="ss">:as</span> <span class="o">=&gt;</span> <span class="s2">&quot;edit_event&quot;</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># get 是純讀取資料，對資料不會有任何影響，所以get資料可以回上一頁、refresh都ok；post則反之。</span>
-</span><span class='line'><span class="c1"># HTML只有get、post，而Rails在post加上隱藏參數_method=PUT、_method=DELETE，就多了put、delete能用了。</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>＜％　vs ＜％＝</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># &lt;% 執行但不輸出</span>
-</span><span class='line'><span class="c1"># &lt;%= 輸出值</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="sx">% @people.each </span><span class="k">do</span> <span class="o">|</span><span class="nb">p</span><span class="o">|</span> <span class="sx">%&gt;</span>
-</span><span class='line'><span class="sx"> &lt;%= p.name %&gt;</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sx">% end </span><span class="o">%&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">render</span> <span class="err">回傳使用的樣版</span><span class="p">(</span><span class="err">資料不會遺失</span><span class="p">)</span>
-</span><span class='line'><span class="n">redirect_to</span> <span class="err">重新導向</span><span class="n">action</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Reference:
-<a href="http://ihower.tw/rails3/index.html">http://ihower.tw/rails3/index.html</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/5">&larr; Older</a>
@@ -1136,6 +1143,14 @@ Reference:
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/12/10/bitcoin-improvement-proposal-39/">[Crypto] BIP-39 mnemonic words</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/11/04/private-coins-monero-dash-zcash-pivx/">[Crypto] 加密貨幣(Dash Pivx Zcash Monero)筆記</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2017/01/15/how-to-mine-zcash-on-windows/">[ZCash] 如何使用Windows來挖礦</a>
@@ -1189,14 +1204,6 @@ Reference:
         <a href="/blog/2015/11/07/ruby-aes-encrypt-decrypt/">[Ruby] AES 加密解密</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2015/07/11/rails-various-update-methods/">[Rails] 各種update method</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/06/29/mac-build-ubuntu-flash-using-command/">[Mac] 三步驟純指令建立Ubuntu的USB隨身碟</a>
-      </li>
-    
   </ul>
 </section>
 
@@ -1210,7 +1217,7 @@ Reference:
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2017 - Bob (PoYi) -
+  Copyright &copy; 2019 - Bob (PoYi) -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

@@ -9,7 +9,7 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="Memo 查詢容量 du檢視檔案資料夾/df檢視整體磁區1
+  <meta name="description" content="Memo 調整系統時區 調整系統時區1 sudo dpkg-reconfigure tzdata 查詢容量 du檢視檔案資料夾/df檢視整體磁區1
 2
 3
 4
@@ -22,8 +22,7 @@
 11
 // 目錄下各檔案資料夾的所佔空間
 $ du -smh * // 列出佔用空間前 5 名
-$ du -s /var/* | sort -rn | head -5 // 依磁區
-$ df -h &hellip;">
+$ du -s &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -132,7 +131,14 @@ $ df -h &hellip;">
 <time datetime="2016-01-24T10:25:00+08:00" pubdate data-updated="true"></time></p>
   </header>
   
-  <h2>查詢容量</h2>
+  <h2>調整系統時區</h2>
+
+<figure class='code'><figcaption><span>調整系統時區</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>  sudo dpkg-reconfigure tzdata
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>查詢容量</h2>
 
 <figure class='code'><figcaption><span>du檢視檔案資料夾/df檢視整體磁區</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -511,6 +517,14 @@ $ df -h &hellip;">
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2017/12/10/bitcoin-improvement-proposal-39/">[Crypto] BIP-39 mnemonic words</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/11/04/private-coins-monero-dash-zcash-pivx/">[Crypto] 加密貨幣(Dash Pivx Zcash Monero)筆記</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2017/01/15/how-to-mine-zcash-on-windows/">[ZCash] 如何使用Windows來挖礦</a>
       </li>
     
@@ -562,14 +576,6 @@ $ df -h &hellip;">
         <a href="/blog/2015/11/07/ruby-aes-encrypt-decrypt/">[Ruby] AES 加密解密</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2015/07/11/rails-various-update-methods/">[Rails] 各種update method</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/06/29/mac-build-ubuntu-flash-using-command/">[Mac] 三步驟純指令建立Ubuntu的USB隨身碟</a>
-      </li>
-    
   </ul>
 </section>
 
@@ -584,7 +590,7 @@ $ df -h &hellip;">
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2017 - Bob (PoYi) -
+  Copyright &copy; 2019 - Bob (PoYi) -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

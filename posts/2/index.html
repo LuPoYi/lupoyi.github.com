@@ -9,28 +9,12 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="校正系統時間 類似OTP(google authenticator)這種服務當你系統時間不對就完全不能用 1
+  <meta name="description" content="使用vanitygen客製比特幣位址 安裝vanitygen 1
 2
 3
 4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-$ date # 確認目前時間
-$ dpkg -l | grep ntp # &hellip;">
+sudo apt-get install build-essential libssl-dev libpcre3-dev
+git clone https://github.com/samr7/vanitygen.git &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -127,6 +111,476 @@ $ dpkg -l | grep ntp # &hellip;">
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2016/03/05/generate-your-own-bitcoin-address/">[Bitcoin] 客製比特幣位址並匯入錢包</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-03-05T13:32:29+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2016/03/05/generate-your-own-bitcoin-address/#disqus_thread">Comments</a>
+        
+      </p>
+      <p class="pull-right">2016-03-05</p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>使用vanitygen客製比特幣位址</h2>
+
+<h3>安裝vanitygen</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install build-essential libssl-dev libpcre3-dev
+</span><span class='line'>git clone https://github.com/samr7/vanitygen.git
+</span><span class='line'><span class="nb">cd </span>vanitygen
+</span><span class='line'>make
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Generate Your Own Bitcoin Address</h3>
+
+<ul>
+<li>Base58 避免使用數字0和字母大寫O以及字母大寫I和字母小寫l</li>
+<li>要使用該Address的話，記得備份好Privkey避免公開，擁有Privkey即等於擁有此Address發送權</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># 指定開頭</span>
+</span><span class='line'><span class="nv">$ </span>./vanitygen 1Bob
+</span><span class='line'>  Difficulty: 77178
+</span><span class='line'>  Pattern: 1Bob
+</span><span class='line'>  Address: 1Bobnp85Ns6JUDaMntc672ZjfsWSzrUnZH
+</span><span class='line'>  Privkey: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+</span><span class='line'>
+</span><span class='line'><span class="c"># 忽略大小寫</span>
+</span><span class='line'><span class="nv">$ </span>./vanitygen -i 1boba
+</span><span class='line'>  Difficulty: 1100434
+</span><span class='line'>  Pattern: 1boba
+</span><span class='line'>  Address: 1BoBAeQ6vEw2wCitEvRAXuSfRJfwuVGt1L
+</span><span class='line'>  Privkey: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+</span><span class='line'>
+</span><span class='line'><span class="c"># 指定結尾</span>
+</span><span class='line'><span class="nv">$ </span>./vanitygen -r bob<span class="err">$</span>
+</span><span class='line'>Pattern: bob<span class="err">$</span>
+</span><span class='line'>Address: 14a6Pw84woyKjysT6Uc9gJF2M8prwYtbob
+</span><span class='line'>Privkey: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>將 Privkey 匯入Bitcoind錢包</h3>
+
+<p>大部分錢包軟體都會提供匯入Privkey的功能，但我這邊使用Bitcoind</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># 先確認此Address狀態</span>
+</span><span class='line'><span class="nv">$ </span>bitcoin-cli validateaddress 1Bobnp85Ns6JUDaMntc672ZjfsWSzrUnZH
+</span><span class='line'><span class="o">{</span>
+</span><span class='line'>  <span class="s2">&quot;isvalid&quot;</span>: <span class="nb">true</span>,
+</span><span class='line'>  <span class="s2">&quot;address&quot;</span>: <span class="s2">&quot;1Bobnp85Ns6JUDaMntc672ZjfsWSzrUnZH&quot;</span>,
+</span><span class='line'>  <span class="s2">&quot;scriptPubKey&quot;</span>: <span class="s2">&quot;76a91476816ee640da13a0d821d79a01892d8598288bb488ac&quot;</span>,
+</span><span class='line'>  <span class="s2">&quot;ismine&quot;</span>: <span class="nb">false</span>,
+</span><span class='line'>  <span class="s2">&quot;iswatchonly&quot;</span>: <span class="nb">false</span>,
+</span><span class='line'>  <span class="s2">&quot;isscript&quot;</span>: <span class="nb">false</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="c"># &quot;ismine&quot;: false =&gt; 代表此address還不是自己的</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># bitcoin-cli importprivkey &lt;Privkey&gt; [label] [rescan=true]</span>
+</span><span class='line'><span class="c"># label 是指你要放入哪個account，預設都會有一個””空字串的account</span>
+</span><span class='line'><span class="c"># rescan 填true的話，會去掃以前到現在所有的transaction確定此address是否有被使用過(但會跑很久)</span>
+</span><span class='line'><span class="c">#        如果只是新address的話這邊填false就行了</span>
+</span><span class='line'><span class="nv">$ </span>bitcoin-cli importprivkey XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX “” <span class="nb">false</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>bitcoin-cli validateaddress 1Bobnp85Ns6JUDaMntc672ZjfsWSzrUnZH
+</span><span class='line'><span class="o">{</span>
+</span><span class='line'>  <span class="s2">&quot;isvalid&quot;</span>: <span class="nb">true</span>,
+</span><span class='line'>  <span class="s2">&quot;address&quot;</span>: <span class="s2">&quot;1Bobnp85Ns6JUDaMntc672ZjfsWSzrUnZH&quot;</span>,
+</span><span class='line'>  <span class="s2">&quot;scriptPubKey&quot;</span>: <span class="s2">&quot;76a91476816ee640da13a0d821d79a01892d8598288bb488ac&quot;</span>,
+</span><span class='line'>  <span class="s2">&quot;ismine&quot;</span>: <span class="nb">true</span>,
+</span><span class='line'>  <span class="s2">&quot;iswatchonly&quot;</span>: <span class="nb">false</span>,
+</span><span class='line'>  <span class="s2">&quot;isscript&quot;</span>: <span class="nb">false</span>,
+</span><span class='line'>  <span class="s2">&quot;iscompressed&quot;</span>: <span class="nb">true</span>,
+</span><span class='line'>  <span class="s2">&quot;account&quot;</span>: <span class="s2">&quot;&quot;</span>
+</span><span class='line'><span class="o">}</span> 
+</span><span class='line'><span class="c"># &quot;ismine&quot;: true =&gt; 現在此Address就是屬於你的</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Reference:</p>
+
+<p><a href="https://en.bitcoin.it/wiki/Vanitygen">https://en.bitcoin.it/wiki/Vanitygen</a></p>
+
+<p><a href="http://8btc.com/article-1930-1.html">http://8btc.com/article-1930-1.html</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2016/03/05/ubuntu-openvpn-server-client/">[Ubuntu] 架設 OpenVpn Server & Client</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-03-05T11:42:49+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2016/03/05/ubuntu-openvpn-server-client/#disqus_thread">Comments</a>
+        
+      </p>
+      <p class="pull-right">2016-03-05</p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>OpenVpn</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>apt-get update
+</span><span class='line'>apt-get install openvpn easy-rsa
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>gunzip -c /usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz &gt; /etc/openvpn/server.conf
+</span><span class='line'>vim /etc/openvpn/server.conf
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>/etc/openvpn/server.conf</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># dh dh1024.pem</span>
+</span><span class='line'>dh2048.pem
+</span><span class='line'>
+</span><span class='line'>ca ca.crt
+</span><span class='line'>cert server.crt
+</span><span class='line'>key server.key
+</span><span class='line'>
+</span><span class='line'><span class="c"># 拿掉註解</span>
+</span><span class='line'>push <span class="s2">&quot;redirect-gateway def1 bypass-dhcp&quot;</span>
+</span><span class='line'>user nobody
+</span><span class='line'>group nogroup
+</span><span class='line'><span class="c"># 補上8.8.8.8</span>
+</span><span class='line'>push <span class="s2">&quot;dhcp-option DNS 8.8.8.8&quot;</span>
+</span><span class='line'><span class="p">;</span>push <span class="s2">&quot;dhcp-option DNS 208.67.222.222&quot;</span>
+</span><span class='line'><span class="p">;</span>push <span class="s2">&quot;dhcp-option DNS 208.67.220.220&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">#其他基本上維持預設即可</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Packet Forwarding</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">echo </span><span class="m">1</span> &gt; /proc/sys/net/ipv4/ip_forward
+</span><span class='line'>vim /etc/sysctl.conf
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>/etc/sysctl.conf</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># 拿掉註解</span>
+</span><span class='line'>net.ipv4.ip_forward<span class="o">=</span>1
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Uncomplicated Firewall</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ufw allow ssh
+</span><span class='line'>ufw allow 1194/udp
+</span><span class='line'>ufw allow <span class="m">80</span> <span class="c"># 開外連進來所需要的port</span>
+</span><span class='line'>vim /etc/default/ufw
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>/etc/default/ufw</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># 將DROP改成ACCEPT</span>
+</span><span class='line'><span class="nv">DEFAULT_FORWARD_POLICY</span><span class="o">=</span><span class="s2">&quot;ACCEPT&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>vim /etc/ufw/before.rules
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>/etc/ufw/before.rules 加入OPENVPN RULES(11~18行)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">#</span>
+</span><span class='line'><span class="c"># rules.before</span>
+</span><span class='line'><span class="c">#</span>
+</span><span class='line'><span class="c"># Rules that should be run before the ufw command line added rules. Custom</span>
+</span><span class='line'><span class="c"># rules should be added to one of these chains:</span>
+</span><span class='line'><span class="c">#   ufw-before-input</span>
+</span><span class='line'><span class="c">#   ufw-before-output</span>
+</span><span class='line'><span class="c">#   ufw-before-forward</span>
+</span><span class='line'><span class="c">#</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># START OPENVPN RULES</span>
+</span><span class='line'><span class="c"># NAT table rules</span>
+</span><span class='line'>*nat
+</span><span class='line'>:POSTROUTING ACCEPT <span class="o">[</span>0:0<span class="o">]</span>
+</span><span class='line'><span class="c"># Allow traffic from OpenVPN client to ppp0</span>
+</span><span class='line'>-A POSTROUTING -s 10.8.0.0/8 -o ppp0 -j MASQUERADE
+</span><span class='line'>COMMIT
+</span><span class='line'><span class="c"># END OPENVPN RULES</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ufw <span class="nb">enable</span>
+</span><span class='line'>ufw status
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Generate Certificate Authority</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>cp -r /usr/share/easy-rsa/ /etc/openvpn
+</span><span class='line'>mkdir /etc/openvpn/easy-rsa/keys
+</span><span class='line'>vim /etc/openvpn/easy-rsa/vars
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>/etc/openvpn/easy-rsa/vars</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">KEY_COUNTRY</span><span class="o">=</span>“TW”
+</span><span class='line'><span class="nb">export </span><span class="nv">KEY_PROVINCE</span><span class="o">=</span>“Taiwan”
+</span><span class='line'><span class="nb">export </span><span class="nv">KEY_CITY</span><span class="o">=</span>“Taipei”
+</span><span class='line'><span class="nb">export </span><span class="nv">KEY_ORG</span><span class="o">=</span><span class="s2">&quot;My Company Name&quot;</span>
+</span><span class='line'><span class="nb">export </span><span class="nv">KEY_EMAIL</span><span class="o">=</span><span class="s2">&quot;sammy@example.com&quot;</span>
+</span><span class='line'><span class="nb">export </span><span class="nv">KEY_OU</span><span class="o">=</span><span class="s2">&quot;MYOrganizationalUnit&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">export </span><span class="nv">KEY_NAME</span><span class="o">=</span>“server”
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>openssl dhparam -out /etc/openvpn/dh2048.pem 2048
+</span><span class='line'><span class="nb">cd</span> /etc/openvpn/easy-rsa
+</span><span class='line'>. ./vars
+</span><span class='line'>./clean-all
+</span><span class='line'>./build-ca
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Generate Server-side Key</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>./build-key-server server
+</span><span class='line'>cp /etc/openvpn/easy-rsa/keys/<span class="o">{</span>server.crt,server.key,ca.crt<span class="o">}</span> /etc/openvpn
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>啟動Server</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>service openvpn start
+</span><span class='line'>service openvpn status
+</span><span class='line'><span class="c"># service openvpn stop</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Generate Client-side Key</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>./build-key bob01
+</span><span class='line'>mkdir /etc/openvpn/bob01
+</span><span class='line'>cp /etc/openvpn/easy-rsa/keys/bob01.crt,bob01.key /etc/openvpn/bob01/
+</span><span class='line'>cp /etc/openvpn/easy-rsa/ca.crt /etc/openvpn/bob01/
+</span><span class='line'>cp /usr/share/doc/openvpn/examples/sample-config-files/client.conf  /etc/openvpn/bob01/bob01.ovpn
+</span><span class='line'>vim /etc/openvpn/bob01/bob01.ovpn
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>/etc/openvpn/bob01/bob01.ovpn</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>remote MY_SERVER_IP 1194
+</span><span class='line'>ca ca.crt
+</span><span class='line'>cert bob01.crt
+</span><span class='line'>key bob01.key
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>最後在client端把/etc/openvpn/bob01/抓下來，用bob01.ovpn啟動即可</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2016/01/17/ubuntu-setting-ntp-sync-time/">[Ubuntu] 設定NTP校正時間</a></h1>
     
     
@@ -148,6 +602,7 @@ $ dpkg -l | grep ntp # &hellip;">
          | <a href="/blog/2016/01/17/ubuntu-setting-ntp-sync-time/#disqus_thread">Comments</a>
         
       </p>
+      <p class="pull-right">2016-01-17</p>
     
   </header>
 
@@ -237,6 +692,7 @@ $ dpkg -l | grep ntp # &hellip;">
          | <a href="/blog/2016/01/17/ubuntu-setting-pppoe-static-ip/#disqus_thread">Comments</a>
         
       </p>
+      <p class="pull-right">2016-01-17</p>
     
   </header>
 
@@ -263,8 +719,8 @@ $ dpkg -l | grep ntp # &hellip;">
 <h5>帳號以中華電信為例</h5>
 
 <ul>
-<li><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#x78;&#120;&#x78;&#120;&#x78;&#120;&#x78;&#120;&#x40;&#x68;&#x69;&#110;&#x65;&#116;&#46;&#x6e;&#101;&#x74;">&#x78;&#120;&#120;&#x78;&#x78;&#x78;&#x78;&#x78;&#x40;&#x68;&#105;&#x6e;&#x65;&#x74;&#x2e;&#x6e;&#101;&#x74;</a>        取得動態IP (原有帳號格式)</li>
-<li><a href="&#x6d;&#x61;&#x69;&#108;&#116;&#x6f;&#x3a;&#120;&#x78;&#x78;&#x78;&#x78;&#120;&#120;&#x78;&#64;&#x69;&#x70;&#x2e;&#104;&#105;&#110;&#x65;&#116;&#x2e;&#x6e;&#101;&#x74;">&#120;&#120;&#120;&#x78;&#x78;&#x78;&#x78;&#120;&#64;&#105;&#112;&#46;&#104;&#x69;&#x6e;&#101;&#x74;&#x2e;&#x6e;&#101;&#116;</a>     取得固定IP  僅限一台電腦使用</li>
+<li><a href="&#109;&#97;&#x69;&#108;&#x74;&#111;&#x3a;&#120;&#120;&#x78;&#x78;&#120;&#120;&#120;&#120;&#x40;&#104;&#105;&#110;&#101;&#x74;&#46;&#110;&#101;&#116;">&#120;&#x78;&#120;&#120;&#120;&#120;&#120;&#120;&#x40;&#104;&#x69;&#x6e;&#x65;&#x74;&#x2e;&#x6e;&#x65;&#116;</a>        取得動態IP (原有帳號格式)</li>
+<li><a href="&#x6d;&#x61;&#105;&#108;&#116;&#111;&#x3a;&#120;&#x78;&#x78;&#120;&#x78;&#x78;&#x78;&#120;&#64;&#x69;&#112;&#46;&#x68;&#x69;&#110;&#101;&#116;&#x2e;&#x6e;&#101;&#x74;">&#120;&#x78;&#x78;&#x78;&#120;&#x78;&#120;&#120;&#x40;&#x69;&#x70;&#46;&#104;&#x69;&#x6e;&#101;&#116;&#46;&#110;&#x65;&#116;</a>     取得固定IP  僅限一台電腦使用</li>
 </ul>
 
 
@@ -315,6 +771,7 @@ $ dpkg -l | grep ntp # &hellip;">
          | <a href="/blog/2015/11/07/ruby-aes-encrypt-decrypt/#disqus_thread">Comments</a>
         
       </p>
+      <p class="pull-right">2015-11-07</p>
     
   </header>
 
@@ -427,6 +884,7 @@ $ dpkg -l | grep ntp # &hellip;">
          | <a href="/blog/2015/07/11/rails-various-update-methods/#disqus_thread">Comments</a>
         
       </p>
+      <p class="pull-right">2015-07-11</p>
     
   </header>
 
@@ -525,6 +983,7 @@ $ dpkg -l | grep ntp # &hellip;">
          | <a href="/blog/2015/06/29/mac-build-ubuntu-flash-using-command/#disqus_thread">Comments</a>
         
       </p>
+      <p class="pull-right">2015-06-29</p>
     
   </header>
 
@@ -638,6 +1097,7 @@ $ dpkg -l | grep ntp # &hellip;">
          | <a href="/blog/2015/06/12/rails-ajax-render-error-in-json/#disqus_thread">Comments</a>
         
       </p>
+      <p class="pull-right">2015-06-12</p>
     
   </header>
 
@@ -733,6 +1193,7 @@ $ dpkg -l | grep ntp # &hellip;">
          | <a href="/blog/2015/04/18/all-your-important-files-are-encrypted/#disqus_thread">Comments</a>
         
       </p>
+      <p class="pull-right">2015-04-18</p>
     
   </header>
 
@@ -804,6 +1265,7 @@ Reference:</p>
          | <a href="/blog/2015/04/12/ruby-basic-2/#disqus_thread">Comments</a>
         
       </p>
+      <p class="pull-right">2015-04-12</p>
     
   </header>
 
@@ -1036,337 +1498,6 @@ Reference:</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/03/31/ruby-basic-1/">[Ruby] 教學 - 基本使用介紹</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2015-03-31T22:27:04+08:00" pubdate data-updated="true"></time>
-        
-         | <a href="/blog/2015/03/31/ruby-basic-1/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Rails熟了一點後就會發現其實大部分都是學會怎麼用它，卻很吃Ruby本身的概念</p>
-
-<p>未來讓以後開發不會這麼吃力，來整複習一下好了 :D</p>
-
-<h2>Everything is Ruby is an object</h2>
-
-<p>Ruby 內皆為物件，無基本型別</p>
-
-<figure class='code'><figcaption><span>X.class，X.methods 的用法</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="mi">123</span><span class="o">.</span><span class="n">methods</span> <span class="c1">#=&gt; 123可用的method列表  </span>
-</span><span class='line'><span class="mi">123</span><span class="o">.</span><span class="n">class</span>   <span class="c1">#=&gt; Fixnum #知道class後就可以查doc  </span>
-</span><span class='line'><span class="kp">true</span><span class="o">.</span><span class="n">class</span>  <span class="c1">#=&gt; TrueClass  </span>
-</span><span class='line'><span class="kp">nil</span><span class="o">.</span><span class="n">class</span>   <span class="c1">#=&gt; NilClass  </span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;</span> <span class="mi">2</span><span class="o">.</span><span class="n">even?</span>
-</span><span class='line'> <span class="o">=&gt;</span> <span class="kp">true</span>
-</span><span class='line'><span class="o">&gt;</span> <span class="mi">3</span><span class="o">.</span><span class="n">next</span>
-</span><span class='line'> <span class="o">=&gt;</span> <span class="mi">4</span>
-</span><span class='line'><span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="o">.</span><span class="n">abs</span>
-</span><span class='line'> <span class="o">=&gt;</span> <span class="mi">1</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>基本使用</h2>
-
-<figure class='code'><figcaption><span>各種常見型別</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="mi">123</span><span class="o">.</span><span class="n">class</span> <span class="c1">#integer</span>
-</span><span class='line'><span class="mi">42343243243243243242343242344234234234</span><span class="o">.</span><span class="n">class</span> <span class="c1">#bignum  </span>
-</span><span class='line'><span class="mi">123</span><span class="o">.</span><span class="mi">123</span><span class="o">.</span><span class="n">class</span> <span class="c1">#float  </span>
-</span><span class='line'><span class="err">“</span><span class="mi">123</span><span class="err">”</span><span class="o">.</span><span class="n">class</span> <span class="c1">#string  </span>
-</span><span class='line'><span class="o">[].</span><span class="n">class</span> <span class="c1">#array  </span>
-</span><span class='line'><span class="p">{}</span><span class="o">.</span><span class="n">class</span>  <span class="c1">#hash  </span>
-</span><span class='line'><span class="ss">:abc</span><span class="o">.</span><span class="n">class</span> <span class="c1">#symbol  </span>
-</span><span class='line'><span class="kp">nil</span><span class="o">.</span><span class="n">class</span> <span class="c1">#nilClass  </span>
-</span><span class='line'><span class="kp">true</span><span class="o">.</span><span class="n">class</span> <span class="c1">#TrueClass</span>
-</span><span class='line'><span class="kp">false</span><span class="o">.</span><span class="n">class</span> <span class="c1">#FalseClass  </span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>輸出String的用法</h3>
-
-<figure class='code'><figcaption><span>輸出String的用法</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="err">“</span><span class="mi">123</span><span class="err">”</span> <span class="o">+</span> <span class="err">“</span><span class="mi">345</span><span class="err">”</span> <span class="o">+</span> <span class="err">“</span><span class="mi">333</span><span class="err">”</span>
-</span><span class='line'><span class="n">x</span> <span class="o">=</span> <span class="mi">18</span>
-</span><span class='line'><span class="nb">puts</span> <span class="s2">&quot;your age is </span><span class="si">#{</span><span class="n">x</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span class='line'><span class="nb">puts</span> <span class="err">‘</span><span class="p">\</span><span class="n">n</span><span class="p">\</span><span class="n">t</span><span class="err">’</span> <span class="c1">#單引號 (無視內容，直接輸出)  </span>
-</span><span class='line'><span class="nb">puts</span> <span class="s2">&quot;</span><span class="se">\n\t</span><span class="s2">&quot;</span> <span class="c1">#雙引號 (換行)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Hash</h3>
-
-<figure class='code'><figcaption><span>hash宣告方式</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">x</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;wer&quot;</span> <span class="o">=&gt;</span> <span class="mi">123</span><span class="p">,</span> <span class="s2">&quot;sdf&quot;</span> <span class="o">=&gt;</span> <span class="mi">234</span><span class="p">}</span>
-</span><span class='line'><span class="n">y</span> <span class="o">=</span> <span class="p">{</span><span class="ss">:wer</span> <span class="o">=&gt;</span> <span class="mi">123</span><span class="p">,</span> <span class="ss">:sdf</span> <span class="o">=&gt;</span> <span class="mi">234</span><span class="p">}</span>
-</span><span class='line'><span class="c1">#symbol 拿來當key用  </span>
-</span><span class='line'><span class="ss">:wer</span><span class="o">.</span><span class="n">object_id</span>  <span class="c1"># 在hash中key使用symbol會比string還相對快    </span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Nil/ False</h3>
-
-<p>ruby只有兩種東西為非 => nil / false
-其他都為true</p>
-
-<figure class='code'><figcaption><span>nil false</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="kp">nil</span> <span class="o">||</span> <span class="kp">false</span> <span class="o">||</span> <span class="mi">0</span>   <span class="c1"># 0    </span>
-</span><span class='line'><span class="kp">nil</span> <span class="o">&amp;&amp;</span> <span class="kp">false</span> <span class="o">&amp;&amp;</span> <span class="mi">0</span>   <span class="c1"># nil  </span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>判斷式</h3>
-
-<h5>基本上if else</h5>
-
-<figure class='code'><figcaption><span>if/else if/elsif/else unless/end</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">if</span> <span class="n">size</span> <span class="o">&gt;</span> <span class="mi">30</span>
-</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;winner&quot;</span>
-</span><span class='line'><span class="k">else</span>
-</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;loser&quot;</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h5>因為在ruby只有false及nil為非，所以當你要判斷該變數有沒有值時可以直接這樣寫</h5>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">if</span> <span class="nb">name</span>
-</span><span class='line'>  <span class="nb">puts</span> <span class="nb">name</span>
-</span><span class='line'><span class="k">else</span>
-</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;error&quot;</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h5>後置判斷式，直接把if放後面</h5>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">puts</span> <span class="nb">name</span> <span class="k">if</span> <span class="nb">name</span> <span class="c1"># 當name有值時印出來，沒有值即略過</span>
-</span><span class='line'><span class="nb">puts</span> <span class="s2">&quot;error&quot;</span> <span class="k">unless</span> <span class="nb">name</span> <span class="c1"># 當name沒有值時印error</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h5>簡單的判斷式也可以寫成單行</h5>
-
-<figure class='code'><figcaption><span>condition ? true : false</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">puts</span> <span class="n">size</span> <span class="o">&gt;</span> <span class="mi">30</span> <span class="o">?</span> <span class="s2">&quot;winner&quot;</span> <span class="p">:</span> <span class="s2">&quot;loser&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h5>ruby的switch case寫法</h5>
-
-<figure class='code'><figcaption><span>case/when/end</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">case</span> <span class="n">lang</span>
-</span><span class='line'><span class="k">when</span> <span class="s2">&quot;java&quot;</span>
-</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;good&quot;</span>
-</span><span class='line'><span class="k">when</span> <span class="s2">&quot;python&quot;</span>
-</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;great!&quot;</span>
-</span><span class='line'><span class="k">when</span> <span class="s2">&quot;ruby&quot;</span>
-</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;perfect!&quot;</span>
-</span><span class='line'><span class="k">else</span>
-</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;WTF&quot;</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>迴圈</h3>
-
-<p>在ruby中比較少在用for跟while迴圈，大部分情況都使用each(iterator迭代器)</p>
-
-<figure class='code'><figcaption><span>each</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">lang</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;ruby&quot;</span><span class="p">,</span><span class="s2">&quot;python&quot;</span><span class="p">,</span><span class="s2">&quot;java&quot;</span><span class="p">,</span><span class="s2">&quot;c&quot;</span><span class="p">,</span><span class="s2">&quot;php&quot;</span><span class="o">]</span>
-</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="n">lang</span>
-</span><span class='line'>  <span class="nb">puts</span> <span class="n">i</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">lang</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
-</span><span class='line'>  <span class="nb">puts</span> <span class="s1">&#39;I love &#39;</span> <span class="o">+</span> <span class="n">i</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="o">].</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="mi">3</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span>
-</span><span class='line'>  <span class="nb">puts</span> <span class="s1">&#39;Good Job!&#39;</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Reference: RailsFun - JokerCatz</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/05/06/ruby-txt-file/">[Ruby] 匯出txt檔</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-05-06T22:00:59+08:00" pubdate data-updated="true"></time>
-        
-         | <a href="/blog/2014/05/06/ruby-txt-file/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h4>需要在正式環境上撈大量特定資料下來，又不想dump整份database，用ORM來把資料匯出成txt就很方便了</h4>
-
-<figure class='code'><figcaption><span>寫入txt</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">all_users_mobile</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">&#39;mobile like ?&#39;</span><span class="p">,</span> <span class="s1">&#39;+8869%&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="ss">:mobile</span><span class="p">)</span><span class="o">.</span><span class="n">uniq</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># 建立txt並給予寫入權限</span>
-</span><span class='line'><span class="n">file</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;mobile_tw.txt&#39;</span> <span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">all_users_mobile</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">mobile</span><span class="o">|</span>
-</span><span class='line'>  <span class="n">file</span><span class="o">.</span><span class="n">puts</span> <span class="n">mobile</span> <span class="c1"># 一行一筆mobile</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># 記得要關掉</span>
-</span><span class='line'><span class="n">file</span><span class="o">.</span><span class="n">close</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>讀取txt</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># 讀取txt</span>
-</span><span class='line'><span class="n">file</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;mobile_tw.txt&#39;</span> <span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="mi">100</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">file</span><span class="o">.</span><span class="n">readline</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Reference:</p>
-
-<p><a href="http://ruby-doc.org/core-2.1.4/File.html">http://ruby-doc.org/core-2.1.4/File.html</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/3">&larr; Older</a>
@@ -1413,6 +1544,14 @@ Reference:</p>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/12/10/bitcoin-improvement-proposal-39/">[Crypto] BIP-39 mnemonic words</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/11/04/private-coins-monero-dash-zcash-pivx/">[Crypto] 加密貨幣(Dash Pivx Zcash Monero)筆記</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2017/01/15/how-to-mine-zcash-on-windows/">[ZCash] 如何使用Windows來挖礦</a>
@@ -1466,14 +1605,6 @@ Reference:</p>
         <a href="/blog/2015/11/07/ruby-aes-encrypt-decrypt/">[Ruby] AES 加密解密</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2015/07/11/rails-various-update-methods/">[Rails] 各種update method</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/06/29/mac-build-ubuntu-flash-using-command/">[Mac] 三步驟純指令建立Ubuntu的USB隨身碟</a>
-      </li>
-    
   </ul>
 </section>
 
@@ -1487,7 +1618,7 @@ Reference:</p>
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2017 - Bob (PoYi) -
+  Copyright &copy; 2019 - Bob (PoYi) -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

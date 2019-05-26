@@ -13,3 +13,9 @@ body{max-width: 1090px;}
     padding-right: 40px;
   }
 }
+
+
+#content article.hentry header {
+  background: none;
+  padding-bottom: 0;
+}

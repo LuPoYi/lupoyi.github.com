@@ -9,8 +9,13 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="台灣人常出現的Email issue X : We need to cost down on this project. (&ldquo;cost down&rdquo; is not a word)
-X : Please feel free to contact with me. (&ldquo &hellip;">
+  <meta name="description" content="Client-Base ViewState：相當於把值存放於hidden field當中 只存在單一Web form
+預設開啟、未完善加密
+不會佔用系統資源
+較不適合大量或機密資料 Server-Base Session：類似跨網頁的全域變數 多個頁面傳值
+預設存放記憶體
+可設定Time out
+">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -107,6 +112,118 @@ X : Please feel free to contact with me. (&ldquo &hellip;">
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2013/08/22/91974/">[ASP.NET] 頁面傳值</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-22T02:05:00+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2013/08/22/91974/#disqus_thread">Comments</a>
+        
+      </p>
+      <p class="pull-right">2013-08-22</p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>Client-Base</h2>
+
+<h3>ViewState：相當於把值存放於hidden field當中</h3>
+
+<p>只存在單一Web form
+預設開啟、未完善加密
+不會佔用系統資源
+<em>較不適合大量或機密資料</em></p>
+
+<h2>Server-Base</h2>
+
+<h3>Session：類似跨網頁的全域變數</h3>
+
+<p>多個頁面傳值
+預設存放記憶體
+可設定Time out</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/07/28/sql-syntax/">[SQL] 常用語法</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-28T06:41:00+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2013/07/28/sql-syntax/#disqus_thread">Comments</a>
+        
+      </p>
+      <p class="pull-right">2013-07-28</p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>不一定是常用…而是記不太起來，每次都要查…</p>
+
+<p>DBCC CHECKIDENT ( <em>tablename</em>, RESEED, new_reseed_value ) 強制重設table的識別值</p>
+
+<pre><code>DBCC CHECKIDENT(tablename,  RESEED, 0)  // 歸零識別值
+</code></pre>
+
+<p>SQL驗證
+Data Source=<strong><em>;Initial catalog=</em></strong>;User ID=<strong><em>;Password=</em></strong></p>
+
+<p>Windows驗證
+Data Source=<strong><em>;Initial Catalog=</em></strong>;integrated security=sspi</p>
+
+<p>union:上下重直合併</p>
+
+<p>萬用字元
+%
+_:代表一個字元
+〔〕:指定字元範圍；[0-9]、[A-D]、[ABCD]
+〔^〕:排除字元範圍:[^ABC]</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2013/07/22/common-e-mail-errors/">[English] Common E-mail Errors</a></h1>
     
     
@@ -128,6 +245,7 @@ X : Please feel free to contact with me. (&ldquo &hellip;">
          | <a href="/blog/2013/07/22/common-e-mail-errors/#disqus_thread">Comments</a>
         
       </p>
+      <p class="pull-right">2013-07-22</p>
     
   </header>
 
@@ -196,6 +314,7 @@ X: Tks,<br></p>
          | <a href="/blog/2013/07/22/string-syntax/#disqus_thread">Comments</a>
         
       </p>
+      <p class="pull-right">2013-07-22</p>
     
   </header>
 
@@ -273,6 +392,7 @@ Regex.IsMatch(strPwd, @"[\W]")
          | <a href="/blog/2013/03/03/aspnet-auto-return/#disqus_thread">Comments</a>
         
       </p>
+      <p class="pull-right">2013-03-03</p>
     
   </header>
 
@@ -341,6 +461,7 @@ Regex.IsMatch(strPwd, @"[\W]")
          | <a href="/blog/2013/03/03/c-datatable-operation-memos/#disqus_thread">Comments</a>
         
       </p>
+      <p class="pull-right">2013-03-03</p>
     
   </header>
 
@@ -396,6 +517,7 @@ GridView.DataBind();</p>
          | <a href="/blog/2013/02/15/linux-getting-started-with-hyper-basic-instructions/#disqus_thread">Comments</a>
         
       </p>
+      <p class="pull-right">2013-02-15</p>
     
   </header>
 
@@ -523,6 +645,7 @@ GridView.DataBind();</p>
          | <a href="/blog/2013/02/14/aspnet-reset-password-in-active-directory/#disqus_thread">Comments</a>
         
       </p>
+      <p class="pull-right">2013-02-14</p>
     
   </header>
 
@@ -653,6 +776,7 @@ GridView.DataBind();</p>
          | <a href="/blog/2013/02/08/mac-set-to-open-files-by-default-software/#disqus_thread">Comments</a>
         
       </p>
+      <p class="pull-right">2013-02-08</p>
     
   </header>
 
@@ -708,6 +832,7 @@ GridView.DataBind();</p>
          | <a href="/blog/2013/01/02/css-position/#disqus_thread">Comments</a>
         
       </p>
+      <p class="pull-right">2013-01-02</p>
     
   </header>
 
@@ -806,6 +931,14 @@ GridView.DataBind();</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2017/12/10/bitcoin-improvement-proposal-39/">[Crypto] BIP-39 mnemonic words</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/11/04/private-coins-monero-dash-zcash-pivx/">[Crypto] 加密貨幣(Dash Pivx Zcash Monero)筆記</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2017/01/15/how-to-mine-zcash-on-windows/">[ZCash] 如何使用Windows來挖礦</a>
       </li>
     
@@ -857,14 +990,6 @@ GridView.DataBind();</p>
         <a href="/blog/2015/11/07/ruby-aes-encrypt-decrypt/">[Ruby] AES 加密解密</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2015/07/11/rails-various-update-methods/">[Rails] 各種update method</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/06/29/mac-build-ubuntu-flash-using-command/">[Mac] 三步驟純指令建立Ubuntu的USB隨身碟</a>
-      </li>
-    
   </ul>
 </section>
 
@@ -878,7 +1003,7 @@ GridView.DataBind();</p>
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2017 - Bob (PoYi) -
+  Copyright &copy; 2019 - Bob (PoYi) -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
