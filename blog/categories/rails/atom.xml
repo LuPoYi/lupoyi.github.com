@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rails | Bob 學習筆記]]></title>
   <link href="http://blog.poyi.tw/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2019-05-26T14:57:51+08:00</updated>
+  <updated>2019-06-07T23:12:53+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -12,6 +12,89 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[[Ubuntu] Ruby on Rails 基本環境建置 - Ubuntu 18.04 LTS]]></title>
+    <link href="http://blog.poyi.tw/blog/2019/05/26/rails-ubuntu-environment-ubuntu18-dot-04/"/>
+    <updated>2019-05-26T15:28:03+08:00</updated>
+    <id>http://blog.poyi.tw/blog/2019/05/26/rails-ubuntu-environment-ubuntu18-dot-04</id>
+    <content type="html"><![CDATA[<pre><code class="bash user">sudo adduser deploy
+sudo adduser deploy sudo
+exit
+</code></pre>
+
+<pre><code class="bash required libraries">curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+sudo add-apt-repository ppa:chris-lea/redis-server
+sudo apt-get update
+sudo apt-get install git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev software-properties-common libffi-dev dirmngr gnupg apt-transport-https ca-certificates redis-server redis-tools nodejs yarn
+</code></pre>
+
+<pre><code class="bash ruby">git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+echo 'export PATH="$HOME/.rbenv/bin:$PATH"' &gt;&gt; ~/.bashrc
+echo 'eval "$(rbenv init -)"' &gt;&gt; ~/.bashrc
+git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+echo 'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"' &gt;&gt; ~/.bashrc
+git clone https://github.com/rbenv/rbenv-vars.git ~/.rbenv/plugins/rbenv-vars
+exec $SHELL
+rbenv install 2.6.1
+rbenv global 2.6.1
+</code></pre>
+
+<pre><code class="bash bundler">gem install bundler
+gem install bundler -v 1.17.3
+</code></pre>
+
+<pre><code class="bash NGINX & Passenger">sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 561F9B9CAC40B2F7
+sudo sh -c 'echo deb https://oss-binaries.phusionpassenger.com/apt/passenger bionic main &gt; /etc/apt/sources.list.d/passenger.list'
+sudo apt-get update
+sudo apt-get install -y nginx-extras libnginx-mod-http-passenger
+if [ ! -f /etc/nginx/modules-enabled/50-mod-http-passenger.conf ]; then sudo ln -s /usr/share/nginx/modules-available/mod-http-passenger.load /etc/nginx/modules-enabled/50-mod-http-passenger.conf ; fi
+sudo ls /etc/nginx/conf.d/mod-http-passenger.conf
+</code></pre>
+
+<pre><code class="bash /etc/nginx/conf.d/mod-http-passenger.conf"># 加上
+passenger_ruby /home/bob/.rbenv/shims/ruby;
+</code></pre>
+
+<pre><code class="bash /etc/nginx/sites-enabled/myapp">server {
+  listen 80;
+  listen [::]:80;
+
+  server_name _;
+  root /home/bob/myapp/current/public;
+
+  passenger_enabled on;
+  passenger_app_env production;
+
+  location /cable {
+    passenger_app_group_name myapp_websocket;
+    passenger_force_max_concurrent_requests_per_process 0;
+  }
+
+  # Allow uploads up to 100MB in size
+  client_max_body_size 100m;
+
+  location ~ ^/(assets|packs) {
+    expires max;
+    gzip_static on;
+  }
+}
+</code></pre>
+
+<pre><code class="bash mysql">sudo apt-get install mysql-server mysql-client libmysqlclient-dev
+sudo mysql_secure_installation
+</code></pre>
+
+<pre><code class="bash /etc/redis/redis.conf">supervised systemd
+</code></pre>
+
+<p>Reference:</p>
+
+<p><a href="https://gorails.com/deploy/ubuntu/18.04">https://gorails.com/deploy/ubuntu/18.04</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[[Ubuntu] Ruby on Rails 基本環境建置 - Ubuntu 16.04 LTS]]></title>
@@ -211,7 +294,7 @@ sudo systemctl status ssdb
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[[Mac] Ruby on Rails 基本環境建置 - 10.12 Sierra]]></title>
+    <title type="html"><![CDATA[[Mac] Ruby on Rails 基本環境建置 - 10.14 Mojave]]></title>
     <link href="http://blog.poyi.tw/blog/2016/10/30/rails-mac-os-environment-sierra/"/>
     <updated>2016-10-30T15:39:21+08:00</updated>
     <id>http://blog.poyi.tw/blog/2016/10/30/rails-mac-os-environment-sierra</id>
@@ -224,15 +307,18 @@ brew install rbenv ruby-build
 echo 'if which rbenv &gt; /dev/null; then eval "$(rbenv init -)"; fi' &gt;&gt; ~/.bash_profile
 source ~/.bash_profile
 
-rbenv install 2.3.1
-rbenv global 2.3.1
+rbenv install 2.6.3
+rbenv global 2.6.3
 </code></pre>
 
-<pre><code class="bash Installing Rails">gem install rails -v 4.2.6
+<pre><code class="bash Installing Rails">gem install rails -v 6.0.0.rc1
 rbenv rehash
 </code></pre>
 
 <pre><code class="bash others">brew install mysql
+brew install redis
+brew install ssdb
+brew install memcached
 </code></pre>
 ]]></content>
   </entry>
@@ -319,40 +405,6 @@ end
 
 <p><a href="http://travisjeffery.com/b/2012/04/rendering-errors-in-json-with-rails/">http://travisjeffery.com/b/2012/04/rendering-errors-in-json-with-rails/</a>
 <a href="http://stackoverflow.com/questions/16133923/400-vs-422-response-to-post-of-data">http://stackoverflow.com/questions/16133923/400-vs-422-response-to-post-of-data</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[[Ruby] 匯出txt檔]]></title>
-    <link href="http://blog.poyi.tw/blog/2014/05/06/ruby-txt-file/"/>
-    <updated>2014-05-06T22:00:59+08:00</updated>
-    <id>http://blog.poyi.tw/blog/2014/05/06/ruby-txt-file</id>
-    <content type="html"><![CDATA[<h4>需要在正式環境上撈大量特定資料下來，又不想dump整份database，用ORM來把資料匯出成txt就很方便了</h4>
-
-<pre><code class="ruby 寫入txt">all_users_mobile = User.where('mobile like ?', '+8869%').select(:mobile).uniq
-
-# 建立txt並給予寫入權限
-file = File.open('mobile_tw.txt' , 'w')
-
-all_users_mobile.each do |mobile|
-  file.puts mobile # 一行一筆mobile
-end
-
-# 記得要關掉
-file.close
-</code></pre>
-
-<pre><code class="ruby 讀取txt"># 讀取txt
-file = File.open('mobile_tw.txt' , 'r')
-
-100.times do
-  file.readline
-end
-</code></pre>
-
-<p>Reference:</p>
-
-<p><a href="http://ruby-doc.org/core-2.1.4/File.html">http://ruby-doc.org/core-2.1.4/File.html</a></p>
 ]]></content>
   </entry>
   

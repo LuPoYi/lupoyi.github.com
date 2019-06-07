@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://blog.poyi.tw/blog/2019/05/26/rails-ubuntu-environment-ubuntu18-dot-04/</loc>
+    <lastmod>2019-05-26T15:28:03+08:00</lastmod>
+  </url>
+  <url>
     <loc>http://blog.poyi.tw/blog/2017/12/10/bitcoin-improvement-proposal-39/</loc>
     <lastmod>2017-12-10T18:26:47+08:00</lastmod>
   </url>
@@ -503,7 +507,7 @@
     <loc>http://blog.poyi.tw/blog/categories/permission/</loc>
   </url>
   <url>
-    <loc>http://blog.poyi.tw/blog/categories/sierra/</loc>
+    <loc>http://blog.poyi.tw/blog/categories/mojave/</loc>
   </url>
   <url>
     <loc>http://blog.poyi.tw/blog/categories/zcash/</loc>
@@ -558,6 +562,9 @@
   </url>
   <url>
     <loc>http://blog.poyi.tw/posts/7/</loc>
+  </url>
+  <url>
+    <loc>http://blog.poyi.tw/posts/8/</loc>
   </url>
   <url>
     <loc>http://blog.poyi.tw/about/weight/index.html</loc>

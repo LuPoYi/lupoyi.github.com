@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: sierra | Bob 學習筆記]]></title>
-  <link href="http://blog.poyi.tw/blog/categories/sierra/atom.xml" rel="self"/>
+  <title><![CDATA[Category: mojave | Bob 學習筆記]]></title>
+  <link href="http://blog.poyi.tw/blog/categories/mojave/atom.xml" rel="self"/>
   <link href="http://blog.poyi.tw/"/>
-  <updated>2019-05-26T14:57:51+08:00</updated>
+  <updated>2019-06-07T23:12:53+08:00</updated>
   <id>http://blog.poyi.tw/</id>
   <author>
     <name><![CDATA[Bob (PoYi)]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[[Mac] Ruby on Rails 基本環境建置 - 10.12 Sierra]]></title>
+    <title type="html"><![CDATA[[Mac] Ruby on Rails 基本環境建置 - 10.14 Mojave]]></title>
     <link href="http://blog.poyi.tw/blog/2016/10/30/rails-mac-os-environment-sierra/"/>
     <updated>2016-10-30T15:39:21+08:00</updated>
     <id>http://blog.poyi.tw/blog/2016/10/30/rails-mac-os-environment-sierra</id>
@@ -27,15 +27,18 @@ brew install rbenv ruby-build
 echo 'if which rbenv &gt; /dev/null; then eval "$(rbenv init -)"; fi' &gt;&gt; ~/.bash_profile
 source ~/.bash_profile
 
-rbenv install 2.3.1
-rbenv global 2.3.1
+rbenv install 2.6.3
+rbenv global 2.6.3
 </code></pre>
 
-<pre><code class="bash Installing Rails">gem install rails -v 4.2.6
+<pre><code class="bash Installing Rails">gem install rails -v 6.0.0.rc1
 rbenv rehash
 </code></pre>
 
 <pre><code class="bash others">brew install mysql
+brew install redis
+brew install ssdb
+brew install memcached
 </code></pre>
 ]]></content>
   </entry>

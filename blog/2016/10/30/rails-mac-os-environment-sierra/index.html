@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>[Mac] Ruby on Rails 基本環境建置 - 10.12 Sierra - Bob 學習筆記</title>
+  <title>[Mac] Ruby on Rails 基本環境建置 - 10.14 Mojave - Bob 學習筆記</title>
   <meta name="author" content="Bob (PoYi)">
 
   
@@ -110,7 +110,7 @@ ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/ma
   
   <header>
     
-      <h1 class="entry-title">[Mac] Ruby on Rails 基本環境建置 - 10.12 Sierra</h1>
+      <h1 class="entry-title">[Mac] Ruby on Rails 基本環境建置 - 10.14 Mojave</h1>
     
     
       <p class="meta">
@@ -157,8 +157,8 @@ ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/ma
 </span><span class='line'><span class="nb">echo</span> <span class="s1">&#39;if which rbenv &gt; /dev/null; then eval &quot;$(rbenv init -)&quot;; fi&#39;</span> &gt;&gt; ~/.bash_profile
 </span><span class='line'><span class="nb">source</span> ~/.bash_profile
 </span><span class='line'>
-</span><span class='line'>rbenv install 2.3.1
-</span><span class='line'>rbenv global 2.3.1
+</span><span class='line'>rbenv install 2.6.3
+</span><span class='line'>rbenv global 2.6.3
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -166,7 +166,7 @@ ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/ma
 
 <figure class='code'><figcaption><span>Installing Rails</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem install rails -v 4.2.6
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>gem install rails -v 6.0.0.rc1
 </span><span class='line'>rbenv rehash
 </span></code></pre></td></tr></table></div></figure>
 
@@ -174,7 +174,13 @@ ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/ma
 
 
 <figure class='code'><figcaption><span>others</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>brew install mysql
+</span><span class='line'>brew install redis
+</span><span class='line'>brew install ssdb
+</span><span class='line'>brew install memcached
 </span></code></pre></td></tr></table></div></figure>
 
 </div>
@@ -204,7 +210,7 @@ ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/ma
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/mac/'>mac</a>, <a class='category' href='/blog/categories/rails/'>rails</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/sierra/'>sierra</a>
+    <a class='category' href='/blog/categories/mac/'>mac</a>, <a class='category' href='/blog/categories/mojave/'>mojave</a>, <a class='category' href='/blog/categories/rails/'>rails</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>
   
 </span>
 
@@ -277,6 +283,10 @@ ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/ma
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2019/05/26/rails-ubuntu-environment-ubuntu18-dot-04/">[Ubuntu] Ruby on Rails 基本環境建置 - Ubuntu 18.04 LTS</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2017/12/10/bitcoin-improvement-proposal-39/">[Crypto] BIP-39 mnemonic words</a>
       </li>
     
@@ -293,7 +303,7 @@ ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/ma
       </li>
     
       <li class="post">
-        <a href="/blog/2016/10/30/rails-mac-os-environment-sierra/">[Mac] Ruby on Rails 基本環境建置 - 10.12 Sierra</a>
+        <a href="/blog/2016/10/30/rails-mac-os-environment-sierra/">[Mac] Ruby on Rails 基本環境建置 - 10.14 Mojave</a>
       </li>
     
       <li class="post">
@@ -330,10 +340,6 @@ ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/ma
     
       <li class="post">
         <a href="/blog/2016/01/17/ubuntu-setting-pppoe-static-ip/">[Ubuntu] 設定 PPPoE 固定IP</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/11/07/ruby-aes-encrypt-decrypt/">[Ruby] AES 加密解密</a>
       </li>
     
   </ul>

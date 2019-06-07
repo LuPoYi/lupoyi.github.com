@@ -9,7 +9,8 @@
   <meta name="author" content="Bob (PoYi)">
 
   
-  <meta name="description" content="在Ruby中的邏輯運算有兩組，[!,&amp;&amp;,||]及[not,and,or] [!,&amp;&amp;,||] higher precedence [=,%=,~=,/=] between this two [not,and,or] lower precedence 優先權：& &hellip;">
+  <meta name="description" content="Ruby 有一個重要特性 Convention Over Configuration 希望去做到一個約定成俗的習慣/慣例，省去過多的設定，讓程式更為簡潔。(ex:route maping) Ruby命名也有一定的慣例 $name:全域變數
+@name:實例變數，作用域僅限定於 self 指示的物件 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -100,6 +101,84 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/12/14/ruby-is-a-small-note/">[Ruby] 變數</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-14T13:19:00+08:00" pubdate data-updated="true"></time>
+        
+         | <a href="/blog/2013/12/14/ruby-is-a-small-note/#disqus_thread">Comments</a>
+        
+      </p>
+      <p class="pull-right">2013-12-14</p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Ruby 有一個重要特性 <strong>Convention Over Configuration</strong></p>
+
+<p>希望去做到一個約定成俗的習慣/慣例，省去過多的設定，讓程式更為簡潔。(ex:route maping)</p>
+
+<p>Ruby命名也有一定的慣例</p>
+
+<ul>
+<li>$name:全域變數</li>
+<li>@name:實例變數，作用域僅限定於 self 指示的物件</li>
+<li>name:區域變數(小寫字母或底線開頭；初始化前並沒有 nil 值)</li>
+<li>Name:常數(大寫開頭；重覆定義時會出現警告)</li>
+</ul>
+
+
+<figure class='code'><figcaption><span>全域變數 vs 實例變數 vs 區域變數</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">ruby</span><span class="o">&gt;</span> <span class="vg">$foo</span>
+</span><span class='line'>  <span class="o">=&gt;</span> <span class="kp">nil</span>
+</span><span class='line'><span class="n">ruby</span><span class="o">&gt;</span> <span class="vi">@foo</span>
+</span><span class='line'>  <span class="o">=&gt;</span> <span class="kp">nil</span>
+</span><span class='line'><span class="n">ruby</span><span class="o">&gt;</span> <span class="n">foo</span>
+</span><span class='line'><span class="ss">ERR</span><span class="p">:</span> <span class="p">(</span><span class="nb">eval</span><span class="p">):</span><span class="mi">1</span><span class="p">:</span> <span class="n">undefined</span> <span class="n">local</span> <span class="n">variable</span> <span class="ow">or</span> <span class="nb">method</span> <span class="sb">`foo&#39; for main(Object)</span>
+</span><span class='line'><span class="sb">ruby&gt; Foo = 2</span>
+</span><span class='line'><span class="sb"> =&gt; 2</span>
+</span><span class='line'><span class="sb">ruby&gt; Foo = 3</span>
+</span><span class='line'><span class="sb">  =&gt; warning: alread initialized constant Foo</span>
+</span><span class='line'><span class="sb">  =&gt; 3</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1015,88 +1094,6 @@ HT Hyper-threading 可將核心分成兩個序列在處理 cpu數<em>核心數</
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/10/16/rails-tips/">[Rails] 小技巧</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-10-16T15:33:00+08:00" pubdate data-updated="true"></time>
-        
-         | <a href="/blog/2013/10/16/rails-tips/#disqus_thread">Comments</a>
-        
-      </p>
-      <p class="pull-right">2013-10-16</p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>.erb的註解</h2>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;% #註解可寫在井號後面 %&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;% if false %&gt;
-</span><span class='line'>或寫在這
-</span><span class='line'>&lt;% end %&gt;</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>.rb的註解</h2>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'># 一般只用單行註解
-</span><span class='line'>
-</span><span class='line'>=begin
-</span><span class='line'>  多行註解比較少見
-</span><span class='line'>=end
-</span><span class='line'>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>檢查自己寫了多少code</h2>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ bundle exec rake stats</span></code></pre></td></tr></table></div></figure>
-
-
-<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/147937/9dPiFwgmRd61Oaf5xz2Z_2013-10-17%20%E4%B8%8B%E5%8D%88%2010-38-13.jpg" alt="2013-10-17 下午 10-38-13.jpg" /></p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ rake routes</span></code></pre></td></tr></table></div></figure>
-
-
-<p><img src="http://user-image.logdown.io/user/2740/blog/2734/post/147937/gXa3Ts8RrqxlUGr0Ducw_2013-11-1%20%E4%B8%8B%E5%8D%88%2002-58-54.jpg" alt="2013-11-1 下午 02-58-54.jpg" /></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/5">&larr; Older</a>
@@ -1145,6 +1142,10 @@ HT Hyper-threading 可將核心分成兩個序列在處理 cpu數<em>核心數</
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2019/05/26/rails-ubuntu-environment-ubuntu18-dot-04/">[Ubuntu] Ruby on Rails 基本環境建置 - Ubuntu 18.04 LTS</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2017/12/10/bitcoin-improvement-proposal-39/">[Crypto] BIP-39 mnemonic words</a>
       </li>
     
@@ -1161,7 +1162,7 @@ HT Hyper-threading 可將核心分成兩個序列在處理 cpu數<em>核心數</
       </li>
     
       <li class="post">
-        <a href="/blog/2016/10/30/rails-mac-os-environment-sierra/">[Mac] Ruby on Rails 基本環境建置 - 10.12 Sierra</a>
+        <a href="/blog/2016/10/30/rails-mac-os-environment-sierra/">[Mac] Ruby on Rails 基本環境建置 - 10.14 Mojave</a>
       </li>
     
       <li class="post">
@@ -1198,10 +1199,6 @@ HT Hyper-threading 可將核心分成兩個序列在處理 cpu數<em>核心數</
     
       <li class="post">
         <a href="/blog/2016/01/17/ubuntu-setting-pppoe-static-ip/">[Ubuntu] 設定 PPPoE 固定IP</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/11/07/ruby-aes-encrypt-decrypt/">[Ruby] AES 加密解密</a>
       </li>
     
   </ul>
